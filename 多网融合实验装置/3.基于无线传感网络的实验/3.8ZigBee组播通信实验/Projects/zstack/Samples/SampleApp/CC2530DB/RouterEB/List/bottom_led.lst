@@ -1,0 +1,1189 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         23/Nov/2018  16:47:38 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Compon #
+#                          ents\HARDWARE\bottom_led.c                         #
+#    Command line       =  -f D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Pro #
+#                          jects\zstack\Samples\SampleApp\CC2530DB\..\..\..\T #
+#                          ools\CC2530DB\f8wRouter.cfg (-DCPU32MHZ            #
+#                          -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRU #
+#                          E -DRTR_NWK -DBLINK_LEDS) -f                       #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tool #
+#                          s\CC2530DB\f8wConfig.cfg (-DSECURE=0               #
+#                          -DZG_SECURE_DYNAMIC=0 -DREFLECTOR                  #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFF11                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100) -DREJOIN_POLL_RATE=440   #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Compon #
+#                          ents\HARDWARE\bottom_led.c -D ZTOOL_P1 -D MT_TASK  #
+#                          -D MT_SYS_FUNC -D MT_ZDO_FUNC -D                   #
+#                          LCD_SUPPORTED=DEBUG -lC D:\ZigBee\KJXY-ZigBee\usef #
+#                          ul_code\groupcast\Projects\zstack\Samples\SampleAp #
+#                          p\CC2530DB\RouterEB\List\ -lA                      #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\RouterEB\List #
+#                          \ --diag_suppress Pe001,Pa010 -o                   #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\RouterEB\Obj\ #
+#                           -e --debug --core=plain --dptr=16,1               #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Pro #
+#                          jects\zstack\Samples\SampleApp\CC2530DB\ -I        #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\SOURCE\    #
+#                          -I D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Pro #
+#                          jects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Z #
+#                          MAIN\TI2530DB\ -I D:\ZigBee\KJXY-ZigBee\useful_cod #
+#                          e\groupcast\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\MT\ -I              #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\HAL\INCLUDE\ -I                       #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\HAL\TARGET\CC2530EB\ -I               #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\OSAL\MCU\CCSOC\ -I                    #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\OSAL\INCLUDE\ -I                      #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\STACK\AF\ -I                          #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\STACK\NWK\ -I                         #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\STACK\SEC\ -I                         #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\STACK\SAPI\ -I                        #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\STACK\SYS\ -I                         #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\STACK\ZDO\ -I                         #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\ZMAC\F8W\ -I                          #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\ZMAC\ -I D:\ZigBee\KJXY-ZigBee\useful #
+#                          _code\groupcast\Projects\zstack\Samples\SampleApp\ #
+#                          CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\SADDR\ #
+#                           -I D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Pr #
+#                          ojects\zstack\Samples\SampleApp\CC2530DB\..\..\..\ #
+#                          ..\..\COMPONENTS\SERVICES\SDATA\ -I                #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\MAC\INCLUDE\ -I                       #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\MAC\HIGH_LEVEL\ -I                    #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\MAC\LOW_LEVEL\srf04\ -I               #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\ -I   #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\HARDWARE\ -Ohz                        #
+#    List file          =  D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\RouterEB\List #
+#                          \bottom_led.lst                                    #
+#    Object file        =  D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\RouterEB\Obj\ #
+#                          bottom_led.r51                                     #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Components\HARDWARE\bottom_led.c
+      1          //#include "delay.h"
+      2          #include "bottom_led.h"
+
+   \                                 In  segment SFR_AN, at 0xa0
+   \   union <unnamed> volatile __sfr _A_P2
+   \                     _A_P2:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xff
+   \   unsigned char volatile __sfr P2DIR
+   \                     P2DIR:
+   \   000000                DS 1
+      3          #include "delay.h"
+      4          #include <ioCC2530.h> 
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+      5          long int rgb = 0x070707;  //需要变换的颜色
+   \                     rgb:
+   \   000000                DS 4
+   \   000004                REQUIRE `?<Initializer for rgb>`
+   \   000004                REQUIRE __INIT_XDATA_I
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+      6          uint16 fig = 0,num = 23;    
+   \                     fig:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+   \                     num:
+   \   000000                DS 2
+   \   000002                REQUIRE `?<Initializer for num>`
+   \   000002                REQUIRE __INIT_XDATA_I
+      7          void RGB_REST(void);
+      8          void Set_White(void);
+      9          void bottom_led(void);
+     10          void _delayunit(void);
+     11          void RGB_Set_UP();
+     12          void RGB_Set_Down(void);
+     13          void Set_Green(void);
+     14          void Set_Red(void);
+     15          void Set_Blue(void);
+     16          void Set_Yellow(void);
+     17          void RGB_Set_UP(void);
+     18          /***********************************************************************************
+     19          * 函数名称        InitLed
+     20          *
+     21          * 函数功能        设置LED灯相应的IO口
+     22          *
+     23          * 入口参数        无
+     24          *
+     25          * 返回参数        无 
+     26          *
+     27          * 说明
+     28          ***********************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     29          void bottom_led_init(void)
+   \                     bottom_led_init:
+     30          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     31              P2DIR |= 0x01;      //P1.0定义为输出
+   \   000004   43FF01       ORL     0xff,#0x1
+     32              RGB_REST();
+   \   000007                ; Setup parameters for call to function RGB_REST
+   \   000007   12....       LCALL   ??RGB_REST?relay
+     33              delay_ms(200);
+   \   00000A                ; Setup parameters for call to function delay_ms
+   \   00000A   90....       MOV     DPTR,#__Constant_c8
+   \   00000D   12....       LCALL   ?XLOAD_R2345
+   \   000010   12....       LCALL   ??delay_ms?relay
+     34              Set_Blue();
+   \   000013                ; Setup parameters for call to function Set_Blue
+   \   000013   12....       LCALL   ??Set_Blue?relay
+     35          }
+   \   000016                REQUIRE ?Subroutine1
+   \   000016                REQUIRE P2DIR
+   \   000016                ; // Fall through to label ?Subroutine1
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     36          void _delayunit(void)
+   \                     _delayunit:
+     37          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     38            uint8 i=0;
+     39            for(i=0;i<2;i++)
+     40            {
+     41            
+     42            }
+     43          }
+   \   000000   02....       LJMP    ?BRET
+     44          /*  1码 850ns高 400ns低*/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     45          void RGB_Set_UP(void)
+   \                     RGB_Set_UP:
+     46          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     47                LED = 1;      //1
+   \   000000   D2A0         SETB    0xa0.0
+     48                asm("NOP");
+   \   000002   00           NOP
+     49                asm("NOP");
+   \   000003   00           NOP
+     50                asm("NOP");
+   \   000004   00           NOP
+     51                asm("NOP");
+   \   000005   00           NOP
+     52                asm("NOP");
+   \   000006   00           NOP
+     53                asm("NOP");
+   \   000007   00           NOP
+     54                LED = 0;
+   \   000008   02....       LJMP    ??Subroutine5_0 & 0xFFFF
+   \   00000B                REQUIRE _A_P2
+     55          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine5_0:
+   \   000000   C2A0         CLR     0xa0.0
+   \   000002   02....       LJMP    ?BRET
+     56          
+     57          /*  0码  400ns高  850ns低*/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     58          void RGB_Set_Down(void)
+   \                     RGB_Set_Down:
+     59          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     60                LED = 1;     //0
+   \   000000   D2A0         SETB    0xa0.0
+     61                asm("NOP");
+   \   000002   00           NOP
+     62                asm("NOP");
+   \   000003   00           NOP
+     63                LED = 0;
+   \   000004   C2A0         CLR     0xa0.0
+     64                asm("NOP");
+   \   000006   00           NOP
+     65                asm("NOP");
+   \   000007   00           NOP
+     66          }
+   \   000008   02....       LJMP    ?BRET
+   \   00000B                REQUIRE _A_P2
+     67          
+     68          #define SEND_HI {LED = 1;LED = 1;LED = 1;LED = 1;LED = 0;LED = 0; }
+     69          
+     70          #define SEND_LO {LED = 1;LED = 1;LED = 0; LED = 0;LED = 0;LED = 0; }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     71          void Set_White(void)
+   \                     Set_White:
+     72          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     73            SEND_HI;
+   \   000000   D2A0         SETB    0xa0.0
+   \   000002   D2A0         SETB    0xa0.0
+   \   000004   D2A0         SETB    0xa0.0
+   \   000006   D2A0         SETB    0xa0.0
+   \   000008   C2A0         CLR     0xa0.0
+   \   00000A   C2A0         CLR     0xa0.0
+     74            SEND_HI;
+   \   00000C   D2A0         SETB    0xa0.0
+   \   00000E   D2A0         SETB    0xa0.0
+   \   000010   D2A0         SETB    0xa0.0
+   \   000012   D2A0         SETB    0xa0.0
+   \   000014   C2A0         CLR     0xa0.0
+   \   000016   C2A0         CLR     0xa0.0
+     75            SEND_HI;
+   \   000018   D2A0         SETB    0xa0.0
+   \   00001A   D2A0         SETB    0xa0.0
+   \   00001C   D2A0         SETB    0xa0.0
+   \   00001E   D2A0         SETB    0xa0.0
+   \   000020   C2A0         CLR     0xa0.0
+   \   000022   C2A0         CLR     0xa0.0
+     76            SEND_HI;
+   \   000024   D2A0         SETB    0xa0.0
+   \   000026   D2A0         SETB    0xa0.0
+   \   000028   D2A0         SETB    0xa0.0
+   \   00002A   D2A0         SETB    0xa0.0
+   \   00002C   C2A0         CLR     0xa0.0
+   \   00002E   C2A0         CLR     0xa0.0
+     77            SEND_HI;
+   \   000030   D2A0         SETB    0xa0.0
+   \   000032   D2A0         SETB    0xa0.0
+   \   000034   D2A0         SETB    0xa0.0
+   \   000036   D2A0         SETB    0xa0.0
+   \   000038   C2A0         CLR     0xa0.0
+   \   00003A   C2A0         CLR     0xa0.0
+     78            SEND_HI;
+   \   00003C   D2A0         SETB    0xa0.0
+   \   00003E   D2A0         SETB    0xa0.0
+   \   000040   D2A0         SETB    0xa0.0
+   \   000042   D2A0         SETB    0xa0.0
+   \   000044   C2A0         CLR     0xa0.0
+   \   000046   C2A0         CLR     0xa0.0
+     79            SEND_HI;
+   \   000048   D2A0         SETB    0xa0.0
+   \   00004A   D2A0         SETB    0xa0.0
+   \   00004C   D2A0         SETB    0xa0.0
+   \   00004E   D2A0         SETB    0xa0.0
+   \   000050   C2A0         CLR     0xa0.0
+   \   000052   C2A0         CLR     0xa0.0
+     80            SEND_HI;
+   \   000054   D2A0         SETB    0xa0.0
+   \   000056   D2A0         SETB    0xa0.0
+   \   000058   D2A0         SETB    0xa0.0
+   \   00005A   D2A0         SETB    0xa0.0
+   \   00005C   C2A0         CLR     0xa0.0
+   \   00005E   C2A0         CLR     0xa0.0
+     81            SEND_HI;
+   \   000060   D2A0         SETB    0xa0.0
+   \   000062   D2A0         SETB    0xa0.0
+   \   000064   D2A0         SETB    0xa0.0
+   \   000066   D2A0         SETB    0xa0.0
+   \   000068   C2A0         CLR     0xa0.0
+   \   00006A   C2A0         CLR     0xa0.0
+     82            SEND_HI;
+   \   00006C   D2A0         SETB    0xa0.0
+   \   00006E   D2A0         SETB    0xa0.0
+   \   000070   D2A0         SETB    0xa0.0
+   \   000072   D2A0         SETB    0xa0.0
+   \   000074   C2A0         CLR     0xa0.0
+   \   000076   C2A0         CLR     0xa0.0
+     83          
+     84            SEND_HI;
+   \   000078   D2A0         SETB    0xa0.0
+   \   00007A   D2A0         SETB    0xa0.0
+   \   00007C   D2A0         SETB    0xa0.0
+   \   00007E   D2A0         SETB    0xa0.0
+   \   000080   C2A0         CLR     0xa0.0
+   \   000082   C2A0         CLR     0xa0.0
+     85            SEND_HI;
+   \   000084   D2A0         SETB    0xa0.0
+   \   000086   D2A0         SETB    0xa0.0
+   \   000088   D2A0         SETB    0xa0.0
+   \   00008A   D2A0         SETB    0xa0.0
+   \   00008C   C2A0         CLR     0xa0.0
+   \   00008E   C2A0         CLR     0xa0.0
+     86            SEND_HI;
+   \   000090   D2A0         SETB    0xa0.0
+   \   000092   D2A0         SETB    0xa0.0
+   \   000094   D2A0         SETB    0xa0.0
+   \   000096   D2A0         SETB    0xa0.0
+   \   000098   C2A0         CLR     0xa0.0
+   \   00009A   C2A0         CLR     0xa0.0
+     87            SEND_HI;
+   \   00009C   D2A0         SETB    0xa0.0
+   \   00009E   D2A0         SETB    0xa0.0
+   \   0000A0   D2A0         SETB    0xa0.0
+   \   0000A2   D2A0         SETB    0xa0.0
+   \   0000A4   C2A0         CLR     0xa0.0
+   \   0000A6   C2A0         CLR     0xa0.0
+     88            SEND_HI;
+   \   0000A8   D2A0         SETB    0xa0.0
+   \   0000AA   D2A0         SETB    0xa0.0
+   \   0000AC   D2A0         SETB    0xa0.0
+   \   0000AE   D2A0         SETB    0xa0.0
+   \   0000B0   C2A0         CLR     0xa0.0
+   \   0000B2   C2A0         CLR     0xa0.0
+     89            SEND_HI;
+   \   0000B4   D2A0         SETB    0xa0.0
+   \   0000B6   D2A0         SETB    0xa0.0
+   \   0000B8   D2A0         SETB    0xa0.0
+   \   0000BA   D2A0         SETB    0xa0.0
+   \   0000BC                REQUIRE ?Subroutine2
+   \   0000BC                REQUIRE _A_P2
+   \   0000BC                ; // Fall through to label ?Subroutine2
+     90            
+     91            SEND_HI;
+     92            SEND_HI;
+     93            SEND_HI;
+     94            SEND_HI;  
+     95            SEND_HI;
+     96            SEND_HI;
+     97            SEND_HI;
+     98            SEND_HI;  
+     99          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   C2A0         CLR     0xa0.0
+   \   000002   C2A0         CLR     0xa0.0
+   \   000004   D2A0         SETB    0xa0.0
+   \   000006   D2A0         SETB    0xa0.0
+   \   000008   D2A0         SETB    0xa0.0
+   \   00000A   D2A0         SETB    0xa0.0
+   \   00000C   C2A0         CLR     0xa0.0
+   \   00000E   C2A0         CLR     0xa0.0
+   \   000010   D2A0         SETB    0xa0.0
+   \   000012   D2A0         SETB    0xa0.0
+   \   000014   D2A0         SETB    0xa0.0
+   \   000016   D2A0         SETB    0xa0.0
+   \   000018   C2A0         CLR     0xa0.0
+   \   00001A   C2A0         CLR     0xa0.0
+   \   00001C   D2A0         SETB    0xa0.0
+   \   00001E   D2A0         SETB    0xa0.0
+   \   000020   D2A0         SETB    0xa0.0
+   \   000022   D2A0         SETB    0xa0.0
+   \   000024   C2A0         CLR     0xa0.0
+   \   000026   C2A0         CLR     0xa0.0
+   \   000028   D2A0         SETB    0xa0.0
+   \   00002A   D2A0         SETB    0xa0.0
+   \   00002C   D2A0         SETB    0xa0.0
+   \   00002E   D2A0         SETB    0xa0.0
+   \   000030   C2A0         CLR     0xa0.0
+   \   000032   C2A0         CLR     0xa0.0
+   \   000034   D2A0         SETB    0xa0.0
+   \   000036   D2A0         SETB    0xa0.0
+   \   000038   D2A0         SETB    0xa0.0
+   \   00003A   D2A0         SETB    0xa0.0
+   \   00003C   C2A0         CLR     0xa0.0
+   \   00003E   C2A0         CLR     0xa0.0
+   \   000040   D2A0         SETB    0xa0.0
+   \   000042   D2A0         SETB    0xa0.0
+   \   000044   D2A0         SETB    0xa0.0
+   \   000046   D2A0         SETB    0xa0.0
+   \   000048   C2A0         CLR     0xa0.0
+   \   00004A   C2A0         CLR     0xa0.0
+   \   00004C   D2A0         SETB    0xa0.0
+   \   00004E   D2A0         SETB    0xa0.0
+   \   000050   D2A0         SETB    0xa0.0
+   \   000052   D2A0         SETB    0xa0.0
+   \   000054   C2A0         CLR     0xa0.0
+   \   000056   C2A0         CLR     0xa0.0
+   \   000058   D2A0         SETB    0xa0.0
+   \   00005A   D2A0         SETB    0xa0.0
+   \   00005C   D2A0         SETB    0xa0.0
+   \   00005E   D2A0         SETB    0xa0.0
+   \   000060   02....       LJMP    ??Subroutine4_0 & 0xFFFF
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine4_0:
+   \   000000   C2A0         CLR     0xa0.0
+   \   000002                REQUIRE ??Subroutine5_0
+   \   000002                ; // Fall through to label ??Subroutine5_0
+    100          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine3_0:
+   \   000000   C2A0         CLR     0xa0.0
+   \   000002   C2A0         CLR     0xa0.0
+   \   000004   D2A0         SETB    0xa0.0
+   \   000006   D2A0         SETB    0xa0.0
+   \   000008   C2A0         CLR     0xa0.0
+   \   00000A   C2A0         CLR     0xa0.0
+   \   00000C   C2A0         CLR     0xa0.0
+   \   00000E   C2A0         CLR     0xa0.0
+   \   000010   D2A0         SETB    0xa0.0
+   \   000012   D2A0         SETB    0xa0.0
+   \   000014   C2A0         CLR     0xa0.0
+   \   000016   C2A0         CLR     0xa0.0
+   \   000018   C2A0         CLR     0xa0.0
+   \   00001A   C2A0         CLR     0xa0.0
+   \   00001C   D2A0         SETB    0xa0.0
+   \   00001E   D2A0         SETB    0xa0.0
+   \   000020   C2A0         CLR     0xa0.0
+   \   000022   C2A0         CLR     0xa0.0
+   \   000024   C2A0         CLR     0xa0.0
+   \   000026   C2A0         CLR     0xa0.0
+   \   000028   D2A0         SETB    0xa0.0
+   \   00002A   D2A0         SETB    0xa0.0
+   \   00002C   C2A0         CLR     0xa0.0
+   \   00002E   C2A0         CLR     0xa0.0
+   \   000030   C2A0         CLR     0xa0.0
+   \   000032   C2A0         CLR     0xa0.0
+   \   000034   D2A0         SETB    0xa0.0
+   \   000036   D2A0         SETB    0xa0.0
+   \   000038   C2A0         CLR     0xa0.0
+   \   00003A   C2A0         CLR     0xa0.0
+   \   00003C   C2A0         CLR     0xa0.0
+   \   00003E   C2A0         CLR     0xa0.0
+   \   000040   D2A0         SETB    0xa0.0
+   \   000042   D2A0         SETB    0xa0.0
+   \   000044   C2A0         CLR     0xa0.0
+   \   000046   C2A0         CLR     0xa0.0
+   \   000048   C2A0         CLR     0xa0.0
+   \   00004A   C2A0         CLR     0xa0.0
+   \   00004C   D2A0         SETB    0xa0.0
+   \   00004E   D2A0         SETB    0xa0.0
+   \   000050   C2A0         CLR     0xa0.0
+   \   000052   C2A0         CLR     0xa0.0
+   \   000054   C2A0         CLR     0xa0.0
+   \   000056   C2A0         CLR     0xa0.0
+   \   000058   D2A0         SETB    0xa0.0
+   \   00005A   D2A0         SETB    0xa0.0
+   \   00005C   C2A0         CLR     0xa0.0
+   \   00005E   C2A0         CLR     0xa0.0
+   \   000060                REQUIRE ??Subroutine4_0
+   \   000060                ; // Fall through to label ??Subroutine4_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    101          void Set_Green(void)
+   \                     Set_Green:
+    102          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    103            SEND_HI;
+   \   000000   D2A0         SETB    0xa0.0
+   \   000002   D2A0         SETB    0xa0.0
+   \   000004   D2A0         SETB    0xa0.0
+   \   000006   D2A0         SETB    0xa0.0
+   \   000008   C2A0         CLR     0xa0.0
+   \   00000A   C2A0         CLR     0xa0.0
+    104            SEND_HI;
+   \   00000C   D2A0         SETB    0xa0.0
+   \   00000E   D2A0         SETB    0xa0.0
+   \   000010   D2A0         SETB    0xa0.0
+   \   000012   D2A0         SETB    0xa0.0
+   \   000014   C2A0         CLR     0xa0.0
+   \   000016   C2A0         CLR     0xa0.0
+    105            SEND_HI;
+   \   000018   D2A0         SETB    0xa0.0
+   \   00001A   D2A0         SETB    0xa0.0
+   \   00001C   D2A0         SETB    0xa0.0
+   \   00001E   D2A0         SETB    0xa0.0
+   \   000020   C2A0         CLR     0xa0.0
+   \   000022   C2A0         CLR     0xa0.0
+    106            SEND_HI;
+   \   000024   D2A0         SETB    0xa0.0
+   \   000026   D2A0         SETB    0xa0.0
+   \   000028   D2A0         SETB    0xa0.0
+   \   00002A   D2A0         SETB    0xa0.0
+   \   00002C   C2A0         CLR     0xa0.0
+   \   00002E   C2A0         CLR     0xa0.0
+    107            SEND_HI;
+   \   000030   D2A0         SETB    0xa0.0
+   \   000032   D2A0         SETB    0xa0.0
+   \   000034   D2A0         SETB    0xa0.0
+   \   000036   D2A0         SETB    0xa0.0
+   \   000038   C2A0         CLR     0xa0.0
+   \   00003A   C2A0         CLR     0xa0.0
+    108            SEND_HI;
+   \   00003C   D2A0         SETB    0xa0.0
+   \   00003E   D2A0         SETB    0xa0.0
+   \   000040   D2A0         SETB    0xa0.0
+   \   000042   D2A0         SETB    0xa0.0
+   \   000044   C2A0         CLR     0xa0.0
+   \   000046   C2A0         CLR     0xa0.0
+    109            SEND_HI;
+   \   000048   D2A0         SETB    0xa0.0
+   \   00004A   D2A0         SETB    0xa0.0
+   \   00004C   D2A0         SETB    0xa0.0
+   \   00004E   D2A0         SETB    0xa0.0
+   \   000050   C2A0         CLR     0xa0.0
+   \   000052   C2A0         CLR     0xa0.0
+    110            SEND_HI;
+   \   000054   D2A0         SETB    0xa0.0
+   \   000056   D2A0         SETB    0xa0.0
+   \   000058   D2A0         SETB    0xa0.0
+   \   00005A   D2A0         SETB    0xa0.0
+   \   00005C   C2A0         CLR     0xa0.0
+   \   00005E   C2A0         CLR     0xa0.0
+    111            
+    112            SEND_LO;
+   \   000060   D2A0         SETB    0xa0.0
+   \   000062   D2A0         SETB    0xa0.0
+   \   000064   C2A0         CLR     0xa0.0
+   \   000066   C2A0         CLR     0xa0.0
+   \   000068   C2A0         CLR     0xa0.0
+   \   00006A   C2A0         CLR     0xa0.0
+    113            SEND_LO;
+   \   00006C   D2A0         SETB    0xa0.0
+   \   00006E   D2A0         SETB    0xa0.0
+   \   000070   C2A0         CLR     0xa0.0
+   \   000072   C2A0         CLR     0xa0.0
+   \   000074   C2A0         CLR     0xa0.0
+   \   000076   C2A0         CLR     0xa0.0
+    114            SEND_LO;
+   \   000078   D2A0         SETB    0xa0.0
+   \   00007A   D2A0         SETB    0xa0.0
+   \   00007C   C2A0         CLR     0xa0.0
+   \   00007E   C2A0         CLR     0xa0.0
+   \   000080   C2A0         CLR     0xa0.0
+   \   000082   C2A0         CLR     0xa0.0
+    115            SEND_LO;
+   \   000084   D2A0         SETB    0xa0.0
+   \   000086   D2A0         SETB    0xa0.0
+   \   000088   C2A0         CLR     0xa0.0
+   \   00008A   C2A0         CLR     0xa0.0
+   \   00008C   C2A0         CLR     0xa0.0
+   \   00008E   C2A0         CLR     0xa0.0
+    116            SEND_LO;
+   \   000090   D2A0         SETB    0xa0.0
+   \   000092   D2A0         SETB    0xa0.0
+   \   000094   C2A0         CLR     0xa0.0
+   \   000096   C2A0         CLR     0xa0.0
+   \   000098   C2A0         CLR     0xa0.0
+   \   00009A   C2A0         CLR     0xa0.0
+    117            SEND_LO;
+   \   00009C   D2A0         SETB    0xa0.0
+   \   00009E   D2A0         SETB    0xa0.0
+   \   0000A0   C2A0         CLR     0xa0.0
+   \   0000A2   C2A0         CLR     0xa0.0
+   \   0000A4   C2A0         CLR     0xa0.0
+   \   0000A6   C2A0         CLR     0xa0.0
+    118            SEND_LO;
+   \   0000A8   D2A0         SETB    0xa0.0
+   \   0000AA   D2A0         SETB    0xa0.0
+   \   0000AC   C2A0         CLR     0xa0.0
+   \   0000AE   C2A0         CLR     0xa0.0
+   \   0000B0   C2A0         CLR     0xa0.0
+   \   0000B2   C2A0         CLR     0xa0.0
+    119            SEND_LO;
+   \   0000B4   D2A0         SETB    0xa0.0
+   \   0000B6   D2A0         SETB    0xa0.0
+   \   0000B8   C2A0         CLR     0xa0.0
+   \   0000BA   C2A0         CLR     0xa0.0
+   \   0000BC   02....       LJMP    ??Subroutine3_0 & 0xFFFF
+   \   0000BF                REQUIRE _A_P2
+    120            
+    121            SEND_LO;
+    122            SEND_LO;
+    123            SEND_LO;
+    124            SEND_LO;  
+    125            SEND_LO;
+    126            SEND_LO;
+    127            SEND_LO;
+    128            SEND_LO;  
+    129          }
+    130          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   C2A0         CLR     0xa0.0
+   \   000002   C2A0         CLR     0xa0.0
+   \   000004   D2A0         SETB    0xa0.0
+   \   000006   D2A0         SETB    0xa0.0
+   \   000008   D2A0         SETB    0xa0.0
+   \   00000A   D2A0         SETB    0xa0.0
+   \   00000C   C2A0         CLR     0xa0.0
+   \   00000E   C2A0         CLR     0xa0.0
+   \   000010   D2A0         SETB    0xa0.0
+   \   000012   D2A0         SETB    0xa0.0
+   \   000014   D2A0         SETB    0xa0.0
+   \   000016   D2A0         SETB    0xa0.0
+   \   000018   C2A0         CLR     0xa0.0
+   \   00001A   C2A0         CLR     0xa0.0
+   \   00001C   D2A0         SETB    0xa0.0
+   \   00001E   D2A0         SETB    0xa0.0
+   \   000020   D2A0         SETB    0xa0.0
+   \   000022   D2A0         SETB    0xa0.0
+   \   000024   C2A0         CLR     0xa0.0
+   \   000026   C2A0         CLR     0xa0.0
+   \   000028   D2A0         SETB    0xa0.0
+   \   00002A   D2A0         SETB    0xa0.0
+   \   00002C   D2A0         SETB    0xa0.0
+   \   00002E   D2A0         SETB    0xa0.0
+   \   000030   C2A0         CLR     0xa0.0
+   \   000032   C2A0         CLR     0xa0.0
+   \   000034   D2A0         SETB    0xa0.0
+   \   000036   D2A0         SETB    0xa0.0
+   \   000038   D2A0         SETB    0xa0.0
+   \   00003A   D2A0         SETB    0xa0.0
+   \   00003C   C2A0         CLR     0xa0.0
+   \   00003E   C2A0         CLR     0xa0.0
+   \   000040   D2A0         SETB    0xa0.0
+   \   000042   D2A0         SETB    0xa0.0
+   \   000044   D2A0         SETB    0xa0.0
+   \   000046   D2A0         SETB    0xa0.0
+   \   000048   C2A0         CLR     0xa0.0
+   \   00004A   C2A0         CLR     0xa0.0
+   \   00004C   D2A0         SETB    0xa0.0
+   \   00004E   D2A0         SETB    0xa0.0
+   \   000050   D2A0         SETB    0xa0.0
+   \   000052   D2A0         SETB    0xa0.0
+   \   000054   C2A0         CLR     0xa0.0
+   \   000056   C2A0         CLR     0xa0.0
+   \   000058   D2A0         SETB    0xa0.0
+   \   00005A   D2A0         SETB    0xa0.0
+   \   00005C   D2A0         SETB    0xa0.0
+   \   00005E   D2A0         SETB    0xa0.0
+   \   000060                REQUIRE ??Subroutine3_0
+   \   000060                ; // Fall through to label ??Subroutine3_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    131          void Set_Red(void)
+   \                     Set_Red:
+    132          { 
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    133            SEND_LO;
+   \   000000   D2A0         SETB    0xa0.0
+   \   000002   D2A0         SETB    0xa0.0
+   \   000004   C2A0         CLR     0xa0.0
+   \   000006   C2A0         CLR     0xa0.0
+   \   000008   C2A0         CLR     0xa0.0
+   \   00000A   C2A0         CLR     0xa0.0
+    134            SEND_LO;
+   \   00000C   D2A0         SETB    0xa0.0
+   \   00000E   D2A0         SETB    0xa0.0
+   \   000010   C2A0         CLR     0xa0.0
+   \   000012   C2A0         CLR     0xa0.0
+   \   000014   C2A0         CLR     0xa0.0
+   \   000016   C2A0         CLR     0xa0.0
+    135            SEND_LO;
+   \   000018   D2A0         SETB    0xa0.0
+   \   00001A   D2A0         SETB    0xa0.0
+   \   00001C   C2A0         CLR     0xa0.0
+   \   00001E   C2A0         CLR     0xa0.0
+   \   000020   C2A0         CLR     0xa0.0
+   \   000022   C2A0         CLR     0xa0.0
+    136            SEND_LO;
+   \   000024   D2A0         SETB    0xa0.0
+   \   000026   D2A0         SETB    0xa0.0
+   \   000028   C2A0         CLR     0xa0.0
+   \   00002A   C2A0         CLR     0xa0.0
+   \   00002C   C2A0         CLR     0xa0.0
+   \   00002E   C2A0         CLR     0xa0.0
+    137            SEND_LO;
+   \   000030   D2A0         SETB    0xa0.0
+   \   000032   D2A0         SETB    0xa0.0
+   \   000034   C2A0         CLR     0xa0.0
+   \   000036   C2A0         CLR     0xa0.0
+   \   000038   C2A0         CLR     0xa0.0
+   \   00003A   C2A0         CLR     0xa0.0
+    138            SEND_LO;
+   \   00003C   D2A0         SETB    0xa0.0
+   \   00003E   D2A0         SETB    0xa0.0
+   \   000040   C2A0         CLR     0xa0.0
+   \   000042   C2A0         CLR     0xa0.0
+   \   000044   C2A0         CLR     0xa0.0
+   \   000046   C2A0         CLR     0xa0.0
+    139            SEND_LO;
+   \   000048   D2A0         SETB    0xa0.0
+   \   00004A   D2A0         SETB    0xa0.0
+   \   00004C   C2A0         CLR     0xa0.0
+   \   00004E   C2A0         CLR     0xa0.0
+   \   000050   C2A0         CLR     0xa0.0
+   \   000052   C2A0         CLR     0xa0.0
+    140            SEND_LO;
+   \   000054   D2A0         SETB    0xa0.0
+   \   000056   D2A0         SETB    0xa0.0
+   \   000058   C2A0         CLR     0xa0.0
+   \   00005A   C2A0         CLR     0xa0.0
+   \   00005C   02....       LJMP    ?Subroutine0 & 0xFFFF
+   \   00005F                REQUIRE _A_P2
+    141            
+    142            SEND_HI;
+    143            SEND_HI;
+    144            SEND_HI;
+    145            SEND_HI;
+    146            SEND_HI;
+    147            SEND_HI;
+    148            SEND_HI;
+    149            SEND_HI;
+    150            
+    151            SEND_LO;
+    152            SEND_LO;
+    153            SEND_LO;
+    154            SEND_LO;  
+    155            SEND_LO;
+    156            SEND_LO;
+    157            SEND_LO;
+    158            SEND_LO;  
+    159          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    160          void Set_Blue(void)
+   \                     Set_Blue:
+    161          { 
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    162            SEND_LO;
+   \   000000   D2A0         SETB    0xa0.0
+   \   000002   D2A0         SETB    0xa0.0
+   \   000004   C2A0         CLR     0xa0.0
+   \   000006   C2A0         CLR     0xa0.0
+   \   000008   C2A0         CLR     0xa0.0
+   \   00000A   C2A0         CLR     0xa0.0
+    163            SEND_LO;
+   \   00000C   D2A0         SETB    0xa0.0
+   \   00000E   D2A0         SETB    0xa0.0
+   \   000010   C2A0         CLR     0xa0.0
+   \   000012   C2A0         CLR     0xa0.0
+   \   000014   C2A0         CLR     0xa0.0
+   \   000016   C2A0         CLR     0xa0.0
+    164            SEND_LO;
+   \   000018   D2A0         SETB    0xa0.0
+   \   00001A   D2A0         SETB    0xa0.0
+   \   00001C   C2A0         CLR     0xa0.0
+   \   00001E   C2A0         CLR     0xa0.0
+   \   000020   C2A0         CLR     0xa0.0
+   \   000022   C2A0         CLR     0xa0.0
+    165            SEND_LO;
+   \   000024   D2A0         SETB    0xa0.0
+   \   000026   D2A0         SETB    0xa0.0
+   \   000028   C2A0         CLR     0xa0.0
+   \   00002A   C2A0         CLR     0xa0.0
+   \   00002C   C2A0         CLR     0xa0.0
+   \   00002E   C2A0         CLR     0xa0.0
+    166            SEND_LO;
+   \   000030   D2A0         SETB    0xa0.0
+   \   000032   D2A0         SETB    0xa0.0
+   \   000034   C2A0         CLR     0xa0.0
+   \   000036   C2A0         CLR     0xa0.0
+   \   000038   C2A0         CLR     0xa0.0
+   \   00003A   C2A0         CLR     0xa0.0
+    167            SEND_LO;
+   \   00003C   D2A0         SETB    0xa0.0
+   \   00003E   D2A0         SETB    0xa0.0
+   \   000040   C2A0         CLR     0xa0.0
+   \   000042   C2A0         CLR     0xa0.0
+   \   000044   C2A0         CLR     0xa0.0
+   \   000046   C2A0         CLR     0xa0.0
+    168            SEND_LO;
+   \   000048   D2A0         SETB    0xa0.0
+   \   00004A   D2A0         SETB    0xa0.0
+   \   00004C   C2A0         CLR     0xa0.0
+   \   00004E   C2A0         CLR     0xa0.0
+   \   000050   C2A0         CLR     0xa0.0
+   \   000052   C2A0         CLR     0xa0.0
+    169            SEND_LO;
+   \   000054   D2A0         SETB    0xa0.0
+   \   000056   D2A0         SETB    0xa0.0
+   \   000058   C2A0         CLR     0xa0.0
+   \   00005A   C2A0         CLR     0xa0.0
+   \   00005C   C2A0         CLR     0xa0.0
+   \   00005E   C2A0         CLR     0xa0.0
+    170             
+    171            SEND_LO;
+   \   000060   D2A0         SETB    0xa0.0
+   \   000062   D2A0         SETB    0xa0.0
+   \   000064   C2A0         CLR     0xa0.0
+   \   000066   C2A0         CLR     0xa0.0
+   \   000068   C2A0         CLR     0xa0.0
+   \   00006A   C2A0         CLR     0xa0.0
+    172            SEND_LO;
+   \   00006C   D2A0         SETB    0xa0.0
+   \   00006E   D2A0         SETB    0xa0.0
+   \   000070   C2A0         CLR     0xa0.0
+   \   000072   C2A0         CLR     0xa0.0
+   \   000074   C2A0         CLR     0xa0.0
+   \   000076   C2A0         CLR     0xa0.0
+    173            SEND_LO;
+   \   000078   D2A0         SETB    0xa0.0
+   \   00007A   D2A0         SETB    0xa0.0
+   \   00007C   C2A0         CLR     0xa0.0
+   \   00007E   C2A0         CLR     0xa0.0
+   \   000080   C2A0         CLR     0xa0.0
+   \   000082   C2A0         CLR     0xa0.0
+    174            SEND_LO;  
+   \   000084   D2A0         SETB    0xa0.0
+   \   000086   D2A0         SETB    0xa0.0
+   \   000088   C2A0         CLR     0xa0.0
+   \   00008A   C2A0         CLR     0xa0.0
+   \   00008C   C2A0         CLR     0xa0.0
+   \   00008E   C2A0         CLR     0xa0.0
+    175            SEND_LO;
+   \   000090   D2A0         SETB    0xa0.0
+   \   000092   D2A0         SETB    0xa0.0
+   \   000094   C2A0         CLR     0xa0.0
+   \   000096   C2A0         CLR     0xa0.0
+   \   000098   C2A0         CLR     0xa0.0
+   \   00009A   C2A0         CLR     0xa0.0
+    176            SEND_LO;
+   \   00009C   D2A0         SETB    0xa0.0
+   \   00009E   D2A0         SETB    0xa0.0
+   \   0000A0   C2A0         CLR     0xa0.0
+   \   0000A2   C2A0         CLR     0xa0.0
+   \   0000A4   C2A0         CLR     0xa0.0
+   \   0000A6   C2A0         CLR     0xa0.0
+    177            SEND_LO;
+   \   0000A8   D2A0         SETB    0xa0.0
+   \   0000AA   D2A0         SETB    0xa0.0
+   \   0000AC   C2A0         CLR     0xa0.0
+   \   0000AE   C2A0         CLR     0xa0.0
+   \   0000B0   C2A0         CLR     0xa0.0
+   \   0000B2   C2A0         CLR     0xa0.0
+    178            SEND_LO; 
+   \   0000B4   D2A0         SETB    0xa0.0
+   \   0000B6   D2A0         SETB    0xa0.0
+   \   0000B8   C2A0         CLR     0xa0.0
+   \   0000BA   C2A0         CLR     0xa0.0
+   \   0000BC   02....       LJMP    ?Subroutine2 & 0xFFFF
+   \   0000BF                REQUIRE _A_P2
+    179            
+    180            SEND_HI;
+    181            SEND_HI;
+    182            SEND_HI;
+    183            SEND_HI;
+    184            SEND_HI;
+    185            SEND_HI;
+    186            SEND_HI;
+    187            SEND_HI;  
+    188          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    189          void Set_Yellow(void)
+   \                     Set_Yellow:
+    190          { 
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    191            SEND_HI;
+   \   000000   D2A0         SETB    0xa0.0
+   \   000002   D2A0         SETB    0xa0.0
+   \   000004   D2A0         SETB    0xa0.0
+   \   000006   D2A0         SETB    0xa0.0
+   \   000008   C2A0         CLR     0xa0.0
+   \   00000A   C2A0         CLR     0xa0.0
+    192            SEND_HI;
+   \   00000C   D2A0         SETB    0xa0.0
+   \   00000E   D2A0         SETB    0xa0.0
+   \   000010   D2A0         SETB    0xa0.0
+   \   000012   D2A0         SETB    0xa0.0
+   \   000014   C2A0         CLR     0xa0.0
+   \   000016   C2A0         CLR     0xa0.0
+    193            SEND_HI;
+   \   000018   D2A0         SETB    0xa0.0
+   \   00001A   D2A0         SETB    0xa0.0
+   \   00001C   D2A0         SETB    0xa0.0
+   \   00001E   D2A0         SETB    0xa0.0
+   \   000020   C2A0         CLR     0xa0.0
+   \   000022   C2A0         CLR     0xa0.0
+    194            SEND_HI;
+   \   000024   D2A0         SETB    0xa0.0
+   \   000026   D2A0         SETB    0xa0.0
+   \   000028   D2A0         SETB    0xa0.0
+   \   00002A   D2A0         SETB    0xa0.0
+   \   00002C   C2A0         CLR     0xa0.0
+   \   00002E   C2A0         CLR     0xa0.0
+    195            SEND_HI;
+   \   000030   D2A0         SETB    0xa0.0
+   \   000032   D2A0         SETB    0xa0.0
+   \   000034   D2A0         SETB    0xa0.0
+   \   000036   D2A0         SETB    0xa0.0
+   \   000038   C2A0         CLR     0xa0.0
+   \   00003A   C2A0         CLR     0xa0.0
+    196            SEND_HI;
+   \   00003C   D2A0         SETB    0xa0.0
+   \   00003E   D2A0         SETB    0xa0.0
+   \   000040   D2A0         SETB    0xa0.0
+   \   000042   D2A0         SETB    0xa0.0
+   \   000044   C2A0         CLR     0xa0.0
+   \   000046   C2A0         CLR     0xa0.0
+    197            SEND_HI;
+   \   000048   D2A0         SETB    0xa0.0
+   \   00004A   D2A0         SETB    0xa0.0
+   \   00004C   D2A0         SETB    0xa0.0
+   \   00004E   D2A0         SETB    0xa0.0
+   \   000050   C2A0         CLR     0xa0.0
+   \   000052   C2A0         CLR     0xa0.0
+    198            SEND_HI;
+   \   000054   D2A0         SETB    0xa0.0
+   \   000056   D2A0         SETB    0xa0.0
+   \   000058   D2A0         SETB    0xa0.0
+   \   00005A   D2A0         SETB    0xa0.0
+   \   00005C   02....       LJMP    ?Subroutine0 & 0xFFFF
+   \   00005F                REQUIRE _A_P2
+    199            
+    200            SEND_HI;
+    201            SEND_HI;
+    202            SEND_HI;
+    203            SEND_HI;
+    204            SEND_HI;
+    205            SEND_HI;
+    206            SEND_HI;
+    207            SEND_HI;  
+    208            
+    209            SEND_LO;
+    210            SEND_LO;
+    211            SEND_LO;
+    212            SEND_LO;
+    213            SEND_LO;
+    214            SEND_LO;
+    215            SEND_LO;
+    216            SEND_LO;  
+    217          }
+    218          /***********************************************************************************
+    219          * 函数名称        RGB_SET()
+    220          *
+    221          * 函数功能        设置颜色 
+    222          *
+    223          * 入口参数        G8R8B8： 24位RGB颜色
+    224          *
+    225          * 返回参数        无 
+    226          *
+    227          * 说明
+    228          ***********************************************************************************/
+    229          
+    230          
+    231          /* 拉低电平等待下一次命令  */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    232          void RGB_REST(void)
+   \                     RGB_REST:
+    233          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    234              LED = 0;
+   \   000004   C2A0         CLR     0xa0.0
+    235              delay_ms(1);  
+   \   000006                ; Setup parameters for call to function delay_ms
+   \   000006   90....       MOV     DPTR,#__Constant_1
+   \   000009   12....       LCALL   ?XLOAD_R2345
+   \   00000C   12....       LCALL   ??delay_ms?relay
+    236          }
+   \   00000F   02....       LJMP    ?Subroutine1 & 0xFFFF
+   \   000012                REQUIRE _A_P2
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for rgb>`:
+   \   000000   07070700     DD 460551
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for num>`:
+   \   000000   1700         DW 23
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_c8:
+   \   000000   C8000000     DD 200
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_1:
+   \   000000   01000000     DD 1
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??bottom_led_init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    bottom_led_init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??_delayunit?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    _delayunit
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??RGB_Set_UP?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    RGB_Set_UP
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??RGB_Set_Down?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    RGB_Set_Down
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Set_White?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Set_White
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Set_Green?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Set_Green
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Set_Red?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Set_Red
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Set_Blue?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Set_Blue
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Set_Yellow?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Set_Yellow
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??RGB_REST?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    RGB_REST
+
+   Maximum stack usage in bytes:
+
+     Function        ISTACK PSTACK XSTACK
+     --------        ------ ------ ------
+     RGB_REST            2      0      0
+       -> delay_ms       4      0      0
+     RGB_Set_Down        0      0      0
+     RGB_Set_UP          0      0      0
+     Set_Blue            0      0      0
+     Set_Green           0      0      0
+     Set_Red             0      0      0
+     Set_White           0      0      0
+     Set_Yellow          0      0      0
+     _delayunit          0      0      0
+     bottom_led_init     2      0      0
+       -> RGB_REST       4      0      0
+       -> delay_ms       4      0      0
+       -> Set_Blue       4      0      0
+
+
+   Segment part sizes:
+
+     Function/Label          Bytes
+     --------------          -----
+     _A_P2                      1
+     P2DIR                      1
+     rgb                        4
+     fig                        2
+     num                        2
+     bottom_led_init           22
+     ?Subroutine1               7
+     _delayunit                 3
+     RGB_Set_UP                11
+     ??Subroutine5_0            5
+     RGB_Set_Down              11
+     Set_White                188
+     ?Subroutine2              99
+     ??Subroutine4_0            2
+     ??Subroutine3_0           96
+     Set_Green                191
+     ?Subroutine0              96
+     Set_Red                   95
+     Set_Blue                 191
+     Set_Yellow                95
+     RGB_REST                  18
+     ?<Initializer for rgb>     4
+     ?<Initializer for num>     2
+     __Constant_c8              4
+     __Constant_1               4
+     ??bottom_led_init?relay    6
+     ??_delayunit?relay         6
+     ??RGB_Set_UP?relay         6
+     ??RGB_Set_Down?relay       6
+     ??Set_White?relay          6
+     ??Set_Green?relay          6
+     ??Set_Red?relay            6
+     ??Set_Blue?relay           6
+     ??Set_Yellow?relay         6
+     ??RGB_REST?relay           6
+
+ 
+ 1 130 bytes in segment BANKED_CODE
+    60 bytes in segment BANK_RELAYS
+     2 bytes in segment SFR_AN
+     6 bytes in segment XDATA_I
+     6 bytes in segment XDATA_ID
+     8 bytes in segment XDATA_ROM_C
+     2 bytes in segment XDATA_Z
+ 
+ 1 196 bytes of CODE  memory
+     0 bytes of CONST memory (+ 8 bytes shared)
+     0 bytes of DATA  memory (+ 2 bytes shared)
+     8 bytes of XDATA memory
+
+Errors: none
+Warnings: none

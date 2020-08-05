@@ -1,0 +1,1045 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         03/Dec/2018  14:06:14 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\Source\SampleAp #
+#                          p - RFID.c                                         #
+#    Command line       =  -f D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadc #
+#                          ast\Projects\zstack\Samples\SampleApp\CC2530DB\..\ #
+#                          ..\..\Tools\CC2530DB\f8wEndev.cfg (-DCPU32MHZ      #
+#                          -DROOT=__near_func -DBLINK_LEDS) -f                #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\Tools\CC2530DB\f8wConfig.cfg (-DSECURE=0        #
+#                          -DZG_SECURE_DYNAMIC=0 -DREFLECTOR                  #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFF11                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=TRUE      #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100) -DREJOIN_POLL_RATE=440   #
+#                          "D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcas #
+#                          t\Projects\zstack\Samples\SampleApp\Source\SampleA #
+#                          pp - RFID.c" -D NWK_AUTO_POLL -D ZTOOL_P1 -D       #
+#                          MT_SYS_FUNC -D MT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG  #
+#                          -lC D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broad #
+#                          cast\Projects\zstack\Samples\SampleApp\CC2530DB\En #
+#                          dDeviceEB-RFID\List\ -lA                           #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\EndDev #
+#                          iceEB-RFID\List\ --diag_suppress Pe001,Pa010 -o    #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\EndDev #
+#                          iceEB-RFID\Obj\ -e --no_unroll --no_inline         #
+#                          --no_tbaa --debug --core=plain --dptr=16,1         #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadc #
+#                          ast\Projects\zstack\Samples\SampleApp\CC2530DB\    #
+#                          -I D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadc #
+#                          ast\Projects\zstack\Samples\SampleApp\CC2530DB\..\ #
+#                          SOURCE\ -I D:\ZigBee\KJXY-ZigBee\useful_code\ZigBe #
+#                          e\broadcast\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\ZMAIN\TI2530DB\ -I                   #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\MT\ -I                         #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\HAL\INCLUDE\ -I                #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\HAL\TARGET\CC2530EB\ -I        #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\OSAL\MCU\CCSOC\ -I             #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\OSAL\INCLUDE\ -I               #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\STACK\AF\ -I                   #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\STACK\NWK\ -I                  #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\STACK\SEC\ -I                  #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\STACK\SAPI\ -I                 #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\STACK\SYS\ -I                  #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\STACK\ZDO\ -I                  #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\ZMAC\F8W\ -I                   #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\ZMAC\ -I                       #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\SERVICES\SADDR\ -I             #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\SERVICES\SDATA\ -I             #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\MAC\INCLUDE\ -I                #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\MAC\HIGH_LEVEL\ -I             #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\MAC\LOW_LEVEL\srf04\ -I        #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\..\..\ #
+#                          ..\..\..\COMPONENTS\MAC\LOW_LEVEL\srf04\SINGLE_CHI #
+#                          P\ -I D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\bro #
+#                          adcast\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\HARDWARE\ -Om            #
+#    List file          =  D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\EndDev #
+#                          iceEB-RFID\List\SampleApp - RFID.lst               #
+#    Object file        =  D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast #
+#                          \Projects\zstack\Samples\SampleApp\CC2530DB\EndDev #
+#                          iceEB-RFID\Obj\SampleApp - RFID.r51                #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee\broadcast\Projects\zstack\Samples\SampleApp\Source\SampleApp - RFID.c
+      1          /**************************************************************************************************
+      2            Filename:       SampleApp.c
+      3            Revised:        $Date: 2009-03-18 15:56:27 -0700 (Wed, 18 Mar 2009) $
+      4            Revision:       $Revision: 19453 $
+      5          
+      6            Description:    Sample Application (no Profile).
+      7          
+      8          
+      9            Copyright 2007 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11            IMPORTANT: Your use of this Software is limited to those specific rights
+     12            granted under the terms of a software license agreement between the user
+     13            who downloaded the software, his/her employer (which must be your employer)
+     14            and Texas Instruments Incorporated (the "License").  You may not use this
+     15            Software unless you agree to abide by the terms of the License. The License
+     16            limits your use, and you acknowledge, that the Software may not be modified,
+     17            copied or distributed unless embedded on a Texas Instruments microcontroller
+     18            or used solely and exclusively in conjunction with a Texas Instruments radio
+     19            frequency transceiver, which is integrated into your product.  Other than for
+     20            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     21            works of, modify, distribute, perform, display or sell this Software and/or
+     22            its documentation for any purpose.
+     23          
+     24            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     25            PROVIDED 揂S IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     26            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     27            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     28            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     29            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     30            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     31            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     32            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     33            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     34            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     35          
+     36            Should you have any questions regarding your right to use this Software,
+     37            contact Texas Instruments Incorporated at www.TI.com.
+     38          **************************************************************************************************/
+     39          
+     40          /*********************************************************************
+     41            This application isn't intended to do anything useful, it is
+     42            intended to be a simple example of an application's structure.
+     43          
+     44            This application sends it's messages either as broadcast or
+     45            broadcast filtered group messages.  The other (more normal)
+     46            message addressing is unicast.  Most of the other sample
+     47            applications are written to support the unicast message model.
+     48          
+     49            Key control:
+     50              SW1:  Sends a flash command to all devices in Group 1.
+     51              SW2:  Adds/Removes (toggles) this device in and out
+     52                    of Group 1.  This will enable and disable the
+     53                    reception of the flash command.
+     54          *********************************************************************/
+     55          
+     56          /*********************************************************************
+     57           * INCLUDES
+     58           */
+     59          #include "OSAL.h"
+     60          #include "ZGlobals.h"
+     61          #include "AF.h"
+     62          #include "aps_groups.h"
+     63          #include "ZDApp.h"
+     64          
+     65          #include "SampleApp.h"
+     66          #include "SampleAppHw.h"
+     67          
+     68          #include "OnBoard.h"
+     69          
+     70          /* HAL */
+     71          #include "hal_lcd.h"
+     72          #include "hal_led.h"
+     73          #include "hal_key.h"
+     74          #include "string.h"
+     75          #include "hal_uart.h"
+     76          #include "MT_UART.h"
+     77          #include "MT_APP.h"
+     78          #include "MT.h"
+     79          #include "OLED.h"
+     80          #include "SHT20.h"
+     81          #include "rc522.h"
+     82          #include "stdio.h"
+     83          #include "bottom_led.h"
+     84          void PointToPoint_SendTemperature(void);
+     85          void SendRFID( void );
+     86          /*********************************************************************
+     87           * MACROS
+     88           */
+     89          
+     90          /*********************************************************************
+     91           * CONSTANTS
+     92           */
+     93          
+     94          /*********************************************************************
+     95           * TYPEDEFS
+     96           */
+     97          
+     98          /*********************************************************************
+     99           * GLOBAL VARIABLES
+    100           */
+    101          
+    102          // This list should be filled with Application specific Cluster IDs.
+
+   \                                 In  segment XDATA_ROM_C, align 1
+    103          const cId_t SampleApp_ClusterList[SAMPLEAPP_MAX_CLUSTERS] =
+   \                     SampleApp_ClusterList:
+   \   000000   0100         DW 1
+   \   000002   0200         DW 2
+    104          {
+    105            SAMPLEAPP_PERIODIC_CLUSTERID,
+    106            SAMPLEAPP_FLASH_CLUSTERID
+    107          };
+    108          
+
+   \                                 In  segment XDATA_ROM_C, align 1
+    109          const SimpleDescriptionFormat_t SampleApp_SimpleDesc =
+   \                     SampleApp_SimpleDesc:
+   \   000000   19           DB 25
+   \   000001   080F         DW 3848
+   \   000003   0100         DW 1
+   \   000005   00           DB 0
+   \   000006   02           DB 2
+   \   000007   ....         DW SampleApp_ClusterList
+   \   000009   02           DB 2
+   \   00000A   ....         DW SampleApp_ClusterList
+    110          {
+    111            SAMPLEAPP_ENDPOINT,              //  int Endpoint;
+    112            SAMPLEAPP_PROFID,                //  uint16 AppProfId[2];
+    113            SAMPLEAPP_DEVICEID,              //  uint16 AppDeviceId[2];
+    114            SAMPLEAPP_DEVICE_VERSION,        //  int   AppDevVer:4;
+    115            SAMPLEAPP_FLAGS,                 //  int   AppFlags:4;
+    116            SAMPLEAPP_MAX_CLUSTERS,          //  uint8  AppNumInClusters;
+    117            (cId_t *)SampleApp_ClusterList,  //  uint8 *pAppInClusterList;
+    118            SAMPLEAPP_MAX_CLUSTERS,          //  uint8  AppNumInClusters;
+    119            (cId_t *)SampleApp_ClusterList   //  uint8 *pAppInClusterList;
+    120          };
+    121          
+    122          // This is the Endpoint/Interface description.  It is defined here, but
+    123          // filled-in in SampleApp_Init().  Another way to go would be to fill
+    124          // in the structure here and make it a "const" (in code space).  The
+    125          // way it's defined in this sample app it is define in RAM.
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    126          endPointDesc_t SampleApp_epDesc;
+   \                     SampleApp_epDesc:
+   \   000000                DS 6
+   \   000006                REQUIRE __INIT_XDATA_Z
+    127          
+    128          /*********************************************************************
+    129           * EXTERNAL VARIABLES
+    130           */
+    131          
+    132          /*********************************************************************
+    133           * EXTERNAL FUNCTIONS
+    134           */
+    135          
+    136          /*********************************************************************
+    137           * LOCAL VARIABLES
+    138           */
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    139          uint8 SampleApp_TaskID;   // Task ID for internal task/event processing
+   \                     SampleApp_TaskID:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+    140                                    // This variable will be received when
+    141                                    // SampleApp_Init() is called.
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    142          devStates_t SampleApp_NwkState;
+   \                     SampleApp_NwkState:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+    143          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    144          uint8 SampleApp_TransID;  // This is the unique message ID (counter)
+   \                     SampleApp_TransID:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+    145          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    146          afAddrType_t RFID_Report_DstAddr;
+   \                     RFID_Report_DstAddr:
+   \   000000                DS 12
+   \   00000C                REQUIRE __INIT_XDATA_Z
+    147          
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+    148          uint8 SendIndicate = 1;
+   \                     SendIndicate:
+   \   000000                DS 1
+   \   000001                REQUIRE `?<Initializer for SendIndicate>`
+   \   000001                REQUIRE __INIT_XDATA_I
+    149          
+    150          /*********************************************************************
+    151           * LOCAL FUNCTIONS
+    152           */
+    153          void SampleApp_MessageMSGCB( afIncomingMSGPacket_t *pckt );
+    154          
+    155          /*********************************************************************
+    156           * NETWORK LAYER CALLBACKS
+    157           */
+    158          
+    159          /*********************************************************************
+    160           * PUBLIC FUNCTIONS
+    161           */
+    162          
+    163          /*********************************************************************
+    164           * @fn      SampleApp_Init
+    165           *
+    166           * @brief   Initialization function for the Generic App Task.
+    167           *          This is called during initialization and should contain
+    168           *          any application specific initialization (ie. hardware
+    169           *          initialization/setup, table initialization, power up
+    170           *          notificaiton ... ).
+    171           *
+    172           * @param   task_id - the ID assigned by OSAL.  This ID should be
+    173           *                    used to send messages and set timers.
+    174           *
+    175           * @return  none
+    176           */
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    177          uint8 test = 0;
+   \                     test:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    178          void SampleApp_Init( uint8 task_id )
+   \                     SampleApp_Init:
+    179          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+    180            SampleApp_TaskID = task_id;
+   \   000006   90....       MOV     DPTR,#SampleApp_TaskID
+   \   000009   F0           MOVX    @DPTR,A
+    181            SampleApp_NwkState = DEV_INIT;
+   \   00000A   90....       MOV     DPTR,#SampleApp_NwkState
+   \   00000D   7401         MOV     A,#0x1
+   \   00000F   F0           MOVX    @DPTR,A
+    182            SampleApp_TransID = 0;
+   \   000010   90....       MOV     DPTR,#SampleApp_TransID
+   \   000013   E4           CLR     A
+   \   000014   F0           MOVX    @DPTR,A
+    183            
+    184           /***********串口初始化************/
+    185            MT_UartInit();//串口初始化  
+   \   000015                ; Setup parameters for call to function MT_UartInit
+   \   000015   12....       LCALL   ??MT_UartInit?relay
+    186            if ( ZG_BUILD_COORDINATOR_TYPE && ZG_DEVICE_COORDINATOR_TYPE  )
+    187            {
+    188              printf("i am coordinator\r\n");
+    189              OLED_P8x16Str(0,0,"coordinator");
+    190            }
+    191            if ( ZG_DEVICE_ENDDEVICE_TYPE && ZG_BUILD_ENDDEVICE_TYPE  )
+    192            {
+    193              printf("i am end device\r\n");
+   \   000018                ; Setup parameters for call to function printf
+   \   000018   7A..         MOV     R2,#`?<Constant "i am end device\\r\\n">` & 0xff
+   \   00001A   7B..         MOV     R3,#(`?<Constant "i am end device\\r\\n">` >> 8) & 0xff
+   \   00001C   12....       LCALL   ??printf?relay
+    194              OLED_P8x16Str(0,0,"end device");
+   \   00001F                ; Setup parameters for call to function OLED_P8x16Str
+   \   00001F   7C..         MOV     R4,#`?<Constant "end device">` & 0xff
+   \   000021   7D..         MOV     R5,#(`?<Constant "end device">` >> 8) & 0xff
+   \   000023   7A00         MOV     R2,#0x0
+   \   000025   7900         MOV     R1,#0x0
+   \   000027   12....       LCALL   ??OLED_P8x16Str?relay
+    195            } 
+    196            //HalUARTWrite(0,"Hello World\n",12);
+    197            printf("hello world\r\n");
+   \   00002A                ; Setup parameters for call to function printf
+   \   00002A   7A..         MOV     R2,#`?<Constant "hello world\\r\\n">` & 0xff
+   \   00002C   7B..         MOV     R3,#(`?<Constant "hello world\\r\\n">` >> 8) & 0xff
+   \   00002E   12....       LCALL   ??printf?relay
+    198          //***************设置通信目的地址参数******************************  
+    199            RFID_Report_DstAddr.addrMode = (afAddrMode_t)Addr16Bit;
+   \   000031   90....       MOV     DPTR,#RFID_Report_DstAddr + 8
+   \   000034   7402         MOV     A,#0x2
+   \   000036   F0           MOVX    @DPTR,A
+    200            RFID_Report_DstAddr.endPoint = SAMPLEAPP_ENDPOINT; 
+   \   000037   A3           INC     DPTR
+   \   000038   7419         MOV     A,#0x19
+   \   00003A   F0           MOVX    @DPTR,A
+    201            RFID_Report_DstAddr.addr.shortAddr = 0x0000;//默认地址
+   \   00003B   90....       MOV     DPTR,#RFID_Report_DstAddr
+   \   00003E   E4           CLR     A
+   \   00003F   F0           MOVX    @DPTR,A
+   \   000040   A3           INC     DPTR
+   \   000041   F0           MOVX    @DPTR,A
+    202          //***************设置通信目的地址参数******************************   
+    203            
+    204          //*********注册端点**************************************
+    205            SampleApp_epDesc.endPoint     = SAMPLEAPP_ENDPOINT;
+   \   000042   90....       MOV     DPTR,#SampleApp_epDesc
+   \   000045   7419         MOV     A,#0x19
+   \   000047   F0           MOVX    @DPTR,A
+    206            SampleApp_epDesc.task_id      = &SampleApp_TaskID;
+   \   000048   A3           INC     DPTR
+   \   000049   74..         MOV     A,#SampleApp_TaskID & 0xff
+   \   00004B   F0           MOVX    @DPTR,A
+   \   00004C   A3           INC     DPTR
+   \   00004D   74..         MOV     A,#(SampleApp_TaskID >> 8) & 0xff
+   \   00004F   F0           MOVX    @DPTR,A
+    207            SampleApp_epDesc.simpleDesc   = (SimpleDescriptionFormat_t *)&SampleApp_SimpleDesc;
+   \   000050   A3           INC     DPTR
+   \   000051   74..         MOV     A,#SampleApp_SimpleDesc & 0xff
+   \   000053   F0           MOVX    @DPTR,A
+   \   000054   A3           INC     DPTR
+   \   000055   74..         MOV     A,#(SampleApp_SimpleDesc >> 8) & 0xff
+   \   000057   F0           MOVX    @DPTR,A
+    208            SampleApp_epDesc.latencyReq   = noLatencyReqs;
+   \   000058   A3           INC     DPTR
+   \   000059   E4           CLR     A
+   \   00005A   F0           MOVX    @DPTR,A
+    209          
+    210            afRegister( &SampleApp_epDesc );//注册端点
+   \   00005B                ; Setup parameters for call to function afRegister
+   \   00005B   7A..         MOV     R2,#SampleApp_epDesc & 0xff
+   \   00005D   7B..         MOV     R3,#(SampleApp_epDesc >> 8) & 0xff
+   \   00005F   12....       LCALL   ??afRegister?relay
+    211          //*********注册端点**************************************  
+    212          }
+   \   000062   7F01         MOV     R7,#0x1
+   \   000064   02....       LJMP    ?BANKED_LEAVE_XDATA
+    213          
+    214          /*********************************************************************
+    215           * @fn      SampleApp_ProcessEvent
+    216           *
+    217           * @brief   Generic Application Task event processor.  This function
+    218           *          is called to process all events for the task.  Events
+    219           *          include timers, messages and any other user defined events.
+    220           *
+    221           * @param   task_id  - The OSAL assigned task ID.
+    222           * @param   events - events to process.  This is a bit map and can
+    223           *                   contain more than one event.
+    224           *
+    225           * @return  none
+    226           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    227          uint16 SampleApp_ProcessEvent( uint8 task_id, uint16 events )
+   \                     SampleApp_ProcessEvent:
+    228          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 0
+   \   000005   8A..         MOV     ?V0 + 0,R2
+   \   000007   8B..         MOV     ?V0 + 1,R3
+    229            afIncomingMSGPacket_t *MSGpkt;
+    230            (void)task_id;  // Intentionally unreferenced parameter
+    231          
+    232            if ( events & SYS_EVENT_MSG )
+   \   000009   EB           MOV     A,R3
+   \   00000A   5480         ANL     A,#0x80
+   \   00000C   604B         JZ      ??SampleApp_ProcessEvent_0
+    233            {
+    234              MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive( SampleApp_TaskID );
+   \   00000E                ; Setup parameters for call to function osal_msg_receive
+   \   00000E   8014         SJMP    ??SampleApp_ProcessEvent_1
+    235              while ( MSGpkt )
+    236              {
+    237                switch ( MSGpkt->hdr.event )
+    238                {        
+    239                  // Received when a messages is received (OTA) for this endpoint
+    240                  case AF_INCOMING_MSG_CMD:
+    241                    SampleApp_MessageMSGCB( MSGpkt );
+    242                    break;
+    243          
+    244                  // Received whenever the device changes state in the network
+    245                  case ZDO_STATE_CHANGE:
+    246                    SampleApp_NwkState = (devStates_t)(MSGpkt->hdr.status);
+   \                     ??SampleApp_ProcessEvent_2:
+   \   000010   A3           INC     DPTR
+   \   000011   E0           MOVX    A,@DPTR
+   \   000012   90....       MOV     DPTR,#SampleApp_NwkState
+   \   000015   F0           MOVX    @DPTR,A
+    247                    printf("network init!\r\n");
+   \   000016                ; Setup parameters for call to function printf
+   \   000016   7A..         MOV     R2,#`?<Constant "network init!\\r\\n">` & 0xff
+   \   000018   7B..         MOV     R3,#(`?<Constant "network init!\\r\\n">` >> 8) & 0xff
+   \   00001A   12....       LCALL   ??printf?relay
+    248                    break;
+    249          
+    250                  default:
+    251                    break;
+    252                }
+    253          
+    254                // Release the memory
+    255                osal_msg_deallocate( (uint8 *)MSGpkt );
+   \                     ??SampleApp_ProcessEvent_3:
+   \   00001D                ; Setup parameters for call to function osal_msg_deallocate
+   \   00001D   EE           MOV     A,R6
+   \   00001E   FA           MOV     R2,A
+   \   00001F   EF           MOV     A,R7
+   \   000020   FB           MOV     R3,A
+   \   000021   12....       LCALL   ??osal_msg_deallocate?relay
+    256          
+    257                // Next - if one is available
+    258                MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive( SampleApp_TaskID );
+   \   000024                ; Setup parameters for call to function osal_msg_receive
+   \                     ??SampleApp_ProcessEvent_1:
+   \   000024   90....       MOV     DPTR,#SampleApp_TaskID
+   \   000027   E0           MOVX    A,@DPTR
+   \   000028   F9           MOV     R1,A
+   \   000029   12....       LCALL   ??osal_msg_receive?relay
+   \   00002C   8A..         MOV     ?V0 + 2,R2
+   \   00002E   8B..         MOV     ?V0 + 3,R3
+   \   000030   AE..         MOV     R6,?V0 + 2
+   \   000032   AF..         MOV     R7,?V0 + 3
+   \   000034   EE           MOV     A,R6
+   \   000035   4F           ORL     A,R7
+   \   000036   6018         JZ      ??SampleApp_ProcessEvent_4
+   \   000038   8E82         MOV     DPL,R6
+   \   00003A   8F83         MOV     DPH,R7
+   \   00003C   E0           MOVX    A,@DPTR
+   \   00003D   24E6         ADD     A,#-0x1a
+   \   00003F   6006         JZ      ??SampleApp_ProcessEvent_5
+   \   000041   2449         ADD     A,#0x49
+   \   000043   60CB         JZ      ??SampleApp_ProcessEvent_2
+   \   000045   80D6         SJMP    ??SampleApp_ProcessEvent_3
+   \                     ??SampleApp_ProcessEvent_5:
+   \   000047                ; Setup parameters for call to function SampleApp_MessageMSGCB
+   \   000047   EE           MOV     A,R6
+   \   000048   FA           MOV     R2,A
+   \   000049   EF           MOV     A,R7
+   \   00004A   FB           MOV     R3,A
+   \   00004B   12....       LCALL   ??SampleApp_MessageMSGCB?relay
+   \   00004E   80CD         SJMP    ??SampleApp_ProcessEvent_3
+    259              }
+    260          
+    261              // return unprocessed events
+    262              return (events ^ SYS_EVENT_MSG);
+   \                     ??SampleApp_ProcessEvent_4:
+   \   000050   AA..         MOV     R2,?V0 + 0
+   \   000052   E5..         MOV     A,?V0 + 1
+   \   000054   6480         XRL     A,#0x80
+   \   000056   FB           MOV     R3,A
+   \   000057   8015         SJMP    ??SampleApp_ProcessEvent_6
+    263            }
+    264          
+    265            // Send a message out - This event is generated by a timer
+    266            //  (setup in SampleApp_Init()).
+    267            if ( events & SEND_RFID_DATA_MSG_EVT )
+   \                     ??SampleApp_ProcessEvent_0:
+   \   000059   EA           MOV     A,R2
+   \   00005A   5404         ANL     A,#0x4
+   \   00005C   600C         JZ      ??SampleApp_ProcessEvent_7
+    268            {   
+    269              SendRFID();    
+   \   00005E                ; Setup parameters for call to function SendRFID
+   \   00005E   12....       LCALL   ??SendRFID?relay
+    270              // return unprocessed events
+    271              return (events ^ SEND_RFID_DATA_MSG_EVT);
+   \   000061   E5..         MOV     A,?V0 + 0
+   \   000063   6404         XRL     A,#0x4
+   \   000065   FA           MOV     R2,A
+   \   000066   AB..         MOV     R3,?V0 + 1
+   \   000068   8004         SJMP    ??SampleApp_ProcessEvent_6
+    272            }
+    273           
+    274            // Discard unknown events
+    275            return 0;
+   \                     ??SampleApp_ProcessEvent_7:
+   \   00006A   7A00         MOV     R2,#0x0
+   \   00006C   7B00         MOV     R3,#0x0
+   \                     ??SampleApp_ProcessEvent_6:
+   \   00006E   7F04         MOV     R7,#0x4
+   \   000070   02....       LJMP    ?BANKED_LEAVE_XDATA
+    276          }
+    277          /*********************************************************************
+    278           * LOCAL FUNCTIONS
+    279           */
+    280          
+    281          /*********************************************************************
+    282           * @fn      SampleApp_MessageMSGCB
+    283           *
+    284           * @brief   Data message processor callback.  This function processes
+    285           *          any incoming data - probably from other devices.  So, based
+    286           *          on cluster ID, perform the intended action.
+    287           *
+    288           * @param   none
+    289           *
+    290           * @return  none
+    291           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    292          void SampleApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )
+   \                     SampleApp_MessageMSGCB:
+    293          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+    294            switch ( pkt->clusterId )
+   \   000009   8E82         MOV     DPL,R6
+   \   00000B   8F83         MOV     DPH,R7
+   \   00000D   A3           INC     DPTR
+   \   00000E   A3           INC     DPTR
+   \   00000F   A3           INC     DPTR
+   \   000010   A3           INC     DPTR
+   \   000011   E0           MOVX    A,@DPTR
+   \   000012   6406         XRL     A,#0x6
+   \   000014   7002         JNZ     ??SampleApp_MessageMSGCB_0
+   \   000016   A3           INC     DPTR
+   \   000017   E0           MOVX    A,@DPTR
+   \                     ??SampleApp_MessageMSGCB_0:
+   \   000018   7049         JNZ     ??SampleApp_MessageMSGCB_1
+    295            {  
+    296              case BOARDCAST_REQUERY_DATA:  
+    297                   printf("get broadcast requery\r\n");
+   \   00001A                ; Setup parameters for call to function printf
+   \   00001A   7A..         MOV     R2,#`?<Constant "get broadcast requery\\r\\n">` & 0xff
+   \   00001C   7B..         MOV     R3,#(`?<Constant "get broadcast requery\\r\\n">` >> 8) & 0xff
+   \   00001E   12....       LCALL   ??printf?relay
+    298                   RFID_Report_DstAddr.addr.shortAddr = pkt->srcAddr.addr.shortAddr;
+   \   000021   8E82         MOV     DPL,R6
+   \   000023   8F83         MOV     DPH,R7
+   \   000025   A3           INC     DPTR
+   \   000026   A3           INC     DPTR
+   \   000027   A3           INC     DPTR
+   \   000028   A3           INC     DPTR
+   \   000029   A3           INC     DPTR
+   \   00002A   A3           INC     DPTR
+   \   00002B   E0           MOVX    A,@DPTR
+   \   00002C   F8           MOV     R0,A
+   \   00002D   A3           INC     DPTR
+   \   00002E   E0           MOVX    A,@DPTR
+   \   00002F   F9           MOV     R1,A
+   \   000030   90....       MOV     DPTR,#RFID_Report_DstAddr
+   \   000033   E8           MOV     A,R0
+   \   000034   F0           MOVX    @DPTR,A
+   \   000035   A3           INC     DPTR
+   \   000036   E9           MOV     A,R1
+   \   000037   F0           MOVX    @DPTR,A
+    299                   SendIndicate?Bottom_Blue():Bottom_BlackOut();//每接收到一次切换底座灯颜色
+   \   000038   90....       MOV     DPTR,#SendIndicate
+   \   00003B   E0           MOVX    A,@DPTR
+   \   00003C   6005         JZ      ??SampleApp_MessageMSGCB_2
+   \   00003E                ; Setup parameters for call to function Bottom_Blue
+   \   00003E   12....       LCALL   ??Bottom_Blue?relay
+   \   000041   8003         SJMP    ??SampleApp_MessageMSGCB_3
+   \                     ??SampleApp_MessageMSGCB_2:
+   \   000043                ; Setup parameters for call to function Bottom_BlackOut
+   \   000043   12....       LCALL   ??Bottom_BlackOut?relay
+    300                   SendIndicate = 1-SendIndicate;
+   \                     ??SampleApp_MessageMSGCB_3:
+   \   000046   90....       MOV     DPTR,#SendIndicate
+   \   000049   E0           MOVX    A,@DPTR
+   \   00004A   F8           MOV     R0,A
+   \   00004B   7401         MOV     A,#0x1
+   \   00004D   C3           CLR     C
+   \   00004E   98           SUBB    A,R0
+   \   00004F   F0           MOVX    @DPTR,A
+    301                            
+    302                   osal_start_timerEx( SampleApp_TaskID, 
+    303                                       SEND_RFID_DATA_MSG_EVT,
+    304                                       (osal_rand() & 0x00FF) );         
+   \   000050                ; Setup parameters for call to function osal_rand
+   \   000050   12....       LCALL   ??osal_rand?relay
+   \   000053                ; Setup parameters for call to function osal_start_timerEx
+   \   000053   EA           MOV     A,R2
+   \   000054   FC           MOV     R4,A
+   \   000055   7D00         MOV     R5,#0x0
+   \   000057   7A04         MOV     R2,#0x4
+   \   000059   7B00         MOV     R3,#0x0
+   \   00005B   90....       MOV     DPTR,#SampleApp_TaskID
+   \   00005E   E0           MOVX    A,@DPTR
+   \   00005F   F9           MOV     R1,A
+   \   000060   12....       LCALL   ??osal_start_timerEx?relay
+    305              break;
+    306            }
+    307          }
+   \                     ??SampleApp_MessageMSGCB_1:
+   \   000063   7F02         MOV     R7,#0x2
+   \   000065   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    308          void SendRFID( void )
+   \                     SendRFID:
+    309          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 9
+   \   000005   74F7         MOV     A,#-0x9
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+    310            uint8 *pRFID_Data;
+    311            uint8  CardId[9]={0};
+   \   00000A   90....       MOV     DPTR,#`?<Constant {0}>`
+   \   00000D   C082         PUSH    DPL
+   \   00000F   C083         PUSH    DPH
+   \   000011   85..82       MOV     DPL,?XSP + 0
+   \   000014   85..83       MOV     DPH,?XSP + 1
+   \   000017   AC82         MOV     R4,DPL
+   \   000019   AD83         MOV     R5,DPH
+   \   00001B   D083         POP     DPH
+   \   00001D   D082         POP     DPL
+   \   00001F   7409         MOV     A,#0x9
+   \   000021   12....       LCALL   ?MOVE_LONG8_XDATA_XDATA
+    312            uint8 i=0;
+    313            if((pRFID_Data = RFID_GetCardID()))
+   \   000024                ; Setup parameters for call to function RFID_GetCardID
+   \   000024   12....       LCALL   ??RFID_GetCardID?relay
+   \   000027   8B..         MOV     ?V0 + 1,R3
+   \   000029   A9..         MOV     R1,?V0 + 1
+   \   00002B   EA           MOV     A,R2
+   \   00002C   49           ORL     A,R1
+   \   00002D   7003         JNZ     $+5
+   \   00002F   02....       LJMP    ??SendRFID_0 & 0xFFFF
+    314            {
+    315              SendIndicate = 1-SendIndicate;  
+   \   000032   90....       MOV     DPTR,#SendIndicate
+   \   000035   E0           MOVX    A,@DPTR
+   \   000036   F8           MOV     R0,A
+   \   000037   7401         MOV     A,#0x1
+   \   000039   C3           CLR     C
+   \   00003A   98           SUBB    A,R0
+   \   00003B   F0           MOVX    @DPTR,A
+    316              _bytetoa_Hex(pRFID_Data,4,CardId);//将hex buffer转成ASCII buffer   
+   \   00003C                ; Setup parameters for call to function _bytetoa_Hex
+   \   00003C   85..82       MOV     DPL,?XSP + 0
+   \   00003F   85..83       MOV     DPH,?XSP + 1
+   \   000042   8582..       MOV     ?V0 + 0,DPL
+   \   000045   8583..       MOV     ?V0 + 1,DPH
+   \   000048   78..         MOV     R0,#?V0 + 0
+   \   00004A   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00004D   7C04         MOV     R4,#0x4
+   \   00004F   7D00         MOV     R5,#0x0
+   \   000051   12....       LCALL   ??_bytetoa_Hex?relay
+   \   000054   7402         MOV     A,#0x2
+   \   000056   12....       LCALL   ?DEALLOC_XSTACK8
+    317              printf("sendbuf=0x");
+   \   000059                ; Setup parameters for call to function printf
+   \   000059   7A..         MOV     R2,#`?<Constant "sendbuf=0x">` & 0xff
+   \   00005B   7B..         MOV     R3,#(`?<Constant "sendbuf=0x">` >> 8) & 0xff
+   \   00005D   12....       LCALL   ??printf?relay
+    318              for(i=0;i<8;i++)
+   \   000060   7E00         MOV     R6,#0x0
+   \   000062   802C         SJMP    ??SendRFID_1
+    319              {
+    320                printf("%c",CardId[i]);
+   \                     ??SendRFID_2:
+   \   000064                ; Setup parameters for call to function printf
+   \   000064   8E..         MOV     ?V0 + 0,R6
+   \   000066   85..82       MOV     DPL,?XSP + 0
+   \   000069   85..83       MOV     DPH,?XSP + 1
+   \   00006C   E582         MOV     A,DPL
+   \   00006E   25..         ADD     A,?V0 + 0
+   \   000070   F582         MOV     DPL,A
+   \   000072   E583         MOV     A,DPH
+   \   000074   3400         ADDC    A,#0x0
+   \   000076   F583         MOV     DPH,A
+   \   000078   E0           MOVX    A,@DPTR
+   \   000079   F5..         MOV     ?V0 + 0,A
+   \   00007B   75..00       MOV     ?V0 + 1,#0x0
+   \   00007E   78..         MOV     R0,#?V0 + 0
+   \   000080   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000083   7A..         MOV     R2,#`?<Constant "%c">` & 0xff
+   \   000085   7B..         MOV     R3,#(`?<Constant "%c">` >> 8) & 0xff
+   \   000087   12....       LCALL   ??printf?relay
+   \   00008A   7402         MOV     A,#0x2
+   \   00008C   12....       LCALL   ?DEALLOC_XSTACK8
+    321              }
+   \   00008F   0E           INC     R6
+   \                     ??SendRFID_1:
+   \   000090   EE           MOV     A,R6
+   \   000091   C3           CLR     C
+   \   000092   9408         SUBB    A,#0x8
+   \   000094   40CE         JC      ??SendRFID_2
+    322              printf("\r\n");
+   \   000096                ; Setup parameters for call to function printf
+   \   000096   7A..         MOV     R2,#`?<Constant "\\r\\n">` & 0xff
+   \   000098   7B..         MOV     R3,#(`?<Constant "\\r\\n">` >> 8) & 0xff
+   \   00009A   12....       LCALL   ??printf?relay
+    323              if ( AF_DataRequest( &RFID_Report_DstAddr, &SampleApp_epDesc,
+    324                                   RFID_CLUSTERID,
+    325                                   9,
+    326                                   CardId,
+    327                                   &SampleApp_TransID,
+    328                                   AF_DISCV_ROUTE,
+    329                                   AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
+   \   00009D                ; Setup parameters for call to function AF_DataRequest
+   \   00009D   75..1E       MOV     ?V0 + 0,#0x1e
+   \   0000A0   78..         MOV     R0,#?V0 + 0
+   \   0000A2   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   0000A5   75....       MOV     ?V0 + 0,#SampleApp_TransID & 0xff
+   \   0000A8   75....       MOV     ?V0 + 1,#(SampleApp_TransID >> 8) & 0xff
+   \   0000AB   78..         MOV     R0,#?V0 + 0
+   \   0000AD   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000B0   7403         MOV     A,#0x3
+   \   0000B2   12....       LCALL   ?XSTACK_DISP0_8
+   \   0000B5   8582..       MOV     ?V0 + 0,DPL
+   \   0000B8   8583..       MOV     ?V0 + 1,DPH
+   \   0000BB   78..         MOV     R0,#?V0 + 0
+   \   0000BD   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000C0   75..09       MOV     ?V0 + 0,#0x9
+   \   0000C3   75..00       MOV     ?V0 + 1,#0x0
+   \   0000C6   78..         MOV     R0,#?V0 + 0
+   \   0000C8   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000CB   75..05       MOV     ?V0 + 0,#0x5
+   \   0000CE   78..         MOV     R0,#?V0 + 0
+   \   0000D0   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000D3   7920         MOV     R1,#0x20
+   \   0000D5   7C..         MOV     R4,#SampleApp_epDesc & 0xff
+   \   0000D7   7D..         MOV     R5,#(SampleApp_epDesc >> 8) & 0xff
+   \   0000D9   7A..         MOV     R2,#RFID_Report_DstAddr & 0xff
+   \   0000DB   7B..         MOV     R3,#(RFID_Report_DstAddr >> 8) & 0xff
+   \   0000DD   12....       LCALL   ??AF_DataRequest?relay
+   \   0000E0   7409         MOV     A,#0x9
+   \   0000E2   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000E5   E9           MOV     A,R1
+   \   0000E6   7007         JNZ     ??SendRFID_0
+    330              {
+    331                printf("tx success\r\n");
+   \   0000E8                ; Setup parameters for call to function printf
+   \   0000E8   7A..         MOV     R2,#`?<Constant "tx success\\r\\n">` & 0xff
+   \   0000EA   7B..         MOV     R3,#(`?<Constant "tx success\\r\\n">` >> 8) & 0xff
+   \   0000EC   12....       LCALL   ??printf?relay
+    332              }
+    333            }
+    334          }
+   \                     ??SendRFID_0:
+   \   0000EF   7409         MOV     A,#0x9
+   \   0000F1   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000F4   7F02         MOV     R7,#0x2
+   \   0000F6   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for SendIndicate>`:
+   \   000000   01           DB 1
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SampleApp_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SampleApp_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SampleApp_ProcessEvent?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SampleApp_ProcessEvent
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SampleApp_MessageMSGCB?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SampleApp_MessageMSGCB
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SendRFID?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SendRFID
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "i am end device\\r\\n">`:
+   \   000000   6920616D     DB "i am end device\015\012"
+   \            20656E64
+   \            20646576
+   \            6963650D
+   \            0A00    
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "end device">`:
+   \   000000   656E6420     DB "end device"
+   \            64657669
+   \            636500  
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "hello world\\r\\n">`:
+   \   000000   68656C6C     DB "hello world\015\012"
+   \            6F20776F
+   \            726C640D
+   \            0A00    
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "network init!\\r\\n">`:
+   \   000000   6E657477     DB "network init!\015\012"
+   \            6F726B20
+   \            696E6974
+   \            210D0A00
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "get broadcast requery\\r\\n">`:
+   \   000000   67657420     DB "get broadcast requery\015\012"
+   \            62726F61
+   \            64636173
+   \            74207265
+   \            71756572
+   \            790D0A00
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant {0}>`:
+   \   000000   00           DB 0
+   \   000001   00000000     DB 0, 0, 0, 0, 0, 0, 0, 0
+   \            00000000
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "sendbuf=0x">`:
+   \   000000   73656E64     DB "sendbuf=0x"
+   \            6275663D
+   \            307800  
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "%c">`:
+   \   000000   256300       DB "%c"
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "\\r\\n">`:
+   \   000000   0D0A00       DB "\015\012"
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "tx success\\r\\n">`:
+   \   000000   74782073     DB "tx success\015\012"
+   \            75636365
+   \            73730D0A
+   \            00      
+    335          /*********************************************************************
+    336          *********************************************************************/
+
+   Maximum stack usage in bytes:
+
+     Function                    ISTACK PSTACK XSTACK
+     --------                    ------ ------ ------
+     SampleApp_Init                  0      0      9
+       -> MT_UartInit                0      0     18
+       -> printf                     0      0     18
+       -> OLED_P8x16Str              0      0     18
+       -> printf                     0      0     18
+       -> afRegister                 0      0     18
+     SampleApp_MessageMSGCB          0      0     22
+       -> printf                     0      0     20
+       -> Bottom_Blue                0      0     20
+       -> Bottom_BlackOut            0      0     20
+       -> osal_rand                  0      0     20
+       -> osal_start_timerEx         0      0     20
+     SampleApp_ProcessEvent          0      0     12
+       -> osal_msg_receive           0      0     24
+       -> printf                     0      0     24
+       -> osal_msg_deallocate        0      0     24
+       -> osal_msg_receive           0      0     24
+       -> SampleApp_MessageMSGCB     0      0     24
+       -> SendRFID                   0      0     24
+     SendRFID                        2      0     40
+       -> RFID_GetCardID             0      0     38
+       -> _bytetoa_Hex               0      0     42
+       -> printf                     0      0     38
+       -> printf                     0      0     42
+       -> printf                     0      0     38
+       -> AF_DataRequest             0      0     56
+       -> printf                     0      0     38
+
+
+   Segment part sizes:
+
+     Function/Label                          Bytes
+     --------------                          -----
+     SampleApp_ClusterList                      4
+     SampleApp_SimpleDesc                      12
+     SampleApp_epDesc                           6
+     SampleApp_TaskID                           1
+     SampleApp_NwkState                         1
+     SampleApp_TransID                          1
+     RFID_Report_DstAddr                       12
+     SendIndicate                               1
+     test                                       1
+     SampleApp_Init                           103
+     SampleApp_ProcessEvent                   115
+     SampleApp_MessageMSGCB                   104
+     SendRFID                                 249
+     ?<Initializer for SendIndicate>            1
+     ??SampleApp_Init?relay                     6
+     ??SampleApp_ProcessEvent?relay             6
+     ??SampleApp_MessageMSGCB?relay             6
+     ??SendRFID?relay                           6
+     ?<Constant "i am end device\r\n">         18
+     ?<Constant "end device">                  11
+     ?<Constant "hello world\r\n">             14
+     ?<Constant "network init!\r\n">           16
+     ?<Constant "get broadcast requery\r\n">   24
+     ?<Constant {0}>                            9
+     ?<Constant "sendbuf=0x">                  11
+     ?<Constant "%c">                           3
+     ?<Constant "\r\n">                         3
+     ?<Constant "tx success\r\n">              13
+
+ 
+ 571 bytes in segment BANKED_CODE
+  24 bytes in segment BANK_RELAYS
+   1 byte  in segment XDATA_I
+   1 byte  in segment XDATA_ID
+ 138 bytes in segment XDATA_ROM_C
+  22 bytes in segment XDATA_Z
+ 
+ 596 bytes of CODE  memory
+ 138 bytes of CONST memory
+  23 bytes of XDATA memory
+
+Errors: none
+Warnings: none

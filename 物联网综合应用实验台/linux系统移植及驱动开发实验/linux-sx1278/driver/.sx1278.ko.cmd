@@ -1,0 +1,1 @@
+cmd_/mnt/hgfs/linux_share/linux-sx1278/driver/sx1278.ko := arm-poky-linux-gnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /mnt/hgfs/linux_share/linux-sx1278/driver/sx1278.ko /mnt/hgfs/linux_share/linux-sx1278/driver/sx1278.o /mnt/hgfs/linux_share/linux-sx1278/driver/sx1278.mod.o

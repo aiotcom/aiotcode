@@ -1,0 +1,2126 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         27/Feb/2019  10:09:44 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Components\HARDWARE\MPU6050\mpu6050.c         #
+#    Command line       =  -f D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\gr #
+#                          oup-ext\Projects\zstack\Samples\SampleApp\CC2530DB #
+#                          \..\..\..\Tools\CC2530DB\f8wEndev.cfg (-DCPU32MHZ  #
+#                          -DROOT=__near_func -DBLINK_LEDS) -f                #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\Tools\CC2530DB\f8wConfig.cfg (-DSECURE=0    #
+#                          -DZG_SECURE_DYNAMIC=0 -DREFLECTOR                  #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFF11                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=TRUE      #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100) -DREJOIN_POLL_RATE=440   #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Components\HARDWARE\MPU6050\mpu6050.c -D      #
+#                          NWK_AUTO_POLL -D ZTOOL_P1 -D MT_SYS_FUNC -D        #
+#                          MT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG -lC             #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\En #
+#                          dDeviceEB-MPU6050\List\ -lA                        #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\En #
+#                          dDeviceEB-MPU6050\List\ --diag_suppress            #
+#                          Pe001,Pa010 -o D:\ZigBee\KJXY-ZigBee\useful_code\Z #
+#                          igBee-Ext\group-ext\Projects\zstack\Samples\Sample #
+#                          App\CC2530DB\EndDeviceEB-MPU6050\Obj\ -e           #
+#                          --no_unroll --no_inline --no_tbaa --debug          #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I D:\ZigBee\KJXY-ZigBee\usef #
+#                          ul_code\ZigBee-Ext\group-ext\Projects\zstack\Sampl #
+#                          es\SampleApp\CC2530DB\ -I                          #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \SOURCE\ -I D:\ZigBee\KJXY-ZigBee\useful_code\ZigB #
+#                          ee-Ext\group-ext\Projects\zstack\Samples\SampleApp #
+#                          \CC2530DB\..\..\..\ZMAIN\TI2530DB\ -I              #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\MT\ -I                     #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\HAL\INCLUDE\ -I            #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\HAL\TARGET\CC2530EB\ -I    #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\OSAL\MCU\CCSOC\ -I         #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\OSAL\INCLUDE\ -I           #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\STACK\AF\ -I               #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\STACK\NWK\ -I              #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\STACK\SEC\ -I              #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\STACK\SAPI\ -I             #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\STACK\SYS\ -I              #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\STACK\ZDO\ -I              #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\ZMAC\F8W\ -I               #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\ZMAC\ -I                   #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\SERVICES\SADDR\ -I         #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\SERVICES\SDATA\ -I         #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\MAC\INCLUDE\ -I            #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\MAC\HIGH_LEVEL\ -I         #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\srf04\ -I    #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\srf04\SINGLE #
+#                          _CHIP\ -I D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee #
+#                          -Ext\group-ext\Projects\zstack\Samples\SampleApp\C #
+#                          C2530DB\..\..\..\..\..\COMPONENTS\HARDWARE\ -I     #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\HARDWARE\MPU6050\ -I       #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\HARDWARE\MPU6050\eMPL\ -Om #
+#    List file          =  D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\En #
+#                          dDeviceEB-MPU6050\List\mpu6050.lst                 #
+#    Object file        =  D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group #
+#                          -ext\Projects\zstack\Samples\SampleApp\CC2530DB\En #
+#                          dDeviceEB-MPU6050\Obj\mpu6050.r51                  #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\ZigBee\KJXY-ZigBee\useful_code\ZigBee-Ext\group-ext\Components\HARDWARE\MPU6050\mpu6050.c
+      1          #include "mpu6050.h"
+
+   \                                 In  segment SFR_AN, at 0x80
+   \   union <unnamed> volatile __sfr _A_P0
+   \                     _A_P0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x8f
+   \   unsigned char volatile __sfr P0INP
+   \                     P0INP:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf3
+   \   unsigned char volatile __sfr P0SEL
+   \                     P0SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfd
+   \   unsigned char volatile __sfr P0DIR
+   \                     P0DIR:
+   \   000000                DS 1
+      2          #include "delay.h"
+      3          #include "stdio.h"
+      4          void MPU_IIC_Init(void);
+      5          //初始化MPU6050
+      6          //返回值: 0,成功
+      7          //        其他,错误代码
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+      8          u8 MPU_Init(void)
+   \                     MPU_Init:
+      9          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     10              u8 res;
+     11              MPU_IIC_Init();
+   \   000004                ; Setup parameters for call to function MPU_IIC_Init
+   \   000004   12....       LCALL   ??MPU_IIC_Init?relay
+     12              MPU_Write_Byte(MPU_PWR_MGMT1_REG,0X80);//复位MPU6050
+   \   000007                ; Setup parameters for call to function MPU_Write_Byte
+   \   000007   7A80         MOV     R2,#-0x80
+   \   000009   796B         MOV     R1,#0x6b
+   \   00000B   12....       LCALL   ??MPU_Write_Byte?relay
+     13              delay_ms(100);
+   \   00000E                ; Setup parameters for call to function delay_ms
+   \   00000E   90....       MOV     DPTR,#__Constant_64
+   \   000011   12....       LCALL   ?XLOAD_R2345
+   \   000014   12....       LCALL   ??delay_ms?relay
+     14              MPU_Write_Byte(MPU_PWR_MGMT1_REG,0X00);//唤醒MPU6050
+   \   000017                ; Setup parameters for call to function MPU_Write_Byte
+   \   000017   7A00         MOV     R2,#0x0
+   \   000019   796B         MOV     R1,#0x6b
+   \   00001B   12....       LCALL   ??MPU_Write_Byte?relay
+     15              MPU_Set_Gyro_Fsr(3); //陀螺仪传感器,±2000dps
+   \   00001E                ; Setup parameters for call to function MPU_Set_Gyro_Fsr
+   \   00001E   7903         MOV     R1,#0x3
+   \   000020   12....       LCALL   ??MPU_Set_Gyro_Fsr?relay
+     16              MPU_Set_Accel_Fsr(0); //加速度传感器 ±2g
+   \   000023                ; Setup parameters for call to function MPU_Set_Accel_Fsr
+   \   000023   7900         MOV     R1,#0x0
+   \   000025   12....       LCALL   ??MPU_Set_Accel_Fsr?relay
+     17              MPU_Set_Rate(200); //设置采样率50HZ
+   \   000028                ; Setup parameters for call to function MPU_Set_Rate
+   \   000028   7AC8         MOV     R2,#-0x38
+   \   00002A   7B00         MOV     R3,#0x0
+   \   00002C   12....       LCALL   ??MPU_Set_Rate?relay
+     18              MPU_Write_Byte(MPU_INT_EN_REG,0X00); //关闭所有中断
+   \   00002F                ; Setup parameters for call to function MPU_Write_Byte
+   \   00002F   7A00         MOV     R2,#0x0
+   \   000031   7938         MOV     R1,#0x38
+   \   000033   12....       LCALL   ??MPU_Write_Byte?relay
+     19              MPU_Write_Byte(MPU_USER_CTRL_REG,0X00);//I2C主模式关闭
+   \   000036                ; Setup parameters for call to function MPU_Write_Byte
+   \   000036   7A00         MOV     R2,#0x0
+   \   000038   796A         MOV     R1,#0x6a
+   \   00003A   12....       LCALL   ??MPU_Write_Byte?relay
+     20              MPU_Write_Byte(MPU_FIFO_EN_REG,0X00);//关闭FIFO
+   \   00003D                ; Setup parameters for call to function MPU_Write_Byte
+   \   00003D   7A00         MOV     R2,#0x0
+   \   00003F   7923         MOV     R1,#0x23
+   \   000041   12....       LCALL   ??MPU_Write_Byte?relay
+     21              MPU_Write_Byte(MPU_INTBP_CFG_REG,0X80);//INT引脚低电平有效
+   \   000044                ; Setup parameters for call to function MPU_Write_Byte
+   \   000044   7A80         MOV     R2,#-0x80
+   \   000046   7937         MOV     R1,#0x37
+   \   000048   12....       LCALL   ??MPU_Write_Byte?relay
+     22              res=MPU_Read_Byte(MPU_DEVICE_ID_REG);
+     23              if(res==MPU_ADDR)//器件ID正确
+   \   00004B                ; Setup parameters for call to function MPU_Read_Byte
+   \   00004B   7975         MOV     R1,#0x75
+   \   00004D   12....       LCALL   ??MPU_Read_Byte?relay
+   \   000050   E9           MOV     A,R1
+   \   000051   6468         XRL     A,#0x68
+   \   000053   7020         JNZ     ??MPU_Init_0
+     24              {
+     25                  MPU_Write_Byte(MPU_PWR_MGMT1_REG,0X02);//设置CLKSEL,PLL X 轴为参考
+   \   000055                ; Setup parameters for call to function MPU_Write_Byte
+   \   000055   7A02         MOV     R2,#0x2
+   \   000057   796B         MOV     R1,#0x6b
+   \   000059   12....       LCALL   ??MPU_Write_Byte?relay
+     26                  MPU_Write_Byte(MPU_PWR_MGMT2_REG,0X00);//加速度陀螺仪都工作
+   \   00005C                ; Setup parameters for call to function MPU_Write_Byte
+   \   00005C   7A00         MOV     R2,#0x0
+   \   00005E   796C         MOV     R1,#0x6c
+   \   000060   12....       LCALL   ??MPU_Write_Byte?relay
+     27                  MPU_Set_Rate(200); //设置采样率为50HZ
+   \   000063                ; Setup parameters for call to function MPU_Set_Rate
+   \   000063   7AC8         MOV     R2,#-0x38
+   \   000065   7B00         MOV     R3,#0x0
+   \   000067   12....       LCALL   ??MPU_Set_Rate?relay
+     28                  printf("MPU6050 ADDR correct\r\n");
+   \   00006A                ; Setup parameters for call to function printf
+   \   00006A   7A..         MOV     R2,#`?<Constant "MPU6050 ADDR correct\\r\\n">` & 0xff
+   \   00006C   7B..         MOV     R3,#(`?<Constant "MPU6050 ADDR correct\\r\\n">` >> 8) & 0xff
+   \   00006E   12....       LCALL   ??printf?relay
+     29              }
+     30              else 
+     31              {
+     32                return 1;
+     33              }
+     34              return 0;
+   \   000071   7900         MOV     R1,#0x0
+   \   000073   8002         SJMP    ??MPU_Init_1
+   \                     ??MPU_Init_0:
+   \   000075   7901         MOV     R1,#0x1
+   \                     ??MPU_Init_1:
+   \   000077   D083         POP     DPH
+   \   000079   D082         POP     DPL
+   \   00007B   02....       LJMP    ?BRET
+     35          }
+     36          
+     37          //设置MPU6050陀螺仪传感器满量程范围
+     38          //fsr:0,±250dps;1,±500dps;2,±1000dps;3,±2000dps
+     39          //返回值:0,设置成功
+     40          //    其他,设置失败 
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     41          u8 MPU_Set_Gyro_Fsr(u8 fsr)
+   \                     MPU_Set_Gyro_Fsr:
+     42          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+     43              return MPU_Write_Byte(MPU_GYRO_CFG_REG,fsr<<3);//设置陀螺仪满量程范围
+   \   000006                ; Setup parameters for call to function MPU_Write_Byte
+   \   000006   33           RLC     A
+   \   000007   33           RLC     A
+   \   000008   33           RLC     A
+   \   000009   54F8         ANL     A,#0xf8
+   \   00000B   FA           MOV     R2,A
+   \   00000C   791B         MOV     R1,#0x1b
+   \   00000E   12....       LCALL   ??MPU_Write_Byte?relay
+   \   000011   7F01         MOV     R7,#0x1
+   \   000013   02....       LJMP    ?BANKED_LEAVE_XDATA
+     44          }
+     45          
+     46          //设置MPU6050加速度传感器满量程范围
+     47          //fsr:0,±2g;1,±4g;2,±8g;3,±16g
+     48          //返回值:0,设置成功
+     49          //    其他,设置失败 
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     50          u8 MPU_Set_Accel_Fsr(u8 fsr)
+   \                     MPU_Set_Accel_Fsr:
+     51          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+     52              return MPU_Write_Byte(MPU_ACCEL_CFG_REG,fsr<<3);//设置加速度传感器满量程范围
+   \   000006                ; Setup parameters for call to function MPU_Write_Byte
+   \   000006   33           RLC     A
+   \   000007   33           RLC     A
+   \   000008   33           RLC     A
+   \   000009   54F8         ANL     A,#0xf8
+   \   00000B   FA           MOV     R2,A
+   \   00000C   791C         MOV     R1,#0x1c
+   \   00000E   12....       LCALL   ??MPU_Write_Byte?relay
+   \   000011   7F01         MOV     R7,#0x1
+   \   000013   02....       LJMP    ?BANKED_LEAVE_XDATA
+     53          }
+     54          
+     55          //设置MPU6050的数字低通滤波器
+     56          //lpf:数字低通滤波频率(Hz)
+     57          //返回值:0,设置成功
+     58          //    其他,设置失败 
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     59          u8 MPU_Set_LPF(u16 lpf)
+   \                     MPU_Set_LPF:
+     60          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     61              u8 data=0;
+     62              if(lpf>=188) data=1;
+   \   000004   C3           CLR     C
+   \   000005   EA           MOV     A,R2
+   \   000006   94BC         SUBB    A,#-0x44
+   \   000008   EB           MOV     A,R3
+   \   000009   9400         SUBB    A,#0x0
+   \   00000B   4004         JC      ??MPU_Set_LPF_0
+   \   00000D   7A01         MOV     R2,#0x1
+   \   00000F   803F         SJMP    ??MPU_Set_LPF_1
+     63              else if(lpf>=98) data=2;
+   \                     ??MPU_Set_LPF_0:
+   \   000011   C3           CLR     C
+   \   000012   EA           MOV     A,R2
+   \   000013   9462         SUBB    A,#0x62
+   \   000015   EB           MOV     A,R3
+   \   000016   9400         SUBB    A,#0x0
+   \   000018   4004         JC      ??MPU_Set_LPF_2
+   \                     ??MPU_Set_LPF_3:
+   \   00001A   7A02         MOV     R2,#0x2
+   \   00001C   8032         SJMP    ??MPU_Set_LPF_1
+     64              else if(lpf>=42) data=2;
+   \                     ??MPU_Set_LPF_2:
+   \   00001E   C3           CLR     C
+   \   00001F   EA           MOV     A,R2
+   \   000020   942A         SUBB    A,#0x2a
+   \   000022   EB           MOV     A,R3
+   \   000023   9400         SUBB    A,#0x0
+   \   000025   50F3         JNC     ??MPU_Set_LPF_3
+     65              else if(lpf>=42) data=3;
+   \   000027   C3           CLR     C
+   \   000028   EA           MOV     A,R2
+   \   000029   942A         SUBB    A,#0x2a
+   \   00002B   EB           MOV     A,R3
+   \   00002C   9400         SUBB    A,#0x0
+   \   00002E   4004         JC      ??MPU_Set_LPF_4
+   \   000030   7A03         MOV     R2,#0x3
+   \   000032   801C         SJMP    ??MPU_Set_LPF_1
+     66              else if(lpf>=20) data=4;
+   \                     ??MPU_Set_LPF_4:
+   \   000034   C3           CLR     C
+   \   000035   EA           MOV     A,R2
+   \   000036   9414         SUBB    A,#0x14
+   \   000038   EB           MOV     A,R3
+   \   000039   9400         SUBB    A,#0x0
+   \   00003B   4004         JC      ??MPU_Set_LPF_5
+   \   00003D   7A04         MOV     R2,#0x4
+   \   00003F   800F         SJMP    ??MPU_Set_LPF_1
+     67              else if(lpf>=10) data=5;
+   \                     ??MPU_Set_LPF_5:
+   \   000041   C3           CLR     C
+   \   000042   EA           MOV     A,R2
+   \   000043   940A         SUBB    A,#0xa
+   \   000045   EB           MOV     A,R3
+   \   000046   9400         SUBB    A,#0x0
+   \   000048   4004         JC      ??MPU_Set_LPF_6
+   \   00004A   7A05         MOV     R2,#0x5
+   \   00004C   8002         SJMP    ??MPU_Set_LPF_1
+     68              else data=6; 
+   \                     ??MPU_Set_LPF_6:
+   \   00004E   7A06         MOV     R2,#0x6
+     69              return MPU_Write_Byte(MPU_CFG_REG,data);//设置数字低通滤波器  
+   \                     ??MPU_Set_LPF_1:
+   \   000050                ; Setup parameters for call to function MPU_Write_Byte
+   \   000050   791A         MOV     R1,#0x1a
+   \   000052   12....       LCALL   ??MPU_Write_Byte?relay
+   \   000055   D083         POP     DPH
+   \   000057   D082         POP     DPL
+   \   000059   02....       LJMP    ?BRET
+     70          }
+     71          
+     72          //设置MPU6050的采样率(假定Fs=1KHz)
+     73          //rate:4~1000(Hz)
+     74          //返回值:0,设置成功
+     75          //    其他,设置失败 
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     76          u8 MPU_Set_Rate(u16 rate)
+   \                     MPU_Set_Rate:
+     77          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+     78              u8 data;
+     79              if(rate>1000)rate=1000;
+   \   000009   C3           CLR     C
+   \   00000A   EE           MOV     A,R6
+   \   00000B   94E9         SUBB    A,#-0x17
+   \   00000D   EF           MOV     A,R7
+   \   00000E   9403         SUBB    A,#0x3
+   \   000010   4004         JC      ??MPU_Set_Rate_0
+   \   000012   7EE8         MOV     R6,#-0x18
+   \   000014   7F03         MOV     R7,#0x3
+     80              if(rate<4)rate=4;
+   \                     ??MPU_Set_Rate_0:
+   \   000016   C3           CLR     C
+   \   000017   EE           MOV     A,R6
+   \   000018   9404         SUBB    A,#0x4
+   \   00001A   EF           MOV     A,R7
+   \   00001B   9400         SUBB    A,#0x0
+   \   00001D   5004         JNC     ??MPU_Set_Rate_1
+   \   00001F   7E04         MOV     R6,#0x4
+   \   000021   7F00         MOV     R7,#0x0
+     81              data=1000/rate-1;
+     82              data=MPU_Write_Byte(MPU_SAMPLE_RATE_REG,data);	//设置数字低通滤波器
+   \                     ??MPU_Set_Rate_1:
+   \   000023                ; Setup parameters for call to function MPU_Write_Byte
+   \   000023   78E8         MOV     R0,#-0x18
+   \   000025   7903         MOV     R1,#0x3
+   \   000027   EE           MOV     A,R6
+   \   000028   FA           MOV     R2,A
+   \   000029   EF           MOV     A,R7
+   \   00002A   FB           MOV     R3,A
+   \   00002B   12....       LCALL   ?US_DIV_MOD
+   \   00002E   E8           MOV     A,R0
+   \   00002F   14           DEC     A
+   \   000030   FA           MOV     R2,A
+   \   000031   7919         MOV     R1,#0x19
+   \   000033   12....       LCALL   ??MPU_Write_Byte?relay
+     83              return MPU_Set_LPF(rate/2);	//自动设置LPF为采样率的一半
+   \   000036                ; Setup parameters for call to function MPU_Set_LPF
+   \   000036   EE           MOV     A,R6
+   \   000037   FA           MOV     R2,A
+   \   000038   EF           MOV     A,R7
+   \   000039   C3           CLR     C
+   \   00003A   13           RRC     A
+   \   00003B   FB           MOV     R3,A
+   \   00003C   EA           MOV     A,R2
+   \   00003D   13           RRC     A
+   \   00003E   FA           MOV     R2,A
+   \   00003F   12....       LCALL   ??MPU_Set_LPF?relay
+   \   000042   7F01         MOV     R7,#0x1
+   \   000044   02....       LJMP    ?BANKED_LEAVE_XDATA
+     84          }
+     85          
+     86          //得到温度值
+     87          //返回值:温度值(扩大了100倍)
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     88          short MPU_Get_Temperature(void)
+   \                     MPU_Get_Temperature:
+     89          {
+   \   000000   74F0         MOV     A,#-0x10
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 16
+   \   000005                ; Auto size: 2
+   \   000005   74FE         MOV     A,#-0x2
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+     90              u8 buf[2]; 
+     91              short raw;
+     92              float temp;
+     93              MPU_Read_Len(MPU_ADDR,MPU_TEMP_OUTH_REG,2,buf); 
+   \   00000A                ; Setup parameters for call to function MPU_Read_Len
+   \   00000A   85..82       MOV     DPL,?XSP + 0
+   \   00000D   85..83       MOV     DPH,?XSP + 1
+   \   000010   AC82         MOV     R4,DPL
+   \   000012   AD83         MOV     R5,DPH
+   \   000014   7B02         MOV     R3,#0x2
+   \   000016   7A41         MOV     R2,#0x41
+   \   000018   7968         MOV     R1,#0x68
+   \   00001A   12....       LCALL   ??MPU_Read_Len?relay
+     94              raw=((u16)buf[0]<<8)|buf[1];  
+     95              temp=36.53+((double)raw)/340;  
+     96              return temp*100;;
+                            ^
+Warning[Pa093]: implicit conversion from floating point to integer
+   \   00001D   85..82       MOV     DPL,?XSP + 0
+   \   000020   85..83       MOV     DPH,?XSP + 1
+   \   000023   E0           MOVX    A,@DPTR
+   \   000024   F9           MOV     R1,A
+   \   000025   7401         MOV     A,#0x1
+   \   000027   12....       LCALL   ?XSTACK_DISP0_8
+   \   00002A   E0           MOVX    A,@DPTR
+   \   00002B   F5..         MOV     ?V0 + 0,A
+   \   00002D   E9           MOV     A,R1
+   \   00002E   F5..         MOV     ?V0 + 1,A
+   \   000030   33           RLC     A
+   \   000031   95E0         SUBB    A,0xE0 /* A   */
+   \   000033   F5..         MOV     ?V0 + 2,A
+   \   000035   F5..         MOV     ?V0 + 3,A
+   \   000037   78..         MOV     R0,#?V0 + 0
+   \   000039   12....       LCALL   ?L_TO_FLT
+   \   00003C   90....       MOV     DPTR,#__Constant_43aa0000
+   \   00003F   78..         MOV     R0,#?V0 + 4
+   \   000041   12....       LCALL   ?L_MOV_X
+   \   000044   78..         MOV     R0,#?V0 + 0
+   \   000046   79..         MOV     R1,#?V0 + 4
+   \   000048   12....       LCALL   ?FLT_DIV
+   \   00004B   90....       MOV     DPTR,#__Constant_42121eb8
+   \   00004E   78..         MOV     R0,#?V0 + 4
+   \   000050   12....       LCALL   ?L_MOV_X
+   \   000053   78..         MOV     R0,#?V0 + 0
+   \   000055   79..         MOV     R1,#?V0 + 4
+   \   000057   12....       LCALL   ?FLT_ADD
+   \   00005A   90....       MOV     DPTR,#__Constant_42c80000
+   \   00005D   78..         MOV     R0,#?V0 + 4
+   \   00005F   12....       LCALL   ?L_MOV_X
+   \   000062   78..         MOV     R0,#?V0 + 0
+   \   000064   79..         MOV     R1,#?V0 + 4
+   \   000066   12....       LCALL   ?FLT_MUL
+   \   000069   78..         MOV     R0,#?V0 + 0
+   \   00006B   12....       LCALL   ?FLT_TO_L
+   \   00006E   AA..         MOV     R2,?V0 + 0
+   \   000070   AB..         MOV     R3,?V0 + 1
+   \   000072   7402         MOV     A,#0x2
+   \   000074   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000077   7F08         MOV     R7,#0x8
+   \   000079   02....       LJMP    ?BANKED_LEAVE_XDATA
+     97          }
+     98          //得到陀螺仪值(原始值)
+     99          //gx,gy,gz:陀螺仪x,y,z轴的原始读数(带符号)
+    100          //返回值:0,成功
+    101          //    其他,错误代码
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    102          u8 MPU_Get_Gyroscope(short *gx,short *gy,short *gz)
+   \                     MPU_Get_Gyroscope:
+    103          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 6
+   \   000005   74FA         MOV     A,#-0x6
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+   \   00000E   8C..         MOV     ?V0 + 0,R4
+   \   000010   8D..         MOV     ?V0 + 1,R5
+   \   000012   7412         MOV     A,#0x12
+   \   000014   12....       LCALL   ?XSTACK_DISP0_8
+   \   000017   E0           MOVX    A,@DPTR
+   \   000018   F8           MOV     R0,A
+   \   000019   A3           INC     DPTR
+   \   00001A   E0           MOVX    A,@DPTR
+   \   00001B   F9           MOV     R1,A
+   \   00001C   88..         MOV     ?V0 + 2,R0
+   \   00001E   89..         MOV     ?V0 + 3,R1
+    104              u8 buf[6],res;
+    105              res=MPU_Read_Len(MPU_ADDR,MPU_GYRO_XOUTH_REG,6,buf);
+   \   000020                ; Setup parameters for call to function MPU_Read_Len
+   \   000020   85..82       MOV     DPL,?XSP + 0
+   \   000023   85..83       MOV     DPH,?XSP + 1
+   \   000026   AC82         MOV     R4,DPL
+   \   000028   AD83         MOV     R5,DPH
+   \   00002A   7B06         MOV     R3,#0x6
+   \   00002C   7A43         MOV     R2,#0x43
+   \   00002E   7968         MOV     R1,#0x68
+   \   000030   12....       LCALL   ??MPU_Read_Len?relay
+   \   000033   E9           MOV     A,R1
+    106              if(res==0)
+   \   000034   7044         JNZ     ??MPU_Get_Gyroscope_0
+    107              {
+    108                  *gx=((u16)buf[0]<<8)|buf[1];  
+   \   000036   85..82       MOV     DPL,?XSP + 0
+   \   000039   85..83       MOV     DPH,?XSP + 1
+   \   00003C   E0           MOVX    A,@DPTR
+   \   00003D   FB           MOV     R3,A
+   \   00003E   7401         MOV     A,#0x1
+   \   000040   12....       LCALL   ?XSTACK_DISP0_8
+   \   000043   E0           MOVX    A,@DPTR
+   \   000044   8E82         MOV     DPL,R6
+   \   000046   8F83         MOV     DPH,R7
+   \   000048   F0           MOVX    @DPTR,A
+   \   000049   A3           INC     DPTR
+   \   00004A   EB           MOV     A,R3
+   \   00004B   F0           MOVX    @DPTR,A
+    109                  *gy=((u16)buf[2]<<8)|buf[3];  
+   \   00004C   7402         MOV     A,#0x2
+   \   00004E   12....       LCALL   ?XSTACK_DISP0_8
+   \   000051   E0           MOVX    A,@DPTR
+   \   000052   FB           MOV     R3,A
+   \   000053   7403         MOV     A,#0x3
+   \   000055   12....       LCALL   ?XSTACK_DISP0_8
+   \   000058   E0           MOVX    A,@DPTR
+   \   000059   85..82       MOV     DPL,?V0 + 0
+   \   00005C   85..83       MOV     DPH,?V0 + 1
+   \   00005F   F0           MOVX    @DPTR,A
+   \   000060   A3           INC     DPTR
+   \   000061   EB           MOV     A,R3
+   \   000062   F0           MOVX    @DPTR,A
+    110                  *gz=((u16)buf[4]<<8)|buf[5];
+   \   000063   7404         MOV     A,#0x4
+   \   000065   12....       LCALL   ?XSTACK_DISP0_8
+   \   000068   E0           MOVX    A,@DPTR
+   \   000069   FB           MOV     R3,A
+   \   00006A   7405         MOV     A,#0x5
+   \   00006C   12....       LCALL   ?XSTACK_DISP0_8
+   \   00006F   E0           MOVX    A,@DPTR
+   \   000070   85..82       MOV     DPL,?V0 + 2
+   \   000073   85..83       MOV     DPH,?V0 + 3
+   \   000076   F0           MOVX    @DPTR,A
+   \   000077   A3           INC     DPTR
+   \   000078   EB           MOV     A,R3
+   \   000079   F0           MOVX    @DPTR,A
+    111              } 	
+    112              return res;
+   \                     ??MPU_Get_Gyroscope_0:
+   \   00007A   7406         MOV     A,#0x6
+   \   00007C   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00007F   7F04         MOV     R7,#0x4
+   \   000081   02....       LJMP    ?BANKED_LEAVE_XDATA
+    113          }
+    114          
+    115          //得到加速度值(原始值)
+    116          //ax,ay,az:陀螺仪x,y,z轴的原始读数(带符号)
+    117          //返回值:0,成功
+    118          //    其他,错误代码
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    119          u8 MPU_Get_Accelerometer(short *ax,short *ay,short *az)
+   \                     MPU_Get_Accelerometer:
+    120          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 6
+   \   000005   74FA         MOV     A,#-0x6
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+   \   00000E   8C..         MOV     ?V0 + 0,R4
+   \   000010   8D..         MOV     ?V0 + 1,R5
+   \   000012   7412         MOV     A,#0x12
+   \   000014   12....       LCALL   ?XSTACK_DISP0_8
+   \   000017   E0           MOVX    A,@DPTR
+   \   000018   F8           MOV     R0,A
+   \   000019   A3           INC     DPTR
+   \   00001A   E0           MOVX    A,@DPTR
+   \   00001B   F9           MOV     R1,A
+   \   00001C   88..         MOV     ?V0 + 2,R0
+   \   00001E   89..         MOV     ?V0 + 3,R1
+    121              u8 buf[6],res;  
+    122              res=MPU_Read_Len(MPU_ADDR,MPU_ACCEL_XOUTH_REG,6,buf);
+   \   000020                ; Setup parameters for call to function MPU_Read_Len
+   \   000020   85..82       MOV     DPL,?XSP + 0
+   \   000023   85..83       MOV     DPH,?XSP + 1
+   \   000026   AC82         MOV     R4,DPL
+   \   000028   AD83         MOV     R5,DPH
+   \   00002A   7B06         MOV     R3,#0x6
+   \   00002C   7A3B         MOV     R2,#0x3b
+   \   00002E   7968         MOV     R1,#0x68
+   \   000030   12....       LCALL   ??MPU_Read_Len?relay
+   \   000033   E9           MOV     A,R1
+    123              if(res==0)
+   \   000034   7044         JNZ     ??MPU_Get_Accelerometer_0
+    124              {
+    125                  *ax=((u16)buf[0]<<8)|buf[1];  
+   \   000036   85..82       MOV     DPL,?XSP + 0
+   \   000039   85..83       MOV     DPH,?XSP + 1
+   \   00003C   E0           MOVX    A,@DPTR
+   \   00003D   FB           MOV     R3,A
+   \   00003E   7401         MOV     A,#0x1
+   \   000040   12....       LCALL   ?XSTACK_DISP0_8
+   \   000043   E0           MOVX    A,@DPTR
+   \   000044   8E82         MOV     DPL,R6
+   \   000046   8F83         MOV     DPH,R7
+   \   000048   F0           MOVX    @DPTR,A
+   \   000049   A3           INC     DPTR
+   \   00004A   EB           MOV     A,R3
+   \   00004B   F0           MOVX    @DPTR,A
+    126                  *ay=((u16)buf[2]<<8)|buf[3];  
+   \   00004C   7402         MOV     A,#0x2
+   \   00004E   12....       LCALL   ?XSTACK_DISP0_8
+   \   000051   E0           MOVX    A,@DPTR
+   \   000052   FB           MOV     R3,A
+   \   000053   7403         MOV     A,#0x3
+   \   000055   12....       LCALL   ?XSTACK_DISP0_8
+   \   000058   E0           MOVX    A,@DPTR
+   \   000059   85..82       MOV     DPL,?V0 + 0
+   \   00005C   85..83       MOV     DPH,?V0 + 1
+   \   00005F   F0           MOVX    @DPTR,A
+   \   000060   A3           INC     DPTR
+   \   000061   EB           MOV     A,R3
+   \   000062   F0           MOVX    @DPTR,A
+    127                  *az=((u16)buf[4]<<8)|buf[5];
+   \   000063   7404         MOV     A,#0x4
+   \   000065   12....       LCALL   ?XSTACK_DISP0_8
+   \   000068   E0           MOVX    A,@DPTR
+   \   000069   FB           MOV     R3,A
+   \   00006A   7405         MOV     A,#0x5
+   \   00006C   12....       LCALL   ?XSTACK_DISP0_8
+   \   00006F   E0           MOVX    A,@DPTR
+   \   000070   85..82       MOV     DPL,?V0 + 2
+   \   000073   85..83       MOV     DPH,?V0 + 3
+   \   000076   F0           MOVX    @DPTR,A
+   \   000077   A3           INC     DPTR
+   \   000078   EB           MOV     A,R3
+   \   000079   F0           MOVX    @DPTR,A
+    128              } 	
+    129              return res;;
+   \                     ??MPU_Get_Accelerometer_0:
+   \   00007A   7406         MOV     A,#0x6
+   \   00007C   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00007F   7F04         MOV     R7,#0x4
+   \   000081   02....       LJMP    ?BANKED_LEAVE_XDATA
+    130          }
+    131          
+    132          //IIC写一个字节 
+    133          //reg:		寄存器地址
+    134          //data:		数据
+    135          //返回值:	0,正常
+    136          //    		其他,错误代码
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    137          u8 MPU_Write_Byte(u8 reg,u8 data)
+   \                     MPU_Write_Byte:
+    138          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FF           MOV     R7,A
+   \   000007   EA           MOV     A,R2
+   \   000008   FE           MOV     R6,A
+    139              MPU_IIC_Start();
+   \   000009                ; Setup parameters for call to function MPU_IIC_Start
+   \   000009   12....       LCALL   ??MPU_IIC_Start?relay
+    140              MPU_IIC_Send_Byte((MPU_ADDR<<1)|0);//发送器件地址+写命令	
+   \   00000C                ; Setup parameters for call to function MPU_IIC_Send_Byte
+   \   00000C   79D0         MOV     R1,#-0x30
+   \   00000E   12....       LCALL   ??MPU_IIC_Send_Byte?relay
+    141              if(MPU_IIC_Wait_Ack())	//等待应答
+   \   000011                ; Setup parameters for call to function MPU_IIC_Wait_Ack
+   \   000011   12....       LCALL   ??MPU_IIC_Wait_Ack?relay
+   \   000014   E9           MOV     A,R1
+   \   000015   6007         JZ      ??MPU_Write_Byte_0
+    142              {
+    143                  MPU_IIC_Stop();	
+   \                     ??MPU_Write_Byte_1:
+   \   000017                ; Setup parameters for call to function MPU_IIC_Stop
+   \   000017   12....       LCALL   ??MPU_IIC_Stop?relay
+    144                  return 1;		
+   \   00001A   7901         MOV     R1,#0x1
+   \   00001C   8018         SJMP    ??MPU_Write_Byte_2
+    145              }
+    146              MPU_IIC_Send_Byte(reg);	//写寄存器地址
+   \                     ??MPU_Write_Byte_0:
+   \   00001E                ; Setup parameters for call to function MPU_IIC_Send_Byte
+   \   00001E   EF           MOV     A,R7
+   \   00001F   F9           MOV     R1,A
+   \   000020   12....       LCALL   ??MPU_IIC_Send_Byte?relay
+    147              MPU_IIC_Wait_Ack();	//等待应答 
+   \   000023                ; Setup parameters for call to function MPU_IIC_Wait_Ack
+   \   000023   12....       LCALL   ??MPU_IIC_Wait_Ack?relay
+    148              MPU_IIC_Send_Byte(data);//发送数据
+   \   000026                ; Setup parameters for call to function MPU_IIC_Send_Byte
+   \   000026   EE           MOV     A,R6
+   \   000027   F9           MOV     R1,A
+   \   000028   12....       LCALL   ??MPU_IIC_Send_Byte?relay
+    149              if(MPU_IIC_Wait_Ack())	//等待ACK
+   \   00002B                ; Setup parameters for call to function MPU_IIC_Wait_Ack
+   \   00002B   12....       LCALL   ??MPU_IIC_Wait_Ack?relay
+   \   00002E   E9           MOV     A,R1
+   \   00002F   70E6         JNZ     ??MPU_Write_Byte_1
+    150              {
+    151                  MPU_IIC_Stop();	 
+    152                  return 1;		 
+    153              }		 
+    154              MPU_IIC_Stop();	 
+   \   000031                ; Setup parameters for call to function MPU_IIC_Stop
+   \   000031   12....       LCALL   ??MPU_IIC_Stop?relay
+    155              
+    156              return 0;
+   \   000034   7900         MOV     R1,#0x0
+   \                     ??MPU_Write_Byte_2:
+   \   000036   7F01         MOV     R7,#0x1
+   \   000038   02....       LJMP    ?BANKED_LEAVE_XDATA
+    157          }
+    158          
+    159          //IIC读一个字节 
+    160          //reg:寄存器地址 
+    161          //返回值:读到的数据
+    162          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    163          u8 MPU_Read_Byte(u8 reg)
+   \                     MPU_Read_Byte:
+    164          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FF           MOV     R7,A
+    165              u8 res;
+    166              MPU_IIC_Start();
+   \   000007                ; Setup parameters for call to function MPU_IIC_Start
+   \   000007   12....       LCALL   ??MPU_IIC_Start?relay
+    167              MPU_IIC_Send_Byte((MPU_ADDR<<1)|0);//发送器件地址+写命令	
+   \   00000A                ; Setup parameters for call to function MPU_IIC_Send_Byte
+   \   00000A   79D0         MOV     R1,#-0x30
+   \   00000C   12....       LCALL   ??MPU_IIC_Send_Byte?relay
+    168              MPU_IIC_Wait_Ack();       //等待应答
+   \   00000F                ; Setup parameters for call to function MPU_IIC_Wait_Ack
+   \   00000F   12....       LCALL   ??MPU_IIC_Wait_Ack?relay
+    169              MPU_IIC_Send_Byte(reg);   //写寄存器地址
+   \   000012                ; Setup parameters for call to function MPU_IIC_Send_Byte
+   \   000012   EF           MOV     A,R7
+   \   000013   F9           MOV     R1,A
+   \   000014   12....       LCALL   ??MPU_IIC_Send_Byte?relay
+    170              MPU_IIC_Wait_Ack();       //等待应答
+   \   000017                ; Setup parameters for call to function MPU_IIC_Wait_Ack
+   \   000017   12....       LCALL   ??MPU_IIC_Wait_Ack?relay
+    171              MPU_IIC_Start();
+   \   00001A                ; Setup parameters for call to function MPU_IIC_Start
+   \   00001A   12....       LCALL   ??MPU_IIC_Start?relay
+    172              MPU_IIC_Send_Byte((MPU_ADDR<<1)|1);//发送期间地址+读命令
+   \   00001D                ; Setup parameters for call to function MPU_IIC_Send_Byte
+   \   00001D   79D1         MOV     R1,#-0x2f
+   \   00001F   12....       LCALL   ??MPU_IIC_Send_Byte?relay
+    173              MPU_IIC_Wait_Ack();       //等待应答
+   \   000022                ; Setup parameters for call to function MPU_IIC_Wait_Ack
+   \   000022   12....       LCALL   ??MPU_IIC_Wait_Ack?relay
+    174              res=MPU_IIC_Read_Byte(0); //读取数据，发送nACK
+   \   000025                ; Setup parameters for call to function MPU_IIC_Read_Byte
+   \   000025   7900         MOV     R1,#0x0
+   \   000027   12....       LCALL   ??MPU_IIC_Read_Byte?relay
+   \   00002A   E9           MOV     A,R1
+   \   00002B   FE           MOV     R6,A
+    175              MPU_IIC_Stop();           //产生一个停止条件
+   \   00002C                ; Setup parameters for call to function MPU_IIC_Stop
+   \   00002C   12....       LCALL   ??MPU_IIC_Stop?relay
+    176              return res;
+   \   00002F   EE           MOV     A,R6
+   \   000030   F9           MOV     R1,A
+   \   000031   7F01         MOV     R7,#0x1
+   \   000033   02....       LJMP    ?BANKED_LEAVE_XDATA
+    177          }
+    178          
+    179          //IIC连续写
+    180          //addr:器件地址
+    181          //reg: 寄存器地址
+    182          //len: 写入长度
+    183          //buf: 数据区
+    184          //返回值: 0,正常
+    185          //  			其他，错误代码
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    186          u8 MPU_Write_Len(u8 addr,u8 reg,u8 len,u8 *buf)
+   \                     MPU_Write_Len:
+    187          {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 4,R1
+   \   000007   8A..         MOV     ?V0 + 2,R2
+   \   000009   8B..         MOV     ?V0 + 5,R3
+   \   00000B   EC           MOV     A,R4
+   \   00000C   FE           MOV     R6,A
+   \   00000D   ED           MOV     A,R5
+   \   00000E   FF           MOV     R7,A
+    188              u8 i;
+    189              MPU_IIC_Start();
+   \   00000F                ; Setup parameters for call to function MPU_IIC_Start
+   \   00000F   12....       LCALL   ??MPU_IIC_Start?relay
+    190              MPU_IIC_Send_Byte((addr<<1)|0); //发送器件地址+写命令
+   \   000012                ; Setup parameters for call to function MPU_IIC_Send_Byte
+   \   000012   E5..         MOV     A,?V0 + 4
+   \   000014   C3           CLR     C
+   \   000015   33           RLC     A
+   \   000016   F9           MOV     R1,A
+   \   000017   12....       LCALL   ??MPU_IIC_Send_Byte?relay
+    191              if(MPU_IIC_Wait_Ack())              //等待应答
+   \   00001A                ; Setup parameters for call to function MPU_IIC_Wait_Ack
+   \   00001A   12....       LCALL   ??MPU_IIC_Wait_Ack?relay
+   \   00001D   E9           MOV     A,R1
+   \   00001E   6007         JZ      ??MPU_Write_Len_0
+    192              {
+    193                  MPU_IIC_Stop();
+   \                     ??MPU_Write_Len_1:
+   \   000020                ; Setup parameters for call to function MPU_IIC_Stop
+   \   000020   12....       LCALL   ??MPU_IIC_Stop?relay
+    194                  return 1;
+   \   000023   7901         MOV     R1,#0x1
+   \   000025   8033         SJMP    ??MPU_Write_Len_2
+    195              }
+    196              MPU_IIC_Send_Byte(reg);         //写寄存器地址
+   \                     ??MPU_Write_Len_0:
+   \   000027                ; Setup parameters for call to function MPU_IIC_Send_Byte
+   \   000027   A9..         MOV     R1,?V0 + 2
+   \   000029   12....       LCALL   ??MPU_IIC_Send_Byte?relay
+    197              MPU_IIC_Wait_Ack();             //等待应答
+   \   00002C                ; Setup parameters for call to function MPU_IIC_Wait_Ack
+   \   00002C   12....       LCALL   ??MPU_IIC_Wait_Ack?relay
+    198              for(i=0;i<len;i++)
+   \   00002F   75..00       MOV     ?V0 + 3,#0x0
+   \   000032   801A         SJMP    ??MPU_Write_Len_3
+    199              {
+    200                  MPU_IIC_Send_Byte(buf[i]);  //发送数据
+   \                     ??MPU_Write_Len_4:
+   \   000034                ; Setup parameters for call to function MPU_IIC_Send_Byte
+   \   000034   85....       MOV     ?V0 + 0,?V0 + 3
+   \   000037   EE           MOV     A,R6
+   \   000038   25..         ADD     A,?V0 + 0
+   \   00003A   F582         MOV     DPL,A
+   \   00003C   EF           MOV     A,R7
+   \   00003D   3400         ADDC    A,#0x0
+   \   00003F   F583         MOV     DPH,A
+   \   000041   E0           MOVX    A,@DPTR
+   \   000042   F9           MOV     R1,A
+   \   000043   12....       LCALL   ??MPU_IIC_Send_Byte?relay
+    201                  if(MPU_IIC_Wait_Ack())      //等待ACK
+   \   000046                ; Setup parameters for call to function MPU_IIC_Wait_Ack
+   \   000046   12....       LCALL   ??MPU_IIC_Wait_Ack?relay
+   \   000049   E9           MOV     A,R1
+   \   00004A   70D4         JNZ     ??MPU_Write_Len_1
+    202                  {
+    203                      MPU_IIC_Stop();
+    204                      return 1;
+    205                  }
+    206              }
+   \   00004C   05..         INC     ?V0 + 3
+   \                     ??MPU_Write_Len_3:
+   \   00004E   E5..         MOV     A,?V0 + 3
+   \   000050   C3           CLR     C
+   \   000051   95..         SUBB    A,?V0 + 5
+   \   000053   40DF         JC      ??MPU_Write_Len_4
+    207              MPU_IIC_Stop();
+   \   000055                ; Setup parameters for call to function MPU_IIC_Stop
+   \   000055   12....       LCALL   ??MPU_IIC_Stop?relay
+    208              return 0;
+   \   000058   7900         MOV     R1,#0x0
+   \                     ??MPU_Write_Len_2:
+   \   00005A   7F06         MOV     R7,#0x6
+   \   00005C   02....       LJMP    ?BANKED_LEAVE_XDATA
+    209          }
+    210          //IIC连续读
+    211          //addr:器件地址
+    212          //reg:要读取的寄存器地址
+    213          //len:要读取得长度
+    214          //buf:读取到的数据存储区
+    215          //返回值: 0,正常
+    216          //				其他，错误代码
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    217          u8 MPU_Read_Len(u8 addr,u8 reg,u8 len,u8 *buf)
+   \                     MPU_Read_Len:
+    218          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 3,R1
+   \   000007   8A..         MOV     ?V0 + 0,R2
+   \   000009   8B..         MOV     ?V0 + 2,R3
+   \   00000B   EC           MOV     A,R4
+   \   00000C   FE           MOV     R6,A
+   \   00000D   ED           MOV     A,R5
+   \   00000E   FF           MOV     R7,A
+    219              MPU_IIC_Start();
+   \   00000F                ; Setup parameters for call to function MPU_IIC_Start
+   \   00000F   12....       LCALL   ??MPU_IIC_Start?relay
+    220              MPU_IIC_Send_Byte((addr<<1)|0);//发送器件地址+写命令
+   \   000012   E5..         MOV     A,?V0 + 3
+   \   000014   C3           CLR     C
+   \   000015   33           RLC     A
+   \   000016   F5..         MOV     ?V0 + 1,A
+   \   000018                ; Setup parameters for call to function MPU_IIC_Send_Byte
+   \   000018   F9           MOV     R1,A
+   \   000019   12....       LCALL   ??MPU_IIC_Send_Byte?relay
+    221              if(MPU_IIC_Wait_Ack())  //等待应答
+   \   00001C                ; Setup parameters for call to function MPU_IIC_Wait_Ack
+   \   00001C   12....       LCALL   ??MPU_IIC_Wait_Ack?relay
+   \   00001F   E9           MOV     A,R1
+   \   000020   6007         JZ      ??MPU_Read_Len_0
+    222              {
+    223                  MPU_IIC_Stop();
+   \   000022                ; Setup parameters for call to function MPU_IIC_Stop
+   \   000022   12....       LCALL   ??MPU_IIC_Stop?relay
+    224                  return 1;
+   \   000025   7901         MOV     R1,#0x1
+   \   000027   803D         SJMP    ??MPU_Read_Len_1
+    225              }
+    226              MPU_IIC_Send_Byte(reg); //写寄存器地址
+   \                     ??MPU_Read_Len_0:
+   \   000029                ; Setup parameters for call to function MPU_IIC_Send_Byte
+   \   000029   A9..         MOV     R1,?V0 + 0
+   \   00002B   12....       LCALL   ??MPU_IIC_Send_Byte?relay
+    227              MPU_IIC_Wait_Ack();     //等待应答
+   \   00002E                ; Setup parameters for call to function MPU_IIC_Wait_Ack
+   \   00002E   12....       LCALL   ??MPU_IIC_Wait_Ack?relay
+    228              MPU_IIC_Start();
+   \   000031                ; Setup parameters for call to function MPU_IIC_Start
+   \   000031   12....       LCALL   ??MPU_IIC_Start?relay
+    229              MPU_IIC_Send_Byte((addr<<1)|1);//发送器件地址+读命令
+   \   000034                ; Setup parameters for call to function MPU_IIC_Send_Byte
+   \   000034   7401         MOV     A,#0x1
+   \   000036   45..         ORL     A,?V0 + 1
+   \   000038   F9           MOV     R1,A
+   \   000039   12....       LCALL   ??MPU_IIC_Send_Byte?relay
+    230              MPU_IIC_Wait_Ack();     //等待应答
+   \   00003C                ; Setup parameters for call to function MPU_IIC_Wait_Ack
+   \   00003C   12....       LCALL   ??MPU_IIC_Wait_Ack?relay
+   \   00003F   8012         SJMP    ??MPU_Read_Len_2
+    231              while(len)
+    232              {
+    233                  if(len==1) *buf=MPU_IIC_Read_Byte(0);//读数据，发送nACK
+    234                  else *buf=MPU_IIC_Read_Byte(1);//读数据，发送ACK
+   \                     ??MPU_Read_Len_3:
+   \   000041                ; Setup parameters for call to function MPU_IIC_Read_Byte
+   \   000041   7901         MOV     R1,#0x1
+   \                     ??MPU_Read_Len_4:
+   \   000043   12....       LCALL   ??MPU_IIC_Read_Byte?relay
+   \   000046   E9           MOV     A,R1
+   \   000047   8E82         MOV     DPL,R6
+   \   000049   8F83         MOV     DPH,R7
+   \   00004B   F0           MOVX    @DPTR,A
+    235                  len--;
+   \   00004C   15..         DEC     ?V0 + 2
+    236                  buf++;
+   \   00004E   A3           INC     DPTR
+   \   00004F   AE82         MOV     R6,DPL
+   \   000051   AF83         MOV     R7,DPH
+   \                     ??MPU_Read_Len_2:
+   \   000053   E5..         MOV     A,?V0 + 2
+   \   000055   600A         JZ      ??MPU_Read_Len_5
+   \   000057   7401         MOV     A,#0x1
+   \   000059   65..         XRL     A,?V0 + 2
+   \   00005B   70E4         JNZ     ??MPU_Read_Len_3
+   \   00005D                ; Setup parameters for call to function MPU_IIC_Read_Byte
+   \   00005D   7900         MOV     R1,#0x0
+   \   00005F   80E2         SJMP    ??MPU_Read_Len_4
+    237              }
+    238              MPU_IIC_Stop();//产生一个停止条件
+   \                     ??MPU_Read_Len_5:
+   \   000061                ; Setup parameters for call to function MPU_IIC_Stop
+   \   000061   12....       LCALL   ??MPU_IIC_Stop?relay
+    239              return 0;
+   \   000064   7900         MOV     R1,#0x0
+   \                     ??MPU_Read_Len_1:
+   \   000066   7F04         MOV     R7,#0x4
+   \   000068   02....       LJMP    ?BANKED_LEAVE_XDATA
+    240          }
+    241          
+    242          
+    243          	
+    244          //==========================================================
+    245          //	函数名称：	IIC_Delay
+    246          //
+    247          //	函数功能：	IIC延时函数
+    248          //
+    249          //	入口参数：	时间
+    250          //
+    251          //	返回参数：	无
+    252          //
+    253          //	说明：		
+    254          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    255          void MPU_IIC_Delay(u32 n)
+   \                     MPU_IIC_Delay:
+    256          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    257            
+    258          }
+   \   000000   02....       LJMP    ?BRET
+    259          
+    260          //==========================================================
+    261          //	函数名称：	MPU_IIC_Init
+    262          //
+    263          //	函数功能：	初始化IIC
+    264          //
+    265          //	入口参数：	无
+    266          //
+    267          //	返回参数：	无
+    268          //
+    269          //	说明：		
+    270          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    271          void MPU_IIC_Init(void)
+   \                     MPU_IIC_Init:
+    272          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    273              P0SEL &= ~0x03;     //设置P0.0、P0.1为普通IO口  
+   \   000000   53F3FC       ANL     0xf3,#0xfc
+    274              P0DIR |= 0x03;      //P0.0、P0.1定义为输出
+   \   000003   43FD03       ORL     0xfd,#0x3
+    275          }
+   \   000006   02....       LJMP    ?BRET
+   \   000009                REQUIRE P0SEL
+   \   000009                REQUIRE P0DIR
+    276          
+    277          //==========================================================
+    278          //	函数名称：	MPU_IIC_SCL_OUTPUT
+    279          //
+    280          //	函数功能：	MPU_IIC时钟线输出模式
+    281          //
+    282          //	入口参数：	无
+    283          //
+    284          //	返回参数：	无
+    285          //
+    286          //	说明：		
+    287          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    288          void MPU_IIC_SCL_OUTPUT(void)
+   \                     MPU_IIC_SCL_OUTPUT:
+    289          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    290              P0SEL &= ~0x02;     //设置P0.1为普通IO口  
+   \   000000   53F3FD       ANL     0xf3,#0xfd
+    291              P0DIR |= 0x02;      //P0.1定义为输出
+   \   000003   43FD02       ORL     0xfd,#0x2
+    292          }
+   \   000006   02....       LJMP    ?BRET
+   \   000009                REQUIRE P0SEL
+   \   000009                REQUIRE P0DIR
+    293          
+    294          //==========================================================
+    295          //	函数名称：	MPU_IIC_SCL_INPUT
+    296          //
+    297          //	函数功能：	MPU_IIC时钟线输入模式
+    298          //
+    299          //	入口参数：	无
+    300          //
+    301          //	返回参数：	无
+    302          //
+    303          //	说明：		
+    304          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    305          void MPU_IIC_SCL_INPUT(void)
+   \                     MPU_IIC_SCL_INPUT:
+    306          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    307              P0SEL &= ~0x02;     //设置P0.1为普通IO口  
+   \   000000   53F3FD       ANL     0xf3,#0xfd
+    308              P0DIR &= ~0x02;     //按键接在P0.1口上，设P0.1为输入模式 
+   \   000003   53FDFD       ANL     0xfd,#0xfd
+    309              P0INP &= ~0x02;     //打开P0.1上拉电阻
+   \   000006   538FFD       ANL     0x8f,#0xfd
+    310          }
+   \   000009   02....       LJMP    ?BRET
+   \   00000C                REQUIRE P0SEL
+   \   00000C                REQUIRE P0DIR
+   \   00000C                REQUIRE P0INP
+    311          
+    312          //==========================================================
+    313          //	函数名称：	MPU_IIC_SDA_OUTPUT
+    314          //
+    315          //	函数功能：	MPU_IIC数据线输出模式 
+    316          //
+    317          //	入口参数：	无
+    318          //
+    319          //	返回参数：	无
+    320          //
+    321          //	说明：		
+    322          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    323          void MPU_IIC_SDA_OUTPUT(void)
+   \                     MPU_IIC_SDA_OUTPUT:
+    324          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    325              P0SEL &= ~0x01;     //设置P0.0为普通IO口  
+   \   000000   53F3FE       ANL     0xf3,#0xfe
+    326              P0DIR |= 0x01;      //P0.0定义为输出
+   \   000003   43FD01       ORL     0xfd,#0x1
+    327          }
+   \   000006   02....       LJMP    ?BRET
+   \   000009                REQUIRE P0SEL
+   \   000009                REQUIRE P0DIR
+    328          
+    329          //==========================================================
+    330          //	函数名称：	MPU_IIC_SDA_INPUT
+    331          //
+    332          //	函数功能：	MPU_IIC数据线输入模式
+    333          //
+    334          //	入口参数：	无
+    335          //
+    336          //	返回参数：	无
+    337          //
+    338          //	说明：		
+    339          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    340          void MPU_IIC_SDA_INPUT(void)
+   \                     MPU_IIC_SDA_INPUT:
+    341          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    342              P0SEL &= ~0x01;     //设置P0.0为普通IO口  
+   \   000000   53F3FE       ANL     0xf3,#0xfe
+    343              P0DIR &= ~0x01;     //按键接在P0.0口上，设P0.0为输入模式 
+   \   000003   53FDFE       ANL     0xfd,#0xfe
+    344              P0INP &= ~0x01;     //打开P0.0上拉电阻
+   \   000006   538FFE       ANL     0x8f,#0xfe
+    345          }
+   \   000009   02....       LJMP    ?BRET
+   \   00000C                REQUIRE P0SEL
+   \   00000C                REQUIRE P0DIR
+   \   00000C                REQUIRE P0INP
+    346          
+    347          //==========================================================
+    348          //	函数名称：	MPU_IIC_Start
+    349          //
+    350          //	函数功能：	MPU_IIC启动时序
+    351          //
+    352          //	入口参数：	无
+    353          //
+    354          //	返回参数：	无
+    355          //
+    356          //	说明：		
+    357          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    358          void MPU_IIC_Start(void)
+   \                     MPU_IIC_Start:
+    359          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    360              MPU_IIC_SDA_OUTPUT();	//时钟线输出模式
+   \   000004                ; Setup parameters for call to function MPU_IIC_SDA_OUTPUT
+   \   000004   12....       LCALL   ??MPU_IIC_SDA_OUTPUT?relay
+    361              MPU_IIC_SCL_OUTPUT();	//数据线输出模式
+   \   000007                ; Setup parameters for call to function MPU_IIC_SCL_OUTPUT
+   \   000007   12....       LCALL   ??MPU_IIC_SCL_OUTPUT?relay
+    362              MPU_SDA_HIGH();		//拉高数据线
+   \   00000A   D280         SETB    0x80.0
+   \   00000C   D280         SETB    0x80.0
+    363              MPU_SCL_HIGH();		//拉高时钟线
+   \   00000E   D281         SETB    0x80.1
+   \   000010   D281         SETB    0x80.1
+    364              MPU_SDA_LOW();		//拉低数据线			
+   \   000012   C280         CLR     0x80.0
+   \   000014   C280         CLR     0x80.0
+    365              MPU_SCL_LOW();		//拉低时钟线
+   \   000016   C281         CLR     0x80.1
+   \   000018   C281         CLR     0x80.1
+    366          }
+   \   00001A   D083         POP     DPH
+   \   00001C   D082         POP     DPL
+   \   00001E   02....       LJMP    ?BRET
+   \   000021                REQUIRE _A_P0
+    367          
+    368          //==========================================================
+    369          //	函数名称：	MPU_IIC_Stop
+    370          //
+    371          //	函数功能：	MPU_IIC停止时序 
+    372          //
+    373          //	入口参数：	无
+    374          //
+    375          //	返回参数：	无
+    376          //
+    377          //	说明：		
+    378          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    379          void MPU_IIC_Stop(void)
+   \                     MPU_IIC_Stop:
+    380          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    381              MPU_IIC_SDA_OUTPUT();
+   \   000004                ; Setup parameters for call to function MPU_IIC_SDA_OUTPUT
+   \   000004   12....       LCALL   ??MPU_IIC_SDA_OUTPUT?relay
+    382              MPU_IIC_SCL_OUTPUT();
+   \   000007                ; Setup parameters for call to function MPU_IIC_SCL_OUTPUT
+   \   000007   12....       LCALL   ??MPU_IIC_SCL_OUTPUT?relay
+    383              MPU_SCL_LOW();
+   \   00000A   C281         CLR     0x80.1
+   \   00000C   C281         CLR     0x80.1
+    384              MPU_SDA_LOW();
+   \   00000E   C280         CLR     0x80.0
+   \   000010   C280         CLR     0x80.0
+    385              MPU_SCL_HIGH();
+   \   000012   D281         SETB    0x80.1
+   \   000014   D281         SETB    0x80.1
+    386              MPU_SDA_HIGH();
+   \   000016   D280         SETB    0x80.0
+   \   000018   D280         SETB    0x80.0
+    387          }
+   \   00001A   D083         POP     DPH
+   \   00001C   D082         POP     DPL
+   \   00001E   02....       LJMP    ?BRET
+   \   000021                REQUIRE _A_P0
+    388          
+    389          //==========================================================
+    390          //	函数名称：	MPU_IIC_Wait_Ack
+    391          //
+    392          //	函数功能：	等待应答信号到来
+    393          //
+    394          //	入口参数：	无
+    395          //
+    396          //	返回参数：	返回值：1，接收应答失败
+    397          //        			0，接收应答成功
+    398          //
+    399          //	说明：		
+    400          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    401          u8 MPU_IIC_Wait_Ack(void)
+   \                     MPU_IIC_Wait_Ack:
+    402          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+    403              u8 Time=0;
+   \   000005   7E00         MOV     R6,#0x0
+    404              MPU_IIC_SCL_OUTPUT();
+   \   000007                ; Setup parameters for call to function MPU_IIC_SCL_OUTPUT
+   \   000007   12....       LCALL   ??MPU_IIC_SCL_OUTPUT?relay
+    405              MPU_IIC_SDA_OUTPUT();
+   \   00000A                ; Setup parameters for call to function MPU_IIC_SDA_OUTPUT
+   \   00000A   12....       LCALL   ??MPU_IIC_SDA_OUTPUT?relay
+    406              MPU_SDA_HIGH();
+   \   00000D   D280         SETB    0x80.0
+   \   00000F   D280         SETB    0x80.0
+    407              MPU_SCL_HIGH();
+   \   000011   D281         SETB    0x80.1
+   \   000013   D281         SETB    0x80.1
+    408              MPU_IIC_SDA_INPUT();
+   \   000015                ; Setup parameters for call to function MPU_IIC_SDA_INPUT
+   \   000015   12....       LCALL   ??MPU_IIC_SDA_INPUT?relay
+    409              while(MPU_SDA_STATE())
+   \                     ??MPU_IIC_Wait_Ack_0:
+   \   000018   A280         MOV     C,0x80.0
+   \   00001A   500E         JNC     ??MPU_IIC_Wait_Ack_1
+    410              {
+    411                Time++;
+   \   00001C   0E           INC     R6
+    412                if(Time>250)
+   \   00001D   EE           MOV     A,R6
+   \   00001E   C3           CLR     C
+   \   00001F   94FB         SUBB    A,#-0x5
+   \   000021   40F5         JC      ??MPU_IIC_Wait_Ack_0
+    413                {
+    414                  MPU_IIC_Stop();
+   \   000023                ; Setup parameters for call to function MPU_IIC_Stop
+   \   000023   12....       LCALL   ??MPU_IIC_Stop?relay
+    415                  return 1;
+   \   000026   7901         MOV     R1,#0x1
+   \   000028   8006         SJMP    ??MPU_IIC_Wait_Ack_2
+    416                }
+    417              }
+    418              MPU_SCL_LOW();
+   \                     ??MPU_IIC_Wait_Ack_1:
+   \   00002A   C281         CLR     0x80.1
+   \   00002C   C281         CLR     0x80.1
+    419              return 0;
+   \   00002E   7900         MOV     R1,#0x0
+   \                     ??MPU_IIC_Wait_Ack_2:
+   \   000030   7F01         MOV     R7,#0x1
+   \   000032   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   000035                REQUIRE _A_P0
+    420          }
+    421          
+    422          
+    423          
+    424          //==========================================================
+    425          //	函数名称：	MPU_IIC_Ack
+    426          //
+    427          //	函数功能：	MPU_IIC ACK应答
+    428          //
+    429          //	入口参数：	无
+    430          //
+    431          //	返回参数：	无
+    432          //
+    433          //	说明：		
+    434          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    435          void MPU_IIC_Ack(void)
+   \                     MPU_IIC_Ack:
+    436          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    437              MPU_IIC_SCL_OUTPUT();
+   \   000004                ; Setup parameters for call to function MPU_IIC_SCL_OUTPUT
+   \   000004   12....       LCALL   ??MPU_IIC_SCL_OUTPUT?relay
+    438              MPU_SCL_LOW();
+   \   000007   C281         CLR     0x80.1
+   \   000009   C281         CLR     0x80.1
+    439              MPU_IIC_SDA_OUTPUT();
+   \   00000B                ; Setup parameters for call to function MPU_IIC_SDA_OUTPUT
+   \   00000B   12....       LCALL   ??MPU_IIC_SDA_OUTPUT?relay
+    440              MPU_SDA_LOW();
+   \   00000E   C280         CLR     0x80.0
+   \   000010   C280         CLR     0x80.0
+    441              MPU_SCL_HIGH();
+   \   000012   D281         SETB    0x80.1
+   \   000014   D281         SETB    0x80.1
+    442              MPU_SCL_LOW();
+   \   000016   C281         CLR     0x80.1
+   \   000018   C281         CLR     0x80.1
+    443          }
+   \   00001A   D083         POP     DPH
+   \   00001C   D082         POP     DPL
+   \   00001E   02....       LJMP    ?BRET
+   \   000021                REQUIRE _A_P0
+    444          
+    445          //==========================================================
+    446          //	函数名称：	MPU_IIC_NAck
+    447          //
+    448          //	函数功能：	MPU_IIC 无ACK应答
+    449          //
+    450          //	入口参数：	无
+    451          //
+    452          //	返回参数：	无
+    453          //
+    454          //	说明：		
+    455          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    456          void MPU_IIC_NAck(void)
+   \                     MPU_IIC_NAck:
+    457          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    458              MPU_IIC_SCL_OUTPUT();
+   \   000004                ; Setup parameters for call to function MPU_IIC_SCL_OUTPUT
+   \   000004   12....       LCALL   ??MPU_IIC_SCL_OUTPUT?relay
+    459              MPU_SCL_LOW();
+   \   000007   C281         CLR     0x80.1
+   \   000009   C281         CLR     0x80.1
+    460              MPU_IIC_SDA_OUTPUT();
+   \   00000B                ; Setup parameters for call to function MPU_IIC_SDA_OUTPUT
+   \   00000B   12....       LCALL   ??MPU_IIC_SDA_OUTPUT?relay
+    461              MPU_SDA_HIGH();
+   \   00000E   D280         SETB    0x80.0
+   \   000010   D280         SETB    0x80.0
+    462              MPU_SCL_HIGH();
+   \   000012   D281         SETB    0x80.1
+   \   000014   D281         SETB    0x80.1
+    463              MPU_SCL_LOW();
+   \   000016   C281         CLR     0x80.1
+   \   000018   C281         CLR     0x80.1
+    464          }
+   \   00001A   D083         POP     DPH
+   \   00001C   D082         POP     DPL
+   \   00001E   02....       LJMP    ?BRET
+   \   000021                REQUIRE _A_P0
+    465          
+    466          //==========================================================
+    467          //	函数名称：	MPU_IIC_Read_Byte
+    468          //
+    469          //	函数功能：	MPU_IIC 读取数据
+    470          //
+    471          //	入口参数：	ack:是否发送ACK
+    472          //
+    473          //	返回参数：	无
+    474          //
+    475          //	说明：		
+    476          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    477          u8 MPU_IIC_Read_Byte(u8 ack)
+   \                     MPU_IIC_Read_Byte:
+    478          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FF           MOV     R7,A
+    479              u8 i,receive=0;
+   \   000007   7E00         MOV     R6,#0x0
+    480              MPU_IIC_SDA_INPUT();
+   \   000009                ; Setup parameters for call to function MPU_IIC_SDA_INPUT
+   \   000009   12....       LCALL   ??MPU_IIC_SDA_INPUT?relay
+    481              MPU_IIC_SCL_OUTPUT();
+   \   00000C                ; Setup parameters for call to function MPU_IIC_SCL_OUTPUT
+   \   00000C   12....       LCALL   ??MPU_IIC_SCL_OUTPUT?relay
+    482              for(i=0;i<8;i++)
+   \   00000F   7800         MOV     R0,#0x0
+   \   000011   8012         SJMP    ??MPU_IIC_Read_Byte_0
+    483              {
+    484                  MPU_SCL_LOW();
+   \                     ??MPU_IIC_Read_Byte_1:
+   \   000013   C281         CLR     0x80.1
+   \   000015   C281         CLR     0x80.1
+    485                  MPU_SCL_HIGH();
+   \   000017   D281         SETB    0x80.1
+   \   000019   D281         SETB    0x80.1
+    486                  receive<<=1;
+   \   00001B   EE           MOV     A,R6
+   \   00001C   C3           CLR     C
+   \   00001D   33           RLC     A
+   \   00001E   FE           MOV     R6,A
+    487                  if(MPU_SDA_STATE())receive++;
+   \   00001F   A280         MOV     C,0x80.0
+   \   000021   5001         JNC     ??MPU_IIC_Read_Byte_2
+   \   000023   0E           INC     R6
+    488              }
+   \                     ??MPU_IIC_Read_Byte_2:
+   \   000024   08           INC     R0
+   \                     ??MPU_IIC_Read_Byte_0:
+   \   000025   E8           MOV     A,R0
+   \   000026   C3           CLR     C
+   \   000027   9408         SUBB    A,#0x8
+   \   000029   40E8         JC      ??MPU_IIC_Read_Byte_1
+    489              if(!ack) MPU_IIC_NAck();
+   \   00002B   EF           MOV     A,R7
+   \   00002C   7005         JNZ     ??MPU_IIC_Read_Byte_3
+   \   00002E                ; Setup parameters for call to function MPU_IIC_NAck
+   \   00002E   12....       LCALL   ??MPU_IIC_NAck?relay
+   \   000031   8003         SJMP    ??MPU_IIC_Read_Byte_4
+    490              else MPU_IIC_Ack();
+   \                     ??MPU_IIC_Read_Byte_3:
+   \   000033                ; Setup parameters for call to function MPU_IIC_Ack
+   \   000033   12....       LCALL   ??MPU_IIC_Ack?relay
+    491              return receive;
+   \                     ??MPU_IIC_Read_Byte_4:
+   \   000036   EE           MOV     A,R6
+   \   000037   F9           MOV     R1,A
+   \   000038   7F01         MOV     R7,#0x1
+   \   00003A   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   00003D                REQUIRE _A_P0
+    492          }
+    493          
+    494          
+    495          //==========================================================
+    496          //	函数名称：	MPU_Write_IIC_Byte
+    497          //
+    498          //	函数功能：	MPU_IIC 写入数据
+    499          //
+    500          //	入口参数：	无
+    501          //
+    502          //	返回参数：	无
+    503          //
+    504          //	说明：		
+    505          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    506          u8 MPU_Write_IIC_Byte(u8 byte)
+   \                     MPU_Write_IIC_Byte:
+    507          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FF           MOV     R7,A
+    508              u8 i, ack;
+    509          
+    510              MPU_IIC_SCL_OUTPUT();
+   \   000007                ; Setup parameters for call to function MPU_IIC_SCL_OUTPUT
+   \   000007   12....       LCALL   ??MPU_IIC_SCL_OUTPUT?relay
+    511              MPU_IIC_SDA_OUTPUT();		//设置为输出模式
+   \   00000A                ; Setup parameters for call to function MPU_IIC_SDA_OUTPUT
+   \   00000A   12....       LCALL   ??MPU_IIC_SDA_OUTPUT?relay
+    512              
+    513              for(i = 0; i < 8; i++)
+   \   00000D   7800         MOV     R0,#0x0
+   \   00000F   8010         SJMP    ??MPU_Write_IIC_Byte_0
+    514              {
+    515                  if(byte & 0x80)         //一次读取最高位 发送数据
+    516                  {
+    517                      MPU_SDA_HIGH();
+    518                  }
+    519                  else 
+    520                  {
+    521                      MPU_SDA_LOW();
+   \                     ??MPU_Write_IIC_Byte_1:
+   \   000011   C280         CLR     0x80.0
+   \   000013   C280         CLR     0x80.0
+    522                  }
+    523                  
+    524                  MPU_SCL_HIGH();  		//时钟线拉高
+   \                     ??MPU_Write_IIC_Byte_2:
+   \   000015   D281         SETB    0x80.1
+   \   000017   D281         SETB    0x80.1
+    525                  MPU_SCL_LOW();   		//时钟线拉低
+   \   000019   C281         CLR     0x80.1
+   \   00001B   C281         CLR     0x80.1
+    526                  
+    527                  byte <<= 1;
+   \   00001D   C3           CLR     C
+   \   00001E   33           RLC     A
+   \   00001F   FF           MOV     R7,A
+   \   000020   08           INC     R0
+   \                     ??MPU_Write_IIC_Byte_0:
+   \   000021   E8           MOV     A,R0
+   \   000022   C3           CLR     C
+   \   000023   9408         SUBB    A,#0x8
+   \   000025   500B         JNC     ??MPU_Write_IIC_Byte_3
+   \   000027   EF           MOV     A,R7
+   \   000028   A2E7         MOV     C,0xE0 /* A   */.7
+   \   00002A   50E5         JNC     ??MPU_Write_IIC_Byte_1
+   \   00002C   D280         SETB    0x80.0
+   \   00002E   D280         SETB    0x80.0
+   \   000030   80E3         SJMP    ??MPU_Write_IIC_Byte_2
+    528              }
+    529          
+    530              MPU_IIC_SDA_INPUT();  	        //数据线输入模式
+   \                     ??MPU_Write_IIC_Byte_3:
+   \   000032                ; Setup parameters for call to function MPU_IIC_SDA_INPUT
+   \   000032   12....       LCALL   ??MPU_IIC_SDA_INPUT?relay
+    531              
+    532              MPU_SCL_HIGH();			//时钟线拉高
+   \   000035   D281         SETB    0x80.1
+   \   000037   D281         SETB    0x80.1
+    533              
+    534              if(MPU_Bit_SET == MPU_SDA_STATE())  //如果接受到数据线高信号  ACK错误
+    535              {
+    536                  ack = MPU_ACK_ERROR;
+    537              }
+    538              else
+    539              {
+    540                  ack = MPU_ACK_OK;
+   \   000039   A280         MOV     C,0x80.0
+   \   00003B   E4           CLR     A
+   \   00003C   33           RLC     A
+   \   00003D   FE           MOV     R6,A
+    541              }
+    542              
+    543              MPU_SCL_LOW();          //拉低时钟线
+   \   00003E   C281         CLR     0x80.1
+   \   000040   C281         CLR     0x80.1
+    544          
+    545              MPU_IIC_SDA_OUTPUT();	
+   \   000042                ; Setup parameters for call to function MPU_IIC_SDA_OUTPUT
+   \   000042   12....       LCALL   ??MPU_IIC_SDA_OUTPUT?relay
+    546          
+    547              MPU_SDA_HIGH();		//拉高数据线
+   \   000045   D280         SETB    0x80.0
+   \   000047   D280         SETB    0x80.0
+    548              
+    549              return (ack);
+   \   000049   EE           MOV     A,R6
+   \   00004A   F9           MOV     R1,A
+   \   00004B   7F01         MOV     R7,#0x1
+   \   00004D   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   000050                REQUIRE _A_P0
+    550          }
+    551          
+    552          
+    553          
+    554          //==========================================================
+    555          //	函数名称：	MPU_IIC_Send_Byte
+    556          //
+    557          //	函数功能：	MPU_IIC 写入数据
+    558          //
+    559          //	入口参数：	txd:写入数据
+    560          //
+    561          //	返回参数：	无
+    562          //
+    563          //	说明：		
+    564          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    565          void MPU_IIC_Send_Byte(u8 txd)
+   \                     MPU_IIC_Send_Byte:
+    566          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FE           MOV     R6,A
+    567              u8 t;
+    568              MPU_IIC_SCL_OUTPUT();
+   \   000007                ; Setup parameters for call to function MPU_IIC_SCL_OUTPUT
+   \   000007   12....       LCALL   ??MPU_IIC_SCL_OUTPUT?relay
+    569              MPU_IIC_SDA_OUTPUT();
+   \   00000A                ; Setup parameters for call to function MPU_IIC_SDA_OUTPUT
+   \   00000A   12....       LCALL   ??MPU_IIC_SDA_OUTPUT?relay
+    570              MPU_SCL_LOW();
+   \   00000D   C281         CLR     0x80.1
+   \   00000F   C281         CLR     0x80.1
+    571              for(t=0;t<8;t++)
+   \   000011   7800         MOV     R0,#0x0
+   \   000013   8010         SJMP    ??MPU_IIC_Send_Byte_0
+    572              {
+    573                  if(txd & 0x80)
+    574                  {
+    575                      MPU_SDA_HIGH();
+    576                  }
+    577                  else 
+    578                  {
+    579                      MPU_SDA_LOW();
+   \                     ??MPU_IIC_Send_Byte_1:
+   \   000015   C280         CLR     0x80.0
+   \   000017   C280         CLR     0x80.0
+    580                  }
+    581                  
+    582                  MPU_SCL_HIGH();
+   \                     ??MPU_IIC_Send_Byte_2:
+   \   000019   D281         SETB    0x80.1
+   \   00001B   D281         SETB    0x80.1
+    583                  MPU_SCL_LOW();
+   \   00001D   C281         CLR     0x80.1
+   \   00001F   C281         CLR     0x80.1
+    584                  txd<<=1;
+   \   000021   C3           CLR     C
+   \   000022   33           RLC     A
+   \   000023   FE           MOV     R6,A
+   \   000024   08           INC     R0
+   \                     ??MPU_IIC_Send_Byte_0:
+   \   000025   E8           MOV     A,R0
+   \   000026   C3           CLR     C
+   \   000027   9408         SUBB    A,#0x8
+   \   000029   500B         JNC     ??MPU_IIC_Send_Byte_3
+   \   00002B   EE           MOV     A,R6
+   \   00002C   A2E7         MOV     C,0xE0 /* A   */.7
+   \   00002E   50E5         JNC     ??MPU_IIC_Send_Byte_1
+   \   000030   D280         SETB    0x80.0
+   \   000032   D280         SETB    0x80.0
+   \   000034   80E3         SJMP    ??MPU_IIC_Send_Byte_2
+    585              }
+    586          }
+   \                     ??MPU_IIC_Send_Byte_3:
+   \   000036   7F01         MOV     R7,#0x1
+   \   000038   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   00003B                REQUIRE _A_P0
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_Set_Gyro_Fsr?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_Set_Gyro_Fsr
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_Set_Accel_Fsr?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_Set_Accel_Fsr
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_Set_LPF?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_Set_LPF
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_Set_Rate?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_Set_Rate
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_Get_Temperature?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_Get_Temperature
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_Get_Gyroscope?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_Get_Gyroscope
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_Get_Accelerometer?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_Get_Accelerometer
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_Write_Byte?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_Write_Byte
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_Read_Byte?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_Read_Byte
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_Write_Len?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_Write_Len
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_Read_Len?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_Read_Len
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_IIC_Delay?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_IIC_Delay
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_IIC_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_IIC_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_IIC_SCL_OUTPUT?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_IIC_SCL_OUTPUT
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_IIC_SCL_INPUT?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_IIC_SCL_INPUT
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_IIC_SDA_OUTPUT?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_IIC_SDA_OUTPUT
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_IIC_SDA_INPUT?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_IIC_SDA_INPUT
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_IIC_Start?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_IIC_Start
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_IIC_Stop?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_IIC_Stop
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_IIC_Wait_Ack?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_IIC_Wait_Ack
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_IIC_Ack?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_IIC_Ack
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_IIC_NAck?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_IIC_NAck
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_IIC_Read_Byte?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_IIC_Read_Byte
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_Write_IIC_Byte?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_Write_IIC_Byte
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MPU_IIC_Send_Byte?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MPU_IIC_Send_Byte
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "MPU6050 ADDR correct\\r\\n">`:
+   \   000000   4D505536     DB "MPU6050 ADDR correct\015\012"
+   \            30353020
+   \            41444452
+   \            20636F72
+   \            72656374
+   \            0D0A00  
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_64:
+   \   000000   64000000     DD 100
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_43aa0000:
+   \   000000   0000AA43     DD 43AA0000H
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_42121eb8:
+   \   000000   B81E1242     DD 42121EB8H
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_42c80000:
+   \   000000   0000C842     DD 42C80000H
+    587          
+
+   Maximum stack usage in bytes:
+
+     Function                ISTACK PSTACK XSTACK
+     --------                ------ ------ ------
+     MPU_Get_Accelerometer       0      0     20
+       -> MPU_Read_Len           0      0     36
+     MPU_Get_Gyroscope           0      0     20
+       -> MPU_Read_Len           0      0     36
+     MPU_Get_Temperature         0      0     18
+       -> MPU_Read_Len           0      0     36
+     MPU_IIC_Ack                 2      0      9
+       -> MPU_IIC_SCL_OUTPUT     4      0      0
+       -> MPU_IIC_SDA_OUTPUT     4      0      0
+     MPU_IIC_Delay               0      0      0
+     MPU_IIC_Init                0      0      0
+     MPU_IIC_NAck                2      0      9
+       -> MPU_IIC_SCL_OUTPUT     4      0      0
+       -> MPU_IIC_SDA_OUTPUT     4      0      0
+     MPU_IIC_Read_Byte           0      0     21
+       -> MPU_IIC_SDA_INPUT      0      0     18
+       -> MPU_IIC_SCL_OUTPUT     0      0     18
+       -> MPU_IIC_NAck           0      0     18
+       -> MPU_IIC_Ack            0      0     18
+     MPU_IIC_SCL_INPUT           0      0      0
+     MPU_IIC_SCL_OUTPUT          0      0      9
+     MPU_IIC_SDA_INPUT           0      0      9
+     MPU_IIC_SDA_OUTPUT          0      0      9
+     MPU_IIC_Send_Byte           0      0     23
+       -> MPU_IIC_SCL_OUTPUT     0      0     18
+       -> MPU_IIC_SDA_OUTPUT     0      0     18
+     MPU_IIC_Start               2      0     14
+       -> MPU_IIC_SDA_OUTPUT     4      0      0
+       -> MPU_IIC_SCL_OUTPUT     4      0      0
+     MPU_IIC_Stop                2      0     14
+       -> MPU_IIC_SDA_OUTPUT     4      0      0
+       -> MPU_IIC_SCL_OUTPUT     4      0      0
+     MPU_IIC_Wait_Ack            0      0     23
+       -> MPU_IIC_SCL_OUTPUT     0      0     18
+       -> MPU_IIC_SDA_OUTPUT     0      0     18
+       -> MPU_IIC_SDA_INPUT      0      0     18
+       -> MPU_IIC_Stop           0      0     18
+     MPU_Init                    2      0      0
+       -> MPU_IIC_Init           4      0      0
+       -> MPU_Write_Byte         4      0      0
+       -> delay_ms               4      0      0
+       -> MPU_Write_Byte         4      0      0
+       -> MPU_Set_Gyro_Fsr       4      0      0
+       -> MPU_Set_Accel_Fsr      4      0      0
+       -> MPU_Set_Rate           4      0      0
+       -> MPU_Write_Byte         4      0      0
+       -> MPU_Write_Byte         4      0      0
+       -> MPU_Write_Byte         4      0      0
+       -> MPU_Write_Byte         4      0      0
+       -> MPU_Read_Byte          4      0      0
+       -> MPU_Write_Byte         4      0      0
+       -> MPU_Write_Byte         4      0      0
+       -> MPU_Set_Rate           4      0      0
+       -> printf                 4      0      0
+     MPU_Read_Byte               0      0      9
+       -> MPU_IIC_Start          0      0     18
+       -> MPU_IIC_Send_Byte      0      0     18
+       -> MPU_IIC_Wait_Ack       0      0     18
+       -> MPU_IIC_Send_Byte      0      0     18
+       -> MPU_IIC_Wait_Ack       0      0     18
+       -> MPU_IIC_Start          0      0     18
+       -> MPU_IIC_Send_Byte      0      0     18
+       -> MPU_IIC_Wait_Ack       0      0     18
+       -> MPU_IIC_Read_Byte      0      0     18
+       -> MPU_IIC_Stop           0      0     18
+     MPU_Read_Len                1      0     30
+       -> MPU_IIC_Start          0      0     24
+       -> MPU_IIC_Send_Byte      0      0     24
+       -> MPU_IIC_Wait_Ack       0      0     24
+       -> MPU_IIC_Stop           0      0     24
+       -> MPU_IIC_Send_Byte      0      0     24
+       -> MPU_IIC_Wait_Ack       0      0     24
+       -> MPU_IIC_Start          0      0     24
+       -> MPU_IIC_Send_Byte      0      0     24
+       -> MPU_IIC_Wait_Ack       0      0     24
+       -> MPU_IIC_Read_Byte      0      0     24
+       -> MPU_IIC_Read_Byte      0      0     24
+       -> MPU_IIC_Stop           0      0     24
+     MPU_Set_Accel_Fsr           0      0      9
+       -> MPU_Write_Byte         0      0     18
+     MPU_Set_Gyro_Fsr            0      0      9
+       -> MPU_Write_Byte         0      0     18
+     MPU_Set_LPF                 2      0      9
+       -> MPU_Write_Byte         4      0      0
+     MPU_Set_Rate                0      0      9
+       -> MPU_Write_Byte         0      0     18
+       -> MPU_Set_LPF            0      0     18
+     MPU_Write_Byte              0      0     18
+       -> MPU_IIC_Start          0      0     18
+       -> MPU_IIC_Send_Byte      0      0     18
+       -> MPU_IIC_Wait_Ack       0      0     18
+       -> MPU_IIC_Stop           0      0     18
+       -> MPU_IIC_Send_Byte      0      0     18
+       -> MPU_IIC_Wait_Ack       0      0     18
+       -> MPU_IIC_Send_Byte      0      0     18
+       -> MPU_IIC_Wait_Ack       0      0     18
+       -> MPU_IIC_Stop           0      0     18
+     MPU_Write_IIC_Byte          0      0      9
+       -> MPU_IIC_SCL_OUTPUT     0      0     18
+       -> MPU_IIC_SDA_OUTPUT     0      0     18
+       -> MPU_IIC_SDA_INPUT      0      0     18
+       -> MPU_IIC_SDA_OUTPUT     0      0     18
+     MPU_Write_Len               0      0     14
+       -> MPU_IIC_Start          0      0     28
+       -> MPU_IIC_Send_Byte      0      0     28
+       -> MPU_IIC_Wait_Ack       0      0     28
+       -> MPU_IIC_Stop           0      0     28
+       -> MPU_IIC_Send_Byte      0      0     28
+       -> MPU_IIC_Wait_Ack       0      0     28
+       -> MPU_IIC_Send_Byte      0      0     28
+       -> MPU_IIC_Wait_Ack       0      0     28
+       -> MPU_IIC_Stop           0      0     28
+
+
+   Segment part sizes:
+
+     Function/Label                         Bytes
+     --------------                         -----
+     _A_P0                                     1
+     P0INP                                     1
+     P0SEL                                     1
+     P0DIR                                     1
+     MPU_Init                                126
+     MPU_Set_Gyro_Fsr                         22
+     MPU_Set_Accel_Fsr                        22
+     MPU_Set_LPF                              92
+     MPU_Set_Rate                             71
+     MPU_Get_Temperature                     124
+     MPU_Get_Gyroscope                       132
+     MPU_Get_Accelerometer                   132
+     MPU_Write_Byte                           59
+     MPU_Read_Byte                            54
+     MPU_Write_Len                            95
+     MPU_Read_Len                            107
+     MPU_IIC_Delay                             3
+     MPU_IIC_Init                              9
+     MPU_IIC_SCL_OUTPUT                        9
+     MPU_IIC_SCL_INPUT                        12
+     MPU_IIC_SDA_OUTPUT                        9
+     MPU_IIC_SDA_INPUT                        12
+     MPU_IIC_Start                            33
+     MPU_IIC_Stop                             33
+     MPU_IIC_Wait_Ack                         53
+     MPU_IIC_Ack                              33
+     MPU_IIC_NAck                             33
+     MPU_IIC_Read_Byte                        61
+     MPU_Write_IIC_Byte                       80
+     MPU_IIC_Send_Byte                        59
+     ??MPU_Init?relay                          6
+     ??MPU_Set_Gyro_Fsr?relay                  6
+     ??MPU_Set_Accel_Fsr?relay                 6
+     ??MPU_Set_LPF?relay                       6
+     ??MPU_Set_Rate?relay                      6
+     ??MPU_Get_Temperature?relay               6
+     ??MPU_Get_Gyroscope?relay                 6
+     ??MPU_Get_Accelerometer?relay             6
+     ??MPU_Write_Byte?relay                    6
+     ??MPU_Read_Byte?relay                     6
+     ??MPU_Write_Len?relay                     6
+     ??MPU_Read_Len?relay                      6
+     ??MPU_IIC_Delay?relay                     6
+     ??MPU_IIC_Init?relay                      6
+     ??MPU_IIC_SCL_OUTPUT?relay                6
+     ??MPU_IIC_SCL_INPUT?relay                 6
+     ??MPU_IIC_SDA_OUTPUT?relay                6
+     ??MPU_IIC_SDA_INPUT?relay                 6
+     ??MPU_IIC_Start?relay                     6
+     ??MPU_IIC_Stop?relay                      6
+     ??MPU_IIC_Wait_Ack?relay                  6
+     ??MPU_IIC_Ack?relay                       6
+     ??MPU_IIC_NAck?relay                      6
+     ??MPU_IIC_Read_Byte?relay                 6
+     ??MPU_Write_IIC_Byte?relay                6
+     ??MPU_IIC_Send_Byte?relay                 6
+     ?<Constant "MPU6050 ADDR correct\r\n">   23
+     __Constant_64                             4
+     __Constant_43aa0000                       4
+     __Constant_42121eb8                       4
+     __Constant_42c80000                       4
+
+ 
+ 1 475 bytes in segment BANKED_CODE
+   156 bytes in segment BANK_RELAYS
+     4 bytes in segment SFR_AN
+    39 bytes in segment XDATA_ROM_C
+ 
+ 1 631 bytes of CODE  memory
+    23 bytes of CONST memory (+ 16 bytes shared)
+     0 bytes of DATA  memory (+  4 bytes shared)
+
+Errors: none
+Warnings: 1

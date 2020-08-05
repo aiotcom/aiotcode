@@ -1,0 +1,1 @@
+cmd_/mnt/hgfs/linux_share/linux-gp1s524/driver/gp1s524.ko := arm-poky-linux-gnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /mnt/hgfs/linux_share/linux-gp1s524/driver/gp1s524.ko /mnt/hgfs/linux_share/linux-gp1s524/driver/gp1s524.o /mnt/hgfs/linux_share/linux-gp1s524/driver/gp1s524.mod.o

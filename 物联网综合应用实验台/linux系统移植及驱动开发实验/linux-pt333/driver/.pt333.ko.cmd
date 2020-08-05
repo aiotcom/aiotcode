@@ -1,0 +1,1 @@
+cmd_/mnt/hgfs/linux_share/linux-pt333/driver/pt333.ko := arm-poky-linux-gnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /mnt/hgfs/linux_share/linux-pt333/driver/pt333.ko /mnt/hgfs/linux_share/linux-pt333/driver/pt333.o /mnt/hgfs/linux_share/linux-pt333/driver/pt333.mod.o

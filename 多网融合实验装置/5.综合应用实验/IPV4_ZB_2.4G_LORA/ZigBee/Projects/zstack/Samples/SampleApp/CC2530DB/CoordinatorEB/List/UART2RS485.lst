@@ -1,0 +1,1757 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         01/Jan/2020  11:41:38 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Components\HARDWARE\UART2RS485.c            #
+#    Command line       =  -f D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LO #
+#                          RA\ZigBee\Projects\zstack\Samples\SampleApp\CC2530 #
+#                          DB\..\..\..\Tools\CC2530DB\f8wCoord.cfg            #
+#                          (-DCPU32MHZ -DROOT=__near_func                     #
+#                          -DMAC_CFG_APP_PENDING_QUEUE=TRUE                   #
+#                          -DZDO_COORDINATOR -DRTR_NWK -DBLINK_LEDS) -f       #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\Tools\CC2530DB\f8wConfig.cfg (-DSECURE=0  #
+#                          -DZG_SECURE_DYNAMIC=0 -DREFLECTOR                  #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFF11                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100) -DREJOIN_POLL_RATE=440   #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Components\HARDWARE\UART2RS485.c -D         #
+#                          ZIGBEEPRO -D ZTOOL_P1 -D MT_SYS_FUNC -D            #
+#                          xMT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG -D NV_RESTORE  #
+#                          -lC D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_L #
+#                          ORA\ZigBee\Projects\zstack\Samples\SampleApp\CC253 #
+#                          0DB\CoordinatorEB\List\ -lA                        #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          CoordinatorEB\List\ --diag_suppress Pe001,Pa010    #
+#                          -o D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LO #
+#                          RA\ZigBee\Projects\zstack\Samples\SampleApp\CC2530 #
+#                          DB\CoordinatorEB\Obj\ -e --debug --core=plain      #
+#                          --dptr=16,1 --data_model=large                     #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I D:\DWRH\mode-exp\stm32\ZHO #
+#                          NG_HE\IPV4_ZB_2.4G_LORA\ZigBee\Projects\zstack\Sam #
+#                          ples\SampleApp\CC2530DB\ -I                        #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\SOURCE\ -I D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4 #
+#                          _ZB_2.4G_LORA\ZigBee\Projects\zstack\Samples\Sampl #
+#                          eApp\CC2530DB\..\..\..\ZMAIN\TI2530DB\ -I          #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\MT\ -I                   #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\HAL\INCLUDE\ -I          #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\HAL\TARGET\CC2530EB\ -I  #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\OSAL\MCU\CCSOC\ -I       #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\OSAL\INCLUDE\ -I         #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\STACK\AF\ -I             #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\STACK\NWK\ -I            #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\STACK\SEC\ -I            #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\STACK\SAPI\ -I           #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\STACK\SYS\ -I            #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\STACK\ZDO\ -I            #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\ZMAC\F8W\ -I             #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\ZMAC\ -I                 #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\SERVICES\SADDR\ -I       #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\SERVICES\SDATA\ -I       #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\MAC\INCLUDE\ -I          #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\MAC\HIGH_LEVEL\ -I       #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\srf04\ -I  #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\srf04\SING #
+#                          LE_CHIP\ -I D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_Z #
+#                          B_2.4G_LORA\ZigBee\Projects\zstack\Samples\SampleA #
+#                          pp\CC2530DB\..\..\..\..\..\COMPONENTS\HARDWARE\    #
+#                          -Ohz                                               #
+#    List file          =  D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          CoordinatorEB\List\UART2RS485.lst                  #
+#    Object file        =  D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          CoordinatorEB\Obj\UART2RS485.r51                   #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ZigBee\Components\HARDWARE\UART2RS485.c
+      1          #include "UART2RS485.h"
+      2          #include "MT_UART.h"
+
+   \                                 In  segment SFR_AN, at 0x90
+   \   union <unnamed> volatile __sfr _A_P1
+   \                     _A_P1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xe8
+   \   union <unnamed> volatile __sfr _A_IRCON2
+   \                     _A_IRCON2:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf4
+   \   unsigned char volatile __sfr P1SEL
+   \                     P1SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf9
+   \   unsigned char volatile __sfr U1DBUF
+   \                     U1DBUF:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfe
+   \   unsigned char volatile __sfr P1DIR
+   \                     P1DIR:
+   \   000000                DS 1
+      3          #include "HAL_DEFS.h"
+      4          #include "string.h"
+      5          #include "stdio.h"
+      6          void Rs485_Init(void);
+      7          /*
+      8          初始化UART转485芯片收发控制引脚
+      9          */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     10          void UART2RS485_Init(void)
+   \                     UART2RS485_Init:
+     11          {  
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     12          	Rs485_Init();
+   \   000004                ; Setup parameters for call to function Rs485_Init
+   \   000004   12....       LCALL   ??Rs485_Init?relay
+     13          }
+   \   000007   02....       LJMP    ?Subroutine0 & 0xFFFF
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+     14          /*
+     15          通过RS485总线发送数据
+     16          */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     17          void RS485Bus_Send(void)
+   \                     RS485Bus_Send:
+     18          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     19            
+     20          }
+   \   000000   02....       LJMP    ?BRET
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     21          Send_Stack Tx_Stack;										//485发送数据结构体
+   \                     Tx_Stack:
+   \   000000                DS 118
+   \   000076                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     22          Receive_Stack Rx_Stack;									//485接收数据结构体
+   \                     Rx_Stack:
+   \   000000                DS 118
+   \   000076                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     23          unsigned int RS485_RX_STA = 0;
+   \                     RS485_RX_STA:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     24          uint8_t  Send_Data[Send_REC_LEN]; 			//发送缓冲,最大Send_REC_LEN个字节
+   \                     Send_Data:
+   \   000000                DS 100
+   \   000064                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     25          uint8_t  Receive_Data[Receive_REC_LEN]; //接收缓冲,最大Send_REC_LEN个字节
+   \                     Receive_Data:
+   \   000000                DS 100
+   \   000064                REQUIRE __INIT_XDATA_Z
+     26          
+     27          //==========================================================
+     28          //	函数名称：	Rs485_Init()
+     29          //
+     30          //	函数功能：	初始化485
+     31          //
+     32          //	入口参数：	无
+     33          //
+     34          //	返回参数：	无
+     35          //
+     36          //	说明：			 
+     37          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     38          void Rs485_Init(void)
+   \                     Rs485_Init:
+     39          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     40          	halUARTCfg_t uartConfig;
+     41          	
+     42          	P1SEL &= ~BV(3);     //设置P1.3为普通IO口  
+   \   000004   53F4F7       ANL     0xf4,#0xf7
+     43          	P1DIR |= BV(3);      //P1.3定义为输出 
+   \   000007   43FE08       ORL     0xfe,#0x8
+     44          
+     45          	UartInit(HAL_UART_PORT_1,HAL_UART_BR_115200);
+   \   00000A                ; Setup parameters for call to function UartInit
+   \   00000A   7A04         MOV     R2,#0x4
+   \   00000C   7901         MOV     R1,#0x1
+   \   00000E   12....       LCALL   ??UartInit?relay
+     46          	
+     47          	RS485_RX_EN();   													//初始化为接收模式
+   \   000011   C293         CLR     0x90.3
+     48          	
+     49          	Rx_Stack_Init();													//初始化接收结构体
+   \   000013                ; Setup parameters for call to function Rx_Stack_Init
+   \   000013   12....       LCALL   ??Rx_Stack_Init?relay
+     50          	Tx_Stack_Init();													//初始化发送结构体
+   \   000016                ; Setup parameters for call to function Tx_Stack_Init
+   \   000016   12....       LCALL   ??Tx_Stack_Init?relay
+     51          }
+   \   000019   02....       LJMP    ?Subroutine0 & 0xFFFF
+   \   00001C                REQUIRE P1SEL
+   \   00001C                REQUIRE P1DIR
+   \   00001C                REQUIRE _A_P1
+     52          
+     53          //==========================================================
+     54          //	函数名称：	Tx_Stack_Init
+     55          //
+     56          //	函数功能：	RFID模块上发数据结构体初始化
+     57          //
+     58          //	入口参数：	无
+     59          //              
+     60          //	返回参数：	无
+     61          //
+     62          //	说明：			 
+     63          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     64          void Tx_Stack_Init(void)
+   \                     Tx_Stack_Init:
+     65          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+     66          	Tx_Stack.Head = 0xE1E2E3E4;					//帧头
+   \   000005   90....       MOV     DPTR,#__Constant_e1e2e3e4
+   \   000008   12....       LCALL   ?XLOAD_R2345
+   \   00000B   90....       MOV     DPTR,#Tx_Stack
+   \   00000E   12....       LCALL   ?XSTORE_R2345
+     67          	Tx_Stack.Pack_Num = 0x00;						//包序号
+   \   000011   90....       MOV     DPTR,#Tx_Stack + 4
+   \   000014   12....       LCALL   ?Subroutine2 & 0xFFFF
+     68          	Tx_Stack.Src_Adr = 0x0000;					//源地址
+     69          	Tx_Stack.Dst_Adr = 0x0000;					//目的地址
+     70          	Tx_Stack.State = 0x0000;						//状态码
+     71          	Tx_Stack.Data_Len = 0x00;						//数据长度
+     72          	memset(Tx_Stack.Data, 0, sizeof(Tx_Stack.Data));//数据数组全部清空
+   \                     ??CrossCallReturnLabel_0:
+   \   000017   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00001A   7C00         MOV     R4,#0x0
+   \   00001C   7D00         MOV     R5,#0x0
+   \   00001E   7A..         MOV     R2,#(Tx_Stack + 12) & 0xff
+   \   000020   7B..         MOV     R3,#((Tx_Stack + 12) >> 8) & 0xff
+   \   000022   12....       LCALL   ??memset?relay
+   \   000025   7402         MOV     A,#0x2
+   \   000027   12....       LCALL   ?DEALLOC_XSTACK8
+     73          	Tx_Stack.CrcCheck = 0x0000;					//CRC校验码
+   \   00002A   90....       MOV     DPTR,#Tx_Stack + 112
+   \   00002D   E4           CLR     A
+   \   00002E   F0           MOVX    @DPTR,A
+   \   00002F   A3           INC     DPTR
+   \   000030   F0           MOVX    @DPTR,A
+     74          	Tx_Stack.Tail = 0xEAEBECED;					//帧尾
+   \   000031   90....       MOV     DPTR,#__Constant_eaebeced
+   \   000034   12....       LCALL   ?XLOAD_R2345
+   \   000037   90....       MOV     DPTR,#Tx_Stack + 114
+   \   00003A                REQUIRE ?Subroutine1
+   \   00003A                ; // Fall through to label ?Subroutine1
+     75          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   12....       LCALL   ?XSTORE_R2345
+   \   000003                REQUIRE ??Subroutine10_0
+   \   000003                ; // Fall through to label ??Subroutine10_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine10_0:
+   \   000000   7F02         MOV     R7,#0x2
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   E4           CLR     A
+   \   000001   F0           MOVX    @DPTR,A
+   \   000002   A3           INC     DPTR
+   \   000003   F0           MOVX    @DPTR,A
+   \   000004   A3           INC     DPTR
+   \   000005   F0           MOVX    @DPTR,A
+   \   000006   A3           INC     DPTR
+   \   000007   F0           MOVX    @DPTR,A
+   \   000008   A3           INC     DPTR
+   \   000009   F0           MOVX    @DPTR,A
+   \   00000A   A3           INC     DPTR
+   \   00000B   F0           MOVX    @DPTR,A
+   \   00000C   A3           INC     DPTR
+   \   00000D   12....       LCALL   ?Subroutine8 & 0xFFFF
+   \                     ??CrossCallReturnLabel_14:
+   \   000010   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine8:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   A3           INC     DPTR
+   \   000002   F0           MOVX    @DPTR,A
+   \   000003                ; Setup parameters for call to function memset
+   \   000003                ; Setup parameters for call to function memset
+   \   000003                ; Setup parameters for call to function memset
+   \   000003   75..64       MOV     ?V0 + 0,#0x64
+   \   000006   F5..         MOV     ?V0 + 1,A
+   \   000008   78..         MOV     R0,#?V0 + 0
+   \   00000A   22           RET
+     76          
+     77          //==========================================================
+     78          //	函数名称：	Rx_Stack_Init
+     79          //
+     80          //	函数功能：	上位机下发数据结构体初始化
+     81          //
+     82          //	入口参数：	无
+     83          //              
+     84          //	返回参数：	无
+     85          //
+     86          //	说明：		
+     87          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     88          void Rx_Stack_Init(void)
+   \                     Rx_Stack_Init:
+     89          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+     90          	Rx_Stack.Head = 0xE1E2E3E4;					//帧头
+   \   000005   90....       MOV     DPTR,#__Constant_e1e2e3e4
+   \   000008   12....       LCALL   ?XLOAD_R2345
+   \   00000B   90....       MOV     DPTR,#Rx_Stack
+   \   00000E   12....       LCALL   ?XSTORE_R2345
+     91          	Rx_Stack.Pack_Num = 0x00;						//包序号
+   \   000011   90....       MOV     DPTR,#Rx_Stack + 4
+   \   000014   12....       LCALL   ?Subroutine2 & 0xFFFF
+     92          	Rx_Stack.Src_Adr = 0x0000;					//源地址
+     93          	Rx_Stack.Dst_Adr = 0x0000;					//目的地址
+     94          	Rx_Stack.Command = 0x0000;					//命令码
+     95          	Rx_Stack.Data_Len = 0x00;						//数据长度						
+     96          	memset(Rx_Stack.Data, 0, sizeof(Rx_Stack.Data));//数据数组全部清空
+   \                     ??CrossCallReturnLabel_1:
+   \   000017   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00001A   7C00         MOV     R4,#0x0
+   \   00001C   7D00         MOV     R5,#0x0
+   \   00001E   7A..         MOV     R2,#(Rx_Stack + 12) & 0xff
+   \   000020   7B..         MOV     R3,#((Rx_Stack + 12) >> 8) & 0xff
+   \   000022   12....       LCALL   ??memset?relay
+   \   000025   7402         MOV     A,#0x2
+   \   000027   12....       LCALL   ?DEALLOC_XSTACK8
+     97          	Rx_Stack.CrcCheck = 0x0000;					//CRC校验码
+   \   00002A   90....       MOV     DPTR,#Rx_Stack + 112
+   \   00002D   E4           CLR     A
+   \   00002E   F0           MOVX    @DPTR,A
+   \   00002F   A3           INC     DPTR
+   \   000030   F0           MOVX    @DPTR,A
+     98          	Rx_Stack.Tail = 0xEAEBECED;					//帧尾
+   \   000031   90....       MOV     DPTR,#__Constant_eaebeced
+   \   000034   12....       LCALL   ?XLOAD_R2345
+   \   000037   90....       MOV     DPTR,#Rx_Stack + 114
+   \   00003A   80..         SJMP    ?Subroutine1
+     99          }
+    100          
+    101          //==========================================================
+    102          //	函数名称：	delay_us
+    103          //
+    104          //	函数功能：	发送数据到485总线上
+    105          //
+    106          //	入口参数：	延时的毫秒数
+    107          //
+    108          //	返回参数：	无
+    109          //
+    110          //	说明：		
+    111          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    112          static void delay_us(unsigned int nus)
+   \                     delay_us:
+    113          {		
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    114          	unsigned int j = 0;
+    115          	while(nus--)
+   \                     ??delay_us_0:
+   \   000000   EA           MOV     A,R2
+   \   000001   F8           MOV     R0,A
+   \   000002   EB           MOV     A,R3
+   \   000003   F9           MOV     R1,A
+   \   000004   E8           MOV     A,R0
+   \   000005   24FF         ADD     A,#-0x1
+   \   000007   1A           DEC     R2
+   \   000008   E9           MOV     A,R1
+   \   000009   34FF         ADDC    A,#-0x1
+   \   00000B   FB           MOV     R3,A
+   \   00000C   E8           MOV     A,R0
+   \   00000D   49           ORL     A,R1
+   \   00000E   6016         JZ      ??delay_us_1
+    116          	{
+    117                  j = 2;
+   \   000010   7802         MOV     R0,#0x2
+   \   000012   7900         MOV     R1,#0x0
+    118          		while(j--)
+   \                     ??delay_us_2:
+   \   000014   E8           MOV     A,R0
+   \   000015   FC           MOV     R4,A
+   \   000016   E9           MOV     A,R1
+   \   000017   FD           MOV     R5,A
+   \   000018   EC           MOV     A,R4
+   \   000019   24FF         ADD     A,#-0x1
+   \   00001B   18           DEC     R0
+   \   00001C   ED           MOV     A,R5
+   \   00001D   34FF         ADDC    A,#-0x1
+   \   00001F   F9           MOV     R1,A
+   \   000020   EC           MOV     A,R4
+   \   000021   4D           ORL     A,R5
+   \   000022   70F0         JNZ     ??delay_us_2
+   \   000024   80DA         SJMP    ??delay_us_0
+    119          		{;}
+    120          	}
+    121          }
+   \                     ??delay_us_1:
+   \   000026   02....       LJMP    ?BRET
+    122          //==========================================================
+    123          //	函数名称：	Rs485_Send()
+    124          //
+    125          //	函数功能：	发送数据到485总线上
+    126          //
+    127          //	入口参数：	SrcAdr:源地址
+    128          //							DstAdr:目的地址
+    129          //							Cmd		:命令码
+    130          //							Len		:数据长度
+    131          //							*pData:数据
+    132          //
+    133          //	返回参数：	无
+    134          //
+    135          //	说明：		
+    136          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    137          void Rs485_Send(uint16_t SrcAdr,uint16_t DstAdr,uint16_t Cmd,uint8_t Len,uint8_t *pData)
+   \                     Rs485_Send:
+    138          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 0,R1
+   \   000007   740C         MOV     A,#0xc
+   \   000009   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000C   E0           MOVX    A,@DPTR
+   \   00000D   FE           MOV     R6,A
+   \   00000E   A3           INC     DPTR
+   \   00000F   E0           MOVX    A,@DPTR
+   \   000010   FF           MOV     R7,A
+   \   000011   740E         MOV     A,#0xe
+   \   000013   12....       LCALL   ?XSTACK_DISP0_8
+   \   000016   E0           MOVX    A,@DPTR
+   \   000017   F8           MOV     R0,A
+   \   000018   A3           INC     DPTR
+   \   000019   E0           MOVX    A,@DPTR
+   \   00001A   F9           MOV     R1,A
+   \   00001B   88..         MOV     ?V0 + 2,R0
+   \   00001D   89..         MOV     ?V0 + 3,R1
+    139          	uint16_t i = 0;																			//For循环使用	
+    140          	
+    141          	for(i=0;i<4;i++)
+   \   00001F   7800         MOV     R0,#0x0
+   \   000021   7900         MOV     R1,#0x0
+    142          	{
+    143          		Send_Data[i] = (0xE1+i);													//帧头
+   \                     ??Rs485_Send_0:
+   \   000023   E8           MOV     A,R0
+   \   000024   24E1         ADD     A,#-0x1f
+   \   000026   C0E0         PUSH    A
+   \   000028   12....       LCALL   ?Subroutine4 & 0xFFFF
+    144          	}
+   \                     ??CrossCallReturnLabel_4:
+   \   00002B   D0E0         POP     A
+   \   00002D   12....       LCALL   ?Subroutine3 & 0xFFFF
+   \                     ??CrossCallReturnLabel_2:
+   \   000030   C3           CLR     C
+   \   000031   E8           MOV     A,R0
+   \   000032   9404         SUBB    A,#0x4
+   \   000034   E9           MOV     A,R1
+   \   000035   9400         SUBB    A,#0x0
+   \   000037   40EA         JC      ??Rs485_Send_0
+    145          
+    146          	if(Tx_Stack.Pack_Num>=255)
+   \   000039   90....       MOV     DPTR,#Tx_Stack + 4
+   \   00003C   E0           MOVX    A,@DPTR
+   \   00003D   F4           CPL     A
+   \   00003E   7002         JNZ     ??Rs485_Send_1
+    147          	{
+    148          		Tx_Stack.Pack_Num = 0;	
+   \   000040   E4           CLR     A
+   \   000041   F0           MOVX    @DPTR,A
+    149          	}
+    150          	Send_Data[4] = Tx_Stack.Pack_Num;										//包序号	
+   \                     ??Rs485_Send_1:
+   \   000042   E0           MOVX    A,@DPTR
+   \   000043   90....       MOV     DPTR,#Send_Data + 4
+   \   000046   F0           MOVX    @DPTR,A
+    151          	Tx_Stack.Pack_Num++;
+   \   000047   90....       MOV     DPTR,#Tx_Stack + 4
+   \   00004A   04           INC     A
+   \   00004B   F0           MOVX    @DPTR,A
+    152          	Send_Data[5] = SrcAdr>>8;
+   \   00004C   EB           MOV     A,R3
+   \   00004D   90....       MOV     DPTR,#Send_Data + 5
+   \   000050   F0           MOVX    @DPTR,A
+    153          	Send_Data[6] = SrcAdr;															//源地址
+   \   000051   EA           MOV     A,R2
+   \   000052   A3           INC     DPTR
+   \   000053   F0           MOVX    @DPTR,A
+    154          	Send_Data[7] = DstAdr>>8;
+   \   000054   ED           MOV     A,R5
+   \   000055   A3           INC     DPTR
+   \   000056   F0           MOVX    @DPTR,A
+    155          	Send_Data[8] = DstAdr;															//目的地址
+   \   000057   EC           MOV     A,R4
+   \   000058   A3           INC     DPTR
+   \   000059   F0           MOVX    @DPTR,A
+    156          	Send_Data[9] = Cmd>>8;
+   \   00005A   EF           MOV     A,R7
+   \   00005B   A3           INC     DPTR
+   \   00005C   F0           MOVX    @DPTR,A
+    157          	Send_Data[10] = Cmd;																//命令码
+   \   00005D   EE           MOV     A,R6
+   \   00005E   A3           INC     DPTR
+   \   00005F   F0           MOVX    @DPTR,A
+    158          	Send_Data[11] = Len;																//数据长度
+   \   000060   E5..         MOV     A,?V0 + 0
+   \   000062   A3           INC     DPTR
+   \   000063   F0           MOVX    @DPTR,A
+    159          	for(i=12;i<(Len+12);i++)
+   \   000064   780C         MOV     R0,#0xc
+   \   000066   7900         MOV     R1,#0x0
+   \   000068   F582         MOV     DPL,A
+   \   00006A   AE82         MOV     R6,DPL
+   \   00006C   240C         ADD     A,#0xc
+   \   00006E   FC           MOV     R4,A
+   \   00006F   E4           CLR     A
+   \   000070   3400         ADDC    A,#0x0
+   \   000072   FD           MOV     R5,A
+   \   000073   801D         SJMP    ??CrossCallReturnLabel_3
+    160          	{
+    161          		Send_Data[i] = pData[i-12];												//数据
+   \                     ??Rs485_Send_2:
+   \   000075   E5..         MOV     A,?V0 + 2
+   \   000077   28           ADD     A,R0
+   \   000078   FA           MOV     R2,A
+   \   000079   E5..         MOV     A,?V0 + 3
+   \   00007B   39           ADDC    A,R1
+   \   00007C   FB           MOV     R3,A
+   \   00007D   EA           MOV     A,R2
+   \   00007E   24F4         ADD     A,#-0xc
+   \   000080   F582         MOV     DPL,A
+   \   000082   EB           MOV     A,R3
+   \   000083   34FF         ADDC    A,#-0x1
+   \   000085   F583         MOV     DPH,A
+   \   000087   E0           MOVX    A,@DPTR
+   \   000088   C0E0         PUSH    A
+   \   00008A   12....       LCALL   ?Subroutine4 & 0xFFFF
+    162          	}
+   \                     ??CrossCallReturnLabel_5:
+   \   00008D   D0E0         POP     A
+   \   00008F   12....       LCALL   ?Subroutine3 & 0xFFFF
+   \                     ??CrossCallReturnLabel_3:
+   \   000092   C3           CLR     C
+   \   000093   E8           MOV     A,R0
+   \   000094   9C           SUBB    A,R4
+   \   000095   E9           MOV     A,R1
+   \   000096   9D           SUBB    A,R5
+   \   000097   40DC         JC      ??Rs485_Send_2
+    163          	Tx_Stack.CrcCheck = CRC_16(Send_Data,(12+Len));			//CRC校验码
+   \   000099                ; Setup parameters for call to function CRC_16
+   \   000099   7A..         MOV     R2,#Send_Data & 0xff
+   \   00009B   7B..         MOV     R3,#(Send_Data >> 8) & 0xff
+   \   00009D   12....       LCALL   ??CRC_16?relay
+   \   0000A0   90....       MOV     DPTR,#Tx_Stack + 112
+   \   0000A3   EA           MOV     A,R2
+   \   0000A4   F0           MOVX    @DPTR,A
+   \   0000A5   A3           INC     DPTR
+   \   0000A6   EB           MOV     A,R3
+   \   0000A7   F0           MOVX    @DPTR,A
+    164          	Send_Data[12+Len] = Tx_Stack.CrcCheck>>8;
+   \   0000A8   74..         MOV     A,#Send_Data & 0xff
+   \   0000AA   2E           ADD     A,R6
+   \   0000AB   F8           MOV     R0,A
+   \   0000AC   74..         MOV     A,#(Send_Data >> 8) & 0xff
+   \   0000AE   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \                     ??CrossCallReturnLabel_8:
+   \   0000B1   EB           MOV     A,R3
+   \   0000B2   F0           MOVX    @DPTR,A
+    165          	Send_Data[13+Len] = Tx_Stack.CrcCheck;							//CRC校验码
+   \   0000B3   90....       MOV     DPTR,#Tx_Stack + 112
+   \   0000B6   E0           MOVX    A,@DPTR
+   \   0000B7   C0E0         PUSH    A
+   \   0000B9   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_12:
+   \   0000BC   D0E0         POP     A
+   \   0000BE   F0           MOVX    @DPTR,A
+    166          	for(i=(14+Len);i<(18+Len);i++)
+   \   0000BF   EE           MOV     A,R6
+   \   0000C0   240E         ADD     A,#0xe
+   \   0000C2   F8           MOV     R0,A
+   \   0000C3   E4           CLR     A
+   \   0000C4   8015         SJMP    ??Rs485_Send_3
+    167          	{
+    168          		Send_Data[i] = (0xEA+(i-14-Len));									//帧尾
+   \                     ??Rs485_Send_4:
+   \   0000C6   E8           MOV     A,R0
+   \   0000C7   24F2         ADD     A,#-0xe
+   \   0000C9   C3           CLR     C
+   \   0000CA   95..         SUBB    A,?V0 + 0
+   \   0000CC   24EA         ADD     A,#-0x16
+   \   0000CE   C0E0         PUSH    A
+   \   0000D0   12....       LCALL   ?Subroutine4 & 0xFFFF
+    169          	}
+   \                     ??CrossCallReturnLabel_6:
+   \   0000D3   D0E0         POP     A
+   \   0000D5   F0           MOVX    @DPTR,A
+   \   0000D6   E8           MOV     A,R0
+   \   0000D7   2401         ADD     A,#0x1
+   \   0000D9   08           INC     R0
+   \   0000DA   E9           MOV     A,R1
+   \                     ??Rs485_Send_3:
+   \   0000DB   3400         ADDC    A,#0x0
+   \   0000DD   F9           MOV     R1,A
+   \   0000DE   EE           MOV     A,R6
+   \   0000DF   2412         ADD     A,#0x12
+   \   0000E1   FA           MOV     R2,A
+   \   0000E2   E4           CLR     A
+   \   0000E3   3400         ADDC    A,#0x0
+   \   0000E5   FB           MOV     R3,A
+   \   0000E6   E8           MOV     A,R0
+   \   0000E7   9A           SUBB    A,R2
+   \   0000E8   E9           MOV     A,R1
+   \   0000E9   9B           SUBB    A,R3
+   \   0000EA   40DA         JC      ??Rs485_Send_4
+    170          
+    171              Rs485_ClearReceiveBuffer();
+   \   0000EC                ; Setup parameters for call to function Rs485_ClearReceiveBuffer
+   \   0000EC   12....       LCALL   ??Rs485_ClearReceiveBuffer?relay
+    172              
+    173          	RS485_TX_EN();		//开启485发送
+   \   0000EF   D293         SETB    0x90.3
+    174          	delay_us(5);
+   \   0000F1                ; Setup parameters for call to function delay_us
+   \   0000F1   7A05         MOV     R2,#0x5
+   \   0000F3   7B00         MOV     R3,#0x0
+   \   0000F5   12....       LCALL   ??delay_us?relay
+    175          	Len = Len+18;
+   \   0000F8   7412         MOV     A,#0x12
+   \   0000FA   25..         ADD     A,?V0 + 0
+   \   0000FC   F5..         MOV     ?V0 + 0,A
+    176          	i = 0;
+   \   0000FE   7800         MOV     R0,#0x0
+   \   000100   7900         MOV     R1,#0x0
+   \   000102   800F         SJMP    ??CrossCallReturnLabel_16
+    177          	while(i < Len)
+    178          	{
+    179          		UTX1IF = 0;
+   \                     ??Rs485_Send_5:
+   \   000104   C2EA         CLR     0xe8.2
+    180          		U1DBUF = (char)Send_Data[i];
+   \   000106   12....       LCALL   ?Subroutine4 & 0xFFFF
+   \                     ??CrossCallReturnLabel_7:
+   \   000109   E0           MOVX    A,@DPTR
+   \   00010A   F5F9         MOV     0xf9,A
+    181          		while(UTX1IF == 0);
+   \                     ??Rs485_Send_6:
+   \   00010C   A2EA         MOV     C,0xe8.2
+   \   00010E   50FC         JNC     ??Rs485_Send_6
+    182          		i++;
+   \   000110   12....       LCALL   ?Subroutine9 & 0xFFFF
+    183          	}
+   \                     ??CrossCallReturnLabel_16:
+   \   000113   85....       MOV     ?V0 + 2,?V0 + 0
+   \   000116   C3           CLR     C
+   \   000117   E8           MOV     A,R0
+   \   000118   95..         SUBB    A,?V0 + 2
+   \   00011A   E9           MOV     A,R1
+   \   00011B   9400         SUBB    A,#0x0
+   \   00011D   40E5         JC      ??Rs485_Send_5
+    184          	delay_us(20);
+   \   00011F                ; Setup parameters for call to function delay_us
+   \   00011F   7A14         MOV     R2,#0x14
+   \   000121   7B00         MOV     R3,#0x0
+   \   000123   12....       LCALL   ??delay_us?relay
+    185          	RS485_RX_EN();		//开启485接收
+   \   000126   C293         CLR     0x90.3
+    186          }
+   \   000128   7F04         MOV     R7,#0x4
+   \   00012A   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   00012D                REQUIRE _A_P1
+   \   00012D                REQUIRE _A_IRCON2
+   \   00012D                REQUIRE U1DBUF
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine4:
+   \   000000   74..         MOV     A,#Send_Data & 0xff
+   \   000002   28           ADD     A,R0
+   \   000003   F582         MOV     DPL,A
+   \   000005   74..         MOV     A,#(Send_Data >> 8) & 0xff
+   \   000007   39           ADDC    A,R1
+   \   000008   F583         MOV     DPH,A
+   \   00000A   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   12....       LCALL   ?Subroutine9 & 0xFFFF
+   \                     ??CrossCallReturnLabel_18:
+   \   000004   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine9:
+   \   000000   E8           MOV     A,R0
+   \   000001   2401         ADD     A,#0x1
+   \   000003   08           INC     R0
+   \   000004   E9           MOV     A,R1
+   \   000005   3400         ADDC    A,#0x0
+   \   000007   F9           MOV     R1,A
+   \   000008   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine7:
+   \   000000   E8           MOV     A,R0
+   \   000001   240D         ADD     A,#0xd
+   \   000003   F582         MOV     DPL,A
+   \   000005   E9           MOV     A,R1
+   \   000006   3400         ADDC    A,#0x0
+   \   000008   F583         MOV     DPH,A
+   \   00000A   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine5:
+   \   000000   3400         ADDC    A,#0x0
+   \   000002   F9           MOV     R1,A
+   \   000003   E8           MOV     A,R0
+   \   000004   240C         ADD     A,#0xc
+   \   000006   F582         MOV     DPL,A
+   \   000008   E9           MOV     A,R1
+   \   000009   3400         ADDC    A,#0x0
+   \   00000B   F583         MOV     DPH,A
+   \   00000D   22           RET
+    187          //==========================================================
+    188          //	函数名称：	Rs485_Receive()
+    189          //
+    190          //	函数功能：	485接收
+    191          //
+    192          //	入口参数：	data		:485数据
+    193          //
+    194          //	返回参数：	无
+    195          //
+    196          //	说明：		
+    197          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    198          void Rs485_Receive(uint8_t data)
+   \                     Rs485_Receive:
+    199          {	
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    200          	static uint8_t End_Flag 		= 0;	//帧尾标志位
+    201          	static uint8_t Header_Flag 	= 0;	//帧头标志位
+    202          	static uint8_t Receive_Flag = 0;	//接收标志位
+    203          
+    204          /*
+    205          *
+    206          *				帧头接收
+    207          *
+    208          */
+    209          	/*帧头1 数据帧头中第一个字节*/
+    210          	if(data == 0xE1 && Header_Flag < 4)	Header_Flag = 1;
+   \   000004   74E1         MOV     A,#-0x1f
+   \   000006   69           XRL     A,R1
+   \   000007   700D         JNZ     ??Rs485_Receive_0
+   \   000009   90....       MOV     DPTR,#??Header_Flag
+   \   00000C   E0           MOVX    A,@DPTR
+   \   00000D   C3           CLR     C
+   \   00000E   9404         SUBB    A,#0x4
+   \   000010   5004         JNC     ??Rs485_Receive_0
+   \   000012   7401         MOV     A,#0x1
+   \   000014   8045         SJMP    ??Rs485_Receive_1
+    211          
+    212          	/*帧头2 数据帧头中第二个字节*/
+    213          	else if(Header_Flag == 1 && data == 0xE2)	Header_Flag = 2;
+   \                     ??Rs485_Receive_0:
+   \   000016   90....       MOV     DPTR,#??Header_Flag
+   \   000019   E0           MOVX    A,@DPTR
+   \   00001A   6401         XRL     A,#0x1
+   \   00001C   7009         JNZ     ??Rs485_Receive_2
+   \   00001E   74E2         MOV     A,#-0x1e
+   \   000020   69           XRL     A,R1
+   \   000021   7037         JNZ     ??Rs485_Receive_3
+   \   000023   7402         MOV     A,#0x2
+   \   000025   8034         SJMP    ??Rs485_Receive_1
+    214          
+    215          	/*帧头3 数据帧头中第三个字节*/
+    216          	else if(Header_Flag == 2 && data == 0xE3)	Header_Flag = 3;
+   \                     ??Rs485_Receive_2:
+   \   000027   E0           MOVX    A,@DPTR
+   \   000028   6402         XRL     A,#0x2
+   \   00002A   7009         JNZ     ??Rs485_Receive_4
+   \   00002C   74E3         MOV     A,#-0x1d
+   \   00002E   69           XRL     A,R1
+   \   00002F   7029         JNZ     ??Rs485_Receive_3
+   \   000031   7403         MOV     A,#0x3
+   \   000033   8026         SJMP    ??Rs485_Receive_1
+    217          
+    218          	/*帧头4 数据帧头中第四个字节*/
+    219          	else if(Header_Flag == 3 && data == 0xE4)
+   \                     ??Rs485_Receive_4:
+   \   000035   E0           MOVX    A,@DPTR
+   \   000036   6403         XRL     A,#0x3
+   \   000038   7020         JNZ     ??Rs485_Receive_3
+   \   00003A   74E4         MOV     A,#-0x1c
+   \   00003C   69           XRL     A,R1
+   \   00003D   701B         JNZ     ??Rs485_Receive_3
+    220          	{
+    221          		Receive_Data[0] = 0xE1;
+   \   00003F   90....       MOV     DPTR,#Receive_Data
+   \   000042   74E1         MOV     A,#-0x1f
+   \   000044   F0           MOVX    @DPTR,A
+    222          		Receive_Data[1] = 0xE2;
+   \   000045   A3           INC     DPTR
+   \   000046   04           INC     A
+   \   000047   F0           MOVX    @DPTR,A
+    223          		Receive_Data[2] = 0xE3; //帧头接收完成，存入帧头数据
+   \   000048   A3           INC     DPTR
+   \   000049   04           INC     A
+   \   00004A   F0           MOVX    @DPTR,A
+    224          		RS485_RX_STA = 3;			//存放数据数组下标清零
+   \   00004B   90....       MOV     DPTR,#RS485_RX_STA
+   \   00004E   7403         MOV     A,#0x3
+   \   000050   F0           MOVX    @DPTR,A
+   \   000051   A3           INC     DPTR
+   \   000052   E4           CLR     A
+   \   000053   F0           MOVX    @DPTR,A
+    225          		Receive_Flag = 1;				//开始接收数据标志位
+   \   000054   90....       MOV     DPTR,#??Receive_Flag
+   \   000057   04           INC     A
+   \   000058   8023         SJMP    ??Rs485_Receive_5
+    226          	}
+    227          
+    228          	else Header_Flag = 0;
+   \                     ??Rs485_Receive_3:
+   \   00005A   E4           CLR     A
+   \                     ??Rs485_Receive_1:
+   \   00005B   F0           MOVX    @DPTR,A
+    229          
+    230          /*
+    231          *
+    232          *				数据+帧尾接收
+    233          *
+    234          */
+    235          	if(Receive_Flag)	//帧头接收完成
+   \   00005C   90....       MOV     DPTR,#??Receive_Flag
+   \   00005F   E0           MOVX    A,@DPTR
+   \   000060   607C         JZ      ??Rs485_Receive_6
+    236          	{
+    237          		if(RS485_RX_STA>(Receive_REC_LEN-1))
+   \   000062   90....       MOV     DPTR,#RS485_RX_STA
+   \   000065   C3           CLR     C
+   \   000066   E0           MOVX    A,@DPTR
+   \   000067   9464         SUBB    A,#0x64
+   \   000069   A3           INC     DPTR
+   \   00006A   E0           MOVX    A,@DPTR
+   \   00006B   9400         SUBB    A,#0x0
+   \   00006D   400F         JC      ??Rs485_Receive_7
+    238          		{
+    239          			End_Flag = 0;
+   \   00006F   90....       MOV     DPTR,#??End_Flag
+   \   000072   E4           CLR     A
+   \   000073   F0           MOVX    @DPTR,A
+    240          			Receive_Flag = 0;
+   \   000074   90....       MOV     DPTR,#??Receive_Flag
+   \   000077   F0           MOVX    @DPTR,A
+    241          			RS485_RX_STA = 0;
+   \   000078   90....       MOV     DPTR,#RS485_RX_STA
+   \   00007B   F0           MOVX    @DPTR,A
+   \   00007C   A3           INC     DPTR
+   \                     ??Rs485_Receive_5:
+   \   00007D   F0           MOVX    @DPTR,A
+    242          		}
+    243          
+    244          		Receive_Data[RS485_RX_STA++] = data;	//数据接收
+   \                     ??Rs485_Receive_7:
+   \   00007E   90....       MOV     DPTR,#RS485_RX_STA
+   \   000081   E0           MOVX    A,@DPTR
+   \   000082   24..         ADD     A,#Receive_Data & 0xff
+   \   000084   FA           MOV     R2,A
+   \   000085   A3           INC     DPTR
+   \   000086   E0           MOVX    A,@DPTR
+   \   000087   34..         ADDC    A,#(Receive_Data >> 8) & 0xff
+   \   000089   FB           MOV     R3,A
+   \   00008A   8A82         MOV     DPL,R2
+   \   00008C   8B83         MOV     DPH,R3
+   \   00008E   E9           MOV     A,R1
+   \   00008F   F0           MOVX    @DPTR,A
+   \   000090   90....       MOV     DPTR,#RS485_RX_STA
+   \   000093   12....       LCALL   ?Subroutine6 & 0xFFFF
+   \                     ??CrossCallReturnLabel_10:
+   \   000096   F0           MOVX    @DPTR,A
+    245          
+    246          		/*帧尾1 数据帧尾中第一个字节*/
+    247          		if(data == 0xEA)	End_Flag = 1;
+   \   000097   74EA         MOV     A,#-0x16
+   \   000099   69           XRL     A,R1
+   \   00009A   90....       MOV     DPTR,#??End_Flag
+   \   00009D   7004         JNZ     ??Rs485_Receive_8
+   \   00009F   7401         MOV     A,#0x1
+   \   0000A1   803A         SJMP    ??Rs485_Receive_9
+    248          
+    249          		/*帧尾2  数据帧尾中第二个字节*/
+    250          		else if(End_Flag == 1 && data == 0xEB)	End_Flag = 2;
+   \                     ??Rs485_Receive_8:
+   \   0000A3   E0           MOVX    A,@DPTR
+   \   0000A4   6401         XRL     A,#0x1
+   \   0000A6   7009         JNZ     ??Rs485_Receive_10
+   \   0000A8   74EB         MOV     A,#-0x15
+   \   0000AA   69           XRL     A,R1
+   \   0000AB   702F         JNZ     ??Rs485_Receive_11
+   \   0000AD   7402         MOV     A,#0x2
+   \   0000AF   802C         SJMP    ??Rs485_Receive_9
+    251          
+    252          		/*帧尾3  数据帧尾中第三个字节*/
+    253          		else if(End_Flag == 2 && data == 0xEC)	End_Flag = 3;
+   \                     ??Rs485_Receive_10:
+   \   0000B1   E0           MOVX    A,@DPTR
+   \   0000B2   6402         XRL     A,#0x2
+   \   0000B4   7009         JNZ     ??Rs485_Receive_12
+   \   0000B6   74EC         MOV     A,#-0x14
+   \   0000B8   69           XRL     A,R1
+   \   0000B9   7021         JNZ     ??Rs485_Receive_11
+   \   0000BB   7403         MOV     A,#0x3
+   \   0000BD   801E         SJMP    ??Rs485_Receive_9
+    254          
+    255          		/*帧尾4  数据帧尾中第四个字节*/
+    256          		else if(End_Flag == 3 && data == 0xED)
+   \                     ??Rs485_Receive_12:
+   \   0000BF   E0           MOVX    A,@DPTR
+   \   0000C0   6403         XRL     A,#0x3
+   \   0000C2   7018         JNZ     ??Rs485_Receive_11
+   \   0000C4   74ED         MOV     A,#-0x13
+   \   0000C6   69           XRL     A,R1
+   \   0000C7   7013         JNZ     ??Rs485_Receive_11
+    257          		{
+    258          			RS485_RX_STA = Receiving_Completion;		//接收完成
+   \   0000C9   90....       MOV     DPTR,#RS485_RX_STA
+   \   0000CC   E4           CLR     A
+   \   0000CD   F0           MOVX    @DPTR,A
+   \   0000CE   A3           INC     DPTR
+   \   0000CF   7480         MOV     A,#-0x80
+   \   0000D1   F0           MOVX    @DPTR,A
+    259          			Receive_Flag = 0;
+   \   0000D2   90....       MOV     DPTR,#??Receive_Flag
+   \   0000D5   E4           CLR     A
+   \   0000D6   F0           MOVX    @DPTR,A
+    260          			End_Flag = 0;
+   \   0000D7   90....       MOV     DPTR,#??End_Flag
+   \   0000DA   8001         SJMP    ??Rs485_Receive_9
+    261          		}
+    262          
+    263          		/*接收错误 重新接收*/
+    264          		else End_Flag = 0;
+   \                     ??Rs485_Receive_11:
+   \   0000DC   E4           CLR     A
+   \                     ??Rs485_Receive_9:
+   \   0000DD   F0           MOVX    @DPTR,A
+    265          	}
+    266          }
+   \                     ??Rs485_Receive_6:
+   \   0000DE                REQUIRE ?Subroutine0
+   \   0000DE                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine6:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   2401         ADD     A,#0x1
+   \   000003   F0           MOVX    @DPTR,A
+   \   000004   A3           INC     DPTR
+   \   000005   E0           MOVX    A,@DPTR
+   \   000006   3400         ADDC    A,#0x0
+   \   000008   22           RET
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+   \                     ??End_Flag:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+   \                     ??Header_Flag:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+   \                     ??Receive_Flag:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+    267          
+    268          //==========================================================
+    269          //	函数名称：	DataHandling_485()
+    270          //
+    271          //	函数功能：	485数据处理函数
+    272          //
+    273          //	入口参数：	DesAddr	:目的地址
+    274          //              
+    275          //	返回参数：	0:数据接收完成
+    276          //							1:数据接收错误
+    277          //
+    278          //	说明：		
+    279          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    280          uint8_t DataHandling_485(uint16_t DesAddr)
+   \                     DataHandling_485:
+    281          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    282          	static uint16_t i = 0;
+    283          	static uint8_t Return_Value = 0;
+    284          	static uint16_t Crc16Check = 0;			//存放CRC校验数据
+    285          
+    286            	if(RS485_RX_STA == Receiving_Completion)
+   \   000004   90....       MOV     DPTR,#RS485_RX_STA
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   7004         JNZ     ??DataHandling_485_0
+   \   00000A   A3           INC     DPTR
+   \   00000B   E0           MOVX    A,@DPTR
+   \   00000C   6480         XRL     A,#0x80
+   \                     ??DataHandling_485_0:
+   \   00000E   90....       MOV     DPTR,#??Return_Value
+   \   000011   6003         JZ      $+5
+   \   000013   02....       LJMP    ??DataHandling_485_1 & 0xFFFF
+    287          	{
+    288          			Return_Value = 0;
+   \   000016   E4           CLR     A
+   \   000017   F0           MOVX    @DPTR,A
+    289          			if((Receive_Data[7]*256+Receive_Data[8]) == DesAddr)	//对比源地址是想要的数据，全部接收下来
+   \   000018   90....       MOV     DPTR,#Receive_Data + 7
+   \   00001B   E0           MOVX    A,@DPTR
+   \   00001C   F9           MOV     R1,A
+   \   00001D   A3           INC     DPTR
+   \   00001E   E0           MOVX    A,@DPTR
+   \   00001F   F8           MOV     R0,A
+   \   000020   EA           MOV     A,R2
+   \   000021   68           XRL     A,R0
+   \   000022   7002         JNZ     ??DataHandling_485_2
+   \   000024   EB           MOV     A,R3
+   \   000025   69           XRL     A,R1
+   \                     ??DataHandling_485_2:
+   \   000026   6003         JZ      $+5
+   \   000028   02....       LJMP    ??DataHandling_485_3 & 0xFFFF
+    290          			{
+    291          				/*包序号*/
+    292          				Rx_Stack.Pack_Num = Receive_Data[4];
+   \   00002B   90....       MOV     DPTR,#Receive_Data + 4
+   \   00002E   E0           MOVX    A,@DPTR
+   \   00002F   90....       MOV     DPTR,#Rx_Stack + 4
+   \   000032   F0           MOVX    @DPTR,A
+    293          
+    294          				/*源地址*/
+    295          				Rx_Stack.Src_Adr = Receive_Data[5]*256+Receive_Data[6];
+   \   000033   90....       MOV     DPTR,#Receive_Data + 5
+   \   000036   E0           MOVX    A,@DPTR
+   \   000037   FB           MOV     R3,A
+   \   000038   A3           INC     DPTR
+   \   000039   E0           MOVX    A,@DPTR
+   \   00003A   90....       MOV     DPTR,#Rx_Stack + 5
+   \   00003D   F0           MOVX    @DPTR,A
+   \   00003E   A3           INC     DPTR
+   \   00003F   EB           MOV     A,R3
+   \   000040   F0           MOVX    @DPTR,A
+    296          
+    297          				/*目的地址*/
+    298          				Rx_Stack.Dst_Adr = Receive_Data[7]*256+Receive_Data[8];
+   \   000041   A3           INC     DPTR
+   \   000042   E8           MOV     A,R0
+   \   000043   F0           MOVX    @DPTR,A
+   \   000044   A3           INC     DPTR
+   \   000045   E9           MOV     A,R1
+   \   000046   F0           MOVX    @DPTR,A
+    299          
+    300          				/*命令码*/
+    301          				Rx_Stack.Command = Receive_Data[9]*256+Receive_Data[10];
+   \   000047   90....       MOV     DPTR,#Receive_Data + 9
+   \   00004A   E0           MOVX    A,@DPTR
+   \   00004B   F9           MOV     R1,A
+   \   00004C   A3           INC     DPTR
+   \   00004D   E0           MOVX    A,@DPTR
+   \   00004E   90....       MOV     DPTR,#Rx_Stack + 9
+   \   000051   F0           MOVX    @DPTR,A
+   \   000052   A3           INC     DPTR
+   \   000053   E9           MOV     A,R1
+   \   000054   F0           MOVX    @DPTR,A
+    302          
+    303          				/*数据长度*/
+    304          				Rx_Stack.Data_Len = Receive_Data[11];
+   \   000055   90....       MOV     DPTR,#Receive_Data + 11
+   \   000058   E0           MOVX    A,@DPTR
+   \   000059   90....       MOV     DPTR,#Rx_Stack + 11
+   \   00005C   F0           MOVX    @DPTR,A
+    305          
+    306          				/*数据*/
+    307          				for(i=12;i<(Rx_Stack.Data_Len+12);i++)
+   \   00005D   90....       MOV     DPTR,#??i
+   \   000060   740C         MOV     A,#0xc
+   \   000062   F0           MOVX    @DPTR,A
+   \   000063   A3           INC     DPTR
+   \   000064   E4           CLR     A
+   \   000065   802C         SJMP    ??CrossCallReturnLabel_11
+    308          				{
+    309          					Rx_Stack.Data[(i-12)] = Receive_Data[i];
+   \                     ??DataHandling_485_4:
+   \   000067   90....       MOV     DPTR,#??i
+   \   00006A   E0           MOVX    A,@DPTR
+   \   00006B   24..         ADD     A,#Receive_Data & 0xff
+   \   00006D   F8           MOV     R0,A
+   \   00006E   A3           INC     DPTR
+   \   00006F   E0           MOVX    A,@DPTR
+   \   000070   34..         ADDC    A,#(Receive_Data >> 8) & 0xff
+   \   000072   F9           MOV     R1,A
+   \   000073   8882         MOV     DPL,R0
+   \   000075   8983         MOV     DPH,R1
+   \   000077   E0           MOVX    A,@DPTR
+   \   000078   C0E0         PUSH    A
+   \   00007A   90....       MOV     DPTR,#??i
+   \   00007D   E0           MOVX    A,@DPTR
+   \   00007E   24..         ADD     A,#Rx_Stack & 0xff
+   \   000080   F8           MOV     R0,A
+   \   000081   A3           INC     DPTR
+   \   000082   E0           MOVX    A,@DPTR
+   \   000083   34..         ADDC    A,#(Rx_Stack >> 8) & 0xff
+   \   000085   F9           MOV     R1,A
+   \   000086   8882         MOV     DPL,R0
+   \   000088   8983         MOV     DPH,R1
+   \   00008A   D0E0         POP     A
+   \   00008C   F0           MOVX    @DPTR,A
+    310          				}
+   \   00008D   90....       MOV     DPTR,#??i
+   \   000090   12....       LCALL   ?Subroutine6 & 0xFFFF
+   \                     ??CrossCallReturnLabel_11:
+   \   000093   F0           MOVX    @DPTR,A
+   \   000094   90....       MOV     DPTR,#Rx_Stack + 11
+   \   000097   E0           MOVX    A,@DPTR
+   \   000098   F8           MOV     R0,A
+   \   000099   240C         ADD     A,#0xc
+   \   00009B   FC           MOV     R4,A
+   \   00009C   E4           CLR     A
+   \   00009D   3400         ADDC    A,#0x0
+   \   00009F   FD           MOV     R5,A
+   \   0000A0   90....       MOV     DPTR,#??i
+   \   0000A3   E0           MOVX    A,@DPTR
+   \   0000A4   9C           SUBB    A,R4
+   \   0000A5   A3           INC     DPTR
+   \   0000A6   E0           MOVX    A,@DPTR
+   \   0000A7   9D           SUBB    A,R5
+   \   0000A8   40BD         JC      ??DataHandling_485_4
+    311          
+    312          				/*CRC校验码高八位*/
+    313          				Rx_Stack.CrcCheck = Receive_Data[(12+Rx_Stack.Data_Len)]*256;
+   \   0000AA   74..         MOV     A,#Receive_Data & 0xff
+   \   0000AC   28           ADD     A,R0
+   \   0000AD   F8           MOV     R0,A
+   \   0000AE   74..         MOV     A,#(Receive_Data >> 8) & 0xff
+   \   0000B0   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \                     ??CrossCallReturnLabel_9:
+   \   0000B3   E0           MOVX    A,@DPTR
+   \   0000B4   FB           MOV     R3,A
+   \   0000B5   90....       MOV     DPTR,#Rx_Stack + 112
+   \   0000B8   E4           CLR     A
+   \   0000B9   F0           MOVX    @DPTR,A
+   \   0000BA   A3           INC     DPTR
+   \   0000BB   EB           MOV     A,R3
+   \   0000BC   F0           MOVX    @DPTR,A
+    314          
+    315          				/*CRC校验码低八位*/
+    316          				Rx_Stack.CrcCheck += Receive_Data[(13+Rx_Stack.Data_Len)];
+   \   0000BD   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_13:
+   \   0000C0   E0           MOVX    A,@DPTR
+   \   0000C1   90....       MOV     DPTR,#Rx_Stack + 112
+   \   0000C4   F0           MOVX    @DPTR,A
+    317          				
+    318          				Crc16Check = CRC_16(Receive_Data,(12+Rx_Stack.Data_Len));
+   \   0000C5                ; Setup parameters for call to function CRC_16
+   \   0000C5   7A..         MOV     R2,#Receive_Data & 0xff
+   \   0000C7   7B..         MOV     R3,#(Receive_Data >> 8) & 0xff
+   \   0000C9   12....       LCALL   ??CRC_16?relay
+   \   0000CC   90....       MOV     DPTR,#??Crc16Check
+   \   0000CF   EA           MOV     A,R2
+   \   0000D0   F0           MOVX    @DPTR,A
+   \   0000D1   A3           INC     DPTR
+   \   0000D2   EB           MOV     A,R3
+   \   0000D3   F0           MOVX    @DPTR,A
+    319          				if(Crc16Check != Rx_Stack.CrcCheck)
+   \   0000D4   90....       MOV     DPTR,#??Crc16Check
+   \   0000D7   E0           MOVX    A,@DPTR
+   \   0000D8   F8           MOV     R0,A
+   \   0000D9   A3           INC     DPTR
+   \   0000DA   E0           MOVX    A,@DPTR
+   \   0000DB   F9           MOV     R1,A
+   \   0000DC   90....       MOV     DPTR,#Rx_Stack + 112
+   \   0000DF   E0           MOVX    A,@DPTR
+   \   0000E0   68           XRL     A,R0
+   \   0000E1   7003         JNZ     ??DataHandling_485_5
+   \   0000E3   A3           INC     DPTR
+   \   0000E4   E0           MOVX    A,@DPTR
+   \   0000E5   69           XRL     A,R1
+   \                     ??DataHandling_485_5:
+   \   0000E6   6006         JZ      ??DataHandling_485_6
+    320          				{
+    321          					Return_Value = 1;
+   \                     ??DataHandling_485_3:
+   \   0000E8   90....       MOV     DPTR,#??Return_Value
+   \   0000EB   7401         MOV     A,#0x1
+   \   0000ED   F0           MOVX    @DPTR,A
+    322          				}
+    323          			}
+    324          			else
+    325                      {
+    326                          Return_Value = 1;
+    327          			}						
+    328          			RS485_RX_STA = 0;
+   \                     ??DataHandling_485_6:
+   \   0000EE   90....       MOV     DPTR,#RS485_RX_STA
+   \   0000F1   E4           CLR     A
+   \   0000F2   F0           MOVX    @DPTR,A
+   \   0000F3   A3           INC     DPTR
+   \   0000F4   8002         SJMP    ??DataHandling_485_7
+    329          	}
+    330          	else
+    331              {
+    332                  Return_Value = 1;
+   \                     ??DataHandling_485_1:
+   \   0000F6   7401         MOV     A,#0x1
+   \                     ??DataHandling_485_7:
+   \   0000F8   F0           MOVX    @DPTR,A
+    333              }
+    334          	return Return_Value;	//返回接收情况
+   \   0000F9   90....       MOV     DPTR,#??Return_Value
+   \   0000FC   E0           MOVX    A,@DPTR
+   \   0000FD   F9           MOV     R1,A
+   \   0000FE   02....       LJMP    ?Subroutine0 & 0xFFFF
+    335          }
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+   \                     ??i:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+   \                     ??Return_Value:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+   \                     ??Crc16Check:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+    336          //==========================================================
+    337          //	函数名称：	void Rs485_ClearReceiveBuffer(void)
+    338          //
+    339          //	函数功能：	清除接收缓冲
+    340          //
+    341          //	入口参数：	无
+    342          //							
+    343          //              
+    344          //	返回参数：	无
+    345          //
+    346          //	说明：		
+    347          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    348          void Rs485_ClearReceiveBuffer(void)
+   \                     Rs485_ClearReceiveBuffer:
+    349          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+    350              RS485_RX_STA = 0;
+   \   000005   90....       MOV     DPTR,#RS485_RX_STA
+   \   000008   E4           CLR     A
+   \   000009   12....       LCALL   ?Subroutine8 & 0xFFFF
+    351              memset(Receive_Data,0,Receive_REC_LEN);//清空接收数组
+   \                     ??CrossCallReturnLabel_15:
+   \   00000C   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00000F   7C00         MOV     R4,#0x0
+   \   000011   7D00         MOV     R5,#0x0
+   \   000013   7A..         MOV     R2,#Receive_Data & 0xff
+   \   000015   7B..         MOV     R3,#(Receive_Data >> 8) & 0xff
+   \   000017   12....       LCALL   ??memset?relay
+   \   00001A   7402         MOV     A,#0x2
+   \   00001C   12....       LCALL   ?DEALLOC_XSTACK8
+    352          }
+   \   00001F   02....       LJMP    ??Subroutine10_0 & 0xFFFF
+    353          //==========================================================
+    354          //	函数名称：	calcByte()
+    355          //
+    356          //	函数功能：	CRC_16字节计算函数
+    357          //
+    358          //	入口参数：	crc:CRC校验码
+    359          //							b:
+    360          //              
+    361          //	返回参数：	无
+    362          //
+    363          //	说明：		
+    364          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    365          uint16_t calcByte(uint16_t crc, uint8_t b)
+   \                     calcByte:
+    366          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    367          		uint16_t i = 0;			//清空数组时For循环使用	
+    368          
+    369              crc = crc ^ (int)b << 8;
+   \   000000   E9           MOV     A,R1
+   \   000001   6B           XRL     A,R3
+   \   000002   FB           MOV     R3,A
+    370              for (i = 0; i < 8; i++)
+   \   000003   7808         MOV     R0,#0x8
+    371              {
+    372                  if ((crc & 0x8000) == 0x8000)
+   \                     ??calcByte_0:
+   \   000005   EA           MOV     A,R2
+   \   000006   FC           MOV     R4,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FD           MOV     R5,A
+   \   000009   EC           MOV     A,R4
+   \   00000A   C3           CLR     C
+   \   00000B   33           RLC     A
+   \   00000C   FC           MOV     R4,A
+   \   00000D   ED           MOV     A,R5
+   \   00000E   33           RLC     A
+   \   00000F   FD           MOV     R5,A
+   \   000010   EB           MOV     A,R3
+   \   000011   5480         ANL     A,#0x80
+   \   000013   6009         JZ      ??calcByte_1
+    373                  {
+    374                      crc = crc << 1 ^ 0x1021;
+   \   000015   EC           MOV     A,R4
+   \   000016   6421         XRL     A,#0x21
+   \   000018   FA           MOV     R2,A
+   \   000019   ED           MOV     A,R5
+   \   00001A   6410         XRL     A,#0x10
+   \   00001C   8003         SJMP    ??calcByte_2
+    375                  }
+    376                  else
+    377                  {
+    378                      crc = crc << 1;
+   \                     ??calcByte_1:
+   \   00001E   EC           MOV     A,R4
+   \   00001F   FA           MOV     R2,A
+   \   000020   ED           MOV     A,R5
+   \                     ??calcByte_2:
+   \   000021   FB           MOV     R3,A
+    379                  }
+    380              }
+   \   000022   18           DEC     R0
+   \   000023   E8           MOV     A,R0
+   \   000024   70DF         JNZ     ??calcByte_0
+    381              return crc & 0xffff;
+   \   000026   02....       LJMP    ?BRET
+    382          }
+    383          
+    384          //==========================================================
+    385          //	函数名称：	CRC_16()
+    386          //
+    387          //	函数功能：	CRC_16计算函数
+    388          //
+    389          //	入口参数：	*p:	需要校验的数据
+    390          //							length: 校验数据长度
+    391          //              
+    392          //	返回参数：	wCRC16:16位CRC校验码
+    393          //
+    394          //	说明：			
+    395          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    396          uint16_t CRC_16(void *p, int length)
+   \                     CRC_16:
+    397          {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+   \   000009   8C..         MOV     ?V0 + 0,R4
+   \   00000B   8D..         MOV     ?V0 + 1,R5
+    398          		short wCRC16=0;
+   \   00000D   7A00         MOV     R2,#0x0
+   \   00000F   7B00         MOV     R3,#0x0
+    399              uint8_t *pBuffer;
+    400          		uint16_t i = 0;			//清空数组时For循环使用	
+    401          
+    402              if (( p==0 )||( length==0 ))
+   \   000011   EE           MOV     A,R6
+   \   000012   4F           ORL     A,R7
+   \   000013   6005         JZ      ??CRC_16_0
+   \   000015   EC           MOV     A,R4
+   \   000016   45..         ORL     A,?V0 + 1
+   \   000018   7004         JNZ     ??CRC_16_1
+    403              {
+    404                  return 0xFFFF;
+   \                     ??CRC_16_0:
+   \   00001A   1A           DEC     R2
+   \   00001B   1B           DEC     R3
+   \   00001C   802C         SJMP    ??CRC_16_2
+    405              }
+    406          
+    407              pBuffer=(uint8_t *)p;
+    408              for ( i = 0; i < length; i++)
+   \                     ??CRC_16_1:
+   \   00001E   8A..         MOV     ?V0 + 2,R2
+   \   000020   8A..         MOV     ?V0 + 3,R2
+   \   000022   801B         SJMP    ??CRC_16_3
+    409              {
+    410                  wCRC16 = calcByte(wCRC16, pBuffer[i]);
+   \                     ??CRC_16_4:
+   \   000024                ; Setup parameters for call to function calcByte
+   \   000024   EE           MOV     A,R6
+   \   000025   25..         ADD     A,?V0 + 2
+   \   000027   F582         MOV     DPL,A
+   \   000029   EF           MOV     A,R7
+   \   00002A   35..         ADDC    A,?V0 + 3
+   \   00002C   F583         MOV     DPH,A
+   \   00002E   E0           MOVX    A,@DPTR
+   \   00002F   F9           MOV     R1,A
+   \   000030   12....       LCALL   ??calcByte?relay
+    411              }
+   \   000033   E5..         MOV     A,?V0 + 2
+   \   000035   2401         ADD     A,#0x1
+   \   000037   F5..         MOV     ?V0 + 2,A
+   \   000039   E5..         MOV     A,?V0 + 3
+   \   00003B   3400         ADDC    A,#0x0
+   \   00003D   F5..         MOV     ?V0 + 3,A
+   \                     ??CRC_16_3:
+   \   00003F   C3           CLR     C
+   \   000040   E5..         MOV     A,?V0 + 2
+   \   000042   95..         SUBB    A,?V0 + 0
+   \   000044   E5..         MOV     A,?V0 + 3
+   \   000046   95..         SUBB    A,?V0 + 1
+   \   000048   40DA         JC      ??CRC_16_4
+    412          
+    413              return wCRC16;
+   \                     ??CRC_16_2:
+   \   00004A   7F06         MOV     R7,#0x6
+   \   00004C   02....       LJMP    ?BANKED_LEAVE_XDATA
+    414          }
+    415          
+    416          //==========================================================
+    417          //	函数名称：	Rs485_delay_ms()
+    418          //
+    419          //	函数功能：	毫秒延时函数
+    420          //
+    421          //	入口参数：	无
+    422          //
+    423          //	返回参数：	无
+    424          //
+    425          //	说明：		
+    426          //==========================================================
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    427          void Rs485_delay_ms(unsigned int nms)
+   \                     Rs485_delay_ms:
+    428          {		
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    429          	unsigned int i = 0,j = 0;
+    430          	
+    431          	for(i = 0;i<nms;i++)
+   \   000000   7800         MOV     R0,#0x0
+   \   000002   7900         MOV     R1,#0x0
+   \   000004   8003         SJMP    ??CrossCallReturnLabel_17
+    432          	{
+    433          		for(j = 0;j<9600;j++)
+   \                     ??Rs485_delay_ms_0:
+   \   000006   12....       LCALL   ?Subroutine9 & 0xFFFF
+   \                     ??CrossCallReturnLabel_17:
+   \   000009   C3           CLR     C
+   \   00000A   E8           MOV     A,R0
+   \   00000B   9A           SUBB    A,R2
+   \   00000C   E9           MOV     A,R1
+   \   00000D   9B           SUBB    A,R3
+   \   00000E   40F6         JC      ??Rs485_delay_ms_0
+    434          		{;}
+    435          	}
+    436          }
+   \   000010   02....       LJMP    ?BRET
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_e1e2e3e4:
+   \   000000   E4E3E2E1     DD 3789743076
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_eaebeced:
+   \   000000   EDECEBEA     DD 3941330157
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??UART2RS485_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    UART2RS485_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??RS485Bus_Send?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    RS485Bus_Send
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Rs485_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Rs485_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Tx_Stack_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Tx_Stack_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Rx_Stack_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Rx_Stack_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??delay_us?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    delay_us
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Rs485_Send?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Rs485_Send
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Rs485_Receive?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Rs485_Receive
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??DataHandling_485?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    DataHandling_485
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Rs485_ClearReceiveBuffer?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Rs485_ClearReceiveBuffer
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??calcByte?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    calcByte
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??CRC_16?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    CRC_16
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Rs485_delay_ms?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Rs485_delay_ms
+
+   Maximum stack usage in bytes:
+
+     Function                      ISTACK PSTACK XSTACK
+     --------                      ------ ------ ------
+     CRC_16                            0      0     26
+       -> calcByte                     0      0     28
+     DataHandling_485                  3      0      0
+       -> CRC_16                       4      0      0
+     RS485Bus_Send                     0      0      0
+     Rs485_ClearReceiveBuffer          0      0     24
+       -> memset                       0      0     24
+     Rs485_Init                        2      0      0
+       -> UartInit                     4      0      0
+       -> Rx_Stack_Init                4      0      0
+       -> Tx_Stack_Init                4      0      0
+     Rs485_Receive                     3      0      0
+     Rs485_Send                        1      0     16
+       -> CRC_16                       0      0     24
+       -> Rs485_ClearReceiveBuffer     0      0     24
+       -> delay_us                     0      0     24
+       -> delay_us                     0      0     24
+     Rs485_delay_ms                    0      0      0
+     Rx_Stack_Init                     0      0     12
+       -> memset                       0      0     24
+     Tx_Stack_Init                     0      0     12
+       -> memset                       0      0     24
+     UART2RS485_Init                   2      0      0
+       -> Rs485_Init                   4      0      0
+     calcByte                          0      0     14
+     delay_us                          0      0     12
+
+
+   Segment part sizes:
+
+     Function/Label                   Bytes
+     --------------                   -----
+     _A_P1                               1
+     _A_IRCON2                           1
+     P1SEL                               1
+     U1DBUF                              1
+     P1DIR                               1
+     UART2RS485_Init                    10
+     ?Subroutine0                        7
+     RS485Bus_Send                       3
+     Tx_Stack                          118
+     Rx_Stack                          118
+     RS485_RX_STA                        2
+     Send_Data                         100
+     Receive_Data                      100
+     Rs485_Init                         28
+     Tx_Stack_Init                      58
+     ?Subroutine1                        3
+     ??Subroutine10_0                    5
+     ?Subroutine2                       17
+     ?Subroutine8                       11
+     Rx_Stack_Init                      60
+     delay_us                           41
+     Rs485_Send                        301
+     ?Subroutine4                       11
+     ?Subroutine3                        5
+     ?Subroutine9                        9
+     ?Subroutine7                       11
+     ?Subroutine5                       14
+     Rs485_Receive                     222
+     ?Subroutine6                        9
+     End_Flag                            1
+     Header_Flag                         1
+     Receive_Flag                        1
+     DataHandling_485                  257
+     i                                   2
+     Return_Value                        1
+     Crc16Check                          2
+     Rs485_ClearReceiveBuffer           34
+     calcByte                           41
+     CRC_16                             79
+     Rs485_delay_ms                     19
+     __Constant_e1e2e3e4                 4
+     __Constant_eaebeced                 4
+     ??UART2RS485_Init?relay             6
+     ??RS485Bus_Send?relay               6
+     ??Rs485_Init?relay                  6
+     ??Tx_Stack_Init?relay               6
+     ??Rx_Stack_Init?relay               6
+     ??delay_us?relay                    6
+     ??Rs485_Send?relay                  6
+     ??Rs485_Receive?relay               6
+     ??DataHandling_485?relay            6
+     ??Rs485_ClearReceiveBuffer?relay    6
+     ??calcByte?relay                    6
+     ??CRC_16?relay                      6
+     ??Rs485_delay_ms?relay              6
+
+ 
+ 1 255 bytes in segment BANKED_CODE
+    78 bytes in segment BANK_RELAYS
+     5 bytes in segment SFR_AN
+     8 bytes in segment XDATA_ROM_C
+   446 bytes in segment XDATA_Z
+ 
+ 1 333 bytes of CODE  memory
+     0 bytes of CONST memory (+ 8 bytes shared)
+     0 bytes of DATA  memory (+ 5 bytes shared)
+   446 bytes of XDATA memory
+
+Errors: none
+Warnings: none

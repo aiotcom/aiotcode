@@ -1,0 +1,11 @@
+CONTIKI_PROJECT =  timer-test
+
+HAVE_BANKING=1
+UIP_CONF_IPV6=1
+UIP_CONF_RPL=1
+CFLAGS += -DENABLE_SHT2x=1
+all: $(CONTIKI_PROJECT) 
+
+CONTIKI = ../../..
+
+include $(CONTIKI)/Makefile.include

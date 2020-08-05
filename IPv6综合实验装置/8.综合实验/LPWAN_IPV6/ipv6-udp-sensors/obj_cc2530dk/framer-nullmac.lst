@@ -1,0 +1,279 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.8.4 #10774 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module framer_nullmac
+                                      6 	.optsdcc -mmcs51 --model-huge
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _framer_nullmac
+                                     12 	.globl _packetbuf_addr
+                                     13 	.globl _packetbuf_set_addr
+                                     14 	.globl _packetbuf_hdrreduce
+                                     15 	.globl _packetbuf_hdralloc
+                                     16 	.globl _packetbuf_hdrptr
+                                     17 	.globl _packetbuf_dataptr
+                                     18 	.globl _rimeaddr_copy
+                                     19 ;--------------------------------------------------------
+                                     20 ; special function registers
+                                     21 ;--------------------------------------------------------
+                                     22 	.area RSEG    (ABS,DATA)
+      000000                         23 	.org 0x0000
+                                     24 ;--------------------------------------------------------
+                                     25 ; special function bits
+                                     26 ;--------------------------------------------------------
+                                     27 	.area RSEG    (ABS,DATA)
+      000000                         28 	.org 0x0000
+                                     29 ;--------------------------------------------------------
+                                     30 ; overlayable register banks
+                                     31 ;--------------------------------------------------------
+                                     32 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                         33 	.ds 8
+                                     34 ;--------------------------------------------------------
+                                     35 ; internal ram data
+                                     36 ;--------------------------------------------------------
+                                     37 	.area DSEG    (DATA)
+                                     38 ;--------------------------------------------------------
+                                     39 ; overlayable items in internal ram 
+                                     40 ;--------------------------------------------------------
+                                     41 ;--------------------------------------------------------
+                                     42 ; indirectly addressable internal ram data
+                                     43 ;--------------------------------------------------------
+                                     44 	.area ISEG    (DATA)
+                                     45 ;--------------------------------------------------------
+                                     46 ; absolute internal ram data
+                                     47 ;--------------------------------------------------------
+                                     48 	.area IABS    (ABS,DATA)
+                                     49 	.area IABS    (ABS,DATA)
+                                     50 ;--------------------------------------------------------
+                                     51 ; bit data
+                                     52 ;--------------------------------------------------------
+                                     53 	.area BSEG    (BIT)
+                                     54 ;--------------------------------------------------------
+                                     55 ; paged external ram data
+                                     56 ;--------------------------------------------------------
+                                     57 	.area PSEG    (PAG,XDATA)
+                                     58 ;--------------------------------------------------------
+                                     59 ; external ram data
+                                     60 ;--------------------------------------------------------
+                                     61 	.area XSEG    (XDATA)
+                                     62 ;--------------------------------------------------------
+                                     63 ; absolute external ram data
+                                     64 ;--------------------------------------------------------
+                                     65 	.area XABS    (ABS,XDATA)
+                                     66 ;--------------------------------------------------------
+                                     67 ; external initialized ram data
+                                     68 ;--------------------------------------------------------
+                                     69 	.area XISEG   (XDATA)
+                                     70 	.area HOME    (CODE)
+                                     71 	.area GSINIT0 (CODE)
+                                     72 	.area GSINIT1 (CODE)
+                                     73 	.area GSINIT2 (CODE)
+                                     74 	.area GSINIT3 (CODE)
+                                     75 	.area GSINIT4 (CODE)
+                                     76 	.area GSINIT5 (CODE)
+                                     77 	.area GSINIT  (CODE)
+                                     78 	.area GSFINAL (CODE)
+                                     79 	.area CSEG    (CODE)
+                                     80 ;--------------------------------------------------------
+                                     81 ; global & static initialisations
+                                     82 ;--------------------------------------------------------
+                                     83 	.area HOME    (CODE)
+                                     84 	.area GSINIT  (CODE)
+                                     85 	.area GSFINAL (CODE)
+                                     86 	.area GSINIT  (CODE)
+                                     87 ;--------------------------------------------------------
+                                     88 ; Home
+                                     89 ;--------------------------------------------------------
+                                     90 	.area HOME    (CODE)
+                                     91 	.area HOME    (CODE)
+                                     92 ;--------------------------------------------------------
+                                     93 ; code
+                                     94 ;--------------------------------------------------------
+                                     95 	.area BANK1   (CODE)
+                                     96 ;------------------------------------------------------------
+                                     97 ;Allocation info for local variables in function 'create'
+                                     98 ;------------------------------------------------------------
+                                     99 ;hdr                       Allocated to registers r5 r6 r7 
+                                    100 ;------------------------------------------------------------
+                                    101 ;	../../../core/net/mac/framer-nullmac.c:60: create(void)
+                                    102 ;	-----------------------------------------
+                                    103 ;	 function create
+                                    104 ;	-----------------------------------------
+      000000                        105 _create:
+                           000007   106 	ar7 = 0x07
+                           000006   107 	ar6 = 0x06
+                           000005   108 	ar5 = 0x05
+                           000004   109 	ar4 = 0x04
+                           000003   110 	ar3 = 0x03
+                           000002   111 	ar2 = 0x02
+                           000001   112 	ar1 = 0x01
+                           000000   113 	ar0 = 0x00
+                                    114 ;	../../../core/net/mac/framer-nullmac.c:64: if(packetbuf_hdralloc(sizeof(struct nullmac_hdr))) {
+      000000 90 00 10         [24]  115 	mov	dptr,#0x0010
+      000003 78r00            [12]  116 	mov	r0,#_packetbuf_hdralloc
+      000005 79s00            [12]  117 	mov	r1,#(_packetbuf_hdralloc >> 8)
+      000007 7As00            [12]  118 	mov	r2,#(_packetbuf_hdralloc >> 16)
+      000009 12r00r00         [24]  119 	lcall	__sdcc_banked_call
+      00000C E5 82            [12]  120 	mov	a,dpl
+      00000E 85 83 F0         [24]  121 	mov	b,dph
+      000011 45 F0            [12]  122 	orl	a,b
+      000013 60 76            [24]  123 	jz	00102$
+                                    124 ;	../../../core/net/mac/framer-nullmac.c:65: hdr = packetbuf_hdrptr();
+      000015 78r00            [12]  125 	mov	r0,#_packetbuf_hdrptr
+      000017 79s00            [12]  126 	mov	r1,#(_packetbuf_hdrptr >> 8)
+      000019 7As00            [12]  127 	mov	r2,#(_packetbuf_hdrptr >> 16)
+      00001B 12r00r00         [24]  128 	lcall	__sdcc_banked_call
+      00001E AD 82            [24]  129 	mov	r5,dpl
+      000020 AE 83            [24]  130 	mov	r6,dph
+      000022 AF F0            [24]  131 	mov	r7,b
+                                    132 ;	../../../core/net/mac/framer-nullmac.c:66: rimeaddr_copy(&(hdr->sender), &rimeaddr_node_addr);
+      000024 74 08            [12]  133 	mov	a,#0x08
+      000026 2D               [12]  134 	add	a,r5
+      000027 FA               [12]  135 	mov	r2,a
+      000028 E4               [12]  136 	clr	a
+      000029 3E               [12]  137 	addc	a,r6
+      00002A FB               [12]  138 	mov	r3,a
+      00002B 8F 04            [24]  139 	mov	ar4,r7
+      00002D C0 07            [24]  140 	push	ar7
+      00002F C0 06            [24]  141 	push	ar6
+      000031 C0 05            [24]  142 	push	ar5
+      000033 74r00            [12]  143 	mov	a,#_rimeaddr_node_addr
+      000035 C0 E0            [24]  144 	push	acc
+      000037 74s00            [12]  145 	mov	a,#(_rimeaddr_node_addr >> 8)
+      000039 C0 E0            [24]  146 	push	acc
+      00003B E4               [12]  147 	clr	a
+      00003C C0 E0            [24]  148 	push	acc
+      00003E 8A 82            [24]  149 	mov	dpl,r2
+      000040 8B 83            [24]  150 	mov	dph,r3
+      000042 8C F0            [24]  151 	mov	b,r4
+      000044 78r00            [12]  152 	mov	r0,#_rimeaddr_copy
+      000046 79s00            [12]  153 	mov	r1,#(_rimeaddr_copy >> 8)
+      000048 7As00            [12]  154 	mov	r2,#(_rimeaddr_copy >> 16)
+      00004A 12r00r00         [24]  155 	lcall	__sdcc_banked_call
+      00004D 15 81            [12]  156 	dec	sp
+      00004F 15 81            [12]  157 	dec	sp
+      000051 15 81            [12]  158 	dec	sp
+                                    159 ;	../../../core/net/mac/framer-nullmac.c:67: rimeaddr_copy(&(hdr->receiver), packetbuf_addr(PACKETBUF_ADDR_RECEIVER));
+      000053 75 82 19         [24]  160 	mov	dpl,#0x19
+      000056 78r00            [12]  161 	mov	r0,#_packetbuf_addr
+      000058 79s00            [12]  162 	mov	r1,#(_packetbuf_addr >> 8)
+      00005A 7As00            [12]  163 	mov	r2,#(_packetbuf_addr >> 16)
+      00005C 12r00r00         [24]  164 	lcall	__sdcc_banked_call
+      00005F AA 82            [24]  165 	mov	r2,dpl
+      000061 AB 83            [24]  166 	mov	r3,dph
+      000063 AC F0            [24]  167 	mov	r4,b
+      000065 D0 05            [24]  168 	pop	ar5
+      000067 D0 06            [24]  169 	pop	ar6
+      000069 D0 07            [24]  170 	pop	ar7
+      00006B C0 02            [24]  171 	push	ar2
+      00006D C0 03            [24]  172 	push	ar3
+      00006F C0 04            [24]  173 	push	ar4
+      000071 8D 82            [24]  174 	mov	dpl,r5
+      000073 8E 83            [24]  175 	mov	dph,r6
+      000075 8F F0            [24]  176 	mov	b,r7
+      000077 78r00            [12]  177 	mov	r0,#_rimeaddr_copy
+      000079 79s00            [12]  178 	mov	r1,#(_rimeaddr_copy >> 8)
+      00007B 7As00            [12]  179 	mov	r2,#(_rimeaddr_copy >> 16)
+      00007D 12r00r00         [24]  180 	lcall	__sdcc_banked_call
+      000080 15 81            [12]  181 	dec	sp
+      000082 15 81            [12]  182 	dec	sp
+      000084 15 81            [12]  183 	dec	sp
+                                    184 ;	../../../core/net/mac/framer-nullmac.c:68: return sizeof(struct nullmac_hdr);
+      000086 90 00 10         [24]  185 	mov	dptr,#0x0010
+      000089 80 03            [24]  186 	sjmp	00103$
+      00008B                        187 00102$:
+                                    188 ;	../../../core/net/mac/framer-nullmac.c:71: return FRAMER_FAILED;
+      00008B 90 FF FF         [24]  189 	mov	dptr,#0xffff
+      00008E                        190 00103$:
+                                    191 ;	../../../core/net/mac/framer-nullmac.c:72: }
+      00008E 02r00r00         [24]  192 	ljmp	__sdcc_banked_ret
+                                    193 ;------------------------------------------------------------
+                                    194 ;Allocation info for local variables in function 'parse'
+                                    195 ;------------------------------------------------------------
+                                    196 ;hdr                       Allocated to registers r5 r6 r7 
+                                    197 ;------------------------------------------------------------
+                                    198 ;	../../../core/net/mac/framer-nullmac.c:75: parse(void)
+                                    199 ;	-----------------------------------------
+                                    200 ;	 function parse
+                                    201 ;	-----------------------------------------
+      000091                        202 _parse:
+                                    203 ;	../../../core/net/mac/framer-nullmac.c:78: hdr = packetbuf_dataptr();
+      000091 78r00            [12]  204 	mov	r0,#_packetbuf_dataptr
+      000093 79s00            [12]  205 	mov	r1,#(_packetbuf_dataptr >> 8)
+      000095 7As00            [12]  206 	mov	r2,#(_packetbuf_dataptr >> 16)
+      000097 12r00r00         [24]  207 	lcall	__sdcc_banked_call
+      00009A AD 82            [24]  208 	mov	r5,dpl
+      00009C AE 83            [24]  209 	mov	r6,dph
+      00009E AF F0            [24]  210 	mov	r7,b
+                                    211 ;	../../../core/net/mac/framer-nullmac.c:79: if(packetbuf_hdrreduce(sizeof(struct nullmac_hdr))) {
+      0000A0 90 00 10         [24]  212 	mov	dptr,#0x0010
+      0000A3 C0 07            [24]  213 	push	ar7
+      0000A5 C0 06            [24]  214 	push	ar6
+      0000A7 C0 05            [24]  215 	push	ar5
+      0000A9 78r00            [12]  216 	mov	r0,#_packetbuf_hdrreduce
+      0000AB 79s00            [12]  217 	mov	r1,#(_packetbuf_hdrreduce >> 8)
+      0000AD 7As00            [12]  218 	mov	r2,#(_packetbuf_hdrreduce >> 16)
+      0000AF 12r00r00         [24]  219 	lcall	__sdcc_banked_call
+      0000B2 E5 82            [12]  220 	mov	a,dpl
+      0000B4 85 83 F0         [24]  221 	mov	b,dph
+      0000B7 D0 05            [24]  222 	pop	ar5
+      0000B9 D0 06            [24]  223 	pop	ar6
+      0000BB D0 07            [24]  224 	pop	ar7
+      0000BD 45 F0            [12]  225 	orl	a,b
+      0000BF 60 4A            [24]  226 	jz	00102$
+                                    227 ;	../../../core/net/mac/framer-nullmac.c:80: packetbuf_set_addr(PACKETBUF_ADDR_SENDER, &(hdr->sender));
+      0000C1 74 08            [12]  228 	mov	a,#0x08
+      0000C3 2D               [12]  229 	add	a,r5
+      0000C4 FA               [12]  230 	mov	r2,a
+      0000C5 E4               [12]  231 	clr	a
+      0000C6 3E               [12]  232 	addc	a,r6
+      0000C7 FB               [12]  233 	mov	r3,a
+      0000C8 8F 04            [24]  234 	mov	ar4,r7
+      0000CA C0 07            [24]  235 	push	ar7
+      0000CC C0 06            [24]  236 	push	ar6
+      0000CE C0 05            [24]  237 	push	ar5
+      0000D0 C0 02            [24]  238 	push	ar2
+      0000D2 C0 03            [24]  239 	push	ar3
+      0000D4 C0 04            [24]  240 	push	ar4
+      0000D6 75 82 18         [24]  241 	mov	dpl,#0x18
+      0000D9 78r00            [12]  242 	mov	r0,#_packetbuf_set_addr
+      0000DB 79s00            [12]  243 	mov	r1,#(_packetbuf_set_addr >> 8)
+      0000DD 7As00            [12]  244 	mov	r2,#(_packetbuf_set_addr >> 16)
+      0000DF 12r00r00         [24]  245 	lcall	__sdcc_banked_call
+      0000E2 15 81            [12]  246 	dec	sp
+      0000E4 15 81            [12]  247 	dec	sp
+      0000E6 15 81            [12]  248 	dec	sp
+      0000E8 D0 05            [24]  249 	pop	ar5
+      0000EA D0 06            [24]  250 	pop	ar6
+      0000EC D0 07            [24]  251 	pop	ar7
+                                    252 ;	../../../core/net/mac/framer-nullmac.c:81: packetbuf_set_addr(PACKETBUF_ADDR_RECEIVER, &(hdr->receiver));
+      0000EE C0 05            [24]  253 	push	ar5
+      0000F0 C0 06            [24]  254 	push	ar6
+      0000F2 C0 07            [24]  255 	push	ar7
+      0000F4 75 82 19         [24]  256 	mov	dpl,#0x19
+      0000F7 78r00            [12]  257 	mov	r0,#_packetbuf_set_addr
+      0000F9 79s00            [12]  258 	mov	r1,#(_packetbuf_set_addr >> 8)
+      0000FB 7As00            [12]  259 	mov	r2,#(_packetbuf_set_addr >> 16)
+      0000FD 12r00r00         [24]  260 	lcall	__sdcc_banked_call
+      000100 15 81            [12]  261 	dec	sp
+      000102 15 81            [12]  262 	dec	sp
+      000104 15 81            [12]  263 	dec	sp
+                                    264 ;	../../../core/net/mac/framer-nullmac.c:88: return sizeof(struct nullmac_hdr);
+      000106 90 00 10         [24]  265 	mov	dptr,#0x0010
+      000109 80 03            [24]  266 	sjmp	00103$
+      00010B                        267 00102$:
+                                    268 ;	../../../core/net/mac/framer-nullmac.c:90: return FRAMER_FAILED;
+      00010B 90 FF FF         [24]  269 	mov	dptr,#0xffff
+      00010E                        270 00103$:
+                                    271 ;	../../../core/net/mac/framer-nullmac.c:91: }
+      00010E 02r00r00         [24]  272 	ljmp	__sdcc_banked_ret
+                                    273 	.area CSEG    (CODE)
+                                    274 	.area CONST   (CODE)
+      000000                        275 _framer_nullmac:
+      000000r00s00s00               276 	.byte _create, (_create >> 8), (_create >> 16)
+      000003r91s00s00               277 	.byte _parse, (_parse >> 8), (_parse >> 16)
+                                    278 	.area XINIT   (CODE)
+                                    279 	.area CABS    (ABS,CODE)

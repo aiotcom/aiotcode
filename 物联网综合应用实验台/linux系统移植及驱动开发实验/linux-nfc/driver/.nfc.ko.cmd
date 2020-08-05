@@ -1,0 +1,1 @@
+cmd_/mnt/hgfs/linux_share/linux-nfc/driver/nfc.ko := arm-poky-linux-gnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /mnt/hgfs/linux_share/linux-nfc/driver/nfc.ko /mnt/hgfs/linux_share/linux-nfc/driver/nfc.o /mnt/hgfs/linux_share/linux-nfc/driver/nfc.mod.o

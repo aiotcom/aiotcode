@@ -1,0 +1,1 @@
+cmd_/mnt/hgfs/linux_share/linux-hf_rfid/driver/rc522.ko := arm-poky-linux-gnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /mnt/hgfs/linux_share/linux-hf_rfid/driver/rc522.ko /mnt/hgfs/linux_share/linux-hf_rfid/driver/rc522.o /mnt/hgfs/linux_share/linux-hf_rfid/driver/rc522.mod.o

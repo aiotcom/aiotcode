@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>3679056162</fileChecksum>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$PROJ_DIR$\HARDWARE\OLED\OLED.c</file>
+      <file>$PROJ_DIR$\HARDWARE\Delay\delay.c</file>
+      <file>$PROJ_DIR$\HARDWARE\Lamp\Lamp.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\Lamp.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\Lamp.r51</file>
+      <file>$PROJ_DIR$\HARDWARE\Usart\Usart.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\OLED.pbi</file>
+      <file>$PROJ_DIR$\HARDWARE\Time\Time.c</file>
+      <file>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_cc2530F256_banked.xcl</file>
+      <file>$PROJ_DIR$\Debug\Obj\LED.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\Time.pbi</file>
+      <file>$PROJ_DIR$\HARDWARE\Vibration\Vibration.c</file>
+      <file>$PROJ_DIR$\Debug\Exe\LED.d51</file>
+      <file>$PROJ_DIR$\Debug\Exe\Optocoupler.d51</file>
+      <file>$PROJ_DIR$\HARDWARE\Optocoupler\Optocoupler.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\Test.pbd</file>
+      <file>$PROJ_DIR$\Debug\Obj\Fan.r51</file>
+      <file>$PROJ_DIR$\Debug\Exe\Test.d51</file>
+      <file>$PROJ_DIR$\Debug\Obj\LED.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\Vibration.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\Usart.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\delay.pbi</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\HARDWARE\Lamp\Lamp.h</file>
+      <file>$TOOLKIT_DIR$\inc\ioCC2530.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl-pli-blxd-1e16x01.r51</file>
+      <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
+      <file>$PROJ_DIR$\HARDWARE\Fan\Fan.h</file>
+      <file>$PROJ_DIR$\HARDWARE\LED\LED.c</file>
+      <file>$PROJ_DIR$\HARDWARE\OLEDIIC\OLEDIIC.c</file>
+      <file>$PROJ_DIR$\HARDWARE\Rs485\Rs485.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\Rs485.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\OLEDIIC.r51</file>
+      <file>$PROJ_DIR$\Debug\Exe\Vibration.hex</file>
+      <file>$PROJ_DIR$\Debug\Obj\Optocoupler.pbd</file>
+      <file>$PROJ_DIR$\HARDWARE\Time\Time.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\OLEDIIC.pbi</file>
+      <file>$PROJ_DIR$\HARDWARE\Usart\Usart.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\Vibration.pbd</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\HARDWARE\OLEDIIC\OLEDIIC.h</file>
+      <file>$PROJ_DIR$\HARDWARE\WiFi\WiFi.h</file>
+      <file>$PROJ_DIR$\HARDWARE\Delay\delay.h</file>
+      <file>$PROJ_DIR$\HARDWARE\WiFi\WiFi.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\OLED.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\Optocoupler.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\Usart.r51</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdio.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\Rs485.r51</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdlib.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\LED.pbd</file>
+      <file>$PROJ_DIR$\HARDWARE\LED\LED.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdarg.h</file>
+      <file>$PROJ_DIR$\HARDWARE\Rs485\Rs485.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\Optocoupler.r51</file>
+      <file>$PROJ_DIR$\HARDWARE\Fan\Fan.c</file>
+      <file>$PROJ_DIR$\HARDWARE\OLED\OLED.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\Fan.pbi</file>
+      <file>$PROJ_DIR$\HARDWARE\Vibration\Vibration.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\WiFi.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.r51</file>
+      <file>$PROJ_DIR$\HARDWARE\Optocoupler\Optocoupler.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\Vibration.r51</file>
+      <file>$PROJ_DIR$\Debug\Exe\Vibration.d51</file>
+      <file>$PROJ_DIR$\Debug\Obj\WiFi.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\Time.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\delay.r51</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\HARDWARE\OLED\OLED.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 6</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 45</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 41 24 43 50 25 27 57</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 41 24 43 50 25 27 57</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\HARDWARE\Delay\delay.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 21</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 67</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43 24</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 43 24</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\HARDWARE\Lamp\Lamp.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 3</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 4</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43 24 23</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 43 24 23</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 64 34</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\HARDWARE\Time\Time.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 66</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43 24 36 52</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 43 24 36 52</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\HARDWARE\Vibration\Vibration.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 19</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 63</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43 24 59</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 43 24 59</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\LED.d51</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 8 18 4 49 47 67 61 26</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\Optocoupler.d51</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 8 4 45 33 55 49 47 67 61 26</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\HARDWARE\Optocoupler\Optocoupler.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 46</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 55</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43 24 62</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 43 24 62</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Obj\Test.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 9 3 10 21 40</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\Test.d51</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 8 18 4 66 67 61 26</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 40</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 61</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 24 59 41 43 5 48 53 25 27 50 54 57 23</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 24 59 41 43 5 48 53 25 27 50 54 57 23</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\HARDWARE\LED\LED.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 9</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 18</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 43 24 52</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\HARDWARE\OLEDIIC\OLEDIIC.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 33</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43 24 41</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 43 24 41</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\HARDWARE\Rs485\Rs485.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 32</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 49</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 50 25 27 48 53 54 24 43 5</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 50 25 27 48 53 54 24 43 5</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Obj\Optocoupler.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 3 6 37 46 32 20 21 40</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\HARDWARE\Usart\Usart.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 20</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 47</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 5 48 53 25 27 50 24 43 54</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 5 48 53 25 27 50 24 43 54</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Obj\Vibration.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 3 6 37 32 20 19 21 40</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\HARDWARE\WiFi\WiFi.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 60</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 65</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 5 48 53 25 27 50 24 43 42</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Obj\LED.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 9 3 32 20 21 40</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\HARDWARE\Fan\Fan.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 58</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 16</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43 24 28</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 43 24 28</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\Vibration.d51</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 34</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 8 4 45 33 49 47 63 67 61 26</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

@@ -1,0 +1,1 @@
+cmd_/mnt/hgfs/linux_share/linux-wifi/driver/esp8266.ko := arm-poky-linux-gnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /mnt/hgfs/linux_share/linux-wifi/driver/esp8266.ko /mnt/hgfs/linux_share/linux-wifi/driver/esp8266.o /mnt/hgfs/linux_share/linux-wifi/driver/esp8266.mod.o

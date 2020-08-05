@@ -1,0 +1,1 @@
+cmd_/mnt/hgfs/linux_share/exp6_one_key/driver/one_key.ko := arm-poky-linux-gnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /mnt/hgfs/linux_share/exp6_one_key/driver/one_key.ko /mnt/hgfs/linux_share/exp6_one_key/driver/one_key.o /mnt/hgfs/linux_share/exp6_one_key/driver/one_key.mod.o

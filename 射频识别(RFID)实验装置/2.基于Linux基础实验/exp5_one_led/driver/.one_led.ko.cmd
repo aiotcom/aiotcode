@@ -1,0 +1,1 @@
+cmd_/mnt/hgfs/linux_share/exp5_one_led/driver/one_led.ko := arm-poky-linux-gnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /mnt/hgfs/linux_share/exp5_one_led/driver/one_led.ko /mnt/hgfs/linux_share/exp5_one_led/driver/one_led.o /mnt/hgfs/linux_share/exp5_one_led/driver/one_led.mod.o

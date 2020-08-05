@@ -1,0 +1,338 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         30/Dec/2019  11:05:47 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร\ #
+#                          ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                 #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Components\HARDW #
+#                          ARE\led_mode.c                                     #
+#    Command line       =  -f "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ื #
+#                          ฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6             #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\..\..\..\Tools\CC2530DB #
+#                          \f8wEndev.cfg" (-DCPU32MHZ -DROOT=__near_func      #
+#                          -DBLINK_LEDS) -f "D:\OuYangDong\Project\สตั้ฯไฝจษ่ #
+#                          \ถเอ๘ศฺบฯสตั้ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3 #
+#                          .6 ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\Tools\CC253 #
+#                          0DB\f8wConfig.cfg" (-DSECURE=0                     #
+#                          -DZG_SECURE_DYNAMIC=0 -DREFLECTOR                  #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFF11                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100) -DREJOIN_POLL_RATE=440   #
+#                          "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร #
+#                          \ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Components\HARDW #
+#                          ARE\led_mode.c" -D NWK_AUTO_POLL -D ZTOOL_P1 -D    #
+#                          MT_SYS_FUNC -D MT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG  #
+#                          -lC "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ #
+#                          ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6            #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\EndDeviceEB\List\" -lA  #
+#                          "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร #
+#                          \ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\EndDeviceEB\List\"      #
+#                          --diag_suppress Pe001,Pa010 -o                     #
+#                          "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร #
+#                          \ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\EndDeviceEB\Obj\" -e    #
+#                          --no_unroll --no_inline --no_tbaa --debug          #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I "D:\OuYangDong\Project\สตั #
+#                          ้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ต #
+#                          ฤสตั้\3.6 ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\" -I          #
+#                          "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร #
+#                          \ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\..\SOURCE\" -I          #
+#                          "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร #
+#                          \ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\..\..\..\ZMAIN\TI2530DB #
+#                          \" -I "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสต #
+#                          ั้ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6          #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPONEN #
+#                          TS\MT\" -I "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศ #
+#                          ฺบฯสตั้ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6     #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPONEN #
+#                          TS\HAL\INCLUDE\" -I "D:\OuYangDong\Project\สตั้ฯไฝ #
+#                          จษ่\ถเอ๘ศฺบฯสตั้ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั #
+#                          ้\3.6 ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\z #
+#                          stack\Samples\SampleApp\CC2530DB\..\..\..\..\..\CO #
+#                          MPONENTS\HAL\TARGET\CC2530EB\" -I                  #
+#                          "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร #
+#                          \ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPONEN #
+#                          TS\OSAL\MCU\CCSOC\" -I "D:\OuYangDong\Project\สตั้ #
+#                          ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤ #
+#                          สตั้\3.6 ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Project #
+#                          s\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\.. #
+#                          \COMPONENTS\OSAL\INCLUDE\" -I                      #
+#                          "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร #
+#                          \ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPONEN #
+#                          TS\STACK\AF\" -I "D:\OuYangDong\Project\สตั้ฯไฝจษ่ #
+#                          \ถเอ๘ศฺบฯสตั้ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3 #
+#                          .6 ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPO #
+#                          NENTS\STACK\NWK\" -I "D:\OuYangDong\Project\สตั้ฯไ #
+#                          ฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสต #
+#                          ั้\3.6 ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\ #
+#                          zstack\Samples\SampleApp\CC2530DB\..\..\..\..\..\C #
+#                          OMPONENTS\STACK\SEC\" -I                           #
+#                          "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร #
+#                          \ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPONEN #
+#                          TS\STACK\SAPI\" -I "D:\OuYangDong\Project\สตั้ฯไฝจ #
+#                          ษ่\ถเอ๘ศฺบฯสตั้ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้ #
+#                          \3.6 ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zs #
+#                          tack\Samples\SampleApp\CC2530DB\..\..\..\..\..\COM #
+#                          PONENTS\STACK\SYS\" -I "D:\OuYangDong\Project\สตั้ #
+#                          ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤ #
+#                          สตั้\3.6 ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Project #
+#                          s\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\.. #
+#                          \COMPONENTS\STACK\ZDO\" -I                         #
+#                          "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร #
+#                          \ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPONEN #
+#                          TS\ZMAC\F8W\" -I "D:\OuYangDong\Project\สตั้ฯไฝจษ่ #
+#                          \ถเอ๘ศฺบฯสตั้ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3 #
+#                          .6 ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zsta #
+#                          ck\Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPO #
+#                          NENTS\ZMAC\" -I "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ #
+#                          ถเอ๘ศฺบฯสตั้ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3. #
+#                          6 ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstac #
+#                          k\Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPON #
+#                          ENTS\SERVICES\SADDR\" -I                           #
+#                          "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร #
+#                          \ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPONEN #
+#                          TS\SERVICES\SDATA\" -I "D:\OuYangDong\Project\สตั้ #
+#                          ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤ #
+#                          สตั้\3.6 ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Project #
+#                          s\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\.. #
+#                          \COMPONENTS\MAC\INCLUDE\" -I                       #
+#                          "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร #
+#                          \ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPONEN #
+#                          TS\MAC\HIGH_LEVEL\" -I "D:\OuYangDong\Project\สตั้ #
+#                          ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤ #
+#                          สตั้\3.6 ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Project #
+#                          s\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\.. #
+#                          \COMPONENTS\MAC\LOW_LEVEL\srf04\" -I               #
+#                          "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร #
+#                          \ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPONEN #
+#                          TS\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\" -I            #
+#                          "D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร #
+#                          \ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\..\..\..\..\..\COMPONEN #
+#                          TS\HARDWARE\" -Om                                  #
+#    List file          =  D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร\ #
+#                          ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                 #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\EndDeviceEB\List\led_mo #
+#                          de.lst                                             #
+#    Object file        =  D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร\ #
+#                          ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6                 #
+#                          ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Projects\zstack\ #
+#                          Samples\SampleApp\CC2530DB\EndDeviceEB\Obj\led_mod #
+#                          e.r51                                              #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\OuYangDong\Project\สตั้ฯไฝจษ่\ถเอ๘ศฺบฯสตั้ืฐึร\ตฺศýียกขป๙ำฺฮÞฯ฿ดซธะอ๘ย็ตฤสตั้\3.6 ZigBeeตใฒฅอจะลสตั้-ษฯฑจดซธะฦ๗สýพÝ\Components\HARDWARE\led_mode.c
+      1          #include "led_mode.h"
+
+   \                                 In  segment SFR_AN, at 0x90
+   \   union <unnamed> volatile __sfr _A_P1
+   \                     _A_P1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf4
+   \   unsigned char volatile __sfr P1SEL
+   \                     P1SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf6
+   \   unsigned char volatile __sfr P1INP
+   \                     P1INP:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfe
+   \   unsigned char volatile __sfr P1DIR
+   \                     P1DIR:
+   \   000000                DS 1
+      2          /*
+      3          ณ๕สผปฏLEDฤฃฟ้ษฯตฤS4->P1.6ฐดผüฃฌLED2->P1.2ฐดผüตฤIOดฎฟฺฟฺ
+      4          */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+      5          void LedMode_Init(void)
+   \                     LedMode_Init:
+      6          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+      7              //LEDตฦIOฟฺณ๕สผปฏ
+      8              P1SEL &= ~BV(2);     //ษ่ึรP1.2ฮชฦีอจIOฟฺ  
+   \   000000   53F4FB       ANL     0xf4,#0xfb
+      9              P1DIR |= BV(2);      //P1.2ถจาๅฮชสไณ๖
+   \   000003   43FE04       ORL     0xfe,#0x4
+     10          
+     11              //ฐดผüIOฟฺณ๕สผปฏ    
+     12              P1SEL &= ~BV(6);     //ษ่ึรP1.6ฮชฦีอจIOฟฺ  
+   \   000006   53F4BF       ANL     0xf4,#0xbf
+     13              P1DIR &= ~BV(6);      //P1.6ถจาๅฮชสไศ๋ 
+   \   000009   53FEBF       ANL     0xfe,#0xbf
+     14              P1INP &= ~BV(6);     //ด๒ฟชP1.6ษฯภญต็ื่
+   \   00000C   53F6BF       ANL     0xf6,#0xbf
+     15          }
+   \   00000F   02....       LJMP    ?BRET
+   \   000012                REQUIRE P1SEL
+   \   000012                REQUIRE P1DIR
+   \   000012                REQUIRE P1INP
+     16          /*
+     17          LEDฤฃฟ้ษฯLED2ตใมม
+     18          */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     19          void Led2_On(void)   
+   \                     Led2_On:
+     20          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     21            P1_2 = 0;
+   \   000000   C292         CLR     0x90.2
+     22          }
+   \   000002   02....       LJMP    ?BRET
+   \   000005                REQUIRE _A_P1
+     23          /*
+     24          LEDฤฃฟ้ษฯLED2ฯจร๐
+     25          */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     26          void Led2_Off(void)  
+   \                     Led2_Off:
+     27          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     28            P1_2 = 1;
+   \   000000   D292         SETB    0x90.2
+     29          }
+   \   000002   02....       LJMP    ?BRET
+   \   000005                REQUIRE _A_P1
+     30          /*
+     31          ถมLEDฤฃฟ้ษฯตฤฐดผüS4
+     32          */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     33          uint8 Key_ReadS4(void)
+   \                     Key_ReadS4:
+     34          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     35            return P1_6?KEY_RELASE:KEY_PRESS;
+   \   000000   A296         MOV     C,0x90.6
+   \   000002   E4           CLR     A
+   \   000003   33           RLC     A
+   \   000004   F9           MOV     R1,A
+   \   000005   02....       LJMP    ?BRET
+   \   000008                REQUIRE _A_P1
+     36          }
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??LedMode_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    LedMode_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Led2_On?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Led2_On
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Led2_Off?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Led2_Off
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Key_ReadS4?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Key_ReadS4
+
+   Maximum stack usage in bytes:
+
+     Function     ISTACK PSTACK XSTACK
+     --------     ------ ------ ------
+     Key_ReadS4       0      0      0
+     Led2_Off         0      0      0
+     Led2_On          0      0      0
+     LedMode_Init     0      0      0
+
+
+   Segment part sizes:
+
+     Function/Label       Bytes
+     --------------       -----
+     _A_P1                   1
+     P1SEL                   1
+     P1INP                   1
+     P1DIR                   1
+     LedMode_Init           18
+     Led2_On                 5
+     Led2_Off                5
+     Key_ReadS4              8
+     ??LedMode_Init?relay    6
+     ??Led2_On?relay         6
+     ??Led2_Off?relay        6
+     ??Key_ReadS4?relay      6
+
+ 
+ 36 bytes in segment BANKED_CODE
+ 24 bytes in segment BANK_RELAYS
+  4 bytes in segment SFR_AN
+ 
+ 60 bytes of CODE memory
+  0 bytes of DATA memory (+ 4 bytes shared)
+
+Errors: none
+Warnings: none

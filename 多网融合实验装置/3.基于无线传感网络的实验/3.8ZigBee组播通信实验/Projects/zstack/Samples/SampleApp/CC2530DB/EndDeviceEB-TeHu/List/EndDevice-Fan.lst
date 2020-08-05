@@ -1,0 +1,598 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         01/Mar/2019  14:28:03 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\Source\EndDevice- #
+#                          Fan.c                                              #
+#    Command line       =  -f D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-grou #
+#                          p\Projects\zstack\Samples\SampleApp\CC2530DB\..\.. #
+#                          \..\Tools\CC2530DB\f8wEndev.cfg (-DCPU32MHZ        #
+#                          -DROOT=__near_func -DBLINK_LEDS) -f                #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \Tools\CC2530DB\f8wConfig.cfg (-DSECURE=0          #
+#                          -DZG_SECURE_DYNAMIC=0 -DREFLECTOR                  #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFF11                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=TRUE      #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100) -DREJOIN_POLL_RATE=440   #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\Source\EndDevice- #
+#                          Fan.c -D NWK_AUTO_POLL -D ZTOOL_P1 -D MT_SYS_FUNC  #
+#                          -D MT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG -lC          #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\EndDevic #
+#                          eEB-TeHu\List\ -lA D:\ZigBee\KJXY-ZigBee\KJXY-ZigB #
+#                          eeV2.0\exp9-group\Projects\zstack\Samples\SampleAp #
+#                          p\CC2530DB\EndDeviceEB-TeHu\List\ --diag_suppress  #
+#                          Pe001,Pa010 -o D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2 #
+#                          .0\exp9-group\Projects\zstack\Samples\SampleApp\CC #
+#                          2530DB\EndDeviceEB-TeHu\Obj\ -e --no_unroll        #
+#                          --no_inline --no_tbaa --debug --core=plain         #
+#                          --dptr=16,1 --data_model=large                     #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I D:\ZigBee\KJXY-ZigBee\KJXY #
+#                          -ZigBeeV2.0\exp9-group\Projects\zstack\Samples\Sam #
+#                          pleApp\CC2530DB\ -I D:\ZigBee\KJXY-ZigBee\KJXY-Zig #
+#                          BeeV2.0\exp9-group\Projects\zstack\Samples\SampleA #
+#                          pp\CC2530DB\..\SOURCE\ -I                          #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \ZMAIN\TI2530DB\ -I D:\ZigBee\KJXY-ZigBee\KJXY-Zig #
+#                          BeeV2.0\exp9-group\Projects\zstack\Samples\SampleA #
+#                          pp\CC2530DB\..\..\..\..\..\COMPONENTS\MT\ -I       #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\HAL\INCLUDE\ -I                  #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\HAL\TARGET\CC2530EB\ -I          #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\OSAL\MCU\CCSOC\ -I               #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\OSAL\INCLUDE\ -I                 #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\STACK\AF\ -I                     #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\STACK\NWK\ -I                    #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\STACK\SEC\ -I                    #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\STACK\SAPI\ -I                   #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\STACK\SYS\ -I                    #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\STACK\ZDO\ -I                    #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\ZMAC\F8W\ -I                     #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\ZMAC\ -I                         #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\SERVICES\SADDR\ -I               #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\SERVICES\SDATA\ -I               #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\MAC\INCLUDE\ -I                  #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\MAC\HIGH_LEVEL\ -I               #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\MAC\LOW_LEVEL\srf04\ -I          #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\ #
+#                           -I D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-gro #
+#                          up\Projects\zstack\Samples\SampleApp\CC2530DB\..\. #
+#                          .\..\..\..\COMPONENTS\HARDWARE\ -I                 #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\HARDWARE\MPU6050\ -I             #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\..\..\.. #
+#                          \..\..\COMPONENTS\HARDWARE\MPU6050\eMPL\ -Om       #
+#    List file          =  D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\EndDevic #
+#                          eEB-TeHu\List\EndDevice-Fan.lst                    #
+#    Object file        =  D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\P #
+#                          rojects\zstack\Samples\SampleApp\CC2530DB\EndDevic #
+#                          eEB-TeHu\Obj\EndDevice-Fan.r51                     #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\Projects\zstack\Samples\SampleApp\Source\EndDevice-Fan.c
+      1          /**************************************************************************************************
+      2            Filename:       SampleApp.c
+      3            Revised:        $Date: 2009-03-18 15:56:27 -0700 (Wed, 18 Mar 2009) $
+      4            Revision:       $Revision: 19453 $
+      5          
+      6            Description:    Sample Application (no Profile).
+      7          
+      8          
+      9            Copyright 2007 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11            IMPORTANT: Your use of this Software is limited to those specific rights
+     12            granted under the terms of a software license agreement between the user
+     13            who downloaded the software, his/her employer (which must be your employer)
+     14            and Texas Instruments Incorporated (the "License").  You may not use this
+     15            Software unless you agree to abide by the terms of the License. The License
+     16            limits your use, and you acknowledge, that the Software may not be modified,
+     17            copied or distributed unless embedded on a Texas Instruments microcontroller
+     18            or used solely and exclusively in conjunction with a Texas Instruments radio
+     19            frequency transceiver, which is integrated into your product.  Other than for
+     20            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     21            works of, modify, distribute, perform, display or sell this Software and/or
+     22            its documentation for any purpose.
+     23          
+     24            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     25            PROVIDED 揂S IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     26            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     27            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     28            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     29            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     30            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     31            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     32            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     33            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     34            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     35          
+     36            Should you have any questions regarding your right to use this Software,
+     37            contact Texas Instruments Incorporated at www.TI.com.
+     38          **************************************************************************************************/
+     39          
+     40          /*********************************************************************
+     41            This application isn't intended to do anything useful, it is
+     42            intended to be a simple example of an application's structure.
+     43          
+     44            This application sends it's messages either as broadcast or
+     45            broadcast filtered group messages.  The other (more normal)
+     46            message addressing is unicast.  Most of the other sample
+     47            applications are written to support the unicast message model.
+     48          
+     49            Key control:
+     50              SW1:  Sends a flash command to all devices in Group 1.
+     51              SW2:  Adds/Removes (toggles) this device in and out
+     52                    of Group 1.  This will enable and disable the
+     53                    reception of the flash command.
+     54          *********************************************************************/
+     55          
+     56          /*********************************************************************
+     57           * INCLUDES
+     58           */
+     59          #include "ZComDef.h"
+     60          #include "hal_drivers.h"
+     61          #include "OSAL.h"
+     62          #include "OSAL_Tasks.h"
+     63          #include "nwk.h"
+     64          #include "APS.h"
+     65          #include "ZDApp.h"
+     66          #if defined ( ZIGBEE_FREQ_AGILITY ) || defined ( ZIGBEE_PANID_CONFLICT )
+     67            #include "ZDNwkMgr.h"
+     68          #endif
+     69          #if defined ( ZIGBEE_FRAGMENTATION )
+     70            #include "aps_frag.h"
+     71          #endif
+     72          
+     73          #include "SampleApp.h"
+     74          #include "WiFiGate.h"
+     75          #include "OSAL.h"
+     76          #include "ZGlobals.h"
+     77          #include "AF.h"
+     78          #include "aps_groups.h"
+     79          #include "ZDApp.h"
+     80          
+     81          #include "SampleApp.h"
+     82          #include "SampleAppHw.h"
+     83          
+     84          #include "OnBoard.h"
+     85          
+     86          /* HAL */
+     87          #include "hal_lcd.h"
+     88          #include "hal_led.h"
+     89          #include "hal_key.h"
+     90          #include "string.h"
+     91          
+     92          #include "MT_UART.h"
+     93          #include "MT_APP.h"
+     94          #include "MT.h"
+     95          #include "OLED.h"
+     96          #include "SHT20.h"
+     97          #include "bottom_led.h"
+     98          #include "stdio.h"
+     99          void Group_SendTemperature(void);
+    100          // The order in this table must be identical to the task initialization calls below in osalInitTask.
+    101          const pTaskEventHandlerFn tasksArr[] = {
+    102            macEventLoop,
+    103            nwk_event_loop,
+    104            Hal_ProcessEvent,
+    105          #if defined( MT_TASK )
+    106            MT_ProcessEvent,
+    107          #endif
+    108            APS_event_loop,
+    109          #if defined ( ZIGBEE_FRAGMENTATION )
+    110            APSF_ProcessEvent,
+    111          #endif
+    112            ZDApp_event_loop,
+    113          #if defined ( ZIGBEE_FREQ_AGILITY ) || defined ( ZIGBEE_PANID_CONFLICT )
+    114            ZDNwkMgr_event_loop,
+    115          #endif
+    116            SampleApp_ProcessEvent
+    117          };
+    118          
+    119          const uint8 tasksCnt = sizeof( tasksArr ) / sizeof( tasksArr[0] );
+    120          uint16 *tasksEvents;
+    121          /*********************************************************************
+    122           * @fn      osalInitTasks
+    123           *
+    124           * @brief   This function invokes the initialization function for each task.
+    125           *
+    126           * @param   void
+    127           *
+    128           * @return  none
+    129           */
+    130          void osalInitTasks( void )
+    131          {
+    132            uint8 taskID = 0;
+    133          
+    134            tasksEvents = (uint16 *)osal_mem_alloc( sizeof( uint16 ) * tasksCnt);
+    135            osal_memset( tasksEvents, 0, (sizeof( uint16 ) * tasksCnt));
+    136          
+    137            macTaskInit( taskID++ );
+    138            nwk_init( taskID++ );
+    139            Hal_Init( taskID++ );
+    140          #if defined( MT_TASK )
+    141            MT_TaskInit( taskID++ );
+    142          #endif
+    143            APS_Init( taskID++ );
+    144          #if defined ( ZIGBEE_FRAGMENTATION )
+    145            APSF_Init( taskID++ );
+    146          #endif
+    147            ZDApp_Init( taskID++ );
+    148          #if defined ( ZIGBEE_FREQ_AGILITY ) || defined ( ZIGBEE_PANID_CONFLICT )
+    149            ZDNwkMgr_Init( taskID++ );
+    150          #endif
+    151            SampleApp_Init( taskID );
+    152          }
+    153          /*********************************************************************
+    154           * MACROS
+    155           */
+    156          
+    157          /*********************************************************************
+    158           * CONSTANTS
+    159           */
+    160          
+    161          /*********************************************************************
+    162           * TYPEDEFS
+    163           */
+    164          
+    165          /*********************************************************************
+    166           * GLOBAL VARIABLES
+    167           */
+    168          
+    169          // This list should be filled with Application specific Cluster IDs.
+    170          const cId_t SampleApp_ClusterList[SAMPLEAPP_MAX_CLUSTERS] =
+                                                   ^
+Error[Pe020]: identifier "SAMPLEAPP_MAX_CLUSTERS" is undefined
+    171          {
+    172            SAMPLEAPP_PERIODIC_CLUSTERID,
+                   ^
+Error[Pe020]: identifier "SAMPLEAPP_PERIODIC_CLUSTERID" is undefined
+    173            SAMPLEAPP_FLASH_CLUSTERID
+                   ^
+Error[Pe020]: identifier "SAMPLEAPP_FLASH_CLUSTERID" is undefined
+    174          };
+    175          
+    176          const SimpleDescriptionFormat_t SampleApp_SimpleDesc =
+    177          {
+    178            SAMPLEAPP_ENDPOINT,              //  int Endpoint;
+    179            SAMPLEAPP_PROFID,                //  uint16 AppProfId[2];
+    180            SAMPLEAPP_DEVICEID,              //  uint16 AppDeviceId[2];
+    181            SAMPLEAPP_DEVICE_VERSION,        //  int   AppDevVer:4;
+    182            SAMPLEAPP_FLAGS,                 //  int   AppFlags:4;
+    183            SAMPLEAPP_MAX_CLUSTERS,          //  uint8  AppNumInClusters;
+    184            (cId_t *)SampleApp_ClusterList,  //  uint8 *pAppInClusterList;
+                            ^
+Error[Pe044]: expression must have pointer type
+    185            SAMPLEAPP_MAX_CLUSTERS,          //  uint8  AppNumInClusters;
+    186            (cId_t *)SampleApp_ClusterList   //  uint8 *pAppInClusterList;
+                            ^
+Error[Pe044]: expression must have pointer type
+    187          };
+    188          
+    189          // This is the Endpoint/Interface description.  It is defined here, but
+    190          // filled-in in SampleApp_Init().  Another way to go would be to fill
+    191          // in the structure here and make it a "const" (in code space).  The
+    192          // way it's defined in this sample app it is define in RAM.
+    193          endPointDesc_t SampleApp_epDesc;
+    194          
+    195          /*********************************************************************
+    196           * EXTERNAL VARIABLES
+    197           */
+    198          
+    199          /*********************************************************************
+    200           * EXTERNAL FUNCTIONS
+    201           */
+    202          
+    203          /*********************************************************************
+    204           * LOCAL VARIABLES
+    205           */
+    206          uint8 SampleApp_TaskID;   // Task ID for internal task/event processing
+    207                                    // This variable will be received when
+    208                                    // SampleApp_Init() is called.
+    209          devStates_t SampleApp_NwkState;
+    210          
+    211          uint8 SampleApp_TransID;  // This is the unique message ID (counter)
+    212          
+    213          afAddrType_t SampleApp_Periodic_DstAddr;
+    214          afAddrType_t SampleApp_Flash_DstAddr;
+    215          
+    216          afAddrType_t Point_To_Point_DstAddr;//点对点通信定义
+    217          
+    218          afAddrType_t Group_DstAddr;//网蜂组播通信定义
+    219          
+    220          //设置两个组 SampleApp_Group WEBEE_Group
+    221          aps_Group_t SampleApp_Group;
+    222          aps_Group_t WEBEE_Group; 
+    223          
+    224          #define WEBEE_GROUP       0x0002      //网蜂组播号2
+    225          #define SAMPLE_APP_GROUNP 0x0001      //网蜂组播号1
+    226          
+    227          uint8 SendIndicate = 1;
+    228          uint8 ReadTempHumiControl = 1;//ReadTempHumiControl=0 读温度 ;=1 读湿度
+    229          /*********************************************************************
+    230           * LOCAL FUNCTIONS
+    231           */
+    232          void SampleApp_MessageMSGCB( afIncomingMSGPacket_t *pckt );
+    233          /*********************************************************************
+    234           * NETWORK LAYER CALLBACKS
+    235           */
+    236          
+    237          /*********************************************************************
+    238           * PUBLIC FUNCTIONS
+    239           */
+    240          
+    241          /*********************************************************************
+    242           * @fn      SampleApp_Init
+    243           *
+    244           * @brief   Initialization function for the Generic App Task.
+    245           *          This is called during initialization and should contain
+    246           *          any application specific initialization (ie. hardware
+    247           *          initialization/setup, table initialization, power up
+    248           *          notificaiton ... ).
+    249           *
+    250           * @param   task_id - the ID assigned by OSAL.  This ID should be
+    251           *                    used to send messages and set timers.
+    252           *
+    253           * @return  none
+    254           */
+    255          void SampleApp_Init( uint8 task_id )
+    256          {
+    257            SampleApp_TaskID = task_id;
+    258            SampleApp_NwkState = DEV_INIT;
+    259            SampleApp_TransID = 0;
+    260            
+    261           /***********串口初始化************/
+    262            printf("i am coordinator\r\n");
+    263          //***************设置组播通信目的地址参数****************************** 
+    264            Group_DstAddr.addrMode = (afAddrMode_t)afAddrGroup;
+    265            Group_DstAddr.endPoint = SAMPLEAPP_ENDPOINT;   
+    266          //***************设置组播通信目的地址参数******************************    
+    267          
+    268          //**********设置组名字，添加grounp***********************************  
+    269          #if 1  
+    270            Group_DstAddr.addr.shortAddr = SAMPLE_APP_GROUNP;//WEBEE_GROUP; //加入WEBEE_GROUP    
+    271            SampleApp_Group.ID = SAMPLE_APP_GROUNP;//加入到SAMPLE_APP_GROUP组ID
+    272            osal_memcpy( SampleApp_Group.name, "Group 1", 7  );//组名称
+    273          #else
+    274            Group_DstAddr.addr.shortAddr = WEBEE_GROUP;//WEBEE_GROUP; //加入WEBEE_GROUP  
+    275            SampleApp_Group.ID = WEBEE_GROUP;
+    276            osal_memcpy( SampleApp_Group.name, "Group 2", 7  );//组名称  
+    277          #endif    
+    278          //**********添加grounp***********************************  
+    279            aps_AddGroup( SAMPLEAPP_ENDPOINT, &SampleApp_Group ); 
+    280          //*********注册端点**************************************
+    281            // Fill out the endpoint description.
+    282            SampleApp_epDesc.endPoint     = SAMPLEAPP_ENDPOINT;
+    283            SampleApp_epDesc.task_id      = &SampleApp_TaskID;
+    284            SampleApp_epDesc.simpleDesc   = (SimpleDescriptionFormat_t *)&SampleApp_SimpleDesc;
+    285            SampleApp_epDesc.latencyReq   = noLatencyReqs;
+    286            // Register the endpoint description with the AF
+    287            afRegister( &SampleApp_epDesc );
+    288            osal_start_timerEx( SampleApp_TaskID, READ_TEMP_HUMI_MSG_EVT,READ_TEMP_HUMI_MSG_TIMEOUT); //启动读温湿度 
+                                                         ^
+Error[Pe020]: identifier "READ_TEMP_HUMI_MSG_EVT" is undefined
+
+    osal_start_timerEx( SampleApp_TaskID, READ_TEMP_HUMI_MSG_EVT,READ_TEMP_HUMI_MSG_TIMEOUT); //启动读温湿度 
+                                                                 ^
+"D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp9-group\Projects\zstack\Samples\SampleApp\Source\EndDevice-Fan.c",288  Error[Pe020]: 
+          identifier "READ_TEMP_HUMI_MSG_TIMEOUT" is undefined
+    289          //*********注册端点**************************************  
+    290          }
+    291          
+    292          /*********************************************************************
+    293           * @fn      SampleApp_ProcessEvent
+    294           *
+    295           * @brief   Generic Application Task event processor.  This function
+    296           *          is called to process all events for the task.  Events
+    297           *          include timers, messages and any other user defined events.
+    298           *
+    299           * @param   task_id  - The OSAL assigned task ID.
+    300           * @param   events - events to process.  This is a bit map and can
+    301           *                   contain more than one event.
+    302           *
+    303           * @return  none
+    304           */
+    305          uint16 SampleApp_ProcessEvent( uint8 task_id, uint16 events )
+    306          {
+    307            afIncomingMSGPacket_t *MSGpkt;
+    308            (void)task_id;  // Intentionally unreferenced parameter
+    309          
+    310            if ( events & SYS_EVENT_MSG )
+    311            {
+    312              MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive( SampleApp_TaskID );
+    313              while ( MSGpkt )
+    314              {
+    315                switch ( MSGpkt->hdr.event )
+    316                {        
+    317                  // Received when a messages is received (OTA) for this endpoint
+    318                  case AF_INCOMING_MSG_CMD:
+    319                    SampleApp_MessageMSGCB( MSGpkt );
+    320                    break;
+    321          
+    322                  // Received whenever the device changes state in the network
+    323                  case ZDO_STATE_CHANGE:
+    324                    SampleApp_NwkState = (devStates_t)(MSGpkt->hdr.status);
+    325                    if(SampleApp_NwkState == DEV_ZB_COORD)
+    326                    {
+    327                      printf("coord ready!\r\n");
+    328                    }
+    329                    if (  (SampleApp_NwkState == DEV_ROUTER)
+    330                        ||(SampleApp_NwkState == DEV_END_DEVICE) )
+    331                    {
+    332                      //设置读温湿度传感器值，读出的数据保存在变量发送时再将数据读出来。
+    333                      osal_set_event( SampleApp_TaskID,
+    334                                      READ_TEMP_HUMI_MSG_EVT);
+                                             ^
+Error[Pe020]: identifier "READ_TEMP_HUMI_MSG_EVT" is undefined
+    335                      // 启动定时发送READ_TEMP_HUMI_MSG_TIMEOUT秒后发送传感器数据
+    336                      osal_start_timerEx( SampleApp_TaskID,
+    337                                        SEND_TEMP_HUMI_MSG_EVT,
+                                               ^
+Error[Pe020]: identifier "SEND_TEMP_HUMI_MSG_EVT" is undefined
+    338                                        SEND_TEMP_HUMI_MSG_TIMEOUT );
+                                               ^
+Error[Pe020]: identifier "SEND_TEMP_HUMI_MSG_TIMEOUT" is undefined
+    339                    }
+    340                    break;
+    341          
+    342                  default:
+    343                    break;
+    344                }
+    345                // Release the memory
+    346                osal_msg_deallocate( (uint8 *)MSGpkt );
+    347                // Next - if one is available
+    348                MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive( SampleApp_TaskID );
+    349              }
+    350              // return unprocessed events
+    351              return (events ^ SYS_EVENT_MSG);
+    352            }
+    353          
+    354            if(events & READ_TEMP_HUMI_MSG_EVT )
+                               ^
+Error[Pe020]: identifier "READ_TEMP_HUMI_MSG_EVT" is undefined
+    355            {
+    356              printf("read temp and humi\r\n");
+    357              ReadTempHumiControl?(SHT2x_ReadTemp()):(SHT2x_ReadHumi());//读温湿度值并显示
+    358              ReadTempHumiControl = 1 - ReadTempHumiControl;
+    359              
+    360              osal_start_timerEx( SampleApp_TaskID, READ_TEMP_HUMI_MSG_EVT,READ_TEMP_HUMI_MSG_TIMEOUT);
+                                                                                  ^
+Error[Pe020]: identifier "READ_TEMP_HUMI_MSG_TIMEOUT" is undefined
+    361              
+    362              return (events ^ READ_TEMP_HUMI_MSG_EVT);
+    363            }
+    364            if ( events & SEND_TEMP_HUMI_MSG_EVT )
+                                 ^
+Error[Pe020]: identifier "SEND_TEMP_HUMI_MSG_EVT" is undefined
+    365            {//发送温湿度数据
+    366              SendIndicate = 1-SendIndicate;
+    367              if(SendIndicate == 0)
+    368              {
+    369                Bottom_Blue(); //底座灯亮起蓝色
+    370              }
+    371              else
+    372              {
+    373                Bottom_BlackOut();//底座灯熄灭
+    374              }    
+    375              Group_SendTemperature();
+    376              osal_start_timerEx( SampleApp_TaskID, SEND_TEMP_HUMI_MSG_EVT,
+    377                  (SEND_TEMP_HUMI_MSG_TIMEOUT + (osal_rand() & 0x00FF)) );
+                          ^
+Error[Pe020]: identifier "SEND_TEMP_HUMI_MSG_TIMEOUT" is undefined
+    378          
+    379              // return unprocessed events
+    380              return (events ^ SEND_TEMP_HUMI_MSG_EVT);
+    381            }
+    382          
+    383            // Discard unknown events
+    384            return 0;
+    385          }
+    386          /*********************************************************************
+    387           * @fn      SampleApp_MessageMSGCB
+    388           *
+    389           * @brief   Data message processor callback.  This function processes
+    390           *          any incoming data - probably from other devices.  So, based
+    391           *          on cluster ID, perform the intended action.
+    392           *
+    393           * @param   none
+    394           *
+    395           * @return  none
+    396           */
+    397          void SampleApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )
+    398          {
+    399            switch ( pkt->clusterId )
+    400            {   
+    401            }
+    402          }
+    403          void Group_SendTemperature( void )
+    404          {
+    405            uint8 sendbuf[2];
+    406            sendbuf[0] = SHT2x_GetTemp();//获取温度值
+    407            sendbuf[1] = SHT2x_GetHumi();//获取湿度值  
+    408            
+    409            if ( AF_DataRequest( &Group_DstAddr, &SampleApp_epDesc,
+    410                                 TEMP_HUMI_CLUSTERID,
+                                        ^
+Error[Pe020]: identifier "TEMP_HUMI_CLUSTERID" is undefined
+    411                                 2,
+    412                                 sendbuf,
+    413                                 &SampleApp_TransID,
+    414                                 AF_DISCV_ROUTE,
+    415                                 AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
+    416            {
+    417              printf("tx sucess\r\n");
+    418            }
+    419          }
+    420          /*********************************************************************
+    421          *********************************************************************/
+
+Errors: 15
+Warnings: none

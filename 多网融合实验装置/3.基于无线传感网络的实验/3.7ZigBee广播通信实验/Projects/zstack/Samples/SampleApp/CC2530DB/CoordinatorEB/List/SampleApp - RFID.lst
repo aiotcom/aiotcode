@@ -1,0 +1,561 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         28/Nov/2018  12:44:11 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\Source\SampleApp -     #
+#                          RFID.c                                             #
+#    Command line       =  -f D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Pro #
+#                          jects\zstack\Samples\SampleApp\CC2530DB\..\..\..\T #
+#                          ools\CC2530DB\f8wCoord.cfg (-DCPU32MHZ             #
+#                          -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRU #
+#                          E -DZDO_COORDINATOR -DRTR_NWK -DBLINK_LEDS) -f     #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\Tool #
+#                          s\CC2530DB\f8wConfig.cfg (-DSECURE=0               #
+#                          -DZG_SECURE_DYNAMIC=0 -DREFLECTOR                  #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFF11                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100) -DREJOIN_POLL_RATE=440   #
+#                          "D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Proje #
+#                          cts\zstack\Samples\SampleApp\Source\SampleApp -    #
+#                          RFID.c" -D ZIGBEEPRO -D ZTOOL_P1 -D MT_TASK -D     #
+#                          MT_SYS_FUNC -D xMT_ZDO_FUNC -D                     #
+#                          LCD_SUPPORTED=DEBUG -D NV_RESTORE -lC              #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB #
+#                          \List\ -lA D:\ZigBee\KJXY-ZigBee\useful_code\group #
+#                          cast\Projects\zstack\Samples\SampleApp\CC2530DB\Co #
+#                          ordinatorEB\List\ --diag_suppress Pe001,Pa010 -o   #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB #
+#                          \Obj\ -e --debug --core=plain --dptr=16,1          #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Pro #
+#                          jects\zstack\Samples\SampleApp\CC2530DB\ -I        #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\SOURCE\    #
+#                          -I D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Pro #
+#                          jects\zstack\Samples\SampleApp\CC2530DB\..\..\..\Z #
+#                          MAIN\TI2530DB\ -I D:\ZigBee\KJXY-ZigBee\useful_cod #
+#                          e\groupcast\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\MT\ -I              #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\HAL\INCLUDE\ -I                       #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\HAL\TARGET\CC2530EB\ -I               #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\OSAL\MCU\CCSOC\ -I                    #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\OSAL\INCLUDE\ -I                      #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\STACK\AF\ -I                          #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\STACK\NWK\ -I                         #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\STACK\SEC\ -I                         #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\STACK\SAPI\ -I                        #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\STACK\SYS\ -I                         #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\STACK\ZDO\ -I                         #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\ZMAC\F8W\ -I                          #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\ZMAC\ -I D:\ZigBee\KJXY-ZigBee\useful #
+#                          _code\groupcast\Projects\zstack\Samples\SampleApp\ #
+#                          CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\SADDR\ #
+#                           -I D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Pr #
+#                          ojects\zstack\Samples\SampleApp\CC2530DB\..\..\..\ #
+#                          ..\..\COMPONENTS\SERVICES\SDATA\ -I                #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\MAC\INCLUDE\ -I                       #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\MAC\HIGH_LEVEL\ -I                    #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\MAC\LOW_LEVEL\srf04\ -I               #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\ -I   #
+#                          D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\..\..\..\..\. #
+#                          .\COMPONENTS\HARDWARE\ -Ohz                        #
+#    List file          =  D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB #
+#                          \List\SampleApp - RFID.lst                         #
+#    Object file        =  D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projec #
+#                          ts\zstack\Samples\SampleApp\CC2530DB\CoordinatorEB #
+#                          \Obj\SampleApp - RFID.r51                          #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projects\zstack\Samples\SampleApp\Source\SampleApp - RFID.c
+      1          /**************************************************************************************************
+      2            Filename:       SampleApp.c
+      3            Revised:        $Date: 2009-03-18 15:56:27 -0700 (Wed, 18 Mar 2009) $
+      4            Revision:       $Revision: 19453 $
+      5          
+      6            Description:    Sample Application (no Profile).
+      7          
+      8          
+      9            Copyright 2007 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11            IMPORTANT: Your use of this Software is limited to those specific rights
+     12            granted under the terms of a software license agreement between the user
+     13            who downloaded the software, his/her employer (which must be your employer)
+     14            and Texas Instruments Incorporated (the "License").  You may not use this
+     15            Software unless you agree to abide by the terms of the License. The License
+     16            limits your use, and you acknowledge, that the Software may not be modified,
+     17            copied or distributed unless embedded on a Texas Instruments microcontroller
+     18            or used solely and exclusively in conjunction with a Texas Instruments radio
+     19            frequency transceiver, which is integrated into your product.  Other than for
+     20            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     21            works of, modify, distribute, perform, display or sell this Software and/or
+     22            its documentation for any purpose.
+     23          
+     24            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     25            PROVIDED 揂S IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     26            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     27            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     28            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     29            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     30            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     31            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     32            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     33            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     34            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     35          
+     36            Should you have any questions regarding your right to use this Software,
+     37            contact Texas Instruments Incorporated at www.TI.com.
+     38          **************************************************************************************************/
+     39          
+     40          /*********************************************************************
+     41            This application isn't intended to do anything useful, it is
+     42            intended to be a simple example of an application's structure.
+     43          
+     44            This application sends it's messages either as broadcast or
+     45            broadcast filtered group messages.  The other (more normal)
+     46            message addressing is unicast.  Most of the other sample
+     47            applications are written to support the unicast message model.
+     48          
+     49            Key control:
+     50              SW1:  Sends a flash command to all devices in Group 1.
+     51              SW2:  Adds/Removes (toggles) this device in and out
+     52                    of Group 1.  This will enable and disable the
+     53                    reception of the flash command.
+     54          *********************************************************************/
+     55          
+     56          /*********************************************************************
+     57           * INCLUDES
+     58           */
+     59          #include "OSAL.h"
+     60          #include "ZGlobals.h"
+     61          #include "AF.h"
+     62          #include "aps_groups.h"
+     63          #include "ZDApp.h"
+     64          
+     65          #include "SampleApp.h"
+     66          #include "SampleAppHw.h"
+     67          
+     68          #include "OnBoard.h"
+     69          
+     70          /* HAL */
+     71          #include "hal_lcd.h"
+     72          #include "hal_led.h"
+     73          #include "hal_key.h"
+     74          #include "string.h"
+     75          #include "hal_uart.h"
+     76          #include "MT_UART.h"
+     77          #include "MT_APP.h"
+     78          #include "MT.h"
+     79          #include "OLED.h"
+     80          #include "SHT20.h"
+     81          #include "rc522.h"
+
+  void RC522_Init( void );
+  ^
+"D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\COMPONENTS\HARDWARE\rc522.h",137  Error[Pe130]: 
+          expected a "{"
+     82          #include "stdio.h"
+     83          #include "bottom_led.h"
+     84          void PointToPoint_SendTemperature(void);
+     85          void Group_SendTemperature(void);
+     86          void Group_SendRFID( void );
+     87          /*********************************************************************
+     88           * MACROS
+     89           */
+     90          
+     91          /*********************************************************************
+     92           * CONSTANTS
+     93           */
+     94          
+     95          /*********************************************************************
+     96           * TYPEDEFS
+     97           */
+     98          
+     99          /*********************************************************************
+    100           * GLOBAL VARIABLES
+    101           */
+    102          
+    103          // This list should be filled with Application specific Cluster IDs.
+    104          const cId_t SampleApp_ClusterList[SAMPLEAPP_MAX_CLUSTERS] =
+    105          {
+                 ^
+Warning[Pe012]: parsing restarts here after previous syntax error
+    106            SAMPLEAPP_PERIODIC_CLUSTERID,
+                   ^
+Warning[Pe174]: expression has no effect
+
+    SAMPLEAPP_PERIODIC_CLUSTERID,
+    ^
+"D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projects\zstack\Samples\SampleApp\Source\SampleApp - RFID.c",106  Warning[Pe174]: 
+          expression has no effect
+    107            SAMPLEAPP_FLASH_CLUSTERID
+    108          };
+                 ^
+Error[Pe065]: expected a ";"
+
+  };
+  ^
+"D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projects\zstack\Samples\SampleApp\Source\SampleApp - RFID.c",108  Warning[Pe940]: 
+          missing return statement at end of non-void function "SHT2x_GetHumi"
+    109          
+    110          const SimpleDescriptionFormat_t SampleApp_SimpleDesc =
+    111          {
+    112            SAMPLEAPP_ENDPOINT,              //  int Endpoint;
+    113            SAMPLEAPP_PROFID,                //  uint16 AppProfId[2];
+    114            SAMPLEAPP_DEVICEID,              //  uint16 AppDeviceId[2];
+    115            SAMPLEAPP_DEVICE_VERSION,        //  int   AppDevVer:4;
+    116            SAMPLEAPP_FLAGS,                 //  int   AppFlags:4;
+    117            SAMPLEAPP_MAX_CLUSTERS,          //  uint8  AppNumInClusters;
+    118            (cId_t *)SampleApp_ClusterList,  //  uint8 *pAppInClusterList;
+                            ^
+Error[Pe020]: identifier "SampleApp_ClusterList" is undefined
+
+    (cId_t *)SampleApp_ClusterList,  //  uint8 *pAppInClusterList;
+             ^
+"D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projects\zstack\Samples\SampleApp\Source\SampleApp - RFID.c",118  Error[Pe044]: 
+          expression must have pointer type
+    119            SAMPLEAPP_MAX_CLUSTERS,          //  uint8  AppNumInClusters;
+    120            (cId_t *)SampleApp_ClusterList   //  uint8 *pAppInClusterList;
+                            ^
+Error[Pe044]: expression must have pointer type
+    121          };
+    122          
+    123          // This is the Endpoint/Interface description.  It is defined here, but
+    124          // filled-in in SampleApp_Init().  Another way to go would be to fill
+    125          // in the structure here and make it a "const" (in code space).  The
+    126          // way it's defined in this sample app it is define in RAM.
+    127          endPointDesc_t SampleApp_epDesc;
+    128          
+    129          /*********************************************************************
+    130           * EXTERNAL VARIABLES
+    131           */
+    132          
+    133          /*********************************************************************
+    134           * EXTERNAL FUNCTIONS
+    135           */
+    136          
+    137          /*********************************************************************
+    138           * LOCAL VARIABLES
+    139           */
+    140          uint8 SampleApp_TaskID;   // Task ID for internal task/event processing
+    141                                    // This variable will be received when
+    142                                    // SampleApp_Init() is called.
+    143          devStates_t SampleApp_NwkState;
+    144          
+    145          uint8 SampleApp_TransID;  // This is the unique message ID (counter)
+    146          
+    147          afAddrType_t SampleApp_Periodic_DstAddr;
+    148          afAddrType_t SampleApp_Flash_DstAddr;
+    149          
+    150          afAddrType_t Point_To_Point_DstAddr;//点对点通信定义
+    151          
+    152          afAddrType_t Group_DstAddr;//网蜂组播通信定义
+    153          
+    154          //设置两个组 SampleApp_Group WEBEE_Group
+    155          aps_Group_t SampleApp_Group;
+    156          aps_Group_t WEBEE_Group; 
+    157          
+    158          #define WEBEE_GROUP       0x0002      //网蜂组播号2
+    159          #define SAMPLE_APP_GROUNP 0x0001      //网蜂组播号1
+    160          #define TARGET_GROUNP     WEBEE_GROUP
+    161          
+    162          uint8 SendIndicate = 1;
+    163          
+    164          /*********************************************************************
+    165           * LOCAL FUNCTIONS
+    166           */
+    167          void SampleApp_MessageMSGCB( afIncomingMSGPacket_t *pckt );
+    168          
+    169          /*********************************************************************
+    170           * NETWORK LAYER CALLBACKS
+    171           */
+    172          
+    173          /*********************************************************************
+    174           * PUBLIC FUNCTIONS
+    175           */
+    176          
+    177          /*********************************************************************
+    178           * @fn      SampleApp_Init
+    179           *
+    180           * @brief   Initialization function for the Generic App Task.
+    181           *          This is called during initialization and should contain
+    182           *          any application specific initialization (ie. hardware
+    183           *          initialization/setup, table initialization, power up
+    184           *          notificaiton ... ).
+    185           *
+    186           * @param   task_id - the ID assigned by OSAL.  This ID should be
+    187           *                    used to send messages and set timers.
+    188           *
+    189           * @return  none
+    190           */
+    191          uint8 test = 0;
+    192          void SampleApp_Init( uint8 task_id )
+    193          {
+    194            SampleApp_TaskID = task_id;
+    195            SampleApp_NwkState = DEV_INIT;
+    196            SampleApp_TransID = 0;
+    197            
+    198           /***********串口初始化************/
+    199            MT_UartInit();//串口初始化  
+    200            if ( ZG_BUILD_COORDINATOR_TYPE && ZG_DEVICE_COORDINATOR_TYPE  )
+    201            {
+    202              printf("i am coordinator\r\n");
+                     ^
+Warning[Pe223]: function "printf" declared implicitly
+    203              OLED_P8x16Str(0,0,"coordinator");
+    204            }
+    205            if ( ZG_DEVICE_ENDDEVICE_TYPE && ZG_BUILD_ENDDEVICE_TYPE  )
+    206            {
+    207              printf("i am end device\r\n");
+                     ^
+Warning[Pe223]: function "printf" declared implicitly
+    208              OLED_P8x16Str(0,0,"end device");
+    209            } 
+    210            //HalUARTWrite(0,"Hello World\n",12);
+    211            printf("hello world\r\n");
+                   ^
+Warning[Pe223]: function "printf" declared implicitly
+    212          //***************设置grounp******************************  
+    213            Group_DstAddr.addrMode = (afAddrMode_t)afAddrGroup;
+    214            Group_DstAddr.endPoint = SAMPLEAPP_ENDPOINT;
+    215            Group_DstAddr.addr.shortAddr = SAMPLE_APP_GROUNP; //加入SAMPLE_APP_GROUNP 
+    216          //***************设置grounp******************************    
+    217          
+    218          //**********设置组名字，添加grounp***********************************  
+    219            SampleApp_Group.ID = SAMPLE_APP_GROUNP;
+    220            osal_memcpy( SampleApp_Group.name, "Group 1", 7  );
+    221            aps_AddGroup( SAMPLEAPP_ENDPOINT, &SampleApp_Group ); 
+    222          //**********添加grounp***********************************  
+    223            
+    224          //*********注册端点**************************************
+    225            // Fill out the endpoint description.
+    226            SampleApp_epDesc.endPoint     = SAMPLEAPP_ENDPOINT;
+    227            SampleApp_epDesc.task_id      = &SampleApp_TaskID;
+    228            SampleApp_epDesc.simpleDesc   = (SimpleDescriptionFormat_t *)&SampleApp_SimpleDesc;
+    229            SampleApp_epDesc.latencyReq   = noLatencyReqs;
+    230            // Register the endpoint description with the AF
+    231            afRegister( &SampleApp_epDesc );
+    232          //*********注册端点**************************************  
+    233          }
+    234          
+    235          /*********************************************************************
+    236           * @fn      SampleApp_ProcessEvent
+    237           *
+    238           * @brief   Generic Application Task event processor.  This function
+    239           *          is called to process all events for the task.  Events
+    240           *          include timers, messages and any other user defined events.
+    241           *
+    242           * @param   task_id  - The OSAL assigned task ID.
+    243           * @param   events - events to process.  This is a bit map and can
+    244           *                   contain more than one event.
+    245           *
+    246           * @return  none
+    247           */
+    248          uint16 SampleApp_ProcessEvent( uint8 task_id, uint16 events )
+    249          {
+    250            afIncomingMSGPacket_t *MSGpkt;
+    251            (void)task_id;  // Intentionally unreferenced parameter
+    252          
+    253            if ( events & SYS_EVENT_MSG )
+    254            {
+    255              MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive( SampleApp_TaskID );
+    256              while ( MSGpkt )
+    257              {
+    258                switch ( MSGpkt->hdr.event )
+    259                {        
+    260                  // Received when a messages is received (OTA) for this endpoint
+    261                  case AF_INCOMING_MSG_CMD:
+    262                    SampleApp_MessageMSGCB( MSGpkt );
+    263                    break;
+    264          
+    265                  // Received whenever the device changes state in the network
+    266                  case ZDO_STATE_CHANGE:
+    267                    SampleApp_NwkState = (devStates_t)(MSGpkt->hdr.status);
+    268                    if(SampleApp_NwkState == DEV_ZB_COORD)
+    269                    {
+    270                      printf("coord ready!");
+                             ^
+Warning[Pe223]: function "printf" declared implicitly
+    271                    }
+    272                    if (  (SampleApp_NwkState == DEV_ROUTER)
+    273                        ||(SampleApp_NwkState == DEV_END_DEVICE) )
+    274                    {
+    275                      // Start sending the periodic message in a regular interval.
+    276                      osal_start_timerEx( SampleApp_TaskID,
+    277                                        SAMPLEAPP_SEND_PERIODIC_MSG_EVT,
+    278                                        SAMPLEAPP_SEND_PERIODIC_MSG_TIMEOUT );
+    279                    }
+    280                    break;
+    281          
+    282                  default:
+    283                    break;
+    284                }
+    285          
+    286                // Release the memory
+    287                osal_msg_deallocate( (uint8 *)MSGpkt );
+    288          
+    289                // Next - if one is available
+    290                MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive( SampleApp_TaskID );
+    291              }
+    292          
+    293              // return unprocessed events
+    294              return (events ^ SYS_EVENT_MSG);
+    295            }
+    296          
+    297            // Send a message out - This event is generated by a timer
+    298            //  (setup in SampleApp_Init()).
+    299            if ( events & SAMPLEAPP_SEND_PERIODIC_MSG_EVT )
+    300            {   
+    301              Group_SendRFID();
+                     ^
+Warning[Pe223]: function "Group_SendRFID" declared implicitly
+    302              osal_start_timerEx( SampleApp_TaskID, SAMPLEAPP_SEND_PERIODIC_MSG_EVT,
+    303                  (SAMPLEAPP_SEND_PERIODIC_MSG_TIMEOUT + (osal_rand() & 0x00FF)) );
+    304          
+    305              // return unprocessed events
+    306              return (events ^ SAMPLEAPP_SEND_PERIODIC_MSG_EVT);
+    307            }
+    308          
+    309            // Discard unknown events
+    310            return 0;
+    311          }
+    312          /*********************************************************************
+    313           * LOCAL FUNCTIONS
+    314           */
+    315          
+    316          /*********************************************************************
+    317           * @fn      SampleApp_MessageMSGCB
+    318           *
+    319           * @brief   Data message processor callback.  This function processes
+    320           *          any incoming data - probably from other devices.  So, based
+    321           *          on cluster ID, perform the intended action.
+    322           *
+    323           * @param   none
+    324           *
+    325           * @return  none
+    326           */
+    327          void SampleApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )
+    328          {
+    329            switch ( pkt->clusterId )
+    330            {
+    331              case TEMP_HUMI_CLUSTERID:      
+    332              break;    
+    333              case RFID_CLUSTERID:       
+    334              break;
+    335            }
+    336          }
+    337          void Group_SendRFID( void )
+                      ^
+Error[Pe159]: declaration is incompatible with previous "Group_SendRFID"
+          (declared at line 301)
+    338          {
+    339            uint8 *pRFID_Data;
+    340            uint8  CardId[17]={0};
+    341            if((pRFID_Data = RFID_GetCardID()))
+                                    ^
+Warning[Pe223]: function "RFID_GetCardID" declared implicitly
+
+    if((pRFID_Data = RFID_GetCardID()))
+                   ^
+"D:\ZigBee\KJXY-ZigBee\useful_code\groupcast\Projects\zstack\Samples\SampleApp\Source\SampleApp - RFID.c",341  Error[Pe513]: 
+          a value of type "int" cannot be assigned to an entity of type
+          "unsigned char *"
+    342            {
+    343              SendIndicate = 1-SendIndicate;
+    344              if(SendIndicate == 0)
+    345              {
+    346                Bottom_Blue(); //底座灯亮起蓝色
+                       ^
+Warning[Pe223]: function "Bottom_Blue" declared implicitly
+    347              }
+    348              else
+    349              {
+    350                Bottom_BlackOut();//底座灯熄灭
+                       ^
+Warning[Pe223]: function "Bottom_BlackOut" declared implicitly
+    351              }   
+    352              _bytetoa_Hex(pRFID_Data,8,CardId);
+    353              printf("cardid=%s\r\n",CardId);
+                     ^
+Warning[Pe223]: function "printf" declared implicitly
+    354              if ( AF_DataRequest( &Group_DstAddr, &SampleApp_epDesc,
+    355                                   RFID_CLUSTERID,
+    356                                   17,
+    357                                   CardId,
+    358                                   &SampleApp_TransID,
+    359                                   AF_DISCV_ROUTE,
+    360                                   AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
+    361              {
+    362                printf("tx success\r\n");
+    363              }
+    364            }
+    365          }
+    366          /*********************************************************************
+    367          *********************************************************************/
+
+Errors: 7
+Warnings: 13

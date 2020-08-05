@@ -1,0 +1,12 @@
+CONTIKI_PROJECT = hello-world
+
+HAVE_BANKING=1
+UIP_CONF_IPV6=1
+UIP_CONF_RPL=1
+CFLAGS += -DENABLE_OLED=1
+CFLAGS += -DENABLE_RC522=1
+all: $(CONTIKI_PROJECT) 
+
+CONTIKI = ../../..
+
+include $(CONTIKI)/Makefile.include

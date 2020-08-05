@@ -1,0 +1,1 @@
+cmd_/mnt/hgfs/linux_share/linux-bme280/driver/bme280.ko := arm-poky-linux-gnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /mnt/hgfs/linux_share/linux-bme280/driver/bme280.ko /mnt/hgfs/linux_share/linux-bme280/driver/bme280.o /mnt/hgfs/linux_share/linux-bme280/driver/bme280.mod.o

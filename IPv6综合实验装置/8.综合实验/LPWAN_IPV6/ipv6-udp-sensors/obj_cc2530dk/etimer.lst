@@ -1,0 +1,2061 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.8.4 #10774 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module etimer
+                                      6 	.optsdcc -mmcs51 --model-huge
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _process_poll
+                                     12 	.globl _process_post
+                                     13 	.globl _timer_expired
+                                     14 	.globl _timer_restart
+                                     15 	.globl _timer_reset
+                                     16 	.globl _timer_set
+                                     17 	.globl _clock_time
+                                     18 	.globl _etimer_process
+                                     19 	.globl _etimer_request_poll
+                                     20 	.globl _etimer_set
+                                     21 	.globl _etimer_reset
+                                     22 	.globl _etimer_restart
+                                     23 	.globl _etimer_adjust
+                                     24 	.globl _etimer_expired
+                                     25 	.globl _etimer_expiration_time
+                                     26 	.globl _etimer_start_time
+                                     27 	.globl _etimer_pending
+                                     28 	.globl _etimer_next_expiration_time
+                                     29 	.globl _etimer_stop
+                                     30 ;--------------------------------------------------------
+                                     31 ; special function registers
+                                     32 ;--------------------------------------------------------
+                                     33 	.area RSEG    (ABS,DATA)
+      000000                         34 	.org 0x0000
+                                     35 ;--------------------------------------------------------
+                                     36 ; special function bits
+                                     37 ;--------------------------------------------------------
+                                     38 	.area RSEG    (ABS,DATA)
+      000000                         39 	.org 0x0000
+                                     40 ;--------------------------------------------------------
+                                     41 ; overlayable register banks
+                                     42 ;--------------------------------------------------------
+                                     43 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                         44 	.ds 8
+                                     45 ;--------------------------------------------------------
+                                     46 ; overlayable bit register bank
+                                     47 ;--------------------------------------------------------
+                                     48 	.area BIT_BANK	(REL,OVR,DATA)
+      000000                         49 bits:
+      000000                         50 	.ds 1
+                           008000    51 	b0 = bits[0]
+                           008100    52 	b1 = bits[1]
+                           008200    53 	b2 = bits[2]
+                           008300    54 	b3 = bits[3]
+                           008400    55 	b4 = bits[4]
+                           008500    56 	b5 = bits[5]
+                           008600    57 	b6 = bits[6]
+                           008700    58 	b7 = bits[7]
+                                     59 ;--------------------------------------------------------
+                                     60 ; internal ram data
+                                     61 ;--------------------------------------------------------
+                                     62 	.area DSEG    (DATA)
+                                     63 ;--------------------------------------------------------
+                                     64 ; overlayable items in internal ram 
+                                     65 ;--------------------------------------------------------
+                                     66 ;--------------------------------------------------------
+                                     67 ; indirectly addressable internal ram data
+                                     68 ;--------------------------------------------------------
+                                     69 	.area ISEG    (DATA)
+                                     70 ;--------------------------------------------------------
+                                     71 ; absolute internal ram data
+                                     72 ;--------------------------------------------------------
+                                     73 	.area IABS    (ABS,DATA)
+                                     74 	.area IABS    (ABS,DATA)
+                                     75 ;--------------------------------------------------------
+                                     76 ; bit data
+                                     77 ;--------------------------------------------------------
+                                     78 	.area BSEG    (BIT)
+                                     79 ;--------------------------------------------------------
+                                     80 ; paged external ram data
+                                     81 ;--------------------------------------------------------
+                                     82 	.area PSEG    (PAG,XDATA)
+                                     83 ;--------------------------------------------------------
+                                     84 ; external ram data
+                                     85 ;--------------------------------------------------------
+                                     86 	.area XSEG    (XDATA)
+      000000                         87 _timerlist:
+      000000                         88 	.ds 3
+      000003                         89 _next_expiration:
+      000003                         90 	.ds 2
+                                     91 ;--------------------------------------------------------
+                                     92 ; absolute external ram data
+                                     93 ;--------------------------------------------------------
+                                     94 	.area XABS    (ABS,XDATA)
+                                     95 ;--------------------------------------------------------
+                                     96 ; external initialized ram data
+                                     97 ;--------------------------------------------------------
+                                     98 	.area XISEG   (XDATA)
+      000000                         99 _etimer_process::
+      000000                        100 	.ds 13
+                                    101 	.area HOME    (CODE)
+                                    102 	.area GSINIT0 (CODE)
+                                    103 	.area GSINIT1 (CODE)
+                                    104 	.area GSINIT2 (CODE)
+                                    105 	.area GSINIT3 (CODE)
+                                    106 	.area GSINIT4 (CODE)
+                                    107 	.area GSINIT5 (CODE)
+                                    108 	.area GSINIT  (CODE)
+                                    109 	.area GSFINAL (CODE)
+                                    110 	.area CSEG    (CODE)
+                                    111 ;--------------------------------------------------------
+                                    112 ; global & static initialisations
+                                    113 ;--------------------------------------------------------
+                                    114 	.area HOME    (CODE)
+                                    115 	.area GSINIT  (CODE)
+                                    116 	.area GSFINAL (CODE)
+                                    117 	.area GSINIT  (CODE)
+                                    118 ;--------------------------------------------------------
+                                    119 ; Home
+                                    120 ;--------------------------------------------------------
+                                    121 	.area HOME    (CODE)
+                                    122 	.area HOME    (CODE)
+                                    123 ;--------------------------------------------------------
+                                    124 ; code
+                                    125 ;--------------------------------------------------------
+                                    126 	.area BANK1   (CODE)
+                                    127 ;------------------------------------------------------------
+                                    128 ;Allocation info for local variables in function 'update_time'
+                                    129 ;------------------------------------------------------------
+                                    130 ;tdist                     Allocated to stack - sp -6
+                                    131 ;now                       Allocated to stack - sp -4
+                                    132 ;t                         Allocated to stack - sp -2
+                                    133 ;sloc0                     Allocated to stack - sp -8
+                                    134 ;------------------------------------------------------------
+                                    135 ;	../../../core/sys/etimer.c:58: update_time(void)
+                                    136 ;	-----------------------------------------
+                                    137 ;	 function update_time
+                                    138 ;	-----------------------------------------
+      000000                        139 _update_time:
+                           000007   140 	ar7 = 0x07
+                           000006   141 	ar6 = 0x06
+                           000005   142 	ar5 = 0x05
+                           000004   143 	ar4 = 0x04
+                           000003   144 	ar3 = 0x03
+                           000002   145 	ar2 = 0x02
+                           000001   146 	ar1 = 0x01
+                           000000   147 	ar0 = 0x00
+      000000 E5 81            [12]  148 	mov	a,sp
+      000002 24 09            [12]  149 	add	a,#0x09
+      000004 F5 81            [12]  150 	mov	sp,a
+                                    151 ;	../../../core/sys/etimer.c:64: if (timerlist == NULL) {
+      000006 90r00r00         [24]  152 	mov	dptr,#_timerlist
+      000009 E0               [24]  153 	movx	a,@dptr
+      00000A F5 F0            [12]  154 	mov	b,a
+      00000C A3               [24]  155 	inc	dptr
+      00000D E0               [24]  156 	movx	a,@dptr
+      00000E 45 F0            [12]  157 	orl	a,b
+      000010 70 0A            [24]  158 	jnz	00105$
+                                    159 ;	../../../core/sys/etimer.c:65: next_expiration = 0;
+      000012 90r00r03         [24]  160 	mov	dptr,#_next_expiration
+      000015 E4               [12]  161 	clr	a
+      000016 F0               [24]  162 	movx	@dptr,a
+      000017 A3               [24]  163 	inc	dptr
+      000018 F0               [24]  164 	movx	@dptr,a
+      000019 02r01rA0         [24]  165 	ljmp	00110$
+      00001C                        166 00105$:
+                                    167 ;	../../../core/sys/etimer.c:67: now = clock_time();
+      00001C 78r00            [12]  168 	mov	r0,#_clock_time
+      00001E 79s00            [12]  169 	mov	r1,#(_clock_time >> 8)
+      000020 7As00            [12]  170 	mov	r2,#(_clock_time >> 16)
+      000022 12r00r00         [24]  171 	lcall	__sdcc_banked_call
+      000025 AE 82            [24]  172 	mov	r6,dpl
+      000027 AF 83            [24]  173 	mov	r7,dph
+      000029 E5 81            [12]  174 	mov	a,sp
+      00002B 24 FC            [12]  175 	add	a,#0xfc
+      00002D F8               [12]  176 	mov	r0,a
+      00002E A6 06            [24]  177 	mov	@r0,ar6
+      000030 08               [12]  178 	inc	r0
+      000031 A6 07            [24]  179 	mov	@r0,ar7
+                                    180 ;	../../../core/sys/etimer.c:68: t = timerlist;
+      000033 90r00r00         [24]  181 	mov	dptr,#_timerlist
+      000036 E0               [24]  182 	movx	a,@dptr
+      000037 FB               [12]  183 	mov	r3,a
+      000038 A3               [24]  184 	inc	dptr
+      000039 E0               [24]  185 	movx	a,@dptr
+      00003A FC               [12]  186 	mov	r4,a
+      00003B A3               [24]  187 	inc	dptr
+      00003C E0               [24]  188 	movx	a,@dptr
+      00003D FD               [12]  189 	mov	r5,a
+                                    190 ;	../../../core/sys/etimer.c:70: tdist = t->timer.start + t->timer.interval - now;
+      00003E 8B 82            [24]  191 	mov	dpl,r3
+      000040 8C 83            [24]  192 	mov	dph,r4
+      000042 8D F0            [24]  193 	mov	b,r5
+      000044 E5 81            [12]  194 	mov	a,sp
+      000046 24 F8            [12]  195 	add	a,#0xf8
+      000048 F8               [12]  196 	mov	r0,a
+      000049 12r00r00         [24]  197 	lcall	__gptrget
+      00004C F6               [12]  198 	mov	@r0,a
+      00004D A3               [24]  199 	inc	dptr
+      00004E 12r00r00         [24]  200 	lcall	__gptrget
+      000051 08               [12]  201 	inc	r0
+      000052 F6               [12]  202 	mov	@r0,a
+      000053 74 02            [12]  203 	mov	a,#0x02
+      000055 2B               [12]  204 	add	a,r3
+      000056 FA               [12]  205 	mov	r2,a
+      000057 E4               [12]  206 	clr	a
+      000058 3C               [12]  207 	addc	a,r4
+      000059 FE               [12]  208 	mov	r6,a
+      00005A 8D 07            [24]  209 	mov	ar7,r5
+      00005C 8A 82            [24]  210 	mov	dpl,r2
+      00005E 8E 83            [24]  211 	mov	dph,r6
+      000060 8F F0            [24]  212 	mov	b,r7
+      000062 12r00r00         [24]  213 	lcall	__gptrget
+      000065 FA               [12]  214 	mov	r2,a
+      000066 A3               [24]  215 	inc	dptr
+      000067 12r00r00         [24]  216 	lcall	__gptrget
+      00006A FE               [12]  217 	mov	r6,a
+      00006B E5 81            [12]  218 	mov	a,sp
+      00006D 24 F8            [12]  219 	add	a,#0xf8
+      00006F F8               [12]  220 	mov	r0,a
+      000070 EA               [12]  221 	mov	a,r2
+      000071 26               [12]  222 	add	a,@r0
+      000072 FA               [12]  223 	mov	r2,a
+      000073 EE               [12]  224 	mov	a,r6
+      000074 08               [12]  225 	inc	r0
+      000075 36               [12]  226 	addc	a,@r0
+      000076 FE               [12]  227 	mov	r6,a
+      000077 E5 81            [12]  228 	mov	a,sp
+      000079 24 FC            [12]  229 	add	a,#0xfc
+      00007B F8               [12]  230 	mov	r0,a
+      00007C EA               [12]  231 	mov	a,r2
+      00007D C3               [12]  232 	clr	c
+      00007E 96               [12]  233 	subb	a,@r0
+      00007F FA               [12]  234 	mov	r2,a
+      000080 EE               [12]  235 	mov	a,r6
+      000081 08               [12]  236 	inc	r0
+      000082 96               [12]  237 	subb	a,@r0
+      000083 FE               [12]  238 	mov	r6,a
+      000084 E5 81            [12]  239 	mov	a,sp
+      000086 24 FA            [12]  240 	add	a,#0xfa
+      000088 F8               [12]  241 	mov	r0,a
+      000089 A6 02            [24]  242 	mov	@r0,ar2
+      00008B 08               [12]  243 	inc	r0
+      00008C A6 06            [24]  244 	mov	@r0,ar6
+                                    245 ;	../../../core/sys/etimer.c:71: for(t = t->next; t != NULL; t = t->next) {
+      00008E 74 04            [12]  246 	mov	a,#0x04
+      000090 2B               [12]  247 	add	a,r3
+      000091 FB               [12]  248 	mov	r3,a
+      000092 E4               [12]  249 	clr	a
+      000093 3C               [12]  250 	addc	a,r4
+      000094 FC               [12]  251 	mov	r4,a
+      000095 8B 82            [24]  252 	mov	dpl,r3
+      000097 8C 83            [24]  253 	mov	dph,r4
+      000099 8D F0            [24]  254 	mov	b,r5
+      00009B A8 81            [24]  255 	mov	r0,sp
+      00009D 18               [12]  256 	dec	r0
+      00009E 18               [12]  257 	dec	r0
+      00009F 12r00r00         [24]  258 	lcall	__gptrget
+      0000A2 F6               [12]  259 	mov	@r0,a
+      0000A3 A3               [24]  260 	inc	dptr
+      0000A4 12r00r00         [24]  261 	lcall	__gptrget
+      0000A7 08               [12]  262 	inc	r0
+      0000A8 F6               [12]  263 	mov	@r0,a
+      0000A9 A3               [24]  264 	inc	dptr
+      0000AA 12r00r00         [24]  265 	lcall	__gptrget
+      0000AD 08               [12]  266 	inc	r0
+      0000AE F6               [12]  267 	mov	@r0,a
+      0000AF                        268 00108$:
+      0000AF A8 81            [24]  269 	mov	r0,sp
+      0000B1 18               [12]  270 	dec	r0
+      0000B2 18               [12]  271 	dec	r0
+      0000B3 E6               [12]  272 	mov	a,@r0
+      0000B4 08               [12]  273 	inc	r0
+      0000B5 46               [12]  274 	orl	a,@r0
+      0000B6 70 03            [24]  275 	jnz	00133$
+      0000B8 02r01r8A         [24]  276 	ljmp	00103$
+      0000BB                        277 00133$:
+                                    278 ;	../../../core/sys/etimer.c:72: if(t->timer.start + t->timer.interval - now < tdist) {
+      0000BB A8 81            [24]  279 	mov	r0,sp
+      0000BD 18               [12]  280 	dec	r0
+      0000BE 18               [12]  281 	dec	r0
+      0000BF 86 82            [24]  282 	mov	dpl,@r0
+      0000C1 08               [12]  283 	inc	r0
+      0000C2 86 83            [24]  284 	mov	dph,@r0
+      0000C4 08               [12]  285 	inc	r0
+      0000C5 86 F0            [24]  286 	mov	b,@r0
+      0000C7 12r00r00         [24]  287 	lcall	__gptrget
+      0000CA FA               [12]  288 	mov	r2,a
+      0000CB A3               [24]  289 	inc	dptr
+      0000CC 12r00r00         [24]  290 	lcall	__gptrget
+      0000CF FF               [12]  291 	mov	r7,a
+      0000D0 A8 81            [24]  292 	mov	r0,sp
+      0000D2 18               [12]  293 	dec	r0
+      0000D3 18               [12]  294 	dec	r0
+      0000D4 74 02            [12]  295 	mov	a,#0x02
+      0000D6 26               [12]  296 	add	a,@r0
+      0000D7 FC               [12]  297 	mov	r4,a
+      0000D8 E4               [12]  298 	clr	a
+      0000D9 08               [12]  299 	inc	r0
+      0000DA 36               [12]  300 	addc	a,@r0
+      0000DB FD               [12]  301 	mov	r5,a
+      0000DC 08               [12]  302 	inc	r0
+      0000DD 86 06            [24]  303 	mov	ar6,@r0
+      0000DF 8C 82            [24]  304 	mov	dpl,r4
+      0000E1 8D 83            [24]  305 	mov	dph,r5
+      0000E3 8E F0            [24]  306 	mov	b,r6
+      0000E5 12r00r00         [24]  307 	lcall	__gptrget
+      0000E8 FC               [12]  308 	mov	r4,a
+      0000E9 A3               [24]  309 	inc	dptr
+      0000EA 12r00r00         [24]  310 	lcall	__gptrget
+      0000ED FD               [12]  311 	mov	r5,a
+      0000EE EC               [12]  312 	mov	a,r4
+      0000EF 2A               [12]  313 	add	a,r2
+      0000F0 FA               [12]  314 	mov	r2,a
+      0000F1 ED               [12]  315 	mov	a,r5
+      0000F2 3F               [12]  316 	addc	a,r7
+      0000F3 FF               [12]  317 	mov	r7,a
+      0000F4 E5 81            [12]  318 	mov	a,sp
+      0000F6 24 FC            [12]  319 	add	a,#0xfc
+      0000F8 F8               [12]  320 	mov	r0,a
+      0000F9 EA               [12]  321 	mov	a,r2
+      0000FA C3               [12]  322 	clr	c
+      0000FB 96               [12]  323 	subb	a,@r0
+      0000FC FA               [12]  324 	mov	r2,a
+      0000FD EF               [12]  325 	mov	a,r7
+      0000FE 08               [12]  326 	inc	r0
+      0000FF 96               [12]  327 	subb	a,@r0
+      000100 FF               [12]  328 	mov	r7,a
+      000101 E5 81            [12]  329 	mov	a,sp
+      000103 24 FA            [12]  330 	add	a,#0xfa
+      000105 F8               [12]  331 	mov	r0,a
+      000106 C3               [12]  332 	clr	c
+      000107 EA               [12]  333 	mov	a,r2
+      000108 96               [12]  334 	subb	a,@r0
+      000109 EF               [12]  335 	mov	a,r7
+      00010A 08               [12]  336 	inc	r0
+      00010B 96               [12]  337 	subb	a,@r0
+      00010C 50 50            [24]  338 	jnc	00109$
+                                    339 ;	../../../core/sys/etimer.c:73: tdist = t->timer.start + t->timer.interval - now;
+      00010E A8 81            [24]  340 	mov	r0,sp
+      000110 18               [12]  341 	dec	r0
+      000111 18               [12]  342 	dec	r0
+      000112 86 82            [24]  343 	mov	dpl,@r0
+      000114 08               [12]  344 	inc	r0
+      000115 86 83            [24]  345 	mov	dph,@r0
+      000117 08               [12]  346 	inc	r0
+      000118 86 F0            [24]  347 	mov	b,@r0
+      00011A 12r00r00         [24]  348 	lcall	__gptrget
+      00011D FF               [12]  349 	mov	r7,a
+      00011E A3               [24]  350 	inc	dptr
+      00011F 12r00r00         [24]  351 	lcall	__gptrget
+      000122 FE               [12]  352 	mov	r6,a
+      000123 A8 81            [24]  353 	mov	r0,sp
+      000125 18               [12]  354 	dec	r0
+      000126 18               [12]  355 	dec	r0
+      000127 74 02            [12]  356 	mov	a,#0x02
+      000129 26               [12]  357 	add	a,@r0
+      00012A FB               [12]  358 	mov	r3,a
+      00012B E4               [12]  359 	clr	a
+      00012C 08               [12]  360 	inc	r0
+      00012D 36               [12]  361 	addc	a,@r0
+      00012E FC               [12]  362 	mov	r4,a
+      00012F 08               [12]  363 	inc	r0
+      000130 86 05            [24]  364 	mov	ar5,@r0
+      000132 8B 82            [24]  365 	mov	dpl,r3
+      000134 8C 83            [24]  366 	mov	dph,r4
+      000136 8D F0            [24]  367 	mov	b,r5
+      000138 12r00r00         [24]  368 	lcall	__gptrget
+      00013B FB               [12]  369 	mov	r3,a
+      00013C A3               [24]  370 	inc	dptr
+      00013D 12r00r00         [24]  371 	lcall	__gptrget
+      000140 FC               [12]  372 	mov	r4,a
+      000141 EB               [12]  373 	mov	a,r3
+      000142 2F               [12]  374 	add	a,r7
+      000143 FF               [12]  375 	mov	r7,a
+      000144 EC               [12]  376 	mov	a,r4
+      000145 3E               [12]  377 	addc	a,r6
+      000146 FE               [12]  378 	mov	r6,a
+      000147 E5 81            [12]  379 	mov	a,sp
+      000149 24 FC            [12]  380 	add	a,#0xfc
+      00014B F8               [12]  381 	mov	r0,a
+      00014C EF               [12]  382 	mov	a,r7
+      00014D C3               [12]  383 	clr	c
+      00014E 96               [12]  384 	subb	a,@r0
+      00014F FF               [12]  385 	mov	r7,a
+      000150 EE               [12]  386 	mov	a,r6
+      000151 08               [12]  387 	inc	r0
+      000152 96               [12]  388 	subb	a,@r0
+      000153 FE               [12]  389 	mov	r6,a
+      000154 E5 81            [12]  390 	mov	a,sp
+      000156 24 FA            [12]  391 	add	a,#0xfa
+      000158 F8               [12]  392 	mov	r0,a
+      000159 A6 07            [24]  393 	mov	@r0,ar7
+      00015B 08               [12]  394 	inc	r0
+      00015C A6 06            [24]  395 	mov	@r0,ar6
+      00015E                        396 00109$:
+                                    397 ;	../../../core/sys/etimer.c:71: for(t = t->next; t != NULL; t = t->next) {
+      00015E A8 81            [24]  398 	mov	r0,sp
+      000160 18               [12]  399 	dec	r0
+      000161 18               [12]  400 	dec	r0
+      000162 74 04            [12]  401 	mov	a,#0x04
+      000164 26               [12]  402 	add	a,@r0
+      000165 FF               [12]  403 	mov	r7,a
+      000166 E4               [12]  404 	clr	a
+      000167 08               [12]  405 	inc	r0
+      000168 36               [12]  406 	addc	a,@r0
+      000169 FE               [12]  407 	mov	r6,a
+      00016A 08               [12]  408 	inc	r0
+      00016B 86 05            [24]  409 	mov	ar5,@r0
+      00016D 8F 82            [24]  410 	mov	dpl,r7
+      00016F 8E 83            [24]  411 	mov	dph,r6
+      000171 8D F0            [24]  412 	mov	b,r5
+      000173 A8 81            [24]  413 	mov	r0,sp
+      000175 18               [12]  414 	dec	r0
+      000176 18               [12]  415 	dec	r0
+      000177 12r00r00         [24]  416 	lcall	__gptrget
+      00017A F6               [12]  417 	mov	@r0,a
+      00017B A3               [24]  418 	inc	dptr
+      00017C 12r00r00         [24]  419 	lcall	__gptrget
+      00017F 08               [12]  420 	inc	r0
+      000180 F6               [12]  421 	mov	@r0,a
+      000181 A3               [24]  422 	inc	dptr
+      000182 12r00r00         [24]  423 	lcall	__gptrget
+      000185 08               [12]  424 	inc	r0
+      000186 F6               [12]  425 	mov	@r0,a
+      000187 02r00rAF         [24]  426 	ljmp	00108$
+      00018A                        427 00103$:
+                                    428 ;	../../../core/sys/etimer.c:76: next_expiration = now + tdist;
+      00018A E5 81            [12]  429 	mov	a,sp
+      00018C 24 FC            [12]  430 	add	a,#0xfc
+      00018E F8               [12]  431 	mov	r0,a
+      00018F E5 81            [12]  432 	mov	a,sp
+      000191 24 FA            [12]  433 	add	a,#0xfa
+      000193 F9               [12]  434 	mov	r1,a
+      000194 90r00r03         [24]  435 	mov	dptr,#_next_expiration
+      000197 E7               [12]  436 	mov	a,@r1
+      000198 26               [12]  437 	add	a,@r0
+      000199 F0               [24]  438 	movx	@dptr,a
+      00019A 09               [12]  439 	inc	r1
+      00019B E7               [12]  440 	mov	a,@r1
+      00019C 08               [12]  441 	inc	r0
+      00019D 36               [12]  442 	addc	a,@r0
+      00019E A3               [24]  443 	inc	dptr
+      00019F F0               [24]  444 	movx	@dptr,a
+      0001A0                        445 00110$:
+                                    446 ;	../../../core/sys/etimer.c:78: }
+      0001A0 E5 81            [12]  447 	mov	a,sp
+      0001A2 24 F7            [12]  448 	add	a,#0xf7
+      0001A4 F5 81            [12]  449 	mov	sp,a
+      0001A6 02r00r00         [24]  450 	ljmp	__sdcc_banked_ret
+                                    451 ;------------------------------------------------------------
+                                    452 ;Allocation info for local variables in function 'process_thread_etimer_process'
+                                    453 ;------------------------------------------------------------
+                                    454 ;ev                        Allocated to stack - sp -15
+                                    455 ;data                      Allocated to stack - sp -18
+                                    456 ;process_pt                Allocated to registers r5 r6 r7 
+                                    457 ;t                         Allocated to stack - sp -8
+                                    458 ;u                         Allocated to stack - sp -5
+                                    459 ;PT_YIELD_FLAG             Allocated to registers r4 
+                                    460 ;p                         Allocated to stack - sp -2
+                                    461 ;sloc0                     Allocated to stack - sp -11
+                                    462 ;------------------------------------------------------------
+                                    463 ;	../../../core/sys/etimer.c:80: PROCESS_THREAD(etimer_process, ev, data)
+                                    464 ;	-----------------------------------------
+                                    465 ;	 function process_thread_etimer_process
+                                    466 ;	-----------------------------------------
+      0001A9                        467 _process_thread_etimer_process:
+      0001A9 E5 81            [12]  468 	mov	a,sp
+      0001AB 24 0C            [12]  469 	add	a,#0x0c
+      0001AD F5 81            [12]  470 	mov	sp,a
+                                    471 ;	../../../core/sys/etimer.c:84: PROCESS_BEGIN();
+      0001AF AD 82            [24]  472 	mov	r5,dpl
+      0001B1 AE 83            [24]  473 	mov	r6,dph
+      0001B3 AF F0            [24]  474 	mov	r7,b
+      0001B5 7C 01            [12]  475 	mov	r4,#0x01
+      0001B7 12r00r00         [24]  476 	lcall	__gptrget
+      0001BA FA               [12]  477 	mov	r2,a
+      0001BB A3               [24]  478 	inc	dptr
+      0001BC 12r00r00         [24]  479 	lcall	__gptrget
+      0001BF FB               [12]  480 	mov	r3,a
+      0001C0 BA 00 05         [24]  481 	cjne	r2,#0x00,00234$
+      0001C3 BB 00 02         [24]  482 	cjne	r3,#0x00,00234$
+      0001C6 80 0B            [24]  483 	sjmp	00101$
+      0001C8                        484 00234$:
+      0001C8 BA 59 05         [24]  485 	cjne	r2,#0x59,00235$
+      0001CB BB 00 02         [24]  486 	cjne	r3,#0x00,00235$
+      0001CE 80 1E            [24]  487 	sjmp	00102$
+      0001D0                        488 00235$:
+      0001D0 02r06r0E         [24]  489 	ljmp	00138$
+      0001D3                        490 00101$:
+                                    491 ;	../../../core/sys/etimer.c:86: timerlist = NULL;
+      0001D3 90r00r00         [24]  492 	mov	dptr,#_timerlist
+      0001D6 E4               [12]  493 	clr	a
+      0001D7 F0               [24]  494 	movx	@dptr,a
+      0001D8 A3               [24]  495 	inc	dptr
+      0001D9 F0               [24]  496 	movx	@dptr,a
+      0001DA A3               [24]  497 	inc	dptr
+      0001DB F0               [24]  498 	movx	@dptr,a
+                                    499 ;	../../../core/sys/etimer.c:88: while(1) {
+      0001DC                        500 00136$:
+                                    501 ;	../../../core/sys/etimer.c:89: PROCESS_YIELD();
+      0001DC 7C 00            [12]  502 	mov	r4,#0x00
+      0001DE 8D 82            [24]  503 	mov	dpl,r5
+      0001E0 8E 83            [24]  504 	mov	dph,r6
+      0001E2 8F F0            [24]  505 	mov	b,r7
+      0001E4 74 59            [12]  506 	mov	a,#0x59
+      0001E6 12r00r00         [24]  507 	lcall	__gptrput
+      0001E9 A3               [24]  508 	inc	dptr
+      0001EA E4               [12]  509 	clr	a
+      0001EB 12r00r00         [24]  510 	lcall	__gptrput
+      0001EE                        511 00102$:
+      0001EE EC               [12]  512 	mov	a,r4
+      0001EF 70 06            [24]  513 	jnz	00106$
+      0001F1 75 82 01         [24]  514 	mov	dpl,#0x01
+      0001F4 02r06r1F         [24]  515 	ljmp	00142$
+      0001F7                        516 00106$:
+                                    517 ;	../../../core/sys/etimer.c:91: if(ev == PROCESS_EVENT_EXITED) {
+      0001F7 E5 81            [12]  518 	mov	a,sp
+      0001F9 24 F1            [12]  519 	add	a,#0xf1
+      0001FB F8               [12]  520 	mov	r0,a
+      0001FC B6 87 02         [24]  521 	cjne	@r0,#0x87,00237$
+      0001FF 80 03            [24]  522 	sjmp	00238$
+      000201                        523 00237$:
+      000201 02r03rF5         [24]  524 	ljmp	00123$
+      000204                        525 00238$:
+                                    526 ;	../../../core/sys/etimer.c:92: struct process *p = data;
+      000204 E5 81            [12]  527 	mov	a,sp
+      000206 24 EE            [12]  528 	add	a,#0xee
+      000208 F8               [12]  529 	mov	r0,a
+      000209 A9 81            [24]  530 	mov	r1,sp
+      00020B 19               [12]  531 	dec	r1
+      00020C 19               [12]  532 	dec	r1
+      00020D E6               [12]  533 	mov	a,@r0
+      00020E F7               [12]  534 	mov	@r1,a
+      00020F 08               [12]  535 	inc	r0
+      000210 09               [12]  536 	inc	r1
+      000211 E6               [12]  537 	mov	a,@r0
+      000212 F7               [12]  538 	mov	@r1,a
+      000213 08               [12]  539 	inc	r0
+      000214 09               [12]  540 	inc	r1
+      000215 E6               [12]  541 	mov	a,@r0
+      000216 F7               [12]  542 	mov	@r1,a
+                                    543 ;	../../../core/sys/etimer.c:94: while(timerlist != NULL && timerlist->p == p) {
+      000217                        544 00109$:
+      000217 90r00r00         [24]  545 	mov	dptr,#_timerlist
+      00021A E0               [24]  546 	movx	a,@dptr
+      00021B F5 F0            [12]  547 	mov	b,a
+      00021D A3               [24]  548 	inc	dptr
+      00021E E0               [24]  549 	movx	a,@dptr
+      00021F 45 F0            [12]  550 	orl	a,b
+      000221 70 03            [24]  551 	jnz	00239$
+      000223 02r02rB2         [24]  552 	ljmp	00111$
+      000226                        553 00239$:
+      000226 C0 05            [24]  554 	push	ar5
+      000228 C0 06            [24]  555 	push	ar6
+      00022A C0 07            [24]  556 	push	ar7
+      00022C 90r00r00         [24]  557 	mov	dptr,#_timerlist
+      00022F E0               [24]  558 	movx	a,@dptr
+      000230 FD               [12]  559 	mov	r5,a
+      000231 A3               [24]  560 	inc	dptr
+      000232 E0               [24]  561 	movx	a,@dptr
+      000233 FE               [12]  562 	mov	r6,a
+      000234 A3               [24]  563 	inc	dptr
+      000235 E0               [24]  564 	movx	a,@dptr
+      000236 FF               [12]  565 	mov	r7,a
+      000237 74 07            [12]  566 	mov	a,#0x07
+      000239 2D               [12]  567 	add	a,r5
+      00023A FD               [12]  568 	mov	r5,a
+      00023B E4               [12]  569 	clr	a
+      00023C 3E               [12]  570 	addc	a,r6
+      00023D FE               [12]  571 	mov	r6,a
+      00023E 8D 82            [24]  572 	mov	dpl,r5
+      000240 8E 83            [24]  573 	mov	dph,r6
+      000242 8F F0            [24]  574 	mov	b,r7
+      000244 12r00r00         [24]  575 	lcall	__gptrget
+      000247 FD               [12]  576 	mov	r5,a
+      000248 A3               [24]  577 	inc	dptr
+      000249 12r00r00         [24]  578 	lcall	__gptrget
+      00024C FE               [12]  579 	mov	r6,a
+      00024D A3               [24]  580 	inc	dptr
+      00024E 12r00r00         [24]  581 	lcall	__gptrget
+      000251 FF               [12]  582 	mov	r7,a
+      000252 E5 81            [12]  583 	mov	a,sp
+      000254 24 FB            [12]  584 	add	a,#0xfb
+      000256 F8               [12]  585 	mov	r0,a
+      000257 C0 05            [24]  586 	push	ar5
+      000259 C0 06            [24]  587 	push	ar6
+      00025B C0 07            [24]  588 	push	ar7
+      00025D 86 82            [24]  589 	mov	dpl,@r0
+      00025F 08               [12]  590 	inc	r0
+      000260 86 83            [24]  591 	mov	dph,@r0
+      000262 08               [12]  592 	inc	r0
+      000263 86 F0            [24]  593 	mov	b,@r0
+      000265 12r00r00         [24]  594 	lcall	___gptr_cmp
+      000268 15 81            [12]  595 	dec	sp
+      00026A 15 81            [12]  596 	dec	sp
+      00026C 15 81            [12]  597 	dec	sp
+      00026E 60 08            [24]  598 	jz	00241$
+      000270 D0 07            [24]  599 	pop	ar7
+      000272 D0 06            [24]  600 	pop	ar6
+      000274 D0 05            [24]  601 	pop	ar5
+      000276 80 3A            [24]  602 	sjmp	00111$
+      000278                        603 00241$:
+                                    604 ;	../../../core/sys/etimer.c:95: timerlist = timerlist->next;
+      000278 90r00r00         [24]  605 	mov	dptr,#_timerlist
+      00027B E0               [24]  606 	movx	a,@dptr
+      00027C FD               [12]  607 	mov	r5,a
+      00027D A3               [24]  608 	inc	dptr
+      00027E E0               [24]  609 	movx	a,@dptr
+      00027F FE               [12]  610 	mov	r6,a
+      000280 A3               [24]  611 	inc	dptr
+      000281 E0               [24]  612 	movx	a,@dptr
+      000282 FF               [12]  613 	mov	r7,a
+      000283 74 04            [12]  614 	mov	a,#0x04
+      000285 2D               [12]  615 	add	a,r5
+      000286 FD               [12]  616 	mov	r5,a
+      000287 E4               [12]  617 	clr	a
+      000288 3E               [12]  618 	addc	a,r6
+      000289 FE               [12]  619 	mov	r6,a
+      00028A 8D 82            [24]  620 	mov	dpl,r5
+      00028C 8E 83            [24]  621 	mov	dph,r6
+      00028E 8F F0            [24]  622 	mov	b,r7
+      000290 12r00r00         [24]  623 	lcall	__gptrget
+      000293 FD               [12]  624 	mov	r5,a
+      000294 A3               [24]  625 	inc	dptr
+      000295 12r00r00         [24]  626 	lcall	__gptrget
+      000298 FE               [12]  627 	mov	r6,a
+      000299 A3               [24]  628 	inc	dptr
+      00029A 12r00r00         [24]  629 	lcall	__gptrget
+      00029D FF               [12]  630 	mov	r7,a
+      00029E 90r00r00         [24]  631 	mov	dptr,#_timerlist
+      0002A1 ED               [12]  632 	mov	a,r5
+      0002A2 F0               [24]  633 	movx	@dptr,a
+      0002A3 EE               [12]  634 	mov	a,r6
+      0002A4 A3               [24]  635 	inc	dptr
+      0002A5 F0               [24]  636 	movx	@dptr,a
+      0002A6 EF               [12]  637 	mov	a,r7
+      0002A7 A3               [24]  638 	inc	dptr
+      0002A8 F0               [24]  639 	movx	@dptr,a
+      0002A9 D0 07            [24]  640 	pop	ar7
+      0002AB D0 06            [24]  641 	pop	ar6
+      0002AD D0 05            [24]  642 	pop	ar5
+      0002AF 02r02r17         [24]  643 	ljmp	00109$
+      0002B2                        644 00111$:
+                                    645 ;	../../../core/sys/etimer.c:98: if(timerlist != NULL) {
+      0002B2 90r00r00         [24]  646 	mov	dptr,#_timerlist
+      0002B5 E0               [24]  647 	movx	a,@dptr
+      0002B6 F5 F0            [12]  648 	mov	b,a
+      0002B8 A3               [24]  649 	inc	dptr
+      0002B9 E0               [24]  650 	movx	a,@dptr
+      0002BA 45 F0            [12]  651 	orl	a,b
+      0002BC 70 03            [24]  652 	jnz	00242$
+      0002BE 02r01rDC         [24]  653 	ljmp	00136$
+      0002C1                        654 00242$:
+                                    655 ;	../../../core/sys/etimer.c:99: t = timerlist;
+      0002C1 90r00r00         [24]  656 	mov	dptr,#_timerlist
+      0002C4 E0               [24]  657 	movx	a,@dptr
+      0002C5 FA               [12]  658 	mov	r2,a
+      0002C6 A3               [24]  659 	inc	dptr
+      0002C7 E0               [24]  660 	movx	a,@dptr
+      0002C8 FB               [12]  661 	mov	r3,a
+      0002C9 A3               [24]  662 	inc	dptr
+      0002CA E0               [24]  663 	movx	a,@dptr
+      0002CB FC               [12]  664 	mov	r4,a
+                                    665 ;	../../../core/sys/etimer.c:100: while(t->next != NULL) {
+      0002CC                        666 00115$:
+      0002CC C0 05            [24]  667 	push	ar5
+      0002CE C0 06            [24]  668 	push	ar6
+      0002D0 C0 07            [24]  669 	push	ar7
+      0002D2 74 04            [12]  670 	mov	a,#0x04
+      0002D4 2A               [12]  671 	add	a,r2
+      0002D5 FD               [12]  672 	mov	r5,a
+      0002D6 E4               [12]  673 	clr	a
+      0002D7 3B               [12]  674 	addc	a,r3
+      0002D8 FE               [12]  675 	mov	r6,a
+      0002D9 8C 07            [24]  676 	mov	ar7,r4
+      0002DB 8D 82            [24]  677 	mov	dpl,r5
+      0002DD 8E 83            [24]  678 	mov	dph,r6
+      0002DF 8F F0            [24]  679 	mov	b,r7
+      0002E1 12r00r00         [24]  680 	lcall	__gptrget
+      0002E4 FD               [12]  681 	mov	r5,a
+      0002E5 A3               [24]  682 	inc	dptr
+      0002E6 12r00r00         [24]  683 	lcall	__gptrget
+      0002E9 FE               [12]  684 	mov	r6,a
+      0002EA A3               [24]  685 	inc	dptr
+      0002EB 12r00r00         [24]  686 	lcall	__gptrget
+      0002EE ED               [12]  687 	mov	a,r5
+      0002EF 4E               [12]  688 	orl	a,r6
+      0002F0 D0 07            [24]  689 	pop	ar7
+      0002F2 D0 06            [24]  690 	pop	ar6
+      0002F4 D0 05            [24]  691 	pop	ar5
+      0002F6 70 03            [24]  692 	jnz	00243$
+      0002F8 02r01rDC         [24]  693 	ljmp	00136$
+      0002FB                        694 00243$:
+                                    695 ;	../../../core/sys/etimer.c:101: if(t->next->p == p) {
+      0002FB C0 05            [24]  696 	push	ar5
+      0002FD C0 06            [24]  697 	push	ar6
+      0002FF C0 07            [24]  698 	push	ar7
+      000301 74 04            [12]  699 	mov	a,#0x04
+      000303 2A               [12]  700 	add	a,r2
+      000304 FD               [12]  701 	mov	r5,a
+      000305 E4               [12]  702 	clr	a
+      000306 3B               [12]  703 	addc	a,r3
+      000307 FE               [12]  704 	mov	r6,a
+      000308 8C 07            [24]  705 	mov	ar7,r4
+      00030A 8D 82            [24]  706 	mov	dpl,r5
+      00030C 8E 83            [24]  707 	mov	dph,r6
+      00030E 8F F0            [24]  708 	mov	b,r7
+      000310 12r00r00         [24]  709 	lcall	__gptrget
+      000313 FD               [12]  710 	mov	r5,a
+      000314 A3               [24]  711 	inc	dptr
+      000315 12r00r00         [24]  712 	lcall	__gptrget
+      000318 FE               [12]  713 	mov	r6,a
+      000319 A3               [24]  714 	inc	dptr
+      00031A 12r00r00         [24]  715 	lcall	__gptrget
+      00031D FF               [12]  716 	mov	r7,a
+      00031E 74 07            [12]  717 	mov	a,#0x07
+      000320 2D               [12]  718 	add	a,r5
+      000321 FD               [12]  719 	mov	r5,a
+      000322 E4               [12]  720 	clr	a
+      000323 3E               [12]  721 	addc	a,r6
+      000324 FE               [12]  722 	mov	r6,a
+      000325 8D 82            [24]  723 	mov	dpl,r5
+      000327 8E 83            [24]  724 	mov	dph,r6
+      000329 8F F0            [24]  725 	mov	b,r7
+      00032B 12r00r00         [24]  726 	lcall	__gptrget
+      00032E FD               [12]  727 	mov	r5,a
+      00032F A3               [24]  728 	inc	dptr
+      000330 12r00r00         [24]  729 	lcall	__gptrget
+      000333 FE               [12]  730 	mov	r6,a
+      000334 A3               [24]  731 	inc	dptr
+      000335 12r00r00         [24]  732 	lcall	__gptrget
+      000338 FF               [12]  733 	mov	r7,a
+      000339 E5 81            [12]  734 	mov	a,sp
+      00033B 24 FB            [12]  735 	add	a,#0xfb
+      00033D F8               [12]  736 	mov	r0,a
+      00033E C0 05            [24]  737 	push	ar5
+      000340 C0 06            [24]  738 	push	ar6
+      000342 C0 07            [24]  739 	push	ar7
+      000344 86 82            [24]  740 	mov	dpl,@r0
+      000346 08               [12]  741 	inc	r0
+      000347 86 83            [24]  742 	mov	dph,@r0
+      000349 08               [12]  743 	inc	r0
+      00034A 86 F0            [24]  744 	mov	b,@r0
+      00034C 12r00r00         [24]  745 	lcall	___gptr_cmp
+      00034F 15 81            [12]  746 	dec	sp
+      000351 15 81            [12]  747 	dec	sp
+      000353 15 81            [12]  748 	dec	sp
+      000355 60 08            [24]  749 	jz	00245$
+      000357 D0 07            [24]  750 	pop	ar7
+      000359 D0 06            [24]  751 	pop	ar6
+      00035B D0 05            [24]  752 	pop	ar5
+      00035D 80 6A            [24]  753 	sjmp	00113$
+      00035F                        754 00245$:
+                                    755 ;	../../../core/sys/etimer.c:102: t->next = t->next->next;
+      00035F E5 81            [12]  756 	mov	a,sp
+      000361 24 F2            [12]  757 	add	a,#0xf2
+      000363 F8               [12]  758 	mov	r0,a
+      000364 74 04            [12]  759 	mov	a,#0x04
+      000366 2A               [12]  760 	add	a,r2
+      000367 F6               [12]  761 	mov	@r0,a
+      000368 E4               [12]  762 	clr	a
+      000369 3B               [12]  763 	addc	a,r3
+      00036A 08               [12]  764 	inc	r0
+      00036B F6               [12]  765 	mov	@r0,a
+      00036C 08               [12]  766 	inc	r0
+      00036D A6 04            [24]  767 	mov	@r0,ar4
+      00036F E5 81            [12]  768 	mov	a,sp
+      000371 24 F2            [12]  769 	add	a,#0xf2
+      000373 F8               [12]  770 	mov	r0,a
+      000374 86 82            [24]  771 	mov	dpl,@r0
+      000376 08               [12]  772 	inc	r0
+      000377 86 83            [24]  773 	mov	dph,@r0
+      000379 08               [12]  774 	inc	r0
+      00037A 86 F0            [24]  775 	mov	b,@r0
+      00037C 12r00r00         [24]  776 	lcall	__gptrget
+      00037F FD               [12]  777 	mov	r5,a
+      000380 A3               [24]  778 	inc	dptr
+      000381 12r00r00         [24]  779 	lcall	__gptrget
+      000384 FE               [12]  780 	mov	r6,a
+      000385 A3               [24]  781 	inc	dptr
+      000386 12r00r00         [24]  782 	lcall	__gptrget
+      000389 FF               [12]  783 	mov	r7,a
+      00038A 74 04            [12]  784 	mov	a,#0x04
+      00038C 2D               [12]  785 	add	a,r5
+      00038D FD               [12]  786 	mov	r5,a
+      00038E E4               [12]  787 	clr	a
+      00038F 3E               [12]  788 	addc	a,r6
+      000390 FE               [12]  789 	mov	r6,a
+      000391 8D 82            [24]  790 	mov	dpl,r5
+      000393 8E 83            [24]  791 	mov	dph,r6
+      000395 8F F0            [24]  792 	mov	b,r7
+      000397 12r00r00         [24]  793 	lcall	__gptrget
+      00039A FD               [12]  794 	mov	r5,a
+      00039B A3               [24]  795 	inc	dptr
+      00039C 12r00r00         [24]  796 	lcall	__gptrget
+      00039F FE               [12]  797 	mov	r6,a
+      0003A0 A3               [24]  798 	inc	dptr
+      0003A1 12r00r00         [24]  799 	lcall	__gptrget
+      0003A4 FF               [12]  800 	mov	r7,a
+      0003A5 E5 81            [12]  801 	mov	a,sp
+      0003A7 24 F2            [12]  802 	add	a,#0xf2
+      0003A9 F8               [12]  803 	mov	r0,a
+      0003AA 86 82            [24]  804 	mov	dpl,@r0
+      0003AC 08               [12]  805 	inc	r0
+      0003AD 86 83            [24]  806 	mov	dph,@r0
+      0003AF 08               [12]  807 	inc	r0
+      0003B0 86 F0            [24]  808 	mov	b,@r0
+      0003B2 ED               [12]  809 	mov	a,r5
+      0003B3 12r00r00         [24]  810 	lcall	__gptrput
+      0003B6 A3               [24]  811 	inc	dptr
+      0003B7 EE               [12]  812 	mov	a,r6
+      0003B8 12r00r00         [24]  813 	lcall	__gptrput
+      0003BB A3               [24]  814 	inc	dptr
+      0003BC EF               [12]  815 	mov	a,r7
+      0003BD 12r00r00         [24]  816 	lcall	__gptrput
+      0003C0 D0 07            [24]  817 	pop	ar7
+      0003C2 D0 06            [24]  818 	pop	ar6
+      0003C4 D0 05            [24]  819 	pop	ar5
+      0003C6 02r02rCC         [24]  820 	ljmp	00115$
+      0003C9                        821 00113$:
+                                    822 ;	../../../core/sys/etimer.c:104: t = t->next;
+      0003C9 C0 05            [24]  823 	push	ar5
+      0003CB C0 06            [24]  824 	push	ar6
+      0003CD C0 07            [24]  825 	push	ar7
+      0003CF 74 04            [12]  826 	mov	a,#0x04
+      0003D1 2A               [12]  827 	add	a,r2
+      0003D2 FD               [12]  828 	mov	r5,a
+      0003D3 E4               [12]  829 	clr	a
+      0003D4 3B               [12]  830 	addc	a,r3
+      0003D5 FE               [12]  831 	mov	r6,a
+      0003D6 8C 07            [24]  832 	mov	ar7,r4
+      0003D8 8D 82            [24]  833 	mov	dpl,r5
+      0003DA 8E 83            [24]  834 	mov	dph,r6
+      0003DC 8F F0            [24]  835 	mov	b,r7
+      0003DE 12r00r00         [24]  836 	lcall	__gptrget
+      0003E1 FA               [12]  837 	mov	r2,a
+      0003E2 A3               [24]  838 	inc	dptr
+      0003E3 12r00r00         [24]  839 	lcall	__gptrget
+      0003E6 FB               [12]  840 	mov	r3,a
+      0003E7 A3               [24]  841 	inc	dptr
+      0003E8 12r00r00         [24]  842 	lcall	__gptrget
+      0003EB FC               [12]  843 	mov	r4,a
+      0003EC D0 07            [24]  844 	pop	ar7
+      0003EE D0 06            [24]  845 	pop	ar6
+      0003F0 D0 05            [24]  846 	pop	ar5
+      0003F2 02r02rCC         [24]  847 	ljmp	00115$
+                                    848 ;	../../../core/sys/etimer.c:107: continue;
+      0003F5                        849 00123$:
+                                    850 ;	../../../core/sys/etimer.c:108: } else if(ev != PROCESS_EVENT_POLL) {
+      0003F5 E5 81            [12]  851 	mov	a,sp
+      0003F7 24 F1            [12]  852 	add	a,#0xf1
+      0003F9 F8               [12]  853 	mov	r0,a
+      0003FA B6 82 02         [24]  854 	cjne	@r0,#0x82,00246$
+      0003FD 80 03            [24]  855 	sjmp	00247$
+      0003FF                        856 00246$:
+      0003FF 02r01rDC         [24]  857 	ljmp	00136$
+      000402                        858 00247$:
+                                    859 ;	../../../core/sys/etimer.c:112: again:
+      000402                        860 00125$:
+                                    861 ;	../../../core/sys/etimer.c:114: u = NULL;
+      000402 E5 81            [12]  862 	mov	a,sp
+      000404 24 FB            [12]  863 	add	a,#0xfb
+      000406 F8               [12]  864 	mov	r0,a
+      000407 E4               [12]  865 	clr	a
+      000408 F6               [12]  866 	mov	@r0,a
+      000409 08               [12]  867 	inc	r0
+      00040A F6               [12]  868 	mov	@r0,a
+      00040B 08               [12]  869 	inc	r0
+      00040C 76 00            [12]  870 	mov	@r0,#0x00
+                                    871 ;	../../../core/sys/etimer.c:116: for(t = timerlist; t != NULL; t = t->next) {
+      00040E 90r00r00         [24]  872 	mov	dptr,#_timerlist
+      000411 E0               [24]  873 	movx	a,@dptr
+      000412 FA               [12]  874 	mov	r2,a
+      000413 A3               [24]  875 	inc	dptr
+      000414 E0               [24]  876 	movx	a,@dptr
+      000415 FB               [12]  877 	mov	r3,a
+      000416 A3               [24]  878 	inc	dptr
+      000417 E0               [24]  879 	movx	a,@dptr
+      000418 FC               [12]  880 	mov	r4,a
+      000419 E5 81            [12]  881 	mov	a,sp
+      00041B 24 F8            [12]  882 	add	a,#0xf8
+      00041D F8               [12]  883 	mov	r0,a
+      00041E A6 02            [24]  884 	mov	@r0,ar2
+      000420 08               [12]  885 	inc	r0
+      000421 A6 03            [24]  886 	mov	@r0,ar3
+      000423 08               [12]  887 	inc	r0
+      000424 A6 04            [24]  888 	mov	@r0,ar4
+      000426                        889 00140$:
+      000426 E5 81            [12]  890 	mov	a,sp
+      000428 24 F8            [12]  891 	add	a,#0xf8
+      00042A F8               [12]  892 	mov	r0,a
+      00042B E6               [12]  893 	mov	a,@r0
+      00042C 08               [12]  894 	inc	r0
+      00042D 46               [12]  895 	orl	a,@r0
+      00042E 70 03            [24]  896 	jnz	00248$
+      000430 02r01rDC         [24]  897 	ljmp	00136$
+      000433                        898 00248$:
+                                    899 ;	../../../core/sys/etimer.c:117: if(timer_expired(&t->timer)) {
+      000433 E5 81            [12]  900 	mov	a,sp
+      000435 24 F8            [12]  901 	add	a,#0xf8
+      000437 F8               [12]  902 	mov	r0,a
+      000438 86 82            [24]  903 	mov	dpl,@r0
+      00043A 08               [12]  904 	inc	r0
+      00043B 86 83            [24]  905 	mov	dph,@r0
+      00043D 08               [12]  906 	inc	r0
+      00043E 86 F0            [24]  907 	mov	b,@r0
+      000440 C0 07            [24]  908 	push	ar7
+      000442 C0 06            [24]  909 	push	ar6
+      000444 C0 05            [24]  910 	push	ar5
+      000446 78r00            [12]  911 	mov	r0,#_timer_expired
+      000448 79s00            [12]  912 	mov	r1,#(_timer_expired >> 8)
+      00044A 7As00            [12]  913 	mov	r2,#(_timer_expired >> 16)
+      00044C 12r00r00         [24]  914 	lcall	__sdcc_banked_call
+      00044F E5 82            [12]  915 	mov	a,dpl
+      000451 85 83 F0         [24]  916 	mov	b,dph
+      000454 D0 05            [24]  917 	pop	ar5
+      000456 D0 06            [24]  918 	pop	ar6
+      000458 D0 07            [24]  919 	pop	ar7
+      00045A 45 F0            [12]  920 	orl	a,b
+      00045C 70 03            [24]  921 	jnz	00249$
+      00045E 02r05rCC         [24]  922 	ljmp	00133$
+      000461                        923 00249$:
+                                    924 ;	../../../core/sys/etimer.c:118: if(process_post(t->p, PROCESS_EVENT_TIMER, t) == PROCESS_ERR_OK) {
+      000461 C0 05            [24]  925 	push	ar5
+      000463 C0 06            [24]  926 	push	ar6
+      000465 C0 07            [24]  927 	push	ar7
+      000467 E5 81            [12]  928 	mov	a,sp
+      000469 24 F5            [12]  929 	add	a,#0xf5
+      00046B F8               [12]  930 	mov	r0,a
+      00046C 86 05            [24]  931 	mov	ar5,@r0
+      00046E 08               [12]  932 	inc	r0
+      00046F 86 06            [24]  933 	mov	ar6,@r0
+      000471 08               [12]  934 	inc	r0
+      000472 86 07            [24]  935 	mov	ar7,@r0
+      000474 E5 81            [12]  936 	mov	a,sp
+      000476 24 F5            [12]  937 	add	a,#0xf5
+      000478 F8               [12]  938 	mov	r0,a
+      000479 74 07            [12]  939 	mov	a,#0x07
+      00047B 26               [12]  940 	add	a,@r0
+      00047C FA               [12]  941 	mov	r2,a
+      00047D E4               [12]  942 	clr	a
+      00047E 08               [12]  943 	inc	r0
+      00047F 36               [12]  944 	addc	a,@r0
+      000480 FB               [12]  945 	mov	r3,a
+      000481 08               [12]  946 	inc	r0
+      000482 86 04            [24]  947 	mov	ar4,@r0
+      000484 8A 82            [24]  948 	mov	dpl,r2
+      000486 8B 83            [24]  949 	mov	dph,r3
+      000488 8C F0            [24]  950 	mov	b,r4
+      00048A 12r00r00         [24]  951 	lcall	__gptrget
+      00048D FA               [12]  952 	mov	r2,a
+      00048E A3               [24]  953 	inc	dptr
+      00048F 12r00r00         [24]  954 	lcall	__gptrget
+      000492 FB               [12]  955 	mov	r3,a
+      000493 A3               [24]  956 	inc	dptr
+      000494 12r00r00         [24]  957 	lcall	__gptrget
+      000497 FC               [12]  958 	mov	r4,a
+      000498 C0 05            [24]  959 	push	ar5
+      00049A C0 05            [24]  960 	push	ar5
+      00049C C0 06            [24]  961 	push	ar6
+      00049E C0 07            [24]  962 	push	ar7
+      0004A0 74 88            [12]  963 	mov	a,#0x88
+      0004A2 C0 E0            [24]  964 	push	acc
+      0004A4 8A 82            [24]  965 	mov	dpl,r2
+      0004A6 8B 83            [24]  966 	mov	dph,r3
+      0004A8 8C F0            [24]  967 	mov	b,r4
+      0004AA 78r00            [12]  968 	mov	r0,#_process_post
+      0004AC 79s00            [12]  969 	mov	r1,#(_process_post >> 8)
+      0004AE 7As00            [12]  970 	mov	r2,#(_process_post >> 16)
+      0004B0 12r00r00         [24]  971 	lcall	__sdcc_banked_call
+      0004B3 AE 82            [24]  972 	mov	r6,dpl
+      0004B5 AF 83            [24]  973 	mov	r7,dph
+      0004B7 E5 81            [12]  974 	mov	a,sp
+      0004B9 24 FC            [12]  975 	add	a,#0xfc
+      0004BB F5 81            [12]  976 	mov	sp,a
+      0004BD D0 05            [24]  977 	pop	ar5
+      0004BF EE               [12]  978 	mov	a,r6
+      0004C0 4F               [12]  979 	orl	a,r7
+      0004C1 D0 07            [24]  980 	pop	ar7
+      0004C3 D0 06            [24]  981 	pop	ar6
+      0004C5 D0 05            [24]  982 	pop	ar5
+      0004C7 60 03            [24]  983 	jz	00250$
+      0004C9 02r05rB7         [24]  984 	ljmp	00130$
+      0004CC                        985 00250$:
+                                    986 ;	../../../core/sys/etimer.c:123: t->p = PROCESS_NONE;
+      0004CC E5 81            [12]  987 	mov	a,sp
+      0004CE 24 F8            [12]  988 	add	a,#0xf8
+      0004D0 F8               [12]  989 	mov	r0,a
+      0004D1 74 07            [12]  990 	mov	a,#0x07
+      0004D3 26               [12]  991 	add	a,@r0
+      0004D4 FA               [12]  992 	mov	r2,a
+      0004D5 E4               [12]  993 	clr	a
+      0004D6 08               [12]  994 	inc	r0
+      0004D7 36               [12]  995 	addc	a,@r0
+      0004D8 FB               [12]  996 	mov	r3,a
+      0004D9 08               [12]  997 	inc	r0
+      0004DA 86 04            [24]  998 	mov	ar4,@r0
+      0004DC 8A 82            [24]  999 	mov	dpl,r2
+      0004DE 8B 83            [24] 1000 	mov	dph,r3
+      0004E0 8C F0            [24] 1001 	mov	b,r4
+      0004E2 E4               [12] 1002 	clr	a
+      0004E3 12r00r00         [24] 1003 	lcall	__gptrput
+      0004E6 A3               [24] 1004 	inc	dptr
+      0004E7 12r00r00         [24] 1005 	lcall	__gptrput
+      0004EA A3               [24] 1006 	inc	dptr
+      0004EB 12r00r00         [24] 1007 	lcall	__gptrput
+                                   1008 ;	../../../core/sys/etimer.c:124: if(u != NULL) {
+      0004EE E5 81            [12] 1009 	mov	a,sp
+      0004F0 24 FB            [12] 1010 	add	a,#0xfb
+      0004F2 F8               [12] 1011 	mov	r0,a
+      0004F3 E6               [12] 1012 	mov	a,@r0
+      0004F4 08               [12] 1013 	inc	r0
+      0004F5 46               [12] 1014 	orl	a,@r0
+      0004F6 60 56            [24] 1015 	jz	00127$
+                                   1016 ;	../../../core/sys/etimer.c:125: u->next = t->next;
+      0004F8 C0 05            [24] 1017 	push	ar5
+      0004FA C0 06            [24] 1018 	push	ar6
+      0004FC C0 07            [24] 1019 	push	ar7
+      0004FE E5 81            [12] 1020 	mov	a,sp
+      000500 24 F8            [12] 1021 	add	a,#0xf8
+      000502 F8               [12] 1022 	mov	r0,a
+      000503 74 04            [12] 1023 	mov	a,#0x04
+      000505 26               [12] 1024 	add	a,@r0
+      000506 FA               [12] 1025 	mov	r2,a
+      000507 E4               [12] 1026 	clr	a
+      000508 08               [12] 1027 	inc	r0
+      000509 36               [12] 1028 	addc	a,@r0
+      00050A FB               [12] 1029 	mov	r3,a
+      00050B 08               [12] 1030 	inc	r0
+      00050C 86 04            [24] 1031 	mov	ar4,@r0
+      00050E E5 81            [12] 1032 	mov	a,sp
+      000510 24 F5            [12] 1033 	add	a,#0xf5
+      000512 F8               [12] 1034 	mov	r0,a
+      000513 74 04            [12] 1035 	mov	a,#0x04
+      000515 26               [12] 1036 	add	a,@r0
+      000516 FD               [12] 1037 	mov	r5,a
+      000517 E4               [12] 1038 	clr	a
+      000518 08               [12] 1039 	inc	r0
+      000519 36               [12] 1040 	addc	a,@r0
+      00051A FE               [12] 1041 	mov	r6,a
+      00051B 08               [12] 1042 	inc	r0
+      00051C 86 07            [24] 1043 	mov	ar7,@r0
+      00051E 8D 82            [24] 1044 	mov	dpl,r5
+      000520 8E 83            [24] 1045 	mov	dph,r6
+      000522 8F F0            [24] 1046 	mov	b,r7
+      000524 12r00r00         [24] 1047 	lcall	__gptrget
+      000527 FD               [12] 1048 	mov	r5,a
+      000528 A3               [24] 1049 	inc	dptr
+      000529 12r00r00         [24] 1050 	lcall	__gptrget
+      00052C FE               [12] 1051 	mov	r6,a
+      00052D A3               [24] 1052 	inc	dptr
+      00052E 12r00r00         [24] 1053 	lcall	__gptrget
+      000531 FF               [12] 1054 	mov	r7,a
+      000532 8A 82            [24] 1055 	mov	dpl,r2
+      000534 8B 83            [24] 1056 	mov	dph,r3
+      000536 8C F0            [24] 1057 	mov	b,r4
+      000538 ED               [12] 1058 	mov	a,r5
+      000539 12r00r00         [24] 1059 	lcall	__gptrput
+      00053C A3               [24] 1060 	inc	dptr
+      00053D EE               [12] 1061 	mov	a,r6
+      00053E 12r00r00         [24] 1062 	lcall	__gptrput
+      000541 A3               [24] 1063 	inc	dptr
+      000542 EF               [12] 1064 	mov	a,r7
+      000543 12r00r00         [24] 1065 	lcall	__gptrput
+      000546 D0 07            [24] 1066 	pop	ar7
+      000548 D0 06            [24] 1067 	pop	ar6
+      00054A D0 05            [24] 1068 	pop	ar5
+      00054C 80 2F            [24] 1069 	sjmp	00128$
+      00054E                       1070 00127$:
+                                   1071 ;	../../../core/sys/etimer.c:127: timerlist = t->next;
+      00054E E5 81            [12] 1072 	mov	a,sp
+      000550 24 F8            [12] 1073 	add	a,#0xf8
+      000552 F8               [12] 1074 	mov	r0,a
+      000553 74 04            [12] 1075 	mov	a,#0x04
+      000555 26               [12] 1076 	add	a,@r0
+      000556 FA               [12] 1077 	mov	r2,a
+      000557 E4               [12] 1078 	clr	a
+      000558 08               [12] 1079 	inc	r0
+      000559 36               [12] 1080 	addc	a,@r0
+      00055A FB               [12] 1081 	mov	r3,a
+      00055B 08               [12] 1082 	inc	r0
+      00055C 86 04            [24] 1083 	mov	ar4,@r0
+      00055E 8A 82            [24] 1084 	mov	dpl,r2
+      000560 8B 83            [24] 1085 	mov	dph,r3
+      000562 8C F0            [24] 1086 	mov	b,r4
+      000564 12r00r00         [24] 1087 	lcall	__gptrget
+      000567 FA               [12] 1088 	mov	r2,a
+      000568 A3               [24] 1089 	inc	dptr
+      000569 12r00r00         [24] 1090 	lcall	__gptrget
+      00056C FB               [12] 1091 	mov	r3,a
+      00056D A3               [24] 1092 	inc	dptr
+      00056E 12r00r00         [24] 1093 	lcall	__gptrget
+      000571 FC               [12] 1094 	mov	r4,a
+      000572 90r00r00         [24] 1095 	mov	dptr,#_timerlist
+      000575 EA               [12] 1096 	mov	a,r2
+      000576 F0               [24] 1097 	movx	@dptr,a
+      000577 EB               [12] 1098 	mov	a,r3
+      000578 A3               [24] 1099 	inc	dptr
+      000579 F0               [24] 1100 	movx	@dptr,a
+      00057A EC               [12] 1101 	mov	a,r4
+      00057B A3               [24] 1102 	inc	dptr
+      00057C F0               [24] 1103 	movx	@dptr,a
+      00057D                       1104 00128$:
+                                   1105 ;	../../../core/sys/etimer.c:129: t->next = NULL;
+      00057D E5 81            [12] 1106 	mov	a,sp
+      00057F 24 F8            [12] 1107 	add	a,#0xf8
+      000581 F8               [12] 1108 	mov	r0,a
+      000582 74 04            [12] 1109 	mov	a,#0x04
+      000584 26               [12] 1110 	add	a,@r0
+      000585 FA               [12] 1111 	mov	r2,a
+      000586 E4               [12] 1112 	clr	a
+      000587 08               [12] 1113 	inc	r0
+      000588 36               [12] 1114 	addc	a,@r0
+      000589 FB               [12] 1115 	mov	r3,a
+      00058A 08               [12] 1116 	inc	r0
+      00058B 86 04            [24] 1117 	mov	ar4,@r0
+      00058D 8A 82            [24] 1118 	mov	dpl,r2
+      00058F 8B 83            [24] 1119 	mov	dph,r3
+      000591 8C F0            [24] 1120 	mov	b,r4
+      000593 E4               [12] 1121 	clr	a
+      000594 12r00r00         [24] 1122 	lcall	__gptrput
+      000597 A3               [24] 1123 	inc	dptr
+      000598 12r00r00         [24] 1124 	lcall	__gptrput
+      00059B A3               [24] 1125 	inc	dptr
+      00059C 12r00r00         [24] 1126 	lcall	__gptrput
+                                   1127 ;	../../../core/sys/etimer.c:130: update_time();
+      00059F C0 07            [24] 1128 	push	ar7
+      0005A1 C0 06            [24] 1129 	push	ar6
+      0005A3 C0 05            [24] 1130 	push	ar5
+      0005A5 78r00            [12] 1131 	mov	r0,#_update_time
+      0005A7 79s00            [12] 1132 	mov	r1,#(_update_time >> 8)
+      0005A9 7As00            [12] 1133 	mov	r2,#(_update_time >> 16)
+      0005AB 12r00r00         [24] 1134 	lcall	__sdcc_banked_call
+      0005AE D0 05            [24] 1135 	pop	ar5
+      0005B0 D0 06            [24] 1136 	pop	ar6
+      0005B2 D0 07            [24] 1137 	pop	ar7
+                                   1138 ;	../../../core/sys/etimer.c:131: goto again;
+      0005B4 02r04r02         [24] 1139 	ljmp	00125$
+      0005B7                       1140 00130$:
+                                   1141 ;	../../../core/sys/etimer.c:133: etimer_request_poll();
+      0005B7 C0 07            [24] 1142 	push	ar7
+      0005B9 C0 06            [24] 1143 	push	ar6
+      0005BB C0 05            [24] 1144 	push	ar5
+      0005BD 78r28            [12] 1145 	mov	r0,#_etimer_request_poll
+      0005BF 79s06            [12] 1146 	mov	r1,#(_etimer_request_poll >> 8)
+      0005C1 7As00            [12] 1147 	mov	r2,#(_etimer_request_poll >> 16)
+      0005C3 12r00r00         [24] 1148 	lcall	__sdcc_banked_call
+      0005C6 D0 05            [24] 1149 	pop	ar5
+      0005C8 D0 06            [24] 1150 	pop	ar6
+      0005CA D0 07            [24] 1151 	pop	ar7
+      0005CC                       1152 00133$:
+                                   1153 ;	../../../core/sys/etimer.c:136: u = t;
+      0005CC E5 81            [12] 1154 	mov	a,sp
+      0005CE 24 F8            [12] 1155 	add	a,#0xf8
+      0005D0 F8               [12] 1156 	mov	r0,a
+      0005D1 E5 81            [12] 1157 	mov	a,sp
+      0005D3 24 FB            [12] 1158 	add	a,#0xfb
+      0005D5 F9               [12] 1159 	mov	r1,a
+      0005D6 E6               [12] 1160 	mov	a,@r0
+      0005D7 F7               [12] 1161 	mov	@r1,a
+      0005D8 08               [12] 1162 	inc	r0
+      0005D9 09               [12] 1163 	inc	r1
+      0005DA E6               [12] 1164 	mov	a,@r0
+      0005DB F7               [12] 1165 	mov	@r1,a
+      0005DC 08               [12] 1166 	inc	r0
+      0005DD 09               [12] 1167 	inc	r1
+      0005DE E6               [12] 1168 	mov	a,@r0
+      0005DF F7               [12] 1169 	mov	@r1,a
+                                   1170 ;	../../../core/sys/etimer.c:116: for(t = timerlist; t != NULL; t = t->next) {
+      0005E0 E5 81            [12] 1171 	mov	a,sp
+      0005E2 24 F8            [12] 1172 	add	a,#0xf8
+      0005E4 F8               [12] 1173 	mov	r0,a
+      0005E5 74 04            [12] 1174 	mov	a,#0x04
+      0005E7 26               [12] 1175 	add	a,@r0
+      0005E8 FA               [12] 1176 	mov	r2,a
+      0005E9 E4               [12] 1177 	clr	a
+      0005EA 08               [12] 1178 	inc	r0
+      0005EB 36               [12] 1179 	addc	a,@r0
+      0005EC FB               [12] 1180 	mov	r3,a
+      0005ED 08               [12] 1181 	inc	r0
+      0005EE 86 04            [24] 1182 	mov	ar4,@r0
+      0005F0 8A 82            [24] 1183 	mov	dpl,r2
+      0005F2 8B 83            [24] 1184 	mov	dph,r3
+      0005F4 8C F0            [24] 1185 	mov	b,r4
+      0005F6 E5 81            [12] 1186 	mov	a,sp
+      0005F8 24 F8            [12] 1187 	add	a,#0xf8
+      0005FA F8               [12] 1188 	mov	r0,a
+      0005FB 12r00r00         [24] 1189 	lcall	__gptrget
+      0005FE F6               [12] 1190 	mov	@r0,a
+      0005FF A3               [24] 1191 	inc	dptr
+      000600 12r00r00         [24] 1192 	lcall	__gptrget
+      000603 08               [12] 1193 	inc	r0
+      000604 F6               [12] 1194 	mov	@r0,a
+      000605 A3               [24] 1195 	inc	dptr
+      000606 12r00r00         [24] 1196 	lcall	__gptrget
+      000609 08               [12] 1197 	inc	r0
+      00060A F6               [12] 1198 	mov	@r0,a
+      00060B 02r04r26         [24] 1199 	ljmp	00140$
+                                   1200 ;	../../../core/sys/etimer.c:141: PROCESS_END();
+      00060E                       1201 00138$:
+      00060E 8D 82            [24] 1202 	mov	dpl,r5
+      000610 8E 83            [24] 1203 	mov	dph,r6
+      000612 8F F0            [24] 1204 	mov	b,r7
+      000614 E4               [12] 1205 	clr	a
+      000615 12r00r00         [24] 1206 	lcall	__gptrput
+      000618 A3               [24] 1207 	inc	dptr
+      000619 12r00r00         [24] 1208 	lcall	__gptrput
+      00061C 75 82 03         [24] 1209 	mov	dpl,#0x03
+      00061F                       1210 00142$:
+                                   1211 ;	../../../core/sys/etimer.c:142: }
+      00061F E5 81            [12] 1212 	mov	a,sp
+      000621 24 F4            [12] 1213 	add	a,#0xf4
+      000623 F5 81            [12] 1214 	mov	sp,a
+      000625 02r00r00         [24] 1215 	ljmp	__sdcc_banked_ret
+                                   1216 ;------------------------------------------------------------
+                                   1217 ;Allocation info for local variables in function 'etimer_request_poll'
+                                   1218 ;------------------------------------------------------------
+                                   1219 ;	../../../core/sys/etimer.c:145: etimer_request_poll(void)
+                                   1220 ;	-----------------------------------------
+                                   1221 ;	 function etimer_request_poll
+                                   1222 ;	-----------------------------------------
+      000628                       1223 _etimer_request_poll:
+                                   1224 ;	../../../core/sys/etimer.c:147: process_poll(&etimer_process);
+      000628 90r00r00         [24] 1225 	mov	dptr,#_etimer_process
+      00062B 75 F0 00         [24] 1226 	mov	b,#0x00
+      00062E 78r00            [12] 1227 	mov	r0,#_process_poll
+      000630 79s00            [12] 1228 	mov	r1,#(_process_poll >> 8)
+      000632 7As00            [12] 1229 	mov	r2,#(_process_poll >> 16)
+      000634 12r00r00         [24] 1230 	lcall	__sdcc_banked_call
+                                   1231 ;	../../../core/sys/etimer.c:148: }
+      000637 02r00r00         [24] 1232 	ljmp	__sdcc_banked_ret
+                                   1233 ;------------------------------------------------------------
+                                   1234 ;Allocation info for local variables in function 'add_timer'
+                                   1235 ;------------------------------------------------------------
+                                   1236 ;timer                     Allocated to stack - sp -2
+                                   1237 ;t                         Allocated to registers r2 r3 r4 
+                                   1238 ;------------------------------------------------------------
+                                   1239 ;	../../../core/sys/etimer.c:151: add_timer(struct etimer *timer)
+                                   1240 ;	-----------------------------------------
+                                   1241 ;	 function add_timer
+                                   1242 ;	-----------------------------------------
+      00063A                       1243 _add_timer:
+      00063A C0 82            [24] 1244 	push	dpl
+      00063C C0 83            [24] 1245 	push	dph
+      00063E C0 F0            [24] 1246 	push	b
+                                   1247 ;	../../../core/sys/etimer.c:155: etimer_request_poll();
+      000640 78r28            [12] 1248 	mov	r0,#_etimer_request_poll
+      000642 79s06            [12] 1249 	mov	r1,#(_etimer_request_poll >> 8)
+      000644 7As00            [12] 1250 	mov	r2,#(_etimer_request_poll >> 16)
+      000646 12r00r00         [24] 1251 	lcall	__sdcc_banked_call
+                                   1252 ;	../../../core/sys/etimer.c:157: if(timer->p != PROCESS_NONE) {
+      000649 A8 81            [24] 1253 	mov	r0,sp
+      00064B 18               [12] 1254 	dec	r0
+      00064C 18               [12] 1255 	dec	r0
+      00064D 74 07            [12] 1256 	mov	a,#0x07
+      00064F 26               [12] 1257 	add	a,@r0
+      000650 FA               [12] 1258 	mov	r2,a
+      000651 E4               [12] 1259 	clr	a
+      000652 08               [12] 1260 	inc	r0
+      000653 36               [12] 1261 	addc	a,@r0
+      000654 FB               [12] 1262 	mov	r3,a
+      000655 08               [12] 1263 	inc	r0
+      000656 86 04            [24] 1264 	mov	ar4,@r0
+      000658 8A 82            [24] 1265 	mov	dpl,r2
+      00065A 8B 83            [24] 1266 	mov	dph,r3
+      00065C 8C F0            [24] 1267 	mov	b,r4
+      00065E 12r00r00         [24] 1268 	lcall	__gptrget
+      000661 FA               [12] 1269 	mov	r2,a
+      000662 A3               [24] 1270 	inc	dptr
+      000663 12r00r00         [24] 1271 	lcall	__gptrget
+      000666 FB               [12] 1272 	mov	r3,a
+      000667 A3               [24] 1273 	inc	dptr
+      000668 12r00r00         [24] 1274 	lcall	__gptrget
+      00066B FC               [12] 1275 	mov	r4,a
+      00066C EA               [12] 1276 	mov	a,r2
+      00066D 4B               [12] 1277 	orl	a,r3
+      00066E 60 59            [24] 1278 	jz	00105$
+                                   1279 ;	../../../core/sys/etimer.c:160: for(t = timerlist; t != NULL; t = t->next) {
+      000670 90r00r00         [24] 1280 	mov	dptr,#_timerlist
+      000673 E0               [24] 1281 	movx	a,@dptr
+      000674 FA               [12] 1282 	mov	r2,a
+      000675 A3               [24] 1283 	inc	dptr
+      000676 E0               [24] 1284 	movx	a,@dptr
+      000677 FB               [12] 1285 	mov	r3,a
+      000678 A3               [24] 1286 	inc	dptr
+      000679 E0               [24] 1287 	movx	a,@dptr
+      00067A FC               [12] 1288 	mov	r4,a
+      00067B                       1289 00107$:
+      00067B EA               [12] 1290 	mov	a,r2
+      00067C 4B               [12] 1291 	orl	a,r3
+      00067D 60 4A            [24] 1292 	jz	00105$
+                                   1293 ;	../../../core/sys/etimer.c:161: if(t == timer) {
+      00067F A8 81            [24] 1294 	mov	r0,sp
+      000681 18               [12] 1295 	dec	r0
+      000682 18               [12] 1296 	dec	r0
+      000683 C0 02            [24] 1297 	push	ar2
+      000685 C0 03            [24] 1298 	push	ar3
+      000687 C0 04            [24] 1299 	push	ar4
+      000689 86 82            [24] 1300 	mov	dpl,@r0
+      00068B 08               [12] 1301 	inc	r0
+      00068C 86 83            [24] 1302 	mov	dph,@r0
+      00068E 08               [12] 1303 	inc	r0
+      00068F 86 F0            [24] 1304 	mov	b,@r0
+      000691 12r00r00         [24] 1305 	lcall	___gptr_cmp
+      000694 15 81            [12] 1306 	dec	sp
+      000696 15 81            [12] 1307 	dec	sp
+      000698 15 81            [12] 1308 	dec	sp
+      00069A 60 02            [24] 1309 	jz	00130$
+      00069C 80 0C            [24] 1310 	sjmp	00108$
+      00069E                       1311 00130$:
+                                   1312 ;	../../../core/sys/etimer.c:163: update_time();
+      00069E 78r00            [12] 1313 	mov	r0,#_update_time
+      0006A0 79s00            [12] 1314 	mov	r1,#(_update_time >> 8)
+      0006A2 7As00            [12] 1315 	mov	r2,#(_update_time >> 16)
+      0006A4 12r00r00         [24] 1316 	lcall	__sdcc_banked_call
+                                   1317 ;	../../../core/sys/etimer.c:164: return;
+      0006A7 02r07r3F         [24] 1318 	ljmp	00109$
+      0006AA                       1319 00108$:
+                                   1320 ;	../../../core/sys/etimer.c:160: for(t = timerlist; t != NULL; t = t->next) {
+      0006AA 74 04            [12] 1321 	mov	a,#0x04
+      0006AC 2A               [12] 1322 	add	a,r2
+      0006AD FD               [12] 1323 	mov	r5,a
+      0006AE E4               [12] 1324 	clr	a
+      0006AF 3B               [12] 1325 	addc	a,r3
+      0006B0 FE               [12] 1326 	mov	r6,a
+      0006B1 8C 07            [24] 1327 	mov	ar7,r4
+      0006B3 8D 82            [24] 1328 	mov	dpl,r5
+      0006B5 8E 83            [24] 1329 	mov	dph,r6
+      0006B7 8F F0            [24] 1330 	mov	b,r7
+      0006B9 12r00r00         [24] 1331 	lcall	__gptrget
+      0006BC FA               [12] 1332 	mov	r2,a
+      0006BD A3               [24] 1333 	inc	dptr
+      0006BE 12r00r00         [24] 1334 	lcall	__gptrget
+      0006C1 FB               [12] 1335 	mov	r3,a
+      0006C2 A3               [24] 1336 	inc	dptr
+      0006C3 12r00r00         [24] 1337 	lcall	__gptrget
+      0006C6 FC               [12] 1338 	mov	r4,a
+      0006C7 80 B2            [24] 1339 	sjmp	00107$
+      0006C9                       1340 00105$:
+                                   1341 ;	../../../core/sys/etimer.c:169: timer->p = PROCESS_CURRENT();
+      0006C9 A8 81            [24] 1342 	mov	r0,sp
+      0006CB 18               [12] 1343 	dec	r0
+      0006CC 18               [12] 1344 	dec	r0
+      0006CD 74 07            [12] 1345 	mov	a,#0x07
+      0006CF 26               [12] 1346 	add	a,@r0
+      0006D0 FA               [12] 1347 	mov	r2,a
+      0006D1 E4               [12] 1348 	clr	a
+      0006D2 08               [12] 1349 	inc	r0
+      0006D3 36               [12] 1350 	addc	a,@r0
+      0006D4 FB               [12] 1351 	mov	r3,a
+      0006D5 08               [12] 1352 	inc	r0
+      0006D6 86 04            [24] 1353 	mov	ar4,@r0
+      0006D8 90r00r00         [24] 1354 	mov	dptr,#_process_current
+      0006DB E0               [24] 1355 	movx	a,@dptr
+      0006DC FD               [12] 1356 	mov	r5,a
+      0006DD A3               [24] 1357 	inc	dptr
+      0006DE E0               [24] 1358 	movx	a,@dptr
+      0006DF FE               [12] 1359 	mov	r6,a
+      0006E0 A3               [24] 1360 	inc	dptr
+      0006E1 E0               [24] 1361 	movx	a,@dptr
+      0006E2 FF               [12] 1362 	mov	r7,a
+      0006E3 8A 82            [24] 1363 	mov	dpl,r2
+      0006E5 8B 83            [24] 1364 	mov	dph,r3
+      0006E7 8C F0            [24] 1365 	mov	b,r4
+      0006E9 ED               [12] 1366 	mov	a,r5
+      0006EA 12r00r00         [24] 1367 	lcall	__gptrput
+      0006ED A3               [24] 1368 	inc	dptr
+      0006EE EE               [12] 1369 	mov	a,r6
+      0006EF 12r00r00         [24] 1370 	lcall	__gptrput
+      0006F2 A3               [24] 1371 	inc	dptr
+      0006F3 EF               [12] 1372 	mov	a,r7
+      0006F4 12r00r00         [24] 1373 	lcall	__gptrput
+                                   1374 ;	../../../core/sys/etimer.c:170: timer->next = timerlist;
+      0006F7 A8 81            [24] 1375 	mov	r0,sp
+      0006F9 18               [12] 1376 	dec	r0
+      0006FA 18               [12] 1377 	dec	r0
+      0006FB 74 04            [12] 1378 	mov	a,#0x04
+      0006FD 26               [12] 1379 	add	a,@r0
+      0006FE FD               [12] 1380 	mov	r5,a
+      0006FF E4               [12] 1381 	clr	a
+      000700 08               [12] 1382 	inc	r0
+      000701 36               [12] 1383 	addc	a,@r0
+      000702 FE               [12] 1384 	mov	r6,a
+      000703 08               [12] 1385 	inc	r0
+      000704 86 07            [24] 1386 	mov	ar7,@r0
+      000706 90r00r00         [24] 1387 	mov	dptr,#_timerlist
+      000709 E0               [24] 1388 	movx	a,@dptr
+      00070A FA               [12] 1389 	mov	r2,a
+      00070B A3               [24] 1390 	inc	dptr
+      00070C E0               [24] 1391 	movx	a,@dptr
+      00070D FB               [12] 1392 	mov	r3,a
+      00070E A3               [24] 1393 	inc	dptr
+      00070F E0               [24] 1394 	movx	a,@dptr
+      000710 FC               [12] 1395 	mov	r4,a
+      000711 8D 82            [24] 1396 	mov	dpl,r5
+      000713 8E 83            [24] 1397 	mov	dph,r6
+      000715 8F F0            [24] 1398 	mov	b,r7
+      000717 EA               [12] 1399 	mov	a,r2
+      000718 12r00r00         [24] 1400 	lcall	__gptrput
+      00071B A3               [24] 1401 	inc	dptr
+      00071C EB               [12] 1402 	mov	a,r3
+      00071D 12r00r00         [24] 1403 	lcall	__gptrput
+      000720 A3               [24] 1404 	inc	dptr
+      000721 EC               [12] 1405 	mov	a,r4
+      000722 12r00r00         [24] 1406 	lcall	__gptrput
+                                   1407 ;	../../../core/sys/etimer.c:171: timerlist = timer;
+      000725 A8 81            [24] 1408 	mov	r0,sp
+      000727 18               [12] 1409 	dec	r0
+      000728 18               [12] 1410 	dec	r0
+      000729 90r00r00         [24] 1411 	mov	dptr,#_timerlist
+      00072C E6               [12] 1412 	mov	a,@r0
+      00072D F0               [24] 1413 	movx	@dptr,a
+      00072E 08               [12] 1414 	inc	r0
+      00072F E6               [12] 1415 	mov	a,@r0
+      000730 A3               [24] 1416 	inc	dptr
+      000731 F0               [24] 1417 	movx	@dptr,a
+      000732 08               [12] 1418 	inc	r0
+      000733 E6               [12] 1419 	mov	a,@r0
+      000734 A3               [24] 1420 	inc	dptr
+      000735 F0               [24] 1421 	movx	@dptr,a
+                                   1422 ;	../../../core/sys/etimer.c:173: update_time();
+      000736 78r00            [12] 1423 	mov	r0,#_update_time
+      000738 79s00            [12] 1424 	mov	r1,#(_update_time >> 8)
+      00073A 7As00            [12] 1425 	mov	r2,#(_update_time >> 16)
+      00073C 12r00r00         [24] 1426 	lcall	__sdcc_banked_call
+      00073F                       1427 00109$:
+                                   1428 ;	../../../core/sys/etimer.c:174: }
+      00073F 15 81            [12] 1429 	dec	sp
+      000741 15 81            [12] 1430 	dec	sp
+      000743 15 81            [12] 1431 	dec	sp
+      000745 02r00r00         [24] 1432 	ljmp	__sdcc_banked_ret
+                                   1433 ;------------------------------------------------------------
+                                   1434 ;Allocation info for local variables in function 'etimer_set'
+                                   1435 ;------------------------------------------------------------
+                                   1436 ;interval                  Allocated to stack - sp -4
+                                   1437 ;et                        Allocated to registers r5 r6 r7 
+                                   1438 ;------------------------------------------------------------
+                                   1439 ;	../../../core/sys/etimer.c:177: etimer_set(struct etimer *et, clock_time_t interval)
+                                   1440 ;	-----------------------------------------
+                                   1441 ;	 function etimer_set
+                                   1442 ;	-----------------------------------------
+      000748                       1443 _etimer_set:
+      000748 AD 82            [24] 1444 	mov	r5,dpl
+      00074A AE 83            [24] 1445 	mov	r6,dph
+      00074C AF F0            [24] 1446 	mov	r7,b
+                                   1447 ;	../../../core/sys/etimer.c:179: timer_set(&et->timer, interval);
+      00074E C0 07            [24] 1448 	push	ar7
+      000750 C0 06            [24] 1449 	push	ar6
+      000752 C0 05            [24] 1450 	push	ar5
+      000754 E5 81            [12] 1451 	mov	a,sp
+      000756 24 F9            [12] 1452 	add	a,#0xf9
+      000758 F8               [12] 1453 	mov	r0,a
+      000759 E6               [12] 1454 	mov	a,@r0
+      00075A C0 E0            [24] 1455 	push	acc
+      00075C 08               [12] 1456 	inc	r0
+      00075D E6               [12] 1457 	mov	a,@r0
+      00075E C0 E0            [24] 1458 	push	acc
+      000760 8D 82            [24] 1459 	mov	dpl,r5
+      000762 8E 83            [24] 1460 	mov	dph,r6
+      000764 8F F0            [24] 1461 	mov	b,r7
+      000766 78r00            [12] 1462 	mov	r0,#_timer_set
+      000768 79s00            [12] 1463 	mov	r1,#(_timer_set >> 8)
+      00076A 7As00            [12] 1464 	mov	r2,#(_timer_set >> 16)
+      00076C 12r00r00         [24] 1465 	lcall	__sdcc_banked_call
+      00076F 15 81            [12] 1466 	dec	sp
+      000771 15 81            [12] 1467 	dec	sp
+      000773 D0 05            [24] 1468 	pop	ar5
+      000775 D0 06            [24] 1469 	pop	ar6
+      000777 D0 07            [24] 1470 	pop	ar7
+                                   1471 ;	../../../core/sys/etimer.c:180: add_timer(et);
+      000779 8D 82            [24] 1472 	mov	dpl,r5
+      00077B 8E 83            [24] 1473 	mov	dph,r6
+      00077D 8F F0            [24] 1474 	mov	b,r7
+      00077F 78r3A            [12] 1475 	mov	r0,#_add_timer
+      000781 79s06            [12] 1476 	mov	r1,#(_add_timer >> 8)
+      000783 7As00            [12] 1477 	mov	r2,#(_add_timer >> 16)
+      000785 12r00r00         [24] 1478 	lcall	__sdcc_banked_call
+                                   1479 ;	../../../core/sys/etimer.c:181: }
+      000788 02r00r00         [24] 1480 	ljmp	__sdcc_banked_ret
+                                   1481 ;------------------------------------------------------------
+                                   1482 ;Allocation info for local variables in function 'etimer_reset'
+                                   1483 ;------------------------------------------------------------
+                                   1484 ;et                        Allocated to registers r5 r6 r7 
+                                   1485 ;------------------------------------------------------------
+                                   1486 ;	../../../core/sys/etimer.c:184: etimer_reset(struct etimer *et)
+                                   1487 ;	-----------------------------------------
+                                   1488 ;	 function etimer_reset
+                                   1489 ;	-----------------------------------------
+      00078B                       1490 _etimer_reset:
+                                   1491 ;	../../../core/sys/etimer.c:186: timer_reset(&et->timer);
+      00078B AD 82            [24] 1492 	mov	r5,dpl
+      00078D AE 83            [24] 1493 	mov	r6,dph
+      00078F AF F0            [24] 1494 	mov	r7,b
+      000791 C0 07            [24] 1495 	push	ar7
+      000793 C0 06            [24] 1496 	push	ar6
+      000795 C0 05            [24] 1497 	push	ar5
+      000797 78r00            [12] 1498 	mov	r0,#_timer_reset
+      000799 79s00            [12] 1499 	mov	r1,#(_timer_reset >> 8)
+      00079B 7As00            [12] 1500 	mov	r2,#(_timer_reset >> 16)
+      00079D 12r00r00         [24] 1501 	lcall	__sdcc_banked_call
+      0007A0 D0 05            [24] 1502 	pop	ar5
+      0007A2 D0 06            [24] 1503 	pop	ar6
+      0007A4 D0 07            [24] 1504 	pop	ar7
+                                   1505 ;	../../../core/sys/etimer.c:187: add_timer(et);
+      0007A6 8D 82            [24] 1506 	mov	dpl,r5
+      0007A8 8E 83            [24] 1507 	mov	dph,r6
+      0007AA 8F F0            [24] 1508 	mov	b,r7
+      0007AC 78r3A            [12] 1509 	mov	r0,#_add_timer
+      0007AE 79s06            [12] 1510 	mov	r1,#(_add_timer >> 8)
+      0007B0 7As00            [12] 1511 	mov	r2,#(_add_timer >> 16)
+      0007B2 12r00r00         [24] 1512 	lcall	__sdcc_banked_call
+                                   1513 ;	../../../core/sys/etimer.c:188: }
+      0007B5 02r00r00         [24] 1514 	ljmp	__sdcc_banked_ret
+                                   1515 ;------------------------------------------------------------
+                                   1516 ;Allocation info for local variables in function 'etimer_restart'
+                                   1517 ;------------------------------------------------------------
+                                   1518 ;et                        Allocated to registers r5 r6 r7 
+                                   1519 ;------------------------------------------------------------
+                                   1520 ;	../../../core/sys/etimer.c:191: etimer_restart(struct etimer *et)
+                                   1521 ;	-----------------------------------------
+                                   1522 ;	 function etimer_restart
+                                   1523 ;	-----------------------------------------
+      0007B8                       1524 _etimer_restart:
+                                   1525 ;	../../../core/sys/etimer.c:193: timer_restart(&et->timer);
+      0007B8 AD 82            [24] 1526 	mov	r5,dpl
+      0007BA AE 83            [24] 1527 	mov	r6,dph
+      0007BC AF F0            [24] 1528 	mov	r7,b
+      0007BE C0 07            [24] 1529 	push	ar7
+      0007C0 C0 06            [24] 1530 	push	ar6
+      0007C2 C0 05            [24] 1531 	push	ar5
+      0007C4 78r00            [12] 1532 	mov	r0,#_timer_restart
+      0007C6 79s00            [12] 1533 	mov	r1,#(_timer_restart >> 8)
+      0007C8 7As00            [12] 1534 	mov	r2,#(_timer_restart >> 16)
+      0007CA 12r00r00         [24] 1535 	lcall	__sdcc_banked_call
+      0007CD D0 05            [24] 1536 	pop	ar5
+      0007CF D0 06            [24] 1537 	pop	ar6
+      0007D1 D0 07            [24] 1538 	pop	ar7
+                                   1539 ;	../../../core/sys/etimer.c:194: add_timer(et);
+      0007D3 8D 82            [24] 1540 	mov	dpl,r5
+      0007D5 8E 83            [24] 1541 	mov	dph,r6
+      0007D7 8F F0            [24] 1542 	mov	b,r7
+      0007D9 78r3A            [12] 1543 	mov	r0,#_add_timer
+      0007DB 79s06            [12] 1544 	mov	r1,#(_add_timer >> 8)
+      0007DD 7As00            [12] 1545 	mov	r2,#(_add_timer >> 16)
+      0007DF 12r00r00         [24] 1546 	lcall	__sdcc_banked_call
+                                   1547 ;	../../../core/sys/etimer.c:195: }
+      0007E2 02r00r00         [24] 1548 	ljmp	__sdcc_banked_ret
+                                   1549 ;------------------------------------------------------------
+                                   1550 ;Allocation info for local variables in function 'etimer_adjust'
+                                   1551 ;------------------------------------------------------------
+                                   1552 ;timediff                  Allocated to stack - sp -7
+                                   1553 ;et                        Allocated to stack - sp -2
+                                   1554 ;------------------------------------------------------------
+                                   1555 ;	../../../core/sys/etimer.c:198: etimer_adjust(struct etimer *et, int timediff)
+                                   1556 ;	-----------------------------------------
+                                   1557 ;	 function etimer_adjust
+                                   1558 ;	-----------------------------------------
+      0007E5                       1559 _etimer_adjust:
+      0007E5 C0 82            [24] 1560 	push	dpl
+      0007E7 C0 83            [24] 1561 	push	dph
+      0007E9 C0 F0            [24] 1562 	push	b
+                                   1563 ;	../../../core/sys/etimer.c:200: et->timer.start += timediff;
+      0007EB A8 81            [24] 1564 	mov	r0,sp
+      0007ED 18               [12] 1565 	dec	r0
+      0007EE 18               [12] 1566 	dec	r0
+      0007EF 86 82            [24] 1567 	mov	dpl,@r0
+      0007F1 08               [12] 1568 	inc	r0
+      0007F2 86 83            [24] 1569 	mov	dph,@r0
+      0007F4 08               [12] 1570 	inc	r0
+      0007F5 86 F0            [24] 1571 	mov	b,@r0
+      0007F7 12r00r00         [24] 1572 	lcall	__gptrget
+      0007FA FB               [12] 1573 	mov	r3,a
+      0007FB A3               [24] 1574 	inc	dptr
+      0007FC 12r00r00         [24] 1575 	lcall	__gptrget
+      0007FF FC               [12] 1576 	mov	r4,a
+      000800 E5 81            [12] 1577 	mov	a,sp
+      000802 24 F9            [12] 1578 	add	a,#0xf9
+      000804 F8               [12] 1579 	mov	r0,a
+      000805 86 02            [24] 1580 	mov	ar2,@r0
+      000807 08               [12] 1581 	inc	r0
+      000808 86 07            [24] 1582 	mov	ar7,@r0
+      00080A EA               [12] 1583 	mov	a,r2
+      00080B 2B               [12] 1584 	add	a,r3
+      00080C FB               [12] 1585 	mov	r3,a
+      00080D EF               [12] 1586 	mov	a,r7
+      00080E 3C               [12] 1587 	addc	a,r4
+      00080F FC               [12] 1588 	mov	r4,a
+      000810 A8 81            [24] 1589 	mov	r0,sp
+      000812 18               [12] 1590 	dec	r0
+      000813 18               [12] 1591 	dec	r0
+      000814 86 82            [24] 1592 	mov	dpl,@r0
+      000816 08               [12] 1593 	inc	r0
+      000817 86 83            [24] 1594 	mov	dph,@r0
+      000819 08               [12] 1595 	inc	r0
+      00081A 86 F0            [24] 1596 	mov	b,@r0
+      00081C EB               [12] 1597 	mov	a,r3
+      00081D 12r00r00         [24] 1598 	lcall	__gptrput
+      000820 A3               [24] 1599 	inc	dptr
+      000821 EC               [12] 1600 	mov	a,r4
+      000822 12r00r00         [24] 1601 	lcall	__gptrput
+                                   1602 ;	../../../core/sys/etimer.c:201: update_time();
+      000825 78r00            [12] 1603 	mov	r0,#_update_time
+      000827 79s00            [12] 1604 	mov	r1,#(_update_time >> 8)
+      000829 7As00            [12] 1605 	mov	r2,#(_update_time >> 16)
+      00082B 12r00r00         [24] 1606 	lcall	__sdcc_banked_call
+                                   1607 ;	../../../core/sys/etimer.c:202: }
+      00082E 15 81            [12] 1608 	dec	sp
+      000830 15 81            [12] 1609 	dec	sp
+      000832 15 81            [12] 1610 	dec	sp
+      000834 02r00r00         [24] 1611 	ljmp	__sdcc_banked_ret
+                                   1612 ;------------------------------------------------------------
+                                   1613 ;Allocation info for local variables in function 'etimer_expired'
+                                   1614 ;------------------------------------------------------------
+                                   1615 ;et                        Allocated to registers r5 r6 r7 
+                                   1616 ;------------------------------------------------------------
+                                   1617 ;	../../../core/sys/etimer.c:205: etimer_expired(struct etimer *et)
+                                   1618 ;	-----------------------------------------
+                                   1619 ;	 function etimer_expired
+                                   1620 ;	-----------------------------------------
+      000837                       1621 _etimer_expired:
+      000837 AD 82            [24] 1622 	mov	r5,dpl
+      000839 AE 83            [24] 1623 	mov	r6,dph
+      00083B AF F0            [24] 1624 	mov	r7,b
+                                   1625 ;	../../../core/sys/etimer.c:207: return et->p == PROCESS_NONE;
+      00083D 74 07            [12] 1626 	mov	a,#0x07
+      00083F 2D               [12] 1627 	add	a,r5
+      000840 FD               [12] 1628 	mov	r5,a
+      000841 E4               [12] 1629 	clr	a
+      000842 3E               [12] 1630 	addc	a,r6
+      000843 FE               [12] 1631 	mov	r6,a
+      000844 8D 82            [24] 1632 	mov	dpl,r5
+      000846 8E 83            [24] 1633 	mov	dph,r6
+      000848 8F F0            [24] 1634 	mov	b,r7
+      00084A 12r00r00         [24] 1635 	lcall	__gptrget
+      00084D FD               [12] 1636 	mov	r5,a
+      00084E A3               [24] 1637 	inc	dptr
+      00084F 12r00r00         [24] 1638 	lcall	__gptrget
+      000852 FE               [12] 1639 	mov	r6,a
+      000853 A3               [24] 1640 	inc	dptr
+      000854 12r00r00         [24] 1641 	lcall	__gptrget
+      000857 FF               [12] 1642 	mov	r7,a
+      000858 E4               [12] 1643 	clr	a
+      000859 C0 E0            [24] 1644 	push	acc
+      00085B C0 E0            [24] 1645 	push	acc
+      00085D C0 E0            [24] 1646 	push	acc
+      00085F 8D 82            [24] 1647 	mov	dpl,r5
+      000861 8E 83            [24] 1648 	mov	dph,r6
+      000863 8F F0            [24] 1649 	mov	b,r7
+      000865 12r00r00         [24] 1650 	lcall	___gptr_cmp
+      000868 15 81            [12] 1651 	dec	sp
+      00086A 15 81            [12] 1652 	dec	sp
+      00086C 15 81            [12] 1653 	dec	sp
+      00086E 70 03            [24] 1654 	jnz	00103$
+      000870 04               [12] 1655 	inc	a
+      000871 80 01            [24] 1656 	sjmp	00104$
+      000873                       1657 00103$:
+      000873 E4               [12] 1658 	clr	a
+      000874                       1659 00104$:
+      000874 FD               [12] 1660 	mov	r5,a
+      000875 7F 00            [12] 1661 	mov	r7,#0x00
+      000877 8D 82            [24] 1662 	mov	dpl,r5
+      000879 8F 83            [24] 1663 	mov	dph,r7
+                                   1664 ;	../../../core/sys/etimer.c:208: }
+      00087B 02r00r00         [24] 1665 	ljmp	__sdcc_banked_ret
+                                   1666 ;------------------------------------------------------------
+                                   1667 ;Allocation info for local variables in function 'etimer_expiration_time'
+                                   1668 ;------------------------------------------------------------
+                                   1669 ;et                        Allocated to registers r5 r6 r7 
+                                   1670 ;------------------------------------------------------------
+                                   1671 ;	../../../core/sys/etimer.c:211: etimer_expiration_time(struct etimer *et)
+                                   1672 ;	-----------------------------------------
+                                   1673 ;	 function etimer_expiration_time
+                                   1674 ;	-----------------------------------------
+      00087E                       1675 _etimer_expiration_time:
+                                   1676 ;	../../../core/sys/etimer.c:213: return et->timer.start + et->timer.interval;
+      00087E AD 82            [24] 1677 	mov	r5,dpl
+      000880 AE 83            [24] 1678 	mov	r6,dph
+      000882 AF F0            [24] 1679 	mov	r7,b
+      000884 12r00r00         [24] 1680 	lcall	__gptrget
+      000887 FB               [12] 1681 	mov	r3,a
+      000888 A3               [24] 1682 	inc	dptr
+      000889 12r00r00         [24] 1683 	lcall	__gptrget
+      00088C FC               [12] 1684 	mov	r4,a
+      00088D 74 02            [12] 1685 	mov	a,#0x02
+      00088F 2D               [12] 1686 	add	a,r5
+      000890 FD               [12] 1687 	mov	r5,a
+      000891 E4               [12] 1688 	clr	a
+      000892 3E               [12] 1689 	addc	a,r6
+      000893 FE               [12] 1690 	mov	r6,a
+      000894 8D 82            [24] 1691 	mov	dpl,r5
+      000896 8E 83            [24] 1692 	mov	dph,r6
+      000898 8F F0            [24] 1693 	mov	b,r7
+      00089A 12r00r00         [24] 1694 	lcall	__gptrget
+      00089D FD               [12] 1695 	mov	r5,a
+      00089E A3               [24] 1696 	inc	dptr
+      00089F 12r00r00         [24] 1697 	lcall	__gptrget
+      0008A2 FE               [12] 1698 	mov	r6,a
+      0008A3 ED               [12] 1699 	mov	a,r5
+      0008A4 2B               [12] 1700 	add	a,r3
+      0008A5 FB               [12] 1701 	mov	r3,a
+      0008A6 EE               [12] 1702 	mov	a,r6
+      0008A7 3C               [12] 1703 	addc	a,r4
+      0008A8 FC               [12] 1704 	mov	r4,a
+      0008A9 8B 82            [24] 1705 	mov	dpl,r3
+      0008AB 8C 83            [24] 1706 	mov	dph,r4
+                                   1707 ;	../../../core/sys/etimer.c:214: }
+      0008AD 02r00r00         [24] 1708 	ljmp	__sdcc_banked_ret
+                                   1709 ;------------------------------------------------------------
+                                   1710 ;Allocation info for local variables in function 'etimer_start_time'
+                                   1711 ;------------------------------------------------------------
+                                   1712 ;et                        Allocated to registers r5 r6 r7 
+                                   1713 ;------------------------------------------------------------
+                                   1714 ;	../../../core/sys/etimer.c:217: etimer_start_time(struct etimer *et)
+                                   1715 ;	-----------------------------------------
+                                   1716 ;	 function etimer_start_time
+                                   1717 ;	-----------------------------------------
+      0008B0                       1718 _etimer_start_time:
+                                   1719 ;	../../../core/sys/etimer.c:219: return et->timer.start;
+      0008B0 AF F0            [24] 1720 	mov	r7,b
+      0008B2 12r00r00         [24] 1721 	lcall	__gptrget
+      0008B5 FD               [12] 1722 	mov	r5,a
+      0008B6 A3               [24] 1723 	inc	dptr
+      0008B7 12r00r00         [24] 1724 	lcall	__gptrget
+      0008BA FE               [12] 1725 	mov	r6,a
+      0008BB 8D 82            [24] 1726 	mov	dpl,r5
+      0008BD 8E 83            [24] 1727 	mov	dph,r6
+                                   1728 ;	../../../core/sys/etimer.c:220: }
+      0008BF 02r00r00         [24] 1729 	ljmp	__sdcc_banked_ret
+                                   1730 ;------------------------------------------------------------
+                                   1731 ;Allocation info for local variables in function 'etimer_pending'
+                                   1732 ;------------------------------------------------------------
+                                   1733 ;	../../../core/sys/etimer.c:223: etimer_pending(void)
+                                   1734 ;	-----------------------------------------
+                                   1735 ;	 function etimer_pending
+                                   1736 ;	-----------------------------------------
+      0008C2                       1737 _etimer_pending:
+                                   1738 ;	../../../core/sys/etimer.c:225: return timerlist != NULL;
+      0008C2 90r00r00         [24] 1739 	mov	dptr,#_timerlist
+      0008C5 E0               [24] 1740 	movx	a,@dptr
+      0008C6 FD               [12] 1741 	mov	r5,a
+      0008C7 A3               [24] 1742 	inc	dptr
+      0008C8 E0               [24] 1743 	movx	a,@dptr
+      0008C9 FE               [12] 1744 	mov	r6,a
+      0008CA A3               [24] 1745 	inc	dptr
+      0008CB E0               [24] 1746 	movx	a,@dptr
+      0008CC ED               [12] 1747 	mov	a,r5
+      0008CD 4E               [12] 1748 	orl	a,r6
+      0008CE B4 01 00         [24] 1749 	cjne	a,#0x01,00103$
+      0008D1                       1750 00103$:
+      0008D1 B3               [12] 1751 	cpl	c
+      0008D2 92*00            [24] 1752 	mov	b0,c
+      0008D4 E4               [12] 1753 	clr	a
+      0008D5 33               [12] 1754 	rlc	a
+      0008D6 FE               [12] 1755 	mov	r6,a
+      0008D7 7F 00            [12] 1756 	mov	r7,#0x00
+      0008D9 8E 82            [24] 1757 	mov	dpl,r6
+      0008DB 8F 83            [24] 1758 	mov	dph,r7
+                                   1759 ;	../../../core/sys/etimer.c:226: }
+      0008DD 02r00r00         [24] 1760 	ljmp	__sdcc_banked_ret
+                                   1761 ;------------------------------------------------------------
+                                   1762 ;Allocation info for local variables in function 'etimer_next_expiration_time'
+                                   1763 ;------------------------------------------------------------
+                                   1764 ;	../../../core/sys/etimer.c:229: etimer_next_expiration_time(void)
+                                   1765 ;	-----------------------------------------
+                                   1766 ;	 function etimer_next_expiration_time
+                                   1767 ;	-----------------------------------------
+      0008E0                       1768 _etimer_next_expiration_time:
+                                   1769 ;	../../../core/sys/etimer.c:231: return etimer_pending() ? next_expiration : 0;
+      0008E0 78rC2            [12] 1770 	mov	r0,#_etimer_pending
+      0008E2 79s08            [12] 1771 	mov	r1,#(_etimer_pending >> 8)
+      0008E4 7As00            [12] 1772 	mov	r2,#(_etimer_pending >> 16)
+      0008E6 12r00r00         [24] 1773 	lcall	__sdcc_banked_call
+      0008E9 E5 82            [12] 1774 	mov	a,dpl
+      0008EB 85 83 F0         [24] 1775 	mov	b,dph
+      0008EE 45 F0            [12] 1776 	orl	a,b
+      0008F0 60 0A            [24] 1777 	jz	00103$
+      0008F2 90r00r03         [24] 1778 	mov	dptr,#_next_expiration
+      0008F5 E0               [24] 1779 	movx	a,@dptr
+      0008F6 FE               [12] 1780 	mov	r6,a
+      0008F7 A3               [24] 1781 	inc	dptr
+      0008F8 E0               [24] 1782 	movx	a,@dptr
+      0008F9 FF               [12] 1783 	mov	r7,a
+      0008FA 80 04            [24] 1784 	sjmp	00104$
+      0008FC                       1785 00103$:
+      0008FC 7E 00            [12] 1786 	mov	r6,#0x00
+      0008FE 7F 00            [12] 1787 	mov	r7,#0x00
+      000900                       1788 00104$:
+      000900 8E 82            [24] 1789 	mov	dpl,r6
+      000902 8F 83            [24] 1790 	mov	dph,r7
+                                   1791 ;	../../../core/sys/etimer.c:232: }
+      000904 02r00r00         [24] 1792 	ljmp	__sdcc_banked_ret
+                                   1793 ;------------------------------------------------------------
+                                   1794 ;Allocation info for local variables in function 'etimer_stop'
+                                   1795 ;------------------------------------------------------------
+                                   1796 ;et                        Allocated to stack - sp -2
+                                   1797 ;t                         Allocated to registers r2 r3 r4 
+                                   1798 ;------------------------------------------------------------
+                                   1799 ;	../../../core/sys/etimer.c:235: etimer_stop(struct etimer *et)
+                                   1800 ;	-----------------------------------------
+                                   1801 ;	 function etimer_stop
+                                   1802 ;	-----------------------------------------
+      000907                       1803 _etimer_stop:
+      000907 C0 82            [24] 1804 	push	dpl
+      000909 C0 83            [24] 1805 	push	dph
+      00090B C0 F0            [24] 1806 	push	b
+                                   1807 ;	../../../core/sys/etimer.c:240: if(et == timerlist) {
+      00090D 90r00r00         [24] 1808 	mov	dptr,#_timerlist
+      000910 E0               [24] 1809 	movx	a,@dptr
+      000911 FA               [12] 1810 	mov	r2,a
+      000912 A3               [24] 1811 	inc	dptr
+      000913 E0               [24] 1812 	movx	a,@dptr
+      000914 FB               [12] 1813 	mov	r3,a
+      000915 A3               [24] 1814 	inc	dptr
+      000916 E0               [24] 1815 	movx	a,@dptr
+      000917 FC               [12] 1816 	mov	r4,a
+      000918 A8 81            [24] 1817 	mov	r0,sp
+      00091A 18               [12] 1818 	dec	r0
+      00091B 18               [12] 1819 	dec	r0
+      00091C C0 02            [24] 1820 	push	ar2
+      00091E C0 03            [24] 1821 	push	ar3
+      000920 C0 04            [24] 1822 	push	ar4
+      000922 86 82            [24] 1823 	mov	dpl,@r0
+      000924 08               [12] 1824 	inc	r0
+      000925 86 83            [24] 1825 	mov	dph,@r0
+      000927 08               [12] 1826 	inc	r0
+      000928 86 F0            [24] 1827 	mov	b,@r0
+      00092A 12r00r00         [24] 1828 	lcall	___gptr_cmp
+      00092D 15 81            [12] 1829 	dec	sp
+      00092F 15 81            [12] 1830 	dec	sp
+      000931 15 81            [12] 1831 	dec	sp
+      000933 60 02            [24] 1832 	jz	00134$
+      000935 80 3D            [24] 1833 	sjmp	00105$
+      000937                       1834 00134$:
+                                   1835 ;	../../../core/sys/etimer.c:241: timerlist = timerlist->next;
+      000937 90r00r00         [24] 1836 	mov	dptr,#_timerlist
+      00093A E0               [24] 1837 	movx	a,@dptr
+      00093B FA               [12] 1838 	mov	r2,a
+      00093C A3               [24] 1839 	inc	dptr
+      00093D E0               [24] 1840 	movx	a,@dptr
+      00093E FB               [12] 1841 	mov	r3,a
+      00093F A3               [24] 1842 	inc	dptr
+      000940 E0               [24] 1843 	movx	a,@dptr
+      000941 FC               [12] 1844 	mov	r4,a
+      000942 74 04            [12] 1845 	mov	a,#0x04
+      000944 2A               [12] 1846 	add	a,r2
+      000945 FA               [12] 1847 	mov	r2,a
+      000946 E4               [12] 1848 	clr	a
+      000947 3B               [12] 1849 	addc	a,r3
+      000948 FB               [12] 1850 	mov	r3,a
+      000949 8A 82            [24] 1851 	mov	dpl,r2
+      00094B 8B 83            [24] 1852 	mov	dph,r3
+      00094D 8C F0            [24] 1853 	mov	b,r4
+      00094F 12r00r00         [24] 1854 	lcall	__gptrget
+      000952 FA               [12] 1855 	mov	r2,a
+      000953 A3               [24] 1856 	inc	dptr
+      000954 12r00r00         [24] 1857 	lcall	__gptrget
+      000957 FB               [12] 1858 	mov	r3,a
+      000958 A3               [24] 1859 	inc	dptr
+      000959 12r00r00         [24] 1860 	lcall	__gptrget
+      00095C FC               [12] 1861 	mov	r4,a
+      00095D 90r00r00         [24] 1862 	mov	dptr,#_timerlist
+      000960 EA               [12] 1863 	mov	a,r2
+      000961 F0               [24] 1864 	movx	@dptr,a
+      000962 EB               [12] 1865 	mov	a,r3
+      000963 A3               [24] 1866 	inc	dptr
+      000964 F0               [24] 1867 	movx	@dptr,a
+      000965 EC               [12] 1868 	mov	a,r4
+      000966 A3               [24] 1869 	inc	dptr
+      000967 F0               [24] 1870 	movx	@dptr,a
+                                   1871 ;	../../../core/sys/etimer.c:242: update_time();
+      000968 78r00            [12] 1872 	mov	r0,#_update_time
+      00096A 79s00            [12] 1873 	mov	r1,#(_update_time >> 8)
+      00096C 7As00            [12] 1874 	mov	r2,#(_update_time >> 16)
+      00096E 12r00r00         [24] 1875 	lcall	__sdcc_banked_call
+      000971 02r0Ar27         [24] 1876 	ljmp	00106$
+      000974                       1877 00105$:
+                                   1878 ;	../../../core/sys/etimer.c:246: for(t = timerlist; t != NULL && t->next != et; t = t->next);
+      000974 90r00r00         [24] 1879 	mov	dptr,#_timerlist
+      000977 E0               [24] 1880 	movx	a,@dptr
+      000978 FA               [12] 1881 	mov	r2,a
+      000979 A3               [24] 1882 	inc	dptr
+      00097A E0               [24] 1883 	movx	a,@dptr
+      00097B FB               [12] 1884 	mov	r3,a
+      00097C A3               [24] 1885 	inc	dptr
+      00097D E0               [24] 1886 	movx	a,@dptr
+      00097E FC               [12] 1887 	mov	r4,a
+      00097F                       1888 00109$:
+      00097F EA               [12] 1889 	mov	a,r2
+      000980 4B               [12] 1890 	orl	a,r3
+      000981 60 59            [24] 1891 	jz	00101$
+      000983 74 04            [12] 1892 	mov	a,#0x04
+      000985 2A               [12] 1893 	add	a,r2
+      000986 FD               [12] 1894 	mov	r5,a
+      000987 E4               [12] 1895 	clr	a
+      000988 3B               [12] 1896 	addc	a,r3
+      000989 FE               [12] 1897 	mov	r6,a
+      00098A 8C 07            [24] 1898 	mov	ar7,r4
+      00098C 8D 82            [24] 1899 	mov	dpl,r5
+      00098E 8E 83            [24] 1900 	mov	dph,r6
+      000990 8F F0            [24] 1901 	mov	b,r7
+      000992 12r00r00         [24] 1902 	lcall	__gptrget
+      000995 FD               [12] 1903 	mov	r5,a
+      000996 A3               [24] 1904 	inc	dptr
+      000997 12r00r00         [24] 1905 	lcall	__gptrget
+      00099A FE               [12] 1906 	mov	r6,a
+      00099B A3               [24] 1907 	inc	dptr
+      00099C 12r00r00         [24] 1908 	lcall	__gptrget
+      00099F FF               [12] 1909 	mov	r7,a
+      0009A0 A8 81            [24] 1910 	mov	r0,sp
+      0009A2 18               [12] 1911 	dec	r0
+      0009A3 18               [12] 1912 	dec	r0
+      0009A4 C0 05            [24] 1913 	push	ar5
+      0009A6 C0 06            [24] 1914 	push	ar6
+      0009A8 C0 07            [24] 1915 	push	ar7
+      0009AA 86 82            [24] 1916 	mov	dpl,@r0
+      0009AC 08               [12] 1917 	inc	r0
+      0009AD 86 83            [24] 1918 	mov	dph,@r0
+      0009AF 08               [12] 1919 	inc	r0
+      0009B0 86 F0            [24] 1920 	mov	b,@r0
+      0009B2 12r00r00         [24] 1921 	lcall	___gptr_cmp
+      0009B5 15 81            [12] 1922 	dec	sp
+      0009B7 15 81            [12] 1923 	dec	sp
+      0009B9 15 81            [12] 1924 	dec	sp
+      0009BB 60 1F            [24] 1925 	jz	00101$
+      0009BD 74 04            [12] 1926 	mov	a,#0x04
+      0009BF 2A               [12] 1927 	add	a,r2
+      0009C0 FD               [12] 1928 	mov	r5,a
+      0009C1 E4               [12] 1929 	clr	a
+      0009C2 3B               [12] 1930 	addc	a,r3
+      0009C3 FE               [12] 1931 	mov	r6,a
+      0009C4 8C 07            [24] 1932 	mov	ar7,r4
+      0009C6 8D 82            [24] 1933 	mov	dpl,r5
+      0009C8 8E 83            [24] 1934 	mov	dph,r6
+      0009CA 8F F0            [24] 1935 	mov	b,r7
+      0009CC 12r00r00         [24] 1936 	lcall	__gptrget
+      0009CF FA               [12] 1937 	mov	r2,a
+      0009D0 A3               [24] 1938 	inc	dptr
+      0009D1 12r00r00         [24] 1939 	lcall	__gptrget
+      0009D4 FB               [12] 1940 	mov	r3,a
+      0009D5 A3               [24] 1941 	inc	dptr
+      0009D6 12r00r00         [24] 1942 	lcall	__gptrget
+      0009D9 FC               [12] 1943 	mov	r4,a
+      0009DA 80 A3            [24] 1944 	sjmp	00109$
+      0009DC                       1945 00101$:
+                                   1946 ;	../../../core/sys/etimer.c:248: if(t != NULL) {
+      0009DC EA               [12] 1947 	mov	a,r2
+      0009DD 4B               [12] 1948 	orl	a,r3
+      0009DE 60 47            [24] 1949 	jz	00106$
+                                   1950 ;	../../../core/sys/etimer.c:252: t->next = et->next;
+      0009E0 74 04            [12] 1951 	mov	a,#0x04
+      0009E2 2A               [12] 1952 	add	a,r2
+      0009E3 FA               [12] 1953 	mov	r2,a
+      0009E4 E4               [12] 1954 	clr	a
+      0009E5 3B               [12] 1955 	addc	a,r3
+      0009E6 FB               [12] 1956 	mov	r3,a
+      0009E7 A8 81            [24] 1957 	mov	r0,sp
+      0009E9 18               [12] 1958 	dec	r0
+      0009EA 18               [12] 1959 	dec	r0
+      0009EB 74 04            [12] 1960 	mov	a,#0x04
+      0009ED 26               [12] 1961 	add	a,@r0
+      0009EE FD               [12] 1962 	mov	r5,a
+      0009EF E4               [12] 1963 	clr	a
+      0009F0 08               [12] 1964 	inc	r0
+      0009F1 36               [12] 1965 	addc	a,@r0
+      0009F2 FE               [12] 1966 	mov	r6,a
+      0009F3 08               [12] 1967 	inc	r0
+      0009F4 86 07            [24] 1968 	mov	ar7,@r0
+      0009F6 8D 82            [24] 1969 	mov	dpl,r5
+      0009F8 8E 83            [24] 1970 	mov	dph,r6
+      0009FA 8F F0            [24] 1971 	mov	b,r7
+      0009FC 12r00r00         [24] 1972 	lcall	__gptrget
+      0009FF FD               [12] 1973 	mov	r5,a
+      000A00 A3               [24] 1974 	inc	dptr
+      000A01 12r00r00         [24] 1975 	lcall	__gptrget
+      000A04 FE               [12] 1976 	mov	r6,a
+      000A05 A3               [24] 1977 	inc	dptr
+      000A06 12r00r00         [24] 1978 	lcall	__gptrget
+      000A09 FF               [12] 1979 	mov	r7,a
+      000A0A 8A 82            [24] 1980 	mov	dpl,r2
+      000A0C 8B 83            [24] 1981 	mov	dph,r3
+      000A0E 8C F0            [24] 1982 	mov	b,r4
+      000A10 ED               [12] 1983 	mov	a,r5
+      000A11 12r00r00         [24] 1984 	lcall	__gptrput
+      000A14 A3               [24] 1985 	inc	dptr
+      000A15 EE               [12] 1986 	mov	a,r6
+      000A16 12r00r00         [24] 1987 	lcall	__gptrput
+      000A19 A3               [24] 1988 	inc	dptr
+      000A1A EF               [12] 1989 	mov	a,r7
+      000A1B 12r00r00         [24] 1990 	lcall	__gptrput
+                                   1991 ;	../../../core/sys/etimer.c:254: update_time();
+      000A1E 78r00            [12] 1992 	mov	r0,#_update_time
+      000A20 79s00            [12] 1993 	mov	r1,#(_update_time >> 8)
+      000A22 7As00            [12] 1994 	mov	r2,#(_update_time >> 16)
+      000A24 12r00r00         [24] 1995 	lcall	__sdcc_banked_call
+      000A27                       1996 00106$:
+                                   1997 ;	../../../core/sys/etimer.c:259: et->next = NULL;
+      000A27 A8 81            [24] 1998 	mov	r0,sp
+      000A29 18               [12] 1999 	dec	r0
+      000A2A 18               [12] 2000 	dec	r0
+      000A2B 74 04            [12] 2001 	mov	a,#0x04
+      000A2D 26               [12] 2002 	add	a,@r0
+      000A2E FD               [12] 2003 	mov	r5,a
+      000A2F E4               [12] 2004 	clr	a
+      000A30 08               [12] 2005 	inc	r0
+      000A31 36               [12] 2006 	addc	a,@r0
+      000A32 FE               [12] 2007 	mov	r6,a
+      000A33 08               [12] 2008 	inc	r0
+      000A34 86 07            [24] 2009 	mov	ar7,@r0
+      000A36 8D 82            [24] 2010 	mov	dpl,r5
+      000A38 8E 83            [24] 2011 	mov	dph,r6
+      000A3A 8F F0            [24] 2012 	mov	b,r7
+      000A3C E4               [12] 2013 	clr	a
+      000A3D 12r00r00         [24] 2014 	lcall	__gptrput
+      000A40 A3               [24] 2015 	inc	dptr
+      000A41 12r00r00         [24] 2016 	lcall	__gptrput
+      000A44 A3               [24] 2017 	inc	dptr
+      000A45 12r00r00         [24] 2018 	lcall	__gptrput
+                                   2019 ;	../../../core/sys/etimer.c:261: et->p = PROCESS_NONE;
+      000A48 A8 81            [24] 2020 	mov	r0,sp
+      000A4A 18               [12] 2021 	dec	r0
+      000A4B 18               [12] 2022 	dec	r0
+      000A4C 74 07            [12] 2023 	mov	a,#0x07
+      000A4E 26               [12] 2024 	add	a,@r0
+      000A4F FD               [12] 2025 	mov	r5,a
+      000A50 E4               [12] 2026 	clr	a
+      000A51 08               [12] 2027 	inc	r0
+      000A52 36               [12] 2028 	addc	a,@r0
+      000A53 FE               [12] 2029 	mov	r6,a
+      000A54 08               [12] 2030 	inc	r0
+      000A55 86 07            [24] 2031 	mov	ar7,@r0
+      000A57 8D 82            [24] 2032 	mov	dpl,r5
+      000A59 8E 83            [24] 2033 	mov	dph,r6
+      000A5B 8F F0            [24] 2034 	mov	b,r7
+      000A5D E4               [12] 2035 	clr	a
+      000A5E 12r00r00         [24] 2036 	lcall	__gptrput
+      000A61 A3               [24] 2037 	inc	dptr
+      000A62 12r00r00         [24] 2038 	lcall	__gptrput
+      000A65 A3               [24] 2039 	inc	dptr
+      000A66 12r00r00         [24] 2040 	lcall	__gptrput
+                                   2041 ;	../../../core/sys/etimer.c:262: }
+      000A69 15 81            [12] 2042 	dec	sp
+      000A6B 15 81            [12] 2043 	dec	sp
+      000A6D 15 81            [12] 2044 	dec	sp
+      000A6F 02r00r00         [24] 2045 	ljmp	__sdcc_banked_ret
+                                   2046 	.area CSEG    (CODE)
+                                   2047 	.area CONST   (CODE)
+      000000                       2048 ___str_0:
+      000000 45 76 65 6E 74 20 74  2049 	.ascii "Event timer"
+             69 6D 65 72
+      00000B 00                    2050 	.db 0x00
+                                   2051 	.area XINIT   (CODE)
+      000000                       2052 __xinit__etimer_process:
+                                   2053 ; generic printIvalPtr
+      000000 00 00 00              2054 	.byte #0x00,#0x00,#0x00
+      000003r00s00 80              2055 	.byte ___str_0, (___str_0 >> 8),#0x80
+      000006rA9s01s00              2056 	.byte _process_thread_etimer_process, (_process_thread_etimer_process >> 8), (_process_thread_etimer_process >> 16)
+      000009 00 00                 2057 	.byte #0x00, #0x00
+      00000B 00                    2058 	.db #0x00	; 0
+      00000C 00                    2059 	.db #0x00	; 0
+                                   2060 	.area CABS    (ABS,CODE)

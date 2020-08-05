@@ -1,0 +1,423 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         02/Jan/2020  11:22:42 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Components\HARDWARE\RS485_Handler.c         #
+#    Command line       =  -f D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LO #
+#                          RA\ZigBee\Projects\zstack\Samples\SampleApp\CC2530 #
+#                          DB\..\..\..\Tools\CC2530DB\f8wEndev.cfg            #
+#                          (-DCPU32MHZ -DROOT=__near_func -DBLINK_LEDS) -f    #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\Tools\CC2530DB\f8wConfig.cfg (-DSECURE=0  #
+#                          -DZG_SECURE_DYNAMIC=0 -DREFLECTOR                  #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFF11                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100) -DREJOIN_POLL_RATE=440   #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Components\HARDWARE\RS485_Handler.c -D      #
+#                          NWK_AUTO_POLL -D ZTOOL_P1 -D MT_SYS_FUNC -D        #
+#                          MT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG -lC             #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          EndDeviceEB\List\ -lA D:\DWRH\mode-exp\stm32\ZHONG #
+#                          _HE\IPV4_ZB_2.4G_LORA\ZigBee\Projects\zstack\Sampl #
+#                          es\SampleApp\CC2530DB\EndDeviceEB\List\            #
+#                          --diag_suppress Pe001,Pa010 -o                     #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          EndDeviceEB\Obj\ -e --no_unroll --no_inline        #
+#                          --no_tbaa --debug --core=plain --dptr=16,1         #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LO #
+#                          RA\ZigBee\Projects\zstack\Samples\SampleApp\CC2530 #
+#                          DB\ -I D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4 #
+#                          G_LORA\ZigBee\Projects\zstack\Samples\SampleApp\CC #
+#                          2530DB\..\SOURCE\ -I D:\DWRH\mode-exp\stm32\ZHONG_ #
+#                          HE\IPV4_ZB_2.4G_LORA\ZigBee\Projects\zstack\Sample #
+#                          s\SampleApp\CC2530DB\..\..\..\ZMAIN\TI2530DB\ -I   #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\MT\ -I                   #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\HAL\INCLUDE\ -I          #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\HAL\TARGET\CC2530EB\ -I  #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\OSAL\MCU\CCSOC\ -I       #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\OSAL\INCLUDE\ -I         #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\STACK\AF\ -I             #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\STACK\NWK\ -I            #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\STACK\SEC\ -I            #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\STACK\SAPI\ -I           #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\STACK\SYS\ -I            #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\STACK\ZDO\ -I            #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\ZMAC\F8W\ -I             #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\ZMAC\ -I                 #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\SERVICES\SADDR\ -I       #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\SERVICES\SDATA\ -I       #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\MAC\INCLUDE\ -I          #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\MAC\HIGH_LEVEL\ -I       #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\srf04\ -I  #
+#                          D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          ..\..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\srf04\SING #
+#                          LE_CHIP\ -I D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_Z #
+#                          B_2.4G_LORA\ZigBee\Projects\zstack\Samples\SampleA #
+#                          pp\CC2530DB\..\..\..\..\..\COMPONENTS\HARDWARE\    #
+#                          -Om                                                #
+#    List file          =  D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          EndDeviceEB\List\RS485_Handler.lst                 #
+#    Object file        =  D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ #
+#                          ZigBee\Projects\zstack\Samples\SampleApp\CC2530DB\ #
+#                          EndDeviceEB\Obj\RS485_Handler.r51                  #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\DWRH\mode-exp\stm32\ZHONG_HE\IPV4_ZB_2.4G_LORA\ZigBee\Components\HARDWARE\RS485_Handler.c
+      1          #include "RS485_Handler.h"
+      2          
+      3          #define RS485_HANDLER_MSG_EVT  0x0003
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+      4          uint8 RS485_Handler_TaskId;
+   \                     RS485_Handler_TaskId:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+      5          uint8 ReceiveBuffer[64]={0};
+   \                     ReceiveBuffer:
+   \   000000                DS 64
+   \   000040                REQUIRE __INIT_XDATA_Z
+      6          extern uint8_t SHT20_Data[ ];
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+      7          static uint8 RxLen,state = 0,count=0;
+   \                     RxLen:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+   \                     state:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+   \                     count:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+      8          void RS485_Handler_Init( uint8 task_id )
+   \                     RS485_Handler_Init:
+      9          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+     10          	RS485_Handler_TaskId = task_id;
+   \   000006   90....       MOV     DPTR,#RS485_Handler_TaskId
+   \   000009   F0           MOVX    @DPTR,A
+     11          	Rs485_Init();
+   \   00000A                ; Setup parameters for call to function Rs485_Init
+   \   00000A   12....       LCALL   ??Rs485_Init?relay
+     12          	osal_start_timerEx( RS485_Handler_TaskId, RS485_HANDLER_MSG_EVT,50);
+   \   00000D                ; Setup parameters for call to function osal_start_timerEx
+   \   00000D   7C32         MOV     R4,#0x32
+   \   00000F   7D00         MOV     R5,#0x0
+   \   000011   7A03         MOV     R2,#0x3
+   \   000013   7B00         MOV     R3,#0x0
+   \   000015   90....       MOV     DPTR,#RS485_Handler_TaskId
+   \   000018   E0           MOVX    A,@DPTR
+   \   000019   F9           MOV     R1,A
+   \   00001A   12....       LCALL   ??osal_start_timerEx?relay
+     13          }
+   \   00001D   7F01         MOV     R7,#0x1
+   \   00001F   02....       LJMP    ?BANKED_LEAVE_XDATA
+     14          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     15          uint16 RS485_Handler_ProcessEvent( uint8 task_id, uint16 events )
+   \                     RS485_Handler_ProcessEvent:
+     16          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+     17            if ( events & SYS_EVENT_MSG )
+   \   000009   5480         ANL     A,#0x80
+   \   00000B   6007         JZ      ??RS485_Handler_ProcessEvent_0
+     18            {
+     19              return (events ^ SYS_EVENT_MSG);
+   \   00000D   EF           MOV     A,R7
+   \   00000E   6480         XRL     A,#0x80
+   \                     ??RS485_Handler_ProcessEvent_1:
+   \   000010   FB           MOV     R3,A
+   \   000011   02....       LJMP    ??RS485_Handler_ProcessEvent_2 & 0xFFFF
+     20            } 
+     21            
+     22            if ( (events & RS485_HANDLER_MSG_EVT) == RS485_HANDLER_MSG_EVT )
+   \                     ??RS485_Handler_ProcessEvent_0:
+   \   000014   EE           MOV     A,R6
+   \   000015   5403         ANL     A,#0x3
+   \   000017   6403         XRL     A,#0x3
+   \   000019   6003         JZ      $+5
+   \   00001B   02....       LJMP    ??RS485_Handler_ProcessEvent_3 & 0xFFFF
+     23            {
+     24              if(state == 0)
+   \   00001E   90....       MOV     DPTR,#state
+   \   000021   E0           MOVX    A,@DPTR
+   \   000022   701A         JNZ     ??RS485_Handler_ProcessEvent_4
+     25          	{
+     26          		if(Hal_UART_RxBufLen(HAL_UART_PORT_1))
+   \   000024                ; Setup parameters for call to function Hal_UART_RxBufLen
+   \   000024   7901         MOV     R1,#0x1
+   \   000026   12....       LCALL   ??Hal_UART_RxBufLen?relay
+   \   000029   8B..         MOV     ?V0 + 1,R3
+   \   00002B   EA           MOV     A,R2
+   \   00002C   45..         ORL     A,?V0 + 1
+   \   00002E   7003         JNZ     $+5
+   \   000030   02....       LJMP    ??RS485_Handler_ProcessEvent_5 & 0xFFFF
+     27          		{
+     28          		  	count = 0;
+   \   000033   90....       MOV     DPTR,#count
+   \   000036   E4           CLR     A
+   \   000037   F0           MOVX    @DPTR,A
+     29          			state = 1;
+   \   000038   90....       MOV     DPTR,#state
+   \   00003B   04           INC     A
+   \   00003C   8079         SJMP    ??RS485_Handler_ProcessEvent_6
+     30          		}
+     31          	}
+     32          	else if(state == 1)
+   \                     ??RS485_Handler_ProcessEvent_4:
+   \   00003E   E0           MOVX    A,@DPTR
+   \   00003F   6401         XRL     A,#0x1
+   \   000041   7075         JNZ     ??RS485_Handler_ProcessEvent_5
+     33          	{
+     34          	  	RxLen = Hal_UART_RxBufLen(HAL_UART_PORT_1);
+   \   000043                ; Setup parameters for call to function Hal_UART_RxBufLen
+   \   000043   7901         MOV     R1,#0x1
+   \   000045   12....       LCALL   ??Hal_UART_RxBufLen?relay
+   \   000048   EA           MOV     A,R2
+   \   000049   90....       MOV     DPTR,#RxLen
+   \   00004C   F0           MOVX    @DPTR,A
+     35          		HalUARTRead(HAL_UART_PORT_1,ReceiveBuffer,RxLen);
+   \   00004D                ; Setup parameters for call to function HalUARTRead
+   \   00004D   E0           MOVX    A,@DPTR
+   \   00004E   FC           MOV     R4,A
+   \   00004F   7D00         MOV     R5,#0x0
+   \   000051   7A..         MOV     R2,#ReceiveBuffer & 0xff
+   \   000053   7B..         MOV     R3,#(ReceiveBuffer >> 8) & 0xff
+   \   000055   7901         MOV     R1,#0x1
+   \   000057   12....       LCALL   ??HalUARTRead?relay
+   \   00005A   8018         SJMP    ??RS485_Handler_ProcessEvent_7
+     36          		while(count<RxLen)
+     37          		{
+     38          			Rs485_Receive(ReceiveBuffer[count]);
+   \                     ??RS485_Handler_ProcessEvent_8:
+   \   00005C                ; Setup parameters for call to function Rs485_Receive
+   \   00005C   E0           MOVX    A,@DPTR
+   \   00005D   F8           MOV     R0,A
+   \   00005E   74..         MOV     A,#ReceiveBuffer & 0xff
+   \   000060   28           ADD     A,R0
+   \   000061   F582         MOV     DPL,A
+   \   000063   74..         MOV     A,#(ReceiveBuffer >> 8) & 0xff
+   \   000065   3400         ADDC    A,#0x0
+   \   000067   F583         MOV     DPH,A
+   \   000069   E0           MOVX    A,@DPTR
+   \   00006A   F9           MOV     R1,A
+   \   00006B   12....       LCALL   ??Rs485_Receive?relay
+     39          			count++;
+   \   00006E   90....       MOV     DPTR,#count
+   \   000071   E0           MOVX    A,@DPTR
+   \   000072   04           INC     A
+   \   000073   F0           MOVX    @DPTR,A
+     40          		}
+   \                     ??RS485_Handler_ProcessEvent_7:
+   \   000074   90....       MOV     DPTR,#RxLen
+   \   000077   E0           MOVX    A,@DPTR
+   \   000078   F8           MOV     R0,A
+   \   000079   90....       MOV     DPTR,#count
+   \   00007C   E0           MOVX    A,@DPTR
+   \   00007D   C3           CLR     C
+   \   00007E   98           SUBB    A,R0
+   \   00007F   40DB         JC      ??RS485_Handler_ProcessEvent_8
+     41          		if(!DataHandling_485(Addr_ZigBee))
+   \   000081                ; Setup parameters for call to function DataHandling_485
+   \   000081   7A01         MOV     R2,#0x1
+   \   000083   7B1D         MOV     R3,#0x1d
+   \   000085   12....       LCALL   ??DataHandling_485?relay
+   \   000088   E9           MOV     A,R1
+   \   000089   7028         JNZ     ??RS485_Handler_ProcessEvent_9
+     42          		{
+     43          			Rs485_Send(Addr_ZigBee,Addr_IPV4,SHT20_All,2,SHT20_Data);
+   \   00008B                ; Setup parameters for call to function Rs485_Send
+   \   00008B   75....       MOV     ?V0 + 0,#SHT20_Data & 0xff
+   \   00008E   75....       MOV     ?V0 + 1,#(SHT20_Data >> 8) & 0xff
+   \   000091   78..         MOV     R0,#?V0 + 0
+   \   000093   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000096   75..31       MOV     ?V0 + 0,#0x31
+   \   000099   75..16       MOV     ?V0 + 1,#0x16
+   \   00009C   78..         MOV     R0,#?V0 + 0
+   \   00009E   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000A1   7902         MOV     R1,#0x2
+   \   0000A3   7C01         MOV     R4,#0x1
+   \   0000A5   7D23         MOV     R5,#0x23
+   \   0000A7   7A01         MOV     R2,#0x1
+   \   0000A9   7B1D         MOV     R3,#0x1d
+   \   0000AB   12....       LCALL   ??Rs485_Send?relay
+   \   0000AE   7404         MOV     A,#0x4
+   \   0000B0   12....       LCALL   ?DEALLOC_XSTACK8
+     44          		}
+     45          		state = 0;
+   \                     ??RS485_Handler_ProcessEvent_9:
+   \   0000B3   90....       MOV     DPTR,#state
+   \   0000B6   E4           CLR     A
+   \                     ??RS485_Handler_ProcessEvent_6:
+   \   0000B7   F0           MOVX    @DPTR,A
+     46          	}
+     47          	osal_start_timerEx( RS485_Handler_TaskId, RS485_HANDLER_MSG_EVT,20);
+   \                     ??RS485_Handler_ProcessEvent_5:
+   \   0000B8                ; Setup parameters for call to function osal_start_timerEx
+   \   0000B8   7C14         MOV     R4,#0x14
+   \   0000BA   7D00         MOV     R5,#0x0
+   \   0000BC   7A03         MOV     R2,#0x3
+   \   0000BE   7B00         MOV     R3,#0x0
+   \   0000C0   90....       MOV     DPTR,#RS485_Handler_TaskId
+   \   0000C3   E0           MOVX    A,@DPTR
+   \   0000C4   F9           MOV     R1,A
+   \   0000C5   12....       LCALL   ??osal_start_timerEx?relay
+     48          	return (events ^ RS485_HANDLER_MSG_EVT);
+   \   0000C8   EE           MOV     A,R6
+   \   0000C9   6403         XRL     A,#0x3
+   \   0000CB   FA           MOV     R2,A
+   \   0000CC   EF           MOV     A,R7
+   \   0000CD   02....       LJMP    ??RS485_Handler_ProcessEvent_1 & 0xFFFF
+     49            }
+     50            
+     51            return 0;
+   \                     ??RS485_Handler_ProcessEvent_3:
+   \   0000D0   7A00         MOV     R2,#0x0
+   \   0000D2   7B00         MOV     R3,#0x0
+   \                     ??RS485_Handler_ProcessEvent_2:
+   \   0000D4   7F02         MOV     R7,#0x2
+   \   0000D6   02....       LJMP    ?BANKED_LEAVE_XDATA
+     52          }
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??RS485_Handler_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    RS485_Handler_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??RS485_Handler_ProcessEvent?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    RS485_Handler_ProcessEvent
+
+   Maximum stack usage in bytes:
+
+     Function                   ISTACK PSTACK XSTACK
+     --------                   ------ ------ ------
+     RS485_Handler_Init             0      0      9
+       -> Rs485_Init                0      0     18
+       -> osal_start_timerEx        0      0     18
+     RS485_Handler_ProcessEvent     0      0     14
+       -> Hal_UART_RxBufLen         0      0     20
+       -> Hal_UART_RxBufLen         0      0     20
+       -> HalUARTRead               0      0     20
+       -> Rs485_Receive             0      0     20
+       -> DataHandling_485          0      0     20
+       -> Rs485_Send                0      0     28
+       -> osal_start_timerEx        0      0     20
+
+
+   Segment part sizes:
+
+     Function/Label                     Bytes
+     --------------                     -----
+     RS485_Handler_TaskId                  1
+     ReceiveBuffer                        64
+     RxLen                                 1
+     state                                 1
+     count                                 1
+     RS485_Handler_Init                   34
+     RS485_Handler_ProcessEvent          217
+     ??RS485_Handler_Init?relay            6
+     ??RS485_Handler_ProcessEvent?relay    6
+
+ 
+ 251 bytes in segment BANKED_CODE
+  12 bytes in segment BANK_RELAYS
+  68 bytes in segment XDATA_Z
+ 
+ 263 bytes of CODE  memory
+  68 bytes of XDATA memory
+
+Errors: none
+Warnings: none

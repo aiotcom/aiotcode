@@ -1,0 +1,2209 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.8.4 #10774 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module cc2530_rf
+                                      6 	.optsdcc -mmcs51 --model-huge
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _cc2530_rf_driver
+                                     12 	.globl _packetbuf_set_attr
+                                     13 	.globl _clock_delay_usec
+                                     14 	.globl _ACTIVE
+                                     15 	.globl _TX_BYTE
+                                     16 	.globl _RX_BYTE
+                                     17 	.globl _ERR
+                                     18 	.globl _FE
+                                     19 	.globl _SLAVE
+                                     20 	.globl _RE
+                                     21 	.globl _MODE
+                                     22 	.globl _T3OVFIF
+                                     23 	.globl _T3CH0IF
+                                     24 	.globl _T3CH1IF
+                                     25 	.globl _T4OVFIF
+                                     26 	.globl _T4CH0IF
+                                     27 	.globl _T4CH1IF
+                                     28 	.globl _OVFIM
+                                     29 	.globl _B_0
+                                     30 	.globl _B_1
+                                     31 	.globl _B_2
+                                     32 	.globl _B_3
+                                     33 	.globl _B_4
+                                     34 	.globl _B_5
+                                     35 	.globl _B_6
+                                     36 	.globl _B_7
+                                     37 	.globl _P2IF
+                                     38 	.globl _UTX0IF
+                                     39 	.globl _UTX1IF
+                                     40 	.globl _P1IF
+                                     41 	.globl _WDTIF
+                                     42 	.globl _ACC_0
+                                     43 	.globl _ACC_1
+                                     44 	.globl _ACC_2
+                                     45 	.globl _ACC_3
+                                     46 	.globl _ACC_4
+                                     47 	.globl _ACC_5
+                                     48 	.globl _ACC_6
+                                     49 	.globl _ACC_7
+                                     50 	.globl _P
+                                     51 	.globl _F1
+                                     52 	.globl _OV
+                                     53 	.globl _RS0
+                                     54 	.globl _RS1
+                                     55 	.globl _F0
+                                     56 	.globl _AC
+                                     57 	.globl _CY
+                                     58 	.globl _DMAIF
+                                     59 	.globl _T1IF
+                                     60 	.globl _T2IF
+                                     61 	.globl _T3IF
+                                     62 	.globl _T4IF
+                                     63 	.globl _P0IF
+                                     64 	.globl _STIF
+                                     65 	.globl _DMAIE
+                                     66 	.globl _T1IE
+                                     67 	.globl _T2IE
+                                     68 	.globl _T3IE
+                                     69 	.globl _T4IE
+                                     70 	.globl _P0IE
+                                     71 	.globl _RFERRIE
+                                     72 	.globl _ADCIE
+                                     73 	.globl _URX0IE
+                                     74 	.globl _URX1IE
+                                     75 	.globl _ENCIE
+                                     76 	.globl _STIE
+                                     77 	.globl _EA
+                                     78 	.globl _P2_0
+                                     79 	.globl _P2_1
+                                     80 	.globl _P2_2
+                                     81 	.globl _P2_3
+                                     82 	.globl _P2_4
+                                     83 	.globl _P2_5
+                                     84 	.globl _P2_6
+                                     85 	.globl _P2_7
+                                     86 	.globl _ENCIF_0
+                                     87 	.globl _ENCIF_1
+                                     88 	.globl _P1_0
+                                     89 	.globl _P1_1
+                                     90 	.globl _P1_2
+                                     91 	.globl _P1_3
+                                     92 	.globl _P1_4
+                                     93 	.globl _P1_5
+                                     94 	.globl _P1_6
+                                     95 	.globl _P1_7
+                                     96 	.globl _IT0
+                                     97 	.globl _RFERRIF
+                                     98 	.globl _IT1
+                                     99 	.globl _URX0IF
+                                    100 	.globl _ADCIF
+                                    101 	.globl _URX1IF
+                                    102 	.globl _P0_0
+                                    103 	.globl _P0_1
+                                    104 	.globl _P0_2
+                                    105 	.globl _P0_3
+                                    106 	.globl _P0_4
+                                    107 	.globl _P0_5
+                                    108 	.globl _P0_6
+                                    109 	.globl _P0_7
+                                    110 	.globl _WDCTL
+                                    111 	.globl _U1GCR
+                                    112 	.globl _U1UCR
+                                    113 	.globl _U1BAUD
+                                    114 	.globl _U1DBUF
+                                    115 	.globl _U1CSR
+                                    116 	.globl _U0GCR
+                                    117 	.globl _U0UCR
+                                    118 	.globl _U0BAUD
+                                    119 	.globl _U0DBUF
+                                    120 	.globl _U0CSR
+                                    121 	.globl _TIMIF
+                                    122 	.globl _T4CC1
+                                    123 	.globl _T4CCTL1
+                                    124 	.globl _T4CC0
+                                    125 	.globl _T4CCTL0
+                                    126 	.globl _T4CTL
+                                    127 	.globl _T4CNT
+                                    128 	.globl _T3CC1
+                                    129 	.globl _T3CCTL1
+                                    130 	.globl _T3CC0
+                                    131 	.globl _T3CCTL0
+                                    132 	.globl _T3CTL
+                                    133 	.globl _T3CNT
+                                    134 	.globl _T2MSEL
+                                    135 	.globl _T2IRQM
+                                    136 	.globl _T2MOVF2
+                                    137 	.globl _T2MOVF1
+                                    138 	.globl _T2MOVF0
+                                    139 	.globl _T2M1
+                                    140 	.globl _T2M0
+                                    141 	.globl _T2IRQF
+                                    142 	.globl _T2EVTCFG
+                                    143 	.globl _T2CTRL
+                                    144 	.globl _T1STAT
+                                    145 	.globl _T1CCTL2
+                                    146 	.globl _T1CCTL1
+                                    147 	.globl _T1CCTL0
+                                    148 	.globl _T1CTL
+                                    149 	.globl _T1CNTH
+                                    150 	.globl _T1CNTL
+                                    151 	.globl _T1CC2H
+                                    152 	.globl _T1CC2L
+                                    153 	.globl _T1CC1H
+                                    154 	.globl _T1CC1L
+                                    155 	.globl _T1CC0H
+                                    156 	.globl _T1CC0L
+                                    157 	.globl _CLKCONSTA
+                                    158 	.globl _CLKCONCMD
+                                    159 	.globl _SLEEPSTA
+                                    160 	.globl _SLEEPCMD
+                                    161 	.globl _STLOAD
+                                    162 	.globl _ST2
+                                    163 	.globl _ST1
+                                    164 	.globl _ST0
+                                    165 	.globl _RFERRF
+                                    166 	.globl _RFIRQF0
+                                    167 	.globl _RFST
+                                    168 	.globl _RFD
+                                    169 	.globl _RFIRQF1
+                                    170 	.globl _PSBANK
+                                    171 	.globl _FMAP
+                                    172 	.globl _MEMCTR
+                                    173 	.globl __XPAGE
+                                    174 	.globl _MPAGE
+                                    175 	.globl _PMUX
+                                    176 	.globl _P2DIR
+                                    177 	.globl _P1DIR
+                                    178 	.globl _P0DIR
+                                    179 	.globl _P2INP
+                                    180 	.globl _P1INP
+                                    181 	.globl _P2SEL
+                                    182 	.globl _P1SEL
+                                    183 	.globl _P0SEL
+                                    184 	.globl _APCFG
+                                    185 	.globl _PERCFG
+                                    186 	.globl _P0INP
+                                    187 	.globl _P2IEN
+                                    188 	.globl _P1IEN
+                                    189 	.globl _P0IEN
+                                    190 	.globl _PICTL
+                                    191 	.globl _P2IFG
+                                    192 	.globl _P1IFG
+                                    193 	.globl _P0IFG
+                                    194 	.globl _DMAREQ
+                                    195 	.globl _DMAARM
+                                    196 	.globl _DMA0CFGH
+                                    197 	.globl _DMA0CFGL
+                                    198 	.globl _DMA1CFGH
+                                    199 	.globl _DMA1CFGL
+                                    200 	.globl _DMAIRQ
+                                    201 	.globl _ENCCS
+                                    202 	.globl _ENCDO
+                                    203 	.globl _ENCDI
+                                    204 	.globl _RNDH
+                                    205 	.globl _RNDL
+                                    206 	.globl _ADCH
+                                    207 	.globl _ADCL
+                                    208 	.globl _ADCCON3
+                                    209 	.globl _ADCCON2
+                                    210 	.globl _ADCCON1
+                                    211 	.globl _B
+                                    212 	.globl _IRCON2
+                                    213 	.globl _ACC
+                                    214 	.globl _PSW
+                                    215 	.globl _IRCON
+                                    216 	.globl _IP1
+                                    217 	.globl _IEN1
+                                    218 	.globl _IP0
+                                    219 	.globl _IEN0
+                                    220 	.globl _P2
+                                    221 	.globl _S1CON
+                                    222 	.globl _IEN2
+                                    223 	.globl _S0CON
+                                    224 	.globl _DPS
+                                    225 	.globl _P1
+                                    226 	.globl _TCON
+                                    227 	.globl _PCON
+                                    228 	.globl _DPH1
+                                    229 	.globl _DPL1
+                                    230 	.globl _DPH0
+                                    231 	.globl _DPL0
+                                    232 	.globl _SP
+                                    233 	.globl _P0
+                                    234 	.globl _X_IEEE_ADDR
+                                    235 	.globl _X_INFOPAGE
+                                    236 	.globl _X_P2DIR
+                                    237 	.globl _X_P1DIR
+                                    238 	.globl _X_P0DIR
+                                    239 	.globl _X_U1GCR
+                                    240 	.globl _X_U1UCR
+                                    241 	.globl _X_U1BAUD
+                                    242 	.globl _X_U1DBUF
+                                    243 	.globl _X_U1CSR
+                                    244 	.globl _X_P2INP
+                                    245 	.globl _X_P1INP
+                                    246 	.globl _X_P2SEL
+                                    247 	.globl _X_P1SEL
+                                    248 	.globl _X_P0SEL
+                                    249 	.globl _X_APCFG
+                                    250 	.globl _X_PERCFG
+                                    251 	.globl _X_T4CC1
+                                    252 	.globl _X_T4CCTL1
+                                    253 	.globl _X_T4CC0
+                                    254 	.globl _X_T4CCTL0
+                                    255 	.globl _X_T4CTL
+                                    256 	.globl _X_T4CNT
+                                    257 	.globl _X_RFIRQF0
+                                    258 	.globl _X_T1CCTL2
+                                    259 	.globl _X_T1CCTL1
+                                    260 	.globl _X_T1CCTL0
+                                    261 	.globl _X_T1CTL
+                                    262 	.globl _X_T1CNTH
+                                    263 	.globl _X_T1CNTL
+                                    264 	.globl _X_RFST
+                                    265 	.globl _X_T1CC2H
+                                    266 	.globl _X_T1CC2L
+                                    267 	.globl _X_T1CC1H
+                                    268 	.globl _X_T1CC1L
+                                    269 	.globl _X_T1CC0H
+                                    270 	.globl _X_T1CC0L
+                                    271 	.globl _X_RFD
+                                    272 	.globl _X_TIMIF
+                                    273 	.globl _X_DMAREQ
+                                    274 	.globl _X_DMAARM
+                                    275 	.globl _X_DMA0CFGH
+                                    276 	.globl _X_DMA0CFGL
+                                    277 	.globl _X_DMA1CFGH
+                                    278 	.globl _X_DMA1CFGL
+                                    279 	.globl _X_DMAIRQ
+                                    280 	.globl _X_T3CC1
+                                    281 	.globl _X_T3CCTL1
+                                    282 	.globl _X_T3CC0
+                                    283 	.globl _X_T3CCTL0
+                                    284 	.globl _X_T3CTL
+                                    285 	.globl _X_T3CNT
+                                    286 	.globl _X_WDCTL
+                                    287 	.globl _X_MEMCTR
+                                    288 	.globl _X_CLKCONCMD
+                                    289 	.globl _X_U0GCR
+                                    290 	.globl _X_U0UCR
+                                    291 	.globl _X_T2MSEL
+                                    292 	.globl _X_U0BAUD
+                                    293 	.globl _X_U0DBUF
+                                    294 	.globl _X_RFERRF
+                                    295 	.globl _X_SLEEPCMD
+                                    296 	.globl _X_RNDH
+                                    297 	.globl _X_RNDL
+                                    298 	.globl _X_ADCH
+                                    299 	.globl _X_ADCL
+                                    300 	.globl _X_ADCCON3
+                                    301 	.globl _X_ADCCON2
+                                    302 	.globl _X_ADCCON1
+                                    303 	.globl _X_ENCCS
+                                    304 	.globl _X_ENCDO
+                                    305 	.globl _X_ENCDI
+                                    306 	.globl _X_T1STAT
+                                    307 	.globl _X_PMUX
+                                    308 	.globl _X_STLOAD
+                                    309 	.globl _X_P2IEN
+                                    310 	.globl _X_P0IEN
+                                    311 	.globl _X_T2IRQM
+                                    312 	.globl _X_T2MOVF2
+                                    313 	.globl _X_T2MOVF1
+                                    314 	.globl _X_T2MOVF0
+                                    315 	.globl _X_T2M1
+                                    316 	.globl _X_T2M0
+                                    317 	.globl _X_T2IRQF
+                                    318 	.globl _X_P2
+                                    319 	.globl _X_PSBANK
+                                    320 	.globl _X_FMAP
+                                    321 	.globl _X_CLKCONSTA
+                                    322 	.globl _X_SLEEPSTA
+                                    323 	.globl _X_T2EVTCFG
+                                    324 	.globl _X_ST2
+                                    325 	.globl _X_ST1
+                                    326 	.globl _X_ST0
+                                    327 	.globl _X_T2CTRL
+                                    328 	.globl _X__XPAGE
+                                    329 	.globl _X_MPAGE
+                                    330 	.globl _X_RFIRQF1
+                                    331 	.globl _X_P1
+                                    332 	.globl _X_P0INP
+                                    333 	.globl _X_P1IEN
+                                    334 	.globl _X_PICTL
+                                    335 	.globl _X_P2IFG
+                                    336 	.globl _X_P1IFG
+                                    337 	.globl _X_P0IFG
+                                    338 	.globl _X_U0CSR
+                                    339 	.globl _X_P0
+                                    340 	.globl _USBF5
+                                    341 	.globl _USBF4
+                                    342 	.globl _USBF3
+                                    343 	.globl _USBF2
+                                    344 	.globl _USBF1
+                                    345 	.globl _USBF0
+                                    346 	.globl _USBCNTH
+                                    347 	.globl _USBCNTL
+                                    348 	.globl _USBCNT0
+                                    349 	.globl _USBCSOH
+                                    350 	.globl _USBCSOL
+                                    351 	.globl _USBMAXO
+                                    352 	.globl _USBCSIH
+                                    353 	.globl _USBCSIL
+                                    354 	.globl _USBCS0
+                                    355 	.globl _USBMAXI
+                                    356 	.globl _USBCTRL
+                                    357 	.globl _USBINDEX
+                                    358 	.globl _USBFRMH
+                                    359 	.globl _USBFRML
+                                    360 	.globl _USBCIE
+                                    361 	.globl _USBOIE
+                                    362 	.globl _USBIIE
+                                    363 	.globl _USBCIF
+                                    364 	.globl _USBOIF
+                                    365 	.globl _USBIIF
+                                    366 	.globl _USBPOW
+                                    367 	.globl _USBADDR
+                                    368 	.globl _CSPT
+                                    369 	.globl _CSPZ
+                                    370 	.globl _CSPY
+                                    371 	.globl _CSPX
+                                    372 	.globl _CSPSTAT
+                                    373 	.globl _CSPCTRL
+                                    374 	.globl _CSPPROG23
+                                    375 	.globl _CSPPROG22
+                                    376 	.globl _CSPPROG21
+                                    377 	.globl _CSPPROG20
+                                    378 	.globl _CSPPROG19
+                                    379 	.globl _CSPPROG18
+                                    380 	.globl _CSPPROG17
+                                    381 	.globl _CSPPROG16
+                                    382 	.globl _CSPPROG15
+                                    383 	.globl _CSPPROG14
+                                    384 	.globl _CSPPROG13
+                                    385 	.globl _CSPPROG12
+                                    386 	.globl _CSPPROG11
+                                    387 	.globl _CSPPROG10
+                                    388 	.globl _CSPPROG9
+                                    389 	.globl _CSPPROG8
+                                    390 	.globl _CSPPROG7
+                                    391 	.globl _CSPPROG6
+                                    392 	.globl _CSPPROG5
+                                    393 	.globl _CSPPROG4
+                                    394 	.globl _CSPPROG3
+                                    395 	.globl _CSPPROG2
+                                    396 	.globl _CSPPROG1
+                                    397 	.globl _CSPPROG0
+                                    398 	.globl _RFC_OBS_CTRL2
+                                    399 	.globl _RFC_OBS_CTRL1
+                                    400 	.globl _RFC_OBS_CTRL0
+                                    401 	.globl _TXFILTCFG
+                                    402 	.globl _PTEST1
+                                    403 	.globl _PTEST0
+                                    404 	.globl _ATEST
+                                    405 	.globl _DACTEST2
+                                    406 	.globl _DACTEST1
+                                    407 	.globl _DACTEST0
+                                    408 	.globl _MDMTEST1
+                                    409 	.globl _MDMTEST0
+                                    410 	.globl _ADCTEST2
+                                    411 	.globl _ADCTEST1
+                                    412 	.globl _ADCTEST0
+                                    413 	.globl _AGCCTRL3
+                                    414 	.globl _AGCCTRL2
+                                    415 	.globl _AGCCTRL1
+                                    416 	.globl _AGCCTRL0
+                                    417 	.globl _FSCAL3
+                                    418 	.globl _FSCAL2
+                                    419 	.globl _FSCAL1
+                                    420 	.globl _FSCAL0
+                                    421 	.globl _FSCTRL
+                                    422 	.globl _RXCTRL
+                                    423 	.globl _FREQEST
+                                    424 	.globl _MDMCTRL1
+                                    425 	.globl _MDMCTRL0
+                                    426 	.globl _RFRND
+                                    427 	.globl _RFERRM
+                                    428 	.globl _RFIRQM1
+                                    429 	.globl _RFIRQM0
+                                    430 	.globl _TXLAST_PTR
+                                    431 	.globl _TXFIRST_PTR
+                                    432 	.globl _RXP1_PTR
+                                    433 	.globl _RXLAST_PTR
+                                    434 	.globl _RXFIRST_PTR
+                                    435 	.globl _TXFIFOCNT
+                                    436 	.globl _RXFIFOCNT
+                                    437 	.globl _RXFIRST
+                                    438 	.globl _RSSISTAT
+                                    439 	.globl _RSSI
+                                    440 	.globl _CCACTRL1
+                                    441 	.globl _CCACTRL0
+                                    442 	.globl _FSMCTRL
+                                    443 	.globl _FIFOPCTRL
+                                    444 	.globl _FSMSTAT1
+                                    445 	.globl _FSMSTAT0
+                                    446 	.globl _TXCTRL
+                                    447 	.globl _TXPOWER
+                                    448 	.globl _FREQCTRL
+                                    449 	.globl _FREQTUNE
+                                    450 	.globl _RXMASKCLR
+                                    451 	.globl _RXMASKSET
+                                    452 	.globl _RXENABLE
+                                    453 	.globl _FRMCTRL1
+                                    454 	.globl _FRMCTRL0
+                                    455 	.globl _SRCEXTEN2
+                                    456 	.globl _SRCEXTEN1
+                                    457 	.globl _SRCEXTEN0
+                                    458 	.globl _SRCSHORTEN2
+                                    459 	.globl _SRCSHORTEN1
+                                    460 	.globl _SRCSHORTEN0
+                                    461 	.globl _SRCMATCH
+                                    462 	.globl _FRMFILT1
+                                    463 	.globl _FRMFILT0
+                                    464 	.globl _SHORT_ADDR1
+                                    465 	.globl _SHORT_ADDR0
+                                    466 	.globl _PAN_ID1
+                                    467 	.globl _PAN_ID0
+                                    468 	.globl _EXT_ADDR7
+                                    469 	.globl _EXT_ADDR6
+                                    470 	.globl _EXT_ADDR5
+                                    471 	.globl _EXT_ADDR4
+                                    472 	.globl _EXT_ADDR3
+                                    473 	.globl _EXT_ADDR2
+                                    474 	.globl _EXT_ADDR1
+                                    475 	.globl _EXT_ADDR0
+                                    476 	.globl _SRCSHORTPENDEN2
+                                    477 	.globl _SRCSHORTPENDEN1
+                                    478 	.globl _SRCSHORTPENDEN0
+                                    479 	.globl _SRCEXTPENDEN2
+                                    480 	.globl _SRCEXTPENDEN1
+                                    481 	.globl _SRCEXTPENDEN0
+                                    482 	.globl _SRCRESINDEX
+                                    483 	.globl _SRCRESMASK2
+                                    484 	.globl _SRCRESMASK1
+                                    485 	.globl _SRCRESMASK0
+                                    486 	.globl _SRC_ADDR_TABLE
+                                    487 	.globl _TXFIFO
+                                    488 	.globl _RXFIFO
+                                    489 	.globl _RFCORE_RAM
+                                    490 	.globl _CMPCTL
+                                    491 	.globl _OPAMPS
+                                    492 	.globl _OPAMPC
+                                    493 	.globl _STCV2
+                                    494 	.globl _STCV1
+                                    495 	.globl _STCV0
+                                    496 	.globl _STCS
+                                    497 	.globl _STCC
+                                    498 	.globl _T1CC4H
+                                    499 	.globl _T1CC4L
+                                    500 	.globl _T1CC3H
+                                    501 	.globl _T1CC3L
+                                    502 	.globl _XX_T1CC2H
+                                    503 	.globl _XX_T1CC2L
+                                    504 	.globl _XX_T1CC1H
+                                    505 	.globl _XX_T1CC1L
+                                    506 	.globl _XX_T1CC0H
+                                    507 	.globl _XX_T1CC0L
+                                    508 	.globl _T1CCTL4
+                                    509 	.globl _T1CCTL3
+                                    510 	.globl _XX_T1CCTL2
+                                    511 	.globl _XX_T1CCTL1
+                                    512 	.globl _XX_T1CCTL0
+                                    513 	.globl _CLD
+                                    514 	.globl _IRCTL
+                                    515 	.globl _CHIPINFO1
+                                    516 	.globl _CHIPINFO0
+                                    517 	.globl _FWDATA
+                                    518 	.globl _FADDRH
+                                    519 	.globl _FADDRL
+                                    520 	.globl _FCTL
+                                    521 	.globl _IVCTRL
+                                    522 	.globl _BATTMON
+                                    523 	.globl _SRCRC
+                                    524 	.globl _DBGDATA
+                                    525 	.globl _TESTREG0
+                                    526 	.globl _CHIPID
+                                    527 	.globl _CHVER
+                                    528 	.globl _OBSSEL5
+                                    529 	.globl _OBSSEL4
+                                    530 	.globl _OBSSEL3
+                                    531 	.globl _OBSSEL2
+                                    532 	.globl _OBSSEL1
+                                    533 	.globl _OBSSEL0
+                                    534 	.globl _I2CIO
+                                    535 	.globl _I2CWC
+                                    536 	.globl _I2CADDR
+                                    537 	.globl _I2CDATA
+                                    538 	.globl _I2CSTAT
+                                    539 	.globl _I2CCFG
+                                    540 	.globl _OPAMPMC
+                                    541 	.globl _MONMUX
+                                    542 	.globl _cc2530_rf_channel_set
+                                    543 	.globl _cc2530_rf_power_set
+                                    544 	.globl _cc2530_rf_set_addr
+                                    545 ;--------------------------------------------------------
+                                    546 ; special function registers
+                                    547 ;--------------------------------------------------------
+                                    548 	.area RSEG    (ABS,DATA)
+      000000                        549 	.org 0x0000
+                           000080   550 _P0	=	0x0080
+                           000081   551 _SP	=	0x0081
+                           000082   552 _DPL0	=	0x0082
+                           000083   553 _DPH0	=	0x0083
+                           000084   554 _DPL1	=	0x0084
+                           000085   555 _DPH1	=	0x0085
+                           000087   556 _PCON	=	0x0087
+                           000088   557 _TCON	=	0x0088
+                           000090   558 _P1	=	0x0090
+                           000092   559 _DPS	=	0x0092
+                           000098   560 _S0CON	=	0x0098
+                           00009A   561 _IEN2	=	0x009a
+                           00009B   562 _S1CON	=	0x009b
+                           0000A0   563 _P2	=	0x00a0
+                           0000A8   564 _IEN0	=	0x00a8
+                           0000A9   565 _IP0	=	0x00a9
+                           0000B8   566 _IEN1	=	0x00b8
+                           0000B9   567 _IP1	=	0x00b9
+                           0000C0   568 _IRCON	=	0x00c0
+                           0000D0   569 _PSW	=	0x00d0
+                           0000E0   570 _ACC	=	0x00e0
+                           0000E8   571 _IRCON2	=	0x00e8
+                           0000F0   572 _B	=	0x00f0
+                           0000B4   573 _ADCCON1	=	0x00b4
+                           0000B5   574 _ADCCON2	=	0x00b5
+                           0000B6   575 _ADCCON3	=	0x00b6
+                           0000BA   576 _ADCL	=	0x00ba
+                           0000BB   577 _ADCH	=	0x00bb
+                           0000BC   578 _RNDL	=	0x00bc
+                           0000BD   579 _RNDH	=	0x00bd
+                           0000B1   580 _ENCDI	=	0x00b1
+                           0000B2   581 _ENCDO	=	0x00b2
+                           0000B3   582 _ENCCS	=	0x00b3
+                           0000D1   583 _DMAIRQ	=	0x00d1
+                           0000D2   584 _DMA1CFGL	=	0x00d2
+                           0000D3   585 _DMA1CFGH	=	0x00d3
+                           0000D4   586 _DMA0CFGL	=	0x00d4
+                           0000D5   587 _DMA0CFGH	=	0x00d5
+                           0000D6   588 _DMAARM	=	0x00d6
+                           0000D7   589 _DMAREQ	=	0x00d7
+                           000089   590 _P0IFG	=	0x0089
+                           00008A   591 _P1IFG	=	0x008a
+                           00008B   592 _P2IFG	=	0x008b
+                           00008C   593 _PICTL	=	0x008c
+                           0000AB   594 _P0IEN	=	0x00ab
+                           00008D   595 _P1IEN	=	0x008d
+                           0000AC   596 _P2IEN	=	0x00ac
+                           00008F   597 _P0INP	=	0x008f
+                           0000F1   598 _PERCFG	=	0x00f1
+                           0000F2   599 _APCFG	=	0x00f2
+                           0000F3   600 _P0SEL	=	0x00f3
+                           0000F4   601 _P1SEL	=	0x00f4
+                           0000F5   602 _P2SEL	=	0x00f5
+                           0000F6   603 _P1INP	=	0x00f6
+                           0000F7   604 _P2INP	=	0x00f7
+                           0000FD   605 _P0DIR	=	0x00fd
+                           0000FE   606 _P1DIR	=	0x00fe
+                           0000FF   607 _P2DIR	=	0x00ff
+                           0000AE   608 _PMUX	=	0x00ae
+                           000093   609 _MPAGE	=	0x0093
+                           000093   610 __XPAGE	=	0x0093
+                           0000C7   611 _MEMCTR	=	0x00c7
+                           00009F   612 _FMAP	=	0x009f
+                           00009F   613 _PSBANK	=	0x009f
+                           000091   614 _RFIRQF1	=	0x0091
+                           0000D9   615 _RFD	=	0x00d9
+                           0000E1   616 _RFST	=	0x00e1
+                           0000E9   617 _RFIRQF0	=	0x00e9
+                           0000BF   618 _RFERRF	=	0x00bf
+                           000095   619 _ST0	=	0x0095
+                           000096   620 _ST1	=	0x0096
+                           000097   621 _ST2	=	0x0097
+                           0000AD   622 _STLOAD	=	0x00ad
+                           0000BE   623 _SLEEPCMD	=	0x00be
+                           00009D   624 _SLEEPSTA	=	0x009d
+                           0000C6   625 _CLKCONCMD	=	0x00c6
+                           00009E   626 _CLKCONSTA	=	0x009e
+                           0000DA   627 _T1CC0L	=	0x00da
+                           0000DB   628 _T1CC0H	=	0x00db
+                           0000DC   629 _T1CC1L	=	0x00dc
+                           0000DD   630 _T1CC1H	=	0x00dd
+                           0000DE   631 _T1CC2L	=	0x00de
+                           0000DF   632 _T1CC2H	=	0x00df
+                           0000E2   633 _T1CNTL	=	0x00e2
+                           0000E3   634 _T1CNTH	=	0x00e3
+                           0000E4   635 _T1CTL	=	0x00e4
+                           0000E5   636 _T1CCTL0	=	0x00e5
+                           0000E6   637 _T1CCTL1	=	0x00e6
+                           0000E7   638 _T1CCTL2	=	0x00e7
+                           0000AF   639 _T1STAT	=	0x00af
+                           000094   640 _T2CTRL	=	0x0094
+                           00009C   641 _T2EVTCFG	=	0x009c
+                           0000A1   642 _T2IRQF	=	0x00a1
+                           0000A2   643 _T2M0	=	0x00a2
+                           0000A3   644 _T2M1	=	0x00a3
+                           0000A4   645 _T2MOVF0	=	0x00a4
+                           0000A5   646 _T2MOVF1	=	0x00a5
+                           0000A6   647 _T2MOVF2	=	0x00a6
+                           0000A7   648 _T2IRQM	=	0x00a7
+                           0000C3   649 _T2MSEL	=	0x00c3
+                           0000CA   650 _T3CNT	=	0x00ca
+                           0000CB   651 _T3CTL	=	0x00cb
+                           0000CC   652 _T3CCTL0	=	0x00cc
+                           0000CD   653 _T3CC0	=	0x00cd
+                           0000CE   654 _T3CCTL1	=	0x00ce
+                           0000CF   655 _T3CC1	=	0x00cf
+                           0000EA   656 _T4CNT	=	0x00ea
+                           0000EB   657 _T4CTL	=	0x00eb
+                           0000EC   658 _T4CCTL0	=	0x00ec
+                           0000ED   659 _T4CC0	=	0x00ed
+                           0000EE   660 _T4CCTL1	=	0x00ee
+                           0000EF   661 _T4CC1	=	0x00ef
+                           0000D8   662 _TIMIF	=	0x00d8
+                           000086   663 _U0CSR	=	0x0086
+                           0000C1   664 _U0DBUF	=	0x00c1
+                           0000C2   665 _U0BAUD	=	0x00c2
+                           0000C4   666 _U0UCR	=	0x00c4
+                           0000C5   667 _U0GCR	=	0x00c5
+                           0000F8   668 _U1CSR	=	0x00f8
+                           0000F9   669 _U1DBUF	=	0x00f9
+                           0000FA   670 _U1BAUD	=	0x00fa
+                           0000FB   671 _U1UCR	=	0x00fb
+                           0000FC   672 _U1GCR	=	0x00fc
+                           0000C9   673 _WDCTL	=	0x00c9
+                                    674 ;--------------------------------------------------------
+                                    675 ; special function bits
+                                    676 ;--------------------------------------------------------
+                                    677 	.area RSEG    (ABS,DATA)
+      000000                        678 	.org 0x0000
+                           000087   679 _P0_7	=	0x0087
+                           000086   680 _P0_6	=	0x0086
+                           000085   681 _P0_5	=	0x0085
+                           000084   682 _P0_4	=	0x0084
+                           000083   683 _P0_3	=	0x0083
+                           000082   684 _P0_2	=	0x0082
+                           000081   685 _P0_1	=	0x0081
+                           000080   686 _P0_0	=	0x0080
+                           00008F   687 _URX1IF	=	0x008f
+                           00008D   688 _ADCIF	=	0x008d
+                           00008B   689 _URX0IF	=	0x008b
+                           00008A   690 _IT1	=	0x008a
+                           000089   691 _RFERRIF	=	0x0089
+                           000088   692 _IT0	=	0x0088
+                           000097   693 _P1_7	=	0x0097
+                           000096   694 _P1_6	=	0x0096
+                           000095   695 _P1_5	=	0x0095
+                           000094   696 _P1_4	=	0x0094
+                           000093   697 _P1_3	=	0x0093
+                           000092   698 _P1_2	=	0x0092
+                           000091   699 _P1_1	=	0x0091
+                           000090   700 _P1_0	=	0x0090
+                           000099   701 _ENCIF_1	=	0x0099
+                           000098   702 _ENCIF_0	=	0x0098
+                           0000A7   703 _P2_7	=	0x00a7
+                           0000A6   704 _P2_6	=	0x00a6
+                           0000A5   705 _P2_5	=	0x00a5
+                           0000A4   706 _P2_4	=	0x00a4
+                           0000A3   707 _P2_3	=	0x00a3
+                           0000A2   708 _P2_2	=	0x00a2
+                           0000A1   709 _P2_1	=	0x00a1
+                           0000A0   710 _P2_0	=	0x00a0
+                           0000AF   711 _EA	=	0x00af
+                           0000AD   712 _STIE	=	0x00ad
+                           0000AC   713 _ENCIE	=	0x00ac
+                           0000AB   714 _URX1IE	=	0x00ab
+                           0000AA   715 _URX0IE	=	0x00aa
+                           0000A9   716 _ADCIE	=	0x00a9
+                           0000A8   717 _RFERRIE	=	0x00a8
+                           0000BD   718 _P0IE	=	0x00bd
+                           0000BC   719 _T4IE	=	0x00bc
+                           0000BB   720 _T3IE	=	0x00bb
+                           0000BA   721 _T2IE	=	0x00ba
+                           0000B9   722 _T1IE	=	0x00b9
+                           0000B8   723 _DMAIE	=	0x00b8
+                           0000C7   724 _STIF	=	0x00c7
+                           0000C5   725 _P0IF	=	0x00c5
+                           0000C4   726 _T4IF	=	0x00c4
+                           0000C3   727 _T3IF	=	0x00c3
+                           0000C2   728 _T2IF	=	0x00c2
+                           0000C1   729 _T1IF	=	0x00c1
+                           0000C0   730 _DMAIF	=	0x00c0
+                           0000D7   731 _CY	=	0x00d7
+                           0000D6   732 _AC	=	0x00d6
+                           0000D5   733 _F0	=	0x00d5
+                           0000D4   734 _RS1	=	0x00d4
+                           0000D3   735 _RS0	=	0x00d3
+                           0000D2   736 _OV	=	0x00d2
+                           0000D1   737 _F1	=	0x00d1
+                           0000D0   738 _P	=	0x00d0
+                           0000E7   739 _ACC_7	=	0x00e7
+                           0000E6   740 _ACC_6	=	0x00e6
+                           0000E5   741 _ACC_5	=	0x00e5
+                           0000E4   742 _ACC_4	=	0x00e4
+                           0000E3   743 _ACC_3	=	0x00e3
+                           0000E2   744 _ACC_2	=	0x00e2
+                           0000E1   745 _ACC_1	=	0x00e1
+                           0000E0   746 _ACC_0	=	0x00e0
+                           0000EC   747 _WDTIF	=	0x00ec
+                           0000EB   748 _P1IF	=	0x00eb
+                           0000EA   749 _UTX1IF	=	0x00ea
+                           0000E9   750 _UTX0IF	=	0x00e9
+                           0000E8   751 _P2IF	=	0x00e8
+                           0000F7   752 _B_7	=	0x00f7
+                           0000F6   753 _B_6	=	0x00f6
+                           0000F5   754 _B_5	=	0x00f5
+                           0000F4   755 _B_4	=	0x00f4
+                           0000F3   756 _B_3	=	0x00f3
+                           0000F2   757 _B_2	=	0x00f2
+                           0000F1   758 _B_1	=	0x00f1
+                           0000F0   759 _B_0	=	0x00f0
+                           0000DE   760 _OVFIM	=	0x00de
+                           0000DD   761 _T4CH1IF	=	0x00dd
+                           0000DC   762 _T4CH0IF	=	0x00dc
+                           0000DB   763 _T4OVFIF	=	0x00db
+                           0000DA   764 _T3CH1IF	=	0x00da
+                           0000D9   765 _T3CH0IF	=	0x00d9
+                           0000D8   766 _T3OVFIF	=	0x00d8
+                           0000FF   767 _MODE	=	0x00ff
+                           0000FE   768 _RE	=	0x00fe
+                           0000FD   769 _SLAVE	=	0x00fd
+                           0000FC   770 _FE	=	0x00fc
+                           0000FB   771 _ERR	=	0x00fb
+                           0000FA   772 _RX_BYTE	=	0x00fa
+                           0000F9   773 _TX_BYTE	=	0x00f9
+                           0000F8   774 _ACTIVE	=	0x00f8
+                                    775 ;--------------------------------------------------------
+                                    776 ; overlayable register banks
+                                    777 ;--------------------------------------------------------
+                                    778 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        779 	.ds 8
+                                    780 ;--------------------------------------------------------
+                                    781 ; internal ram data
+                                    782 ;--------------------------------------------------------
+                                    783 	.area DSEG    (DATA)
+      000000                        784 _rf_flags:
+      000000                        785 	.ds 1
+                                    786 ;--------------------------------------------------------
+                                    787 ; overlayable items in internal ram 
+                                    788 ;--------------------------------------------------------
+                                    789 ;--------------------------------------------------------
+                                    790 ; indirectly addressable internal ram data
+                                    791 ;--------------------------------------------------------
+                                    792 	.area ISEG    (DATA)
+                                    793 ;--------------------------------------------------------
+                                    794 ; absolute internal ram data
+                                    795 ;--------------------------------------------------------
+                                    796 	.area IABS    (ABS,DATA)
+                                    797 	.area IABS    (ABS,DATA)
+                                    798 ;--------------------------------------------------------
+                                    799 ; bit data
+                                    800 ;--------------------------------------------------------
+                                    801 	.area BSEG    (BIT)
+                                    802 ;--------------------------------------------------------
+                                    803 ; paged external ram data
+                                    804 ;--------------------------------------------------------
+                                    805 	.area PSEG    (PAG,XDATA)
+                                    806 ;--------------------------------------------------------
+                                    807 ; external ram data
+                                    808 ;--------------------------------------------------------
+                                    809 	.area XSEG    (XDATA)
+                           0061A6   810 _MONMUX	=	0x61a6
+                           0061A6   811 _OPAMPMC	=	0x61a6
+                           006230   812 _I2CCFG	=	0x6230
+                           006231   813 _I2CSTAT	=	0x6231
+                           006232   814 _I2CDATA	=	0x6232
+                           006233   815 _I2CADDR	=	0x6233
+                           006234   816 _I2CWC	=	0x6234
+                           006235   817 _I2CIO	=	0x6235
+                           006243   818 _OBSSEL0	=	0x6243
+                           006244   819 _OBSSEL1	=	0x6244
+                           006245   820 _OBSSEL2	=	0x6245
+                           006246   821 _OBSSEL3	=	0x6246
+                           006247   822 _OBSSEL4	=	0x6247
+                           006248   823 _OBSSEL5	=	0x6248
+                           006249   824 _CHVER	=	0x6249
+                           00624A   825 _CHIPID	=	0x624a
+                           00624B   826 _TESTREG0	=	0x624b
+                           006260   827 _DBGDATA	=	0x6260
+                           006262   828 _SRCRC	=	0x6262
+                           006264   829 _BATTMON	=	0x6264
+                           006265   830 _IVCTRL	=	0x6265
+                           006270   831 _FCTL	=	0x6270
+                           006271   832 _FADDRL	=	0x6271
+                           006272   833 _FADDRH	=	0x6272
+                           006273   834 _FWDATA	=	0x6273
+                           006276   835 _CHIPINFO0	=	0x6276
+                           006277   836 _CHIPINFO1	=	0x6277
+                           006281   837 _IRCTL	=	0x6281
+                           006290   838 _CLD	=	0x6290
+                           0062A0   839 _XX_T1CCTL0	=	0x62a0
+                           0062A1   840 _XX_T1CCTL1	=	0x62a1
+                           0062A2   841 _XX_T1CCTL2	=	0x62a2
+                           0062A3   842 _T1CCTL3	=	0x62a3
+                           0062A4   843 _T1CCTL4	=	0x62a4
+                           0062A6   844 _XX_T1CC0L	=	0x62a6
+                           0062A7   845 _XX_T1CC0H	=	0x62a7
+                           0062A8   846 _XX_T1CC1L	=	0x62a8
+                           0062A9   847 _XX_T1CC1H	=	0x62a9
+                           0062AA   848 _XX_T1CC2L	=	0x62aa
+                           0062AB   849 _XX_T1CC2H	=	0x62ab
+                           0062AC   850 _T1CC3L	=	0x62ac
+                           0062AD   851 _T1CC3H	=	0x62ad
+                           0062AE   852 _T1CC4L	=	0x62ae
+                           0062AF   853 _T1CC4H	=	0x62af
+                           0062B0   854 _STCC	=	0x62b0
+                           0062B1   855 _STCS	=	0x62b1
+                           0062B2   856 _STCV0	=	0x62b2
+                           0062B3   857 _STCV1	=	0x62b3
+                           0062B4   858 _STCV2	=	0x62b4
+                           0062C0   859 _OPAMPC	=	0x62c0
+                           0062C1   860 _OPAMPS	=	0x62c1
+                           0062D0   861 _CMPCTL	=	0x62d0
+                           006000   862 _RFCORE_RAM	=	0x6000
+                           006000   863 _RXFIFO	=	0x6000
+                           006080   864 _TXFIFO	=	0x6080
+                           006100   865 _SRC_ADDR_TABLE	=	0x6100
+                           006160   866 _SRCRESMASK0	=	0x6160
+                           006161   867 _SRCRESMASK1	=	0x6161
+                           006162   868 _SRCRESMASK2	=	0x6162
+                           006163   869 _SRCRESINDEX	=	0x6163
+                           006164   870 _SRCEXTPENDEN0	=	0x6164
+                           006165   871 _SRCEXTPENDEN1	=	0x6165
+                           006166   872 _SRCEXTPENDEN2	=	0x6166
+                           006167   873 _SRCSHORTPENDEN0	=	0x6167
+                           006168   874 _SRCSHORTPENDEN1	=	0x6168
+                           006169   875 _SRCSHORTPENDEN2	=	0x6169
+                           00616A   876 _EXT_ADDR0	=	0x616a
+                           00616B   877 _EXT_ADDR1	=	0x616b
+                           00616C   878 _EXT_ADDR2	=	0x616c
+                           00616D   879 _EXT_ADDR3	=	0x616d
+                           00616E   880 _EXT_ADDR4	=	0x616e
+                           00616F   881 _EXT_ADDR5	=	0x616f
+                           006170   882 _EXT_ADDR6	=	0x6170
+                           006171   883 _EXT_ADDR7	=	0x6171
+                           006172   884 _PAN_ID0	=	0x6172
+                           006173   885 _PAN_ID1	=	0x6173
+                           006174   886 _SHORT_ADDR0	=	0x6174
+                           006175   887 _SHORT_ADDR1	=	0x6175
+                           006180   888 _FRMFILT0	=	0x6180
+                           006181   889 _FRMFILT1	=	0x6181
+                           006182   890 _SRCMATCH	=	0x6182
+                           006183   891 _SRCSHORTEN0	=	0x6183
+                           006184   892 _SRCSHORTEN1	=	0x6184
+                           006185   893 _SRCSHORTEN2	=	0x6185
+                           006186   894 _SRCEXTEN0	=	0x6186
+                           006187   895 _SRCEXTEN1	=	0x6187
+                           006188   896 _SRCEXTEN2	=	0x6188
+                           006189   897 _FRMCTRL0	=	0x6189
+                           00618A   898 _FRMCTRL1	=	0x618a
+                           00618B   899 _RXENABLE	=	0x618b
+                           00618C   900 _RXMASKSET	=	0x618c
+                           00618D   901 _RXMASKCLR	=	0x618d
+                           00618E   902 _FREQTUNE	=	0x618e
+                           00618F   903 _FREQCTRL	=	0x618f
+                           006190   904 _TXPOWER	=	0x6190
+                           006191   905 _TXCTRL	=	0x6191
+                           006192   906 _FSMSTAT0	=	0x6192
+                           006193   907 _FSMSTAT1	=	0x6193
+                           006194   908 _FIFOPCTRL	=	0x6194
+                           006195   909 _FSMCTRL	=	0x6195
+                           006196   910 _CCACTRL0	=	0x6196
+                           006197   911 _CCACTRL1	=	0x6197
+                           006198   912 _RSSI	=	0x6198
+                           006199   913 _RSSISTAT	=	0x6199
+                           00619A   914 _RXFIRST	=	0x619a
+                           00619B   915 _RXFIFOCNT	=	0x619b
+                           00619C   916 _TXFIFOCNT	=	0x619c
+                           00619D   917 _RXFIRST_PTR	=	0x619d
+                           00619E   918 _RXLAST_PTR	=	0x619e
+                           00619F   919 _RXP1_PTR	=	0x619f
+                           0061A1   920 _TXFIRST_PTR	=	0x61a1
+                           0061A2   921 _TXLAST_PTR	=	0x61a2
+                           0061A3   922 _RFIRQM0	=	0x61a3
+                           0061A4   923 _RFIRQM1	=	0x61a4
+                           0061A5   924 _RFERRM	=	0x61a5
+                           0061A7   925 _RFRND	=	0x61a7
+                           0061A8   926 _MDMCTRL0	=	0x61a8
+                           0061A9   927 _MDMCTRL1	=	0x61a9
+                           0061AA   928 _FREQEST	=	0x61aa
+                           0061AB   929 _RXCTRL	=	0x61ab
+                           0061AC   930 _FSCTRL	=	0x61ac
+                           0061AD   931 _FSCAL0	=	0x61ad
+                           0061AE   932 _FSCAL1	=	0x61ae
+                           0061AF   933 _FSCAL2	=	0x61af
+                           0061B0   934 _FSCAL3	=	0x61b0
+                           0061B1   935 _AGCCTRL0	=	0x61b1
+                           0061B2   936 _AGCCTRL1	=	0x61b2
+                           0061B3   937 _AGCCTRL2	=	0x61b3
+                           0061B4   938 _AGCCTRL3	=	0x61b4
+                           0061B5   939 _ADCTEST0	=	0x61b5
+                           0061B6   940 _ADCTEST1	=	0x61b6
+                           0061B7   941 _ADCTEST2	=	0x61b7
+                           0061B8   942 _MDMTEST0	=	0x61b8
+                           0061B9   943 _MDMTEST1	=	0x61b9
+                           0061BA   944 _DACTEST0	=	0x61ba
+                           0061BB   945 _DACTEST1	=	0x61bb
+                           0061BC   946 _DACTEST2	=	0x61bc
+                           0061BD   947 _ATEST	=	0x61bd
+                           0061BE   948 _PTEST0	=	0x61be
+                           0061BF   949 _PTEST1	=	0x61bf
+                           0061FA   950 _TXFILTCFG	=	0x61fa
+                           0061EB   951 _RFC_OBS_CTRL0	=	0x61eb
+                           0061EC   952 _RFC_OBS_CTRL1	=	0x61ec
+                           0061ED   953 _RFC_OBS_CTRL2	=	0x61ed
+                           0061C0   954 _CSPPROG0	=	0x61c0
+                           0061C1   955 _CSPPROG1	=	0x61c1
+                           0061C2   956 _CSPPROG2	=	0x61c2
+                           0061C3   957 _CSPPROG3	=	0x61c3
+                           0061C4   958 _CSPPROG4	=	0x61c4
+                           0061C5   959 _CSPPROG5	=	0x61c5
+                           0061C6   960 _CSPPROG6	=	0x61c6
+                           0061C7   961 _CSPPROG7	=	0x61c7
+                           0061C8   962 _CSPPROG8	=	0x61c8
+                           0061C9   963 _CSPPROG9	=	0x61c9
+                           0061CA   964 _CSPPROG10	=	0x61ca
+                           0061CB   965 _CSPPROG11	=	0x61cb
+                           0061CC   966 _CSPPROG12	=	0x61cc
+                           0061CD   967 _CSPPROG13	=	0x61cd
+                           0061CE   968 _CSPPROG14	=	0x61ce
+                           0061CF   969 _CSPPROG15	=	0x61cf
+                           0061D0   970 _CSPPROG16	=	0x61d0
+                           0061D1   971 _CSPPROG17	=	0x61d1
+                           0061D2   972 _CSPPROG18	=	0x61d2
+                           0061D3   973 _CSPPROG19	=	0x61d3
+                           0061D4   974 _CSPPROG20	=	0x61d4
+                           0061D5   975 _CSPPROG21	=	0x61d5
+                           0061D6   976 _CSPPROG22	=	0x61d6
+                           0061D7   977 _CSPPROG23	=	0x61d7
+                           0061E0   978 _CSPCTRL	=	0x61e0
+                           0061E1   979 _CSPSTAT	=	0x61e1
+                           0061E2   980 _CSPX	=	0x61e2
+                           0061E3   981 _CSPY	=	0x61e3
+                           0061E4   982 _CSPZ	=	0x61e4
+                           0061E5   983 _CSPT	=	0x61e5
+                           006200   984 _USBADDR	=	0x6200
+                           006201   985 _USBPOW	=	0x6201
+                           006202   986 _USBIIF	=	0x6202
+                           006204   987 _USBOIF	=	0x6204
+                           006206   988 _USBCIF	=	0x6206
+                           006207   989 _USBIIE	=	0x6207
+                           006209   990 _USBOIE	=	0x6209
+                           00620B   991 _USBCIE	=	0x620b
+                           00620C   992 _USBFRML	=	0x620c
+                           00620D   993 _USBFRMH	=	0x620d
+                           00620E   994 _USBINDEX	=	0x620e
+                           00620F   995 _USBCTRL	=	0x620f
+                           006210   996 _USBMAXI	=	0x6210
+                           006211   997 _USBCS0	=	0x6211
+                           006211   998 _USBCSIL	=	0x6211
+                           006212   999 _USBCSIH	=	0x6212
+                           006213  1000 _USBMAXO	=	0x6213
+                           006214  1001 _USBCSOL	=	0x6214
+                           006215  1002 _USBCSOH	=	0x6215
+                           006216  1003 _USBCNT0	=	0x6216
+                           006216  1004 _USBCNTL	=	0x6216
+                           006217  1005 _USBCNTH	=	0x6217
+                           006220  1006 _USBF0	=	0x6220
+                           006222  1007 _USBF1	=	0x6222
+                           006224  1008 _USBF2	=	0x6224
+                           006226  1009 _USBF3	=	0x6226
+                           006228  1010 _USBF4	=	0x6228
+                           00622A  1011 _USBF5	=	0x622a
+                           007080  1012 _X_P0	=	0x7080
+                           007086  1013 _X_U0CSR	=	0x7086
+                           007089  1014 _X_P0IFG	=	0x7089
+                           00708A  1015 _X_P1IFG	=	0x708a
+                           00708B  1016 _X_P2IFG	=	0x708b
+                           00708C  1017 _X_PICTL	=	0x708c
+                           00708D  1018 _X_P1IEN	=	0x708d
+                           00708F  1019 _X_P0INP	=	0x708f
+                           007090  1020 _X_P1	=	0x7090
+                           007091  1021 _X_RFIRQF1	=	0x7091
+                           007093  1022 _X_MPAGE	=	0x7093
+                           007093  1023 _X__XPAGE	=	0x7093
+                           007094  1024 _X_T2CTRL	=	0x7094
+                           007095  1025 _X_ST0	=	0x7095
+                           007096  1026 _X_ST1	=	0x7096
+                           007097  1027 _X_ST2	=	0x7097
+                           00709C  1028 _X_T2EVTCFG	=	0x709c
+                           00709D  1029 _X_SLEEPSTA	=	0x709d
+                           00709E  1030 _X_CLKCONSTA	=	0x709e
+                           00709F  1031 _X_FMAP	=	0x709f
+                           00709F  1032 _X_PSBANK	=	0x709f
+                           0070A0  1033 _X_P2	=	0x70a0
+                           0070A1  1034 _X_T2IRQF	=	0x70a1
+                           0070A2  1035 _X_T2M0	=	0x70a2
+                           0070A3  1036 _X_T2M1	=	0x70a3
+                           0070A4  1037 _X_T2MOVF0	=	0x70a4
+                           0070A5  1038 _X_T2MOVF1	=	0x70a5
+                           0070A6  1039 _X_T2MOVF2	=	0x70a6
+                           0070A7  1040 _X_T2IRQM	=	0x70a7
+                           0070AB  1041 _X_P0IEN	=	0x70ab
+                           0070AC  1042 _X_P2IEN	=	0x70ac
+                           0070AD  1043 _X_STLOAD	=	0x70ad
+                           0070AE  1044 _X_PMUX	=	0x70ae
+                           0070AF  1045 _X_T1STAT	=	0x70af
+                           0070B1  1046 _X_ENCDI	=	0x70b1
+                           0070B2  1047 _X_ENCDO	=	0x70b2
+                           0070B3  1048 _X_ENCCS	=	0x70b3
+                           0070B4  1049 _X_ADCCON1	=	0x70b4
+                           0070B5  1050 _X_ADCCON2	=	0x70b5
+                           0070B6  1051 _X_ADCCON3	=	0x70b6
+                           0070BA  1052 _X_ADCL	=	0x70ba
+                           0070BB  1053 _X_ADCH	=	0x70bb
+                           0070BC  1054 _X_RNDL	=	0x70bc
+                           0070BD  1055 _X_RNDH	=	0x70bd
+                           0070BE  1056 _X_SLEEPCMD	=	0x70be
+                           0070BF  1057 _X_RFERRF	=	0x70bf
+                           0070C1  1058 _X_U0DBUF	=	0x70c1
+                           0070C2  1059 _X_U0BAUD	=	0x70c2
+                           0070C3  1060 _X_T2MSEL	=	0x70c3
+                           0070C4  1061 _X_U0UCR	=	0x70c4
+                           0070C5  1062 _X_U0GCR	=	0x70c5
+                           0070C6  1063 _X_CLKCONCMD	=	0x70c6
+                           0070C7  1064 _X_MEMCTR	=	0x70c7
+                           0070C9  1065 _X_WDCTL	=	0x70c9
+                           0070CA  1066 _X_T3CNT	=	0x70ca
+                           0070CB  1067 _X_T3CTL	=	0x70cb
+                           0070CC  1068 _X_T3CCTL0	=	0x70cc
+                           0070CD  1069 _X_T3CC0	=	0x70cd
+                           0070CE  1070 _X_T3CCTL1	=	0x70ce
+                           0070CF  1071 _X_T3CC1	=	0x70cf
+                           0070D1  1072 _X_DMAIRQ	=	0x70d1
+                           0070D2  1073 _X_DMA1CFGL	=	0x70d2
+                           0070D3  1074 _X_DMA1CFGH	=	0x70d3
+                           0070D4  1075 _X_DMA0CFGL	=	0x70d4
+                           0070D5  1076 _X_DMA0CFGH	=	0x70d5
+                           0070D6  1077 _X_DMAARM	=	0x70d6
+                           0070D7  1078 _X_DMAREQ	=	0x70d7
+                           0070D8  1079 _X_TIMIF	=	0x70d8
+                           0070D9  1080 _X_RFD	=	0x70d9
+                           0070DA  1081 _X_T1CC0L	=	0x70da
+                           0070DB  1082 _X_T1CC0H	=	0x70db
+                           0070DC  1083 _X_T1CC1L	=	0x70dc
+                           0070DD  1084 _X_T1CC1H	=	0x70dd
+                           0070DE  1085 _X_T1CC2L	=	0x70de
+                           0070DF  1086 _X_T1CC2H	=	0x70df
+                           0070E1  1087 _X_RFST	=	0x70e1
+                           0070E2  1088 _X_T1CNTL	=	0x70e2
+                           0070E3  1089 _X_T1CNTH	=	0x70e3
+                           0070E4  1090 _X_T1CTL	=	0x70e4
+                           0070E5  1091 _X_T1CCTL0	=	0x70e5
+                           0070E6  1092 _X_T1CCTL1	=	0x70e6
+                           0070E7  1093 _X_T1CCTL2	=	0x70e7
+                           0070E9  1094 _X_RFIRQF0	=	0x70e9
+                           0070EA  1095 _X_T4CNT	=	0x70ea
+                           0070EB  1096 _X_T4CTL	=	0x70eb
+                           0070EC  1097 _X_T4CCTL0	=	0x70ec
+                           0070ED  1098 _X_T4CC0	=	0x70ed
+                           0070EE  1099 _X_T4CCTL1	=	0x70ee
+                           0070EF  1100 _X_T4CC1	=	0x70ef
+                           0070F1  1101 _X_PERCFG	=	0x70f1
+                           0070F2  1102 _X_APCFG	=	0x70f2
+                           0070F3  1103 _X_P0SEL	=	0x70f3
+                           0070F4  1104 _X_P1SEL	=	0x70f4
+                           0070F5  1105 _X_P2SEL	=	0x70f5
+                           0070F6  1106 _X_P1INP	=	0x70f6
+                           0070F7  1107 _X_P2INP	=	0x70f7
+                           0070F8  1108 _X_U1CSR	=	0x70f8
+                           0070F9  1109 _X_U1DBUF	=	0x70f9
+                           0070FA  1110 _X_U1BAUD	=	0x70fa
+                           0070FB  1111 _X_U1UCR	=	0x70fb
+                           0070FC  1112 _X_U1GCR	=	0x70fc
+                           0070FD  1113 _X_P0DIR	=	0x70fd
+                           0070FE  1114 _X_P1DIR	=	0x70fe
+                           0070FF  1115 _X_P2DIR	=	0x70ff
+                           007800  1116 _X_INFOPAGE	=	0x7800
+                           00780C  1117 _X_IEEE_ADDR	=	0x780c
+                                   1118 ;--------------------------------------------------------
+                                   1119 ; absolute external ram data
+                                   1120 ;--------------------------------------------------------
+                                   1121 	.area XABS    (ABS,XDATA)
+                                   1122 ;--------------------------------------------------------
+                                   1123 ; external initialized ram data
+                                   1124 ;--------------------------------------------------------
+                                   1125 	.area XISEG   (XDATA)
+                                   1126 	.area HOME    (CODE)
+                                   1127 	.area GSINIT0 (CODE)
+                                   1128 	.area GSINIT1 (CODE)
+                                   1129 	.area GSINIT2 (CODE)
+                                   1130 	.area GSINIT3 (CODE)
+                                   1131 	.area GSINIT4 (CODE)
+                                   1132 	.area GSINIT5 (CODE)
+                                   1133 	.area GSINIT  (CODE)
+                                   1134 	.area GSFINAL (CODE)
+                                   1135 	.area CSEG    (CODE)
+                                   1136 ;--------------------------------------------------------
+                                   1137 ; global & static initialisations
+                                   1138 ;--------------------------------------------------------
+                                   1139 	.area HOME    (CODE)
+                                   1140 	.area GSINIT  (CODE)
+                                   1141 	.area GSFINAL (CODE)
+                                   1142 	.area GSINIT  (CODE)
+                                   1143 ;--------------------------------------------------------
+                                   1144 ; Home
+                                   1145 ;--------------------------------------------------------
+                                   1146 	.area HOME    (CODE)
+                                   1147 	.area HOME    (CODE)
+                                   1148 ;--------------------------------------------------------
+                                   1149 ; code
+                                   1150 ;--------------------------------------------------------
+                                   1151 	.area BANK1   (CODE)
+                                   1152 ;------------------------------------------------------------
+                                   1153 ;Allocation info for local variables in function 'cc2530_rf_channel_set'
+                                   1154 ;------------------------------------------------------------
+                                   1155 ;channel                   Allocated to registers r7 
+                                   1156 ;------------------------------------------------------------
+                                   1157 ;	../../../cpu/cc253x/dev/cc2530-rf.c:118: cc2530_rf_channel_set(uint8_t channel)
+                                   1158 ;	-----------------------------------------
+                                   1159 ;	 function cc2530_rf_channel_set
+                                   1160 ;	-----------------------------------------
+      000000                       1161 _cc2530_rf_channel_set:
+                           000007  1162 	ar7 = 0x07
+                           000006  1163 	ar6 = 0x06
+                           000005  1164 	ar5 = 0x05
+                           000004  1165 	ar4 = 0x04
+                           000003  1166 	ar3 = 0x03
+                           000002  1167 	ar2 = 0x02
+                           000001  1168 	ar1 = 0x01
+                           000000  1169 	ar0 = 0x00
+      000000 AF 82            [24] 1170 	mov	r7,dpl
+                                   1171 ;	../../../cpu/cc253x/dev/cc2530-rf.c:122: if((channel < CC2530_RF_CHANNEL_MIN) || (channel > CC2530_RF_CHANNEL_MAX)) {
+      000002 BF 0B 00         [24] 1172 	cjne	r7,#0x0b,00110$
+      000005                       1173 00110$:
+      000005 40 05            [24] 1174 	jc	00101$
+      000007 EF               [12] 1175 	mov	a,r7
+      000008 24 E5            [12] 1176 	add	a,#0xff - 0x1a
+      00000A 50 05            [24] 1177 	jnc	00102$
+      00000C                       1178 00101$:
+                                   1179 ;	../../../cpu/cc253x/dev/cc2530-rf.c:123: return -1;
+      00000C 75 82 FF         [24] 1180 	mov	dpl,#0xff
+      00000F 80 29            [24] 1181 	sjmp	00104$
+      000011                       1182 00102$:
+                                   1183 ;	../../../cpu/cc253x/dev/cc2530-rf.c:127: off();
+      000011 C0 07            [24] 1184 	push	ar7
+      000013 78rFB            [12] 1185 	mov	r0,#_off
+      000015 79s04            [12] 1186 	mov	r1,#(_off >> 8)
+      000017 7As00            [12] 1187 	mov	r2,#(_off >> 16)
+      000019 12r00r00         [24] 1188 	lcall	__sdcc_banked_call
+      00001C D0 07            [24] 1189 	pop	ar7
+                                   1190 ;	../../../cpu/cc253x/dev/cc2530-rf.c:129: + (channel - CC2530_RF_CHANNEL_MIN) * CC2530_RF_CHANNEL_SPACING);
+      00001E EF               [12] 1191 	mov	a,r7
+      00001F 24 F5            [12] 1192 	add	a,#0xf5
+      000021 75 F0 05         [24] 1193 	mov	b,#0x05
+      000024 A4               [48] 1194 	mul	ab
+      000025 90 61 8F         [24] 1195 	mov	dptr,#_FREQCTRL
+      000028 24 0B            [12] 1196 	add	a,#0x0b
+      00002A F0               [24] 1197 	movx	@dptr,a
+                                   1198 ;	../../../cpu/cc253x/dev/cc2530-rf.c:130: on();
+      00002B C0 07            [24] 1199 	push	ar7
+      00002D 78rE4            [12] 1200 	mov	r0,#_on
+      00002F 79s04            [12] 1201 	mov	r1,#(_on >> 8)
+      000031 7As00            [12] 1202 	mov	r2,#(_on >> 16)
+      000033 12r00r00         [24] 1203 	lcall	__sdcc_banked_call
+      000036 D0 07            [24] 1204 	pop	ar7
+                                   1205 ;	../../../cpu/cc253x/dev/cc2530-rf.c:132: return (int8_t) channel;
+      000038 8F 82            [24] 1206 	mov	dpl,r7
+      00003A                       1207 00104$:
+                                   1208 ;	../../../cpu/cc253x/dev/cc2530-rf.c:133: }
+      00003A 02r00r00         [24] 1209 	ljmp	__sdcc_banked_ret
+                                   1210 ;------------------------------------------------------------
+                                   1211 ;Allocation info for local variables in function 'cc2530_rf_power_set'
+                                   1212 ;------------------------------------------------------------
+                                   1213 ;new_power                 Allocated to registers 
+                                   1214 ;------------------------------------------------------------
+                                   1215 ;	../../../cpu/cc253x/dev/cc2530-rf.c:136: cc2530_rf_power_set(uint8_t new_power)
+                                   1216 ;	-----------------------------------------
+                                   1217 ;	 function cc2530_rf_power_set
+                                   1218 ;	-----------------------------------------
+      00003D                       1219 _cc2530_rf_power_set:
+      00003D E5 82            [12] 1220 	mov	a,dpl
+      00003F 90 61 90         [24] 1221 	mov	dptr,#_TXPOWER
+      000042 F0               [24] 1222 	movx	@dptr,a
+                                   1223 ;	../../../cpu/cc253x/dev/cc2530-rf.c:143: return TXPOWER;
+      000043 E0               [24] 1224 	movx	a,@dptr
+      000044 FF               [12] 1225 	mov	r7,a
+      000045 F5 82            [12] 1226 	mov	dpl,a
+                                   1227 ;	../../../cpu/cc253x/dev/cc2530-rf.c:144: }
+      000047 02r00r00         [24] 1228 	ljmp	__sdcc_banked_ret
+                                   1229 ;------------------------------------------------------------
+                                   1230 ;Allocation info for local variables in function 'cc2530_rf_set_addr'
+                                   1231 ;------------------------------------------------------------
+                                   1232 ;pan                       Allocated to registers r6 r7 
+                                   1233 ;i                         Allocated to registers 
+                                   1234 ;------------------------------------------------------------
+                                   1235 ;	../../../cpu/cc253x/dev/cc2530-rf.c:147: cc2530_rf_set_addr(uint16_t pan)
+                                   1236 ;	-----------------------------------------
+                                   1237 ;	 function cc2530_rf_set_addr
+                                   1238 ;	-----------------------------------------
+      00004A                       1239 _cc2530_rf_set_addr:
+      00004A AE 82            [24] 1240 	mov	r6,dpl
+      00004C AF 83            [24] 1241 	mov	r7,dph
+                                   1242 ;	../../../cpu/cc253x/dev/cc2530-rf.c:151: for(i = (RIMEADDR_SIZE - 1); i >= 0; --i) {
+      00004E 7C 07            [12] 1243 	mov	r4,#0x07
+      000050 7D 00            [12] 1244 	mov	r5,#0x00
+      000052                       1245 00102$:
+                                   1246 ;	../../../cpu/cc253x/dev/cc2530-rf.c:152: ((uint8_t *)&EXT_ADDR0)[i] = rimeaddr_node_addr.u8[RIMEADDR_SIZE - 1 - i];
+      000052 EC               [12] 1247 	mov	a,r4
+      000053 24 6A            [12] 1248 	add	a,#_EXT_ADDR0
+      000055 FA               [12] 1249 	mov	r2,a
+      000056 ED               [12] 1250 	mov	a,r5
+      000057 34 61            [12] 1251 	addc	a,#(_EXT_ADDR0 >> 8)
+      000059 FB               [12] 1252 	mov	r3,a
+      00005A 8C 01            [24] 1253 	mov	ar1,r4
+      00005C 74 07            [12] 1254 	mov	a,#0x07
+      00005E C3               [12] 1255 	clr	c
+      00005F 99               [12] 1256 	subb	a,r1
+      000060 24r00            [12] 1257 	add	a,#_rimeaddr_node_addr
+      000062 F5 82            [12] 1258 	mov	dpl,a
+      000064 E4               [12] 1259 	clr	a
+      000065 34s00            [12] 1260 	addc	a,#(_rimeaddr_node_addr >> 8)
+      000067 F5 83            [12] 1261 	mov	dph,a
+      000069 E0               [24] 1262 	movx	a,@dptr
+      00006A F9               [12] 1263 	mov	r1,a
+      00006B 8A 82            [24] 1264 	mov	dpl,r2
+      00006D 8B 83            [24] 1265 	mov	dph,r3
+      00006F F0               [24] 1266 	movx	@dptr,a
+                                   1267 ;	../../../cpu/cc253x/dev/cc2530-rf.c:151: for(i = (RIMEADDR_SIZE - 1); i >= 0; --i) {
+      000070 1C               [12] 1268 	dec	r4
+      000071 BC FF 01         [24] 1269 	cjne	r4,#0xff,00115$
+      000074 1D               [12] 1270 	dec	r5
+      000075                       1271 00115$:
+      000075 ED               [12] 1272 	mov	a,r5
+      000076 30 E7 D9         [24] 1273 	jnb	acc.7,00102$
+                                   1274 ;	../../../cpu/cc253x/dev/cc2530-rf.c:156: PAN_ID0 = pan & 0xFF;
+      000079 90 61 72         [24] 1275 	mov	dptr,#_PAN_ID0
+      00007C EE               [12] 1276 	mov	a,r6
+      00007D F0               [24] 1277 	movx	@dptr,a
+                                   1278 ;	../../../cpu/cc253x/dev/cc2530-rf.c:157: PAN_ID1 = pan >> 8;
+      00007E 90 61 73         [24] 1279 	mov	dptr,#_PAN_ID1
+      000081 EF               [12] 1280 	mov	a,r7
+      000082 F0               [24] 1281 	movx	@dptr,a
+                                   1282 ;	../../../cpu/cc253x/dev/cc2530-rf.c:159: SHORT_ADDR0 = rimeaddr_node_addr.u8[RIMEADDR_SIZE - 1];
+      000083 90r00r07         [24] 1283 	mov	dptr,#(_rimeaddr_node_addr + 0x0007)
+      000086 E0               [24] 1284 	movx	a,@dptr
+      000087 90 61 74         [24] 1285 	mov	dptr,#_SHORT_ADDR0
+      00008A F0               [24] 1286 	movx	@dptr,a
+                                   1287 ;	../../../cpu/cc253x/dev/cc2530-rf.c:160: SHORT_ADDR1 = rimeaddr_node_addr.u8[RIMEADDR_SIZE - 2];
+      00008B 90r00r06         [24] 1288 	mov	dptr,#(_rimeaddr_node_addr + 0x0006)
+      00008E E0               [24] 1289 	movx	a,@dptr
+      00008F FF               [12] 1290 	mov	r7,a
+      000090 90 61 75         [24] 1291 	mov	dptr,#_SHORT_ADDR1
+      000093 F0               [24] 1292 	movx	@dptr,a
+                                   1293 ;	../../../cpu/cc253x/dev/cc2530-rf.c:161: }
+      000094 02r00r00         [24] 1294 	ljmp	__sdcc_banked_ret
+                                   1295 ;------------------------------------------------------------
+                                   1296 ;Allocation info for local variables in function 'init'
+                                   1297 ;------------------------------------------------------------
+                                   1298 ;	../../../cpu/cc253x/dev/cc2530-rf.c:166: init(void)
+                                   1299 ;	-----------------------------------------
+                                   1300 ;	 function init
+                                   1301 ;	-----------------------------------------
+      000097                       1302 _init:
+                                   1303 ;	../../../cpu/cc253x/dev/cc2530-rf.c:170: if(rf_flags & RF_ON) {
+      000097 E5*00            [12] 1304 	mov	a,_rf_flags
+      000099 30 E0 05         [24] 1305 	jnb	acc.0,00102$
+                                   1306 ;	../../../cpu/cc253x/dev/cc2530-rf.c:171: return 0;
+      00009C 90 00 00         [24] 1307 	mov	dptr,#0x0000
+      00009F 80 57            [24] 1308 	sjmp	00103$
+      0000A1                       1309 00102$:
+                                   1310 ;	../../../cpu/cc253x/dev/cc2530-rf.c:179: RXCTRL = 0x3F;
+      0000A1 90 61 AB         [24] 1311 	mov	dptr,#_RXCTRL
+      0000A4 74 3F            [12] 1312 	mov	a,#0x3f
+      0000A6 F0               [24] 1313 	movx	@dptr,a
+                                   1314 ;	../../../cpu/cc253x/dev/cc2530-rf.c:180: FSCTRL = 0x55;
+      0000A7 90 61 AC         [24] 1315 	mov	dptr,#_FSCTRL
+      0000AA 74 55            [12] 1316 	mov	a,#0x55
+      0000AC F0               [24] 1317 	movx	@dptr,a
+                                   1318 ;	../../../cpu/cc253x/dev/cc2530-rf.c:183: CCACTRL0 = CC2530_RF_CCA_THRES;
+      0000AD 90 61 96         [24] 1319 	mov	dptr,#_CCACTRL0
+      0000B0 74 F8            [12] 1320 	mov	a,#0xf8
+      0000B2 F0               [24] 1321 	movx	@dptr,a
+                                   1322 ;	../../../cpu/cc253x/dev/cc2530-rf.c:191: TXFILTCFG = 0x09; /* TX anti-aliasing filter */
+      0000B3 90 61 FA         [24] 1323 	mov	dptr,#_TXFILTCFG
+      0000B6 74 09            [12] 1324 	mov	a,#0x09
+      0000B8 F0               [24] 1325 	movx	@dptr,a
+                                   1326 ;	../../../cpu/cc253x/dev/cc2530-rf.c:192: AGCCTRL1 = 0x15;  /* AGC target value */
+      0000B9 90 61 B2         [24] 1327 	mov	dptr,#_AGCCTRL1
+      0000BC 74 15            [12] 1328 	mov	a,#0x15
+      0000BE F0               [24] 1329 	movx	@dptr,a
+                                   1330 ;	../../../cpu/cc253x/dev/cc2530-rf.c:193: FSCAL1 = 0x00;    /* Reduce the VCO leakage */
+      0000BF 90 61 AE         [24] 1331 	mov	dptr,#_FSCAL1
+      0000C2 E4               [12] 1332 	clr	a
+      0000C3 F0               [24] 1333 	movx	@dptr,a
+                                   1334 ;	../../../cpu/cc253x/dev/cc2530-rf.c:196: FRMCTRL0 = FRMCTRL0_AUTOCRC;
+      0000C4 90 61 89         [24] 1335 	mov	dptr,#_FRMCTRL0
+      0000C7 74 40            [12] 1336 	mov	a,#0x40
+      0000C9 F0               [24] 1337 	movx	@dptr,a
+                                   1338 ;	../../../cpu/cc253x/dev/cc2530-rf.c:198: FRMCTRL0 |= FRMCTRL0_AUTOACK;
+      0000CA E0               [24] 1339 	movx	a,@dptr
+      0000CB 43 E0 20         [24] 1340 	orl	acc,#0x20
+      0000CE F0               [24] 1341 	movx	@dptr,a
+                                   1342 ;	../../../cpu/cc253x/dev/cc2530-rf.c:202: SRCMATCH = 0; /* investigate */
+      0000CF 90 61 82         [24] 1343 	mov	dptr,#_SRCMATCH
+      0000D2 E4               [12] 1344 	clr	a
+      0000D3 F0               [24] 1345 	movx	@dptr,a
+                                   1346 ;	../../../cpu/cc253x/dev/cc2530-rf.c:205: FIFOPCTRL = CC2530_RF_MAX_PACKET_LEN;
+      0000D4 90 61 94         [24] 1347 	mov	dptr,#_FIFOPCTRL
+      0000D7 74 7F            [12] 1348 	mov	a,#0x7f
+      0000D9 F0               [24] 1349 	movx	@dptr,a
+                                   1350 ;	../../../cpu/cc253x/dev/cc2530-rf.c:207: cc2530_rf_power_set(CC2530_RF_TX_POWER);
+      0000DA 75 82 D5         [24] 1351 	mov	dpl,#0xd5
+      0000DD 78r3D            [12] 1352 	mov	r0,#_cc2530_rf_power_set
+      0000DF 79s00            [12] 1353 	mov	r1,#(_cc2530_rf_power_set >> 8)
+      0000E1 7As00            [12] 1354 	mov	r2,#(_cc2530_rf_power_set >> 16)
+      0000E3 12r00r00         [24] 1355 	lcall	__sdcc_banked_call
+                                   1356 ;	../../../cpu/cc253x/dev/cc2530-rf.c:208: cc2530_rf_channel_set(CC2530_RF_CHANNEL);
+      0000E6 75 82 19         [24] 1357 	mov	dpl,#0x19
+      0000E9 78r00            [12] 1358 	mov	r0,#_cc2530_rf_channel_set
+      0000EB 79s00            [12] 1359 	mov	r1,#(_cc2530_rf_channel_set >> 8)
+      0000ED 7As00            [12] 1360 	mov	r2,#(_cc2530_rf_channel_set >> 16)
+      0000EF 12r00r00         [24] 1361 	lcall	__sdcc_banked_call
+                                   1362 ;	../../../cpu/cc253x/dev/cc2530-rf.c:213: rf_flags |= RF_ON;
+      0000F2 43*00 01         [24] 1363 	orl	_rf_flags,#0x01
+                                   1364 ;	../../../cpu/cc253x/dev/cc2530-rf.c:215: return 1;
+      0000F5 90 00 01         [24] 1365 	mov	dptr,#0x0001
+      0000F8                       1366 00103$:
+                                   1367 ;	../../../cpu/cc253x/dev/cc2530-rf.c:216: }
+      0000F8 02r00r00         [24] 1368 	ljmp	__sdcc_banked_ret
+                                   1369 ;------------------------------------------------------------
+                                   1370 ;Allocation info for local variables in function 'prepare'
+                                   1371 ;------------------------------------------------------------
+                                   1372 ;payload_len               Allocated to stack - sp -7
+                                   1373 ;payload                   Allocated to stack - sp -2
+                                   1374 ;i                         Allocated to registers 
+                                   1375 ;------------------------------------------------------------
+                                   1376 ;	../../../cpu/cc253x/dev/cc2530-rf.c:219: prepare(const void *payload, unsigned short payload_len)
+                                   1377 ;	-----------------------------------------
+                                   1378 ;	 function prepare
+                                   1379 ;	-----------------------------------------
+      0000FB                       1380 _prepare:
+      0000FB C0 82            [24] 1381 	push	dpl
+      0000FD C0 83            [24] 1382 	push	dph
+      0000FF C0 F0            [24] 1383 	push	b
+                                   1384 ;	../../../cpu/cc253x/dev/cc2530-rf.c:231: while(FSMSTAT1 & FSMSTAT1_TX_ACTIVE);
+      000101                       1385 00101$:
+      000101 90 61 93         [24] 1386 	mov	dptr,#_FSMSTAT1
+      000104 E0               [24] 1387 	movx	a,@dptr
+      000105 20 E1 F9         [24] 1388 	jb	acc.1,00101$
+                                   1389 ;	../../../cpu/cc253x/dev/cc2530-rf.c:233: if((rf_flags & RX_ACTIVE) == 0) {
+      000108 E5*00            [12] 1390 	mov	a,_rf_flags
+      00010A 20 E7 09         [24] 1391 	jb	acc.7,00106$
+                                   1392 ;	../../../cpu/cc253x/dev/cc2530-rf.c:234: on();
+      00010D 78rE4            [12] 1393 	mov	r0,#_on
+      00010F 79s04            [12] 1394 	mov	r1,#(_on >> 8)
+      000111 7As00            [12] 1395 	mov	r2,#(_on >> 16)
+      000113 12r00r00         [24] 1396 	lcall	__sdcc_banked_call
+                                   1397 ;	../../../cpu/cc253x/dev/cc2530-rf.c:237: CC2530_CSP_ISFLUSHTX();
+      000116                       1398 00106$:
+      000116 75 E1 EE         [24] 1399 	mov	_RFST,#0xee
+      000119 75 E1 EE         [24] 1400 	mov	_RFST,#0xee
+                                   1401 ;	../../../cpu/cc253x/dev/cc2530-rf.c:241: RFD = payload_len + CHECKSUM_LEN; /* Payload plus FCS */
+      00011C E5 81            [12] 1402 	mov	a,sp
+      00011E 24 F9            [12] 1403 	add	a,#0xf9
+      000120 F8               [12] 1404 	mov	r0,a
+      000121 86 04            [24] 1405 	mov	ar4,@r0
+      000123 74 02            [12] 1406 	mov	a,#0x02
+      000125 2C               [12] 1407 	add	a,r4
+      000126 F5 D9            [12] 1408 	mov	_RFD,a
+                                   1409 ;	../../../cpu/cc253x/dev/cc2530-rf.c:242: for(i = 0; i < payload_len; i++) {
+      000128 7C 00            [12] 1410 	mov	r4,#0x00
+      00012A                       1411 00111$:
+      00012A 8C 02            [24] 1412 	mov	ar2,r4
+      00012C 7B 00            [12] 1413 	mov	r3,#0x00
+      00012E E5 81            [12] 1414 	mov	a,sp
+      000130 24 F9            [12] 1415 	add	a,#0xf9
+      000132 F8               [12] 1416 	mov	r0,a
+      000133 C3               [12] 1417 	clr	c
+      000134 EA               [12] 1418 	mov	a,r2
+      000135 96               [12] 1419 	subb	a,@r0
+      000136 EB               [12] 1420 	mov	a,r3
+      000137 08               [12] 1421 	inc	r0
+      000138 96               [12] 1422 	subb	a,@r0
+      000139 50 20            [24] 1423 	jnc	00109$
+                                   1424 ;	../../../cpu/cc253x/dev/cc2530-rf.c:243: RFD = ((unsigned char *)(payload))[i];
+      00013B A8 81            [24] 1425 	mov	r0,sp
+      00013D 18               [12] 1426 	dec	r0
+      00013E 18               [12] 1427 	dec	r0
+      00013F 86 02            [24] 1428 	mov	ar2,@r0
+      000141 08               [12] 1429 	inc	r0
+      000142 86 03            [24] 1430 	mov	ar3,@r0
+      000144 08               [12] 1431 	inc	r0
+      000145 86 07            [24] 1432 	mov	ar7,@r0
+      000147 EC               [12] 1433 	mov	a,r4
+      000148 2A               [12] 1434 	add	a,r2
+      000149 FA               [12] 1435 	mov	r2,a
+      00014A E4               [12] 1436 	clr	a
+      00014B 3B               [12] 1437 	addc	a,r3
+      00014C FB               [12] 1438 	mov	r3,a
+      00014D 8A 82            [24] 1439 	mov	dpl,r2
+      00014F 8B 83            [24] 1440 	mov	dph,r3
+      000151 8F F0            [24] 1441 	mov	b,r7
+      000153 12r00r00         [24] 1442 	lcall	__gptrget
+      000156 F5 D9            [12] 1443 	mov	_RFD,a
+                                   1444 ;	../../../cpu/cc253x/dev/cc2530-rf.c:242: for(i = 0; i < payload_len; i++) {
+      000158 0C               [12] 1445 	inc	r4
+      000159 80 CF            [24] 1446 	sjmp	00111$
+      00015B                       1447 00109$:
+                                   1448 ;	../../../cpu/cc253x/dev/cc2530-rf.c:249: RFD = 0;
+      00015B 75 D9 00         [24] 1449 	mov	_RFD,#0x00
+                                   1450 ;	../../../cpu/cc253x/dev/cc2530-rf.c:250: RFD = 0;
+      00015E 75 D9 00         [24] 1451 	mov	_RFD,#0x00
+                                   1452 ;	../../../cpu/cc253x/dev/cc2530-rf.c:252: return 0;
+      000161 90 00 00         [24] 1453 	mov	dptr,#0x0000
+                                   1454 ;	../../../cpu/cc253x/dev/cc2530-rf.c:253: }
+      000164 15 81            [12] 1455 	dec	sp
+      000166 15 81            [12] 1456 	dec	sp
+      000168 15 81            [12] 1457 	dec	sp
+      00016A 02r00r00         [24] 1458 	ljmp	__sdcc_banked_ret
+                                   1459 ;------------------------------------------------------------
+                                   1460 ;Allocation info for local variables in function 'transmit'
+                                   1461 ;------------------------------------------------------------
+                                   1462 ;transmit_len              Allocated to registers 
+                                   1463 ;counter                   Allocated to registers 
+                                   1464 ;ret                       Allocated to registers r6 r7 
+                                   1465 ;t0                        Allocated to registers 
+                                   1466 ;------------------------------------------------------------
+                                   1467 ;	../../../cpu/cc253x/dev/cc2530-rf.c:256: transmit(unsigned short transmit_len)
+                                   1468 ;	-----------------------------------------
+                                   1469 ;	 function transmit
+                                   1470 ;	-----------------------------------------
+      00016D                       1471 _transmit:
+                                   1472 ;	../../../cpu/cc253x/dev/cc2530-rf.c:263: if(!(rf_flags & RX_ACTIVE)) {
+      00016D E5*00            [12] 1473 	mov	a,_rf_flags
+      00016F 20 E7 42         [24] 1474 	jb	acc.7,00105$
+                                   1475 ;	../../../cpu/cc253x/dev/cc2530-rf.c:264: t0 = RTIMER_NOW();
+      000172 AE E2            [24] 1476 	mov	r6,_T1CNTL
+      000174 7F 00            [12] 1477 	mov	r7,#0x00
+      000176 AC E3            [24] 1478 	mov	r4,_T1CNTH
+      000178 8C 05            [24] 1479 	mov	ar5,r4
+      00017A E4               [12] 1480 	clr	a
+      00017B 2E               [12] 1481 	add	a,r6
+      00017C FE               [12] 1482 	mov	r6,a
+      00017D ED               [12] 1483 	mov	a,r5
+      00017E 3F               [12] 1484 	addc	a,r7
+      00017F FF               [12] 1485 	mov	r7,a
+                                   1486 ;	../../../cpu/cc253x/dev/cc2530-rf.c:265: on();
+      000180 C0 07            [24] 1487 	push	ar7
+      000182 C0 06            [24] 1488 	push	ar6
+      000184 78rE4            [12] 1489 	mov	r0,#_on
+      000186 79s04            [12] 1490 	mov	r1,#(_on >> 8)
+      000188 7As00            [12] 1491 	mov	r2,#(_on >> 16)
+      00018A 12r00r00         [24] 1492 	lcall	__sdcc_banked_call
+      00018D D0 06            [24] 1493 	pop	ar6
+      00018F D0 07            [24] 1494 	pop	ar7
+                                   1495 ;	../../../cpu/cc253x/dev/cc2530-rf.c:266: rf_flags |= WAS_OFF;
+      000191 43*00 10         [24] 1496 	orl	_rf_flags,#0x10
+                                   1497 ;	../../../cpu/cc253x/dev/cc2530-rf.c:267: while(RTIMER_CLOCK_LT(RTIMER_NOW(), t0 + ONOFF_TIME));
+      000194 74 05            [12] 1498 	mov	a,#0x05
+      000196 2E               [12] 1499 	add	a,r6
+      000197 FE               [12] 1500 	mov	r6,a
+      000198 E4               [12] 1501 	clr	a
+      000199 3F               [12] 1502 	addc	a,r7
+      00019A FF               [12] 1503 	mov	r7,a
+      00019B                       1504 00101$:
+      00019B AC E2            [24] 1505 	mov	r4,_T1CNTL
+      00019D 7D 00            [12] 1506 	mov	r5,#0x00
+      00019F AA E3            [24] 1507 	mov	r2,_T1CNTH
+      0001A1 8A 03            [24] 1508 	mov	ar3,r2
+      0001A3 E4               [12] 1509 	clr	a
+      0001A4 FA               [12] 1510 	mov	r2,a
+      0001A5 2C               [12] 1511 	add	a,r4
+      0001A6 FC               [12] 1512 	mov	r4,a
+      0001A7 EB               [12] 1513 	mov	a,r3
+      0001A8 3D               [12] 1514 	addc	a,r5
+      0001A9 FD               [12] 1515 	mov	r5,a
+      0001AA EC               [12] 1516 	mov	a,r4
+      0001AB C3               [12] 1517 	clr	c
+      0001AC 9E               [12] 1518 	subb	a,r6
+      0001AD FC               [12] 1519 	mov	r4,a
+      0001AE ED               [12] 1520 	mov	a,r5
+      0001AF 9F               [12] 1521 	subb	a,r7
+      0001B0 FD               [12] 1522 	mov	r5,a
+      0001B1 20 E7 E7         [24] 1523 	jb	acc.7,00101$
+      0001B4                       1524 00105$:
+                                   1525 ;	../../../cpu/cc253x/dev/cc2530-rf.c:270: if(channel_clear() == CC2530_RF_CCA_BUSY) {
+      0001B4 78rB7            [12] 1526 	mov	r0,#_channel_clear
+      0001B6 79s04            [12] 1527 	mov	r1,#(_channel_clear >> 8)
+      0001B8 7As00            [12] 1528 	mov	r2,#(_channel_clear >> 16)
+      0001BA 12r00r00         [24] 1529 	lcall	__sdcc_banked_call
+      0001BD E5 82            [12] 1530 	mov	a,dpl
+      0001BF 85 83 F0         [24] 1531 	mov	b,dph
+      0001C2 45 F0            [12] 1532 	orl	a,b
+      0001C4 70 2F            [24] 1533 	jnz	00107$
+                                   1534 ;	../../../cpu/cc253x/dev/cc2530-rf.c:271: RIMESTATS_ADD(contentiondrop);
+      0001C6 90r00r38         [24] 1535 	mov	dptr,#(_rimestats + 0x0038)
+      0001C9 E0               [24] 1536 	movx	a,@dptr
+      0001CA FC               [12] 1537 	mov	r4,a
+      0001CB A3               [24] 1538 	inc	dptr
+      0001CC E0               [24] 1539 	movx	a,@dptr
+      0001CD FD               [12] 1540 	mov	r5,a
+      0001CE A3               [24] 1541 	inc	dptr
+      0001CF E0               [24] 1542 	movx	a,@dptr
+      0001D0 FE               [12] 1543 	mov	r6,a
+      0001D1 A3               [24] 1544 	inc	dptr
+      0001D2 E0               [24] 1545 	movx	a,@dptr
+      0001D3 FF               [12] 1546 	mov	r7,a
+      0001D4 0C               [12] 1547 	inc	r4
+      0001D5 BC 00 09         [24] 1548 	cjne	r4,#0x00,00186$
+      0001D8 0D               [12] 1549 	inc	r5
+      0001D9 BD 00 05         [24] 1550 	cjne	r5,#0x00,00186$
+      0001DC 0E               [12] 1551 	inc	r6
+      0001DD BE 00 01         [24] 1552 	cjne	r6,#0x00,00186$
+      0001E0 0F               [12] 1553 	inc	r7
+      0001E1                       1554 00186$:
+      0001E1 90r00r38         [24] 1555 	mov	dptr,#(_rimestats + 0x0038)
+      0001E4 EC               [12] 1556 	mov	a,r4
+      0001E5 F0               [24] 1557 	movx	@dptr,a
+      0001E6 ED               [12] 1558 	mov	a,r5
+      0001E7 A3               [24] 1559 	inc	dptr
+      0001E8 F0               [24] 1560 	movx	@dptr,a
+      0001E9 EE               [12] 1561 	mov	a,r6
+      0001EA A3               [24] 1562 	inc	dptr
+      0001EB F0               [24] 1563 	movx	@dptr,a
+      0001EC EF               [12] 1564 	mov	a,r7
+      0001ED A3               [24] 1565 	inc	dptr
+      0001EE F0               [24] 1566 	movx	@dptr,a
+                                   1567 ;	../../../cpu/cc253x/dev/cc2530-rf.c:272: return RADIO_TX_COLLISION;
+      0001EF 90 00 02         [24] 1568 	mov	dptr,#0x0002
+      0001F2 02r00r00         [24] 1569 	ljmp	__sdcc_banked_ret
+      0001F5                       1570 00107$:
+                                   1571 ;	../../../cpu/cc253x/dev/cc2530-rf.c:279: if(FSMSTAT1 & FSMSTAT1_SFD) {
+      0001F5 90 61 93         [24] 1572 	mov	dptr,#_FSMSTAT1
+      0001F8 E0               [24] 1573 	movx	a,@dptr
+      0001F9 30 E5 2F         [24] 1574 	jnb	acc.5,00110$
+                                   1575 ;	../../../cpu/cc253x/dev/cc2530-rf.c:280: RIMESTATS_ADD(contentiondrop);
+      0001FC 90r00r38         [24] 1576 	mov	dptr,#(_rimestats + 0x0038)
+      0001FF E0               [24] 1577 	movx	a,@dptr
+      000200 FC               [12] 1578 	mov	r4,a
+      000201 A3               [24] 1579 	inc	dptr
+      000202 E0               [24] 1580 	movx	a,@dptr
+      000203 FD               [12] 1581 	mov	r5,a
+      000204 A3               [24] 1582 	inc	dptr
+      000205 E0               [24] 1583 	movx	a,@dptr
+      000206 FE               [12] 1584 	mov	r6,a
+      000207 A3               [24] 1585 	inc	dptr
+      000208 E0               [24] 1586 	movx	a,@dptr
+      000209 FF               [12] 1587 	mov	r7,a
+      00020A 0C               [12] 1588 	inc	r4
+      00020B BC 00 09         [24] 1589 	cjne	r4,#0x00,00188$
+      00020E 0D               [12] 1590 	inc	r5
+      00020F BD 00 05         [24] 1591 	cjne	r5,#0x00,00188$
+      000212 0E               [12] 1592 	inc	r6
+      000213 BE 00 01         [24] 1593 	cjne	r6,#0x00,00188$
+      000216 0F               [12] 1594 	inc	r7
+      000217                       1595 00188$:
+      000217 90r00r38         [24] 1596 	mov	dptr,#(_rimestats + 0x0038)
+      00021A EC               [12] 1597 	mov	a,r4
+      00021B F0               [24] 1598 	movx	@dptr,a
+      00021C ED               [12] 1599 	mov	a,r5
+      00021D A3               [24] 1600 	inc	dptr
+      00021E F0               [24] 1601 	movx	@dptr,a
+      00021F EE               [12] 1602 	mov	a,r6
+      000220 A3               [24] 1603 	inc	dptr
+      000221 F0               [24] 1604 	movx	@dptr,a
+      000222 EF               [12] 1605 	mov	a,r7
+      000223 A3               [24] 1606 	inc	dptr
+      000224 F0               [24] 1607 	movx	@dptr,a
+                                   1608 ;	../../../cpu/cc253x/dev/cc2530-rf.c:281: return RADIO_TX_COLLISION;
+      000225 90 00 02         [24] 1609 	mov	dptr,#0x0002
+      000228 02r00r00         [24] 1610 	ljmp	__sdcc_banked_ret
+                                   1611 ;	../../../cpu/cc253x/dev/cc2530-rf.c:286: ENERGEST_OFF(ENERGEST_TYPE_LISTEN);
+      00022B                       1612 00110$:
+                                   1613 ;	../../../cpu/cc253x/dev/cc2530-rf.c:289: CC2530_CSP_ISTXON();
+      00022B 75 E1 E9         [24] 1614 	mov	_RFST,#0xe9
+                                   1615 ;	../../../cpu/cc253x/dev/cc2530-rf.c:291: counter = 0;
+      00022E 7F 00            [12] 1616 	mov	r7,#0x00
+                                   1617 ;	../../../cpu/cc253x/dev/cc2530-rf.c:292: while(!(FSMSTAT1 & FSMSTAT1_TX_ACTIVE) && (counter++ < 3)) {
+      000230                       1618 00118$:
+      000230 90 61 93         [24] 1619 	mov	dptr,#_FSMSTAT1
+      000233 E0               [24] 1620 	movx	a,@dptr
+      000234 20 E1 18         [24] 1621 	jb	acc.1,00120$
+      000237 BF 03 00         [24] 1622 	cjne	r7,#0x03,00190$
+      00023A                       1623 00190$:
+      00023A 50 13            [24] 1624 	jnc	00120$
+      00023C 0F               [12] 1625 	inc	r7
+                                   1626 ;	../../../cpu/cc253x/dev/cc2530-rf.c:293: clock_delay_usec(6);
+      00023D 90 00 06         [24] 1627 	mov	dptr,#0x0006
+      000240 C0 07            [24] 1628 	push	ar7
+      000242 78r00            [12] 1629 	mov	r0,#_clock_delay_usec
+      000244 79s00            [12] 1630 	mov	r1,#(_clock_delay_usec >> 8)
+      000246 7As00            [12] 1631 	mov	r2,#(_clock_delay_usec >> 16)
+      000248 12r00r00         [24] 1632 	lcall	__sdcc_banked_call
+      00024B D0 07            [24] 1633 	pop	ar7
+      00024D 80 E1            [24] 1634 	sjmp	00118$
+      00024F                       1635 00120$:
+                                   1636 ;	../../../cpu/cc253x/dev/cc2530-rf.c:296: if(!(FSMSTAT1 & FSMSTAT1_TX_ACTIVE)) {
+      00024F 90 61 93         [24] 1637 	mov	dptr,#_FSMSTAT1
+      000252 E0               [24] 1638 	movx	a,@dptr
+      000253 20 E1 0C         [24] 1639 	jb	acc.1,00124$
+                                   1640 ;	../../../cpu/cc253x/dev/cc2530-rf.c:298: CC2530_CSP_ISFLUSHTX();
+      000256 75 E1 EE         [24] 1641 	mov	_RFST,#0xee
+      000259 75 E1 EE         [24] 1642 	mov	_RFST,#0xee
+                                   1643 ;	../../../cpu/cc253x/dev/cc2530-rf.c:299: ret = RADIO_TX_ERR;
+      00025C 7E 01            [12] 1644 	mov	r6,#0x01
+      00025E 7F 00            [12] 1645 	mov	r7,#0x00
+                                   1646 ;	../../../cpu/cc253x/dev/cc2530-rf.c:302: while(FSMSTAT1 & FSMSTAT1_TX_ACTIVE);
+      000260 80 0B            [24] 1647 	sjmp	00130$
+      000262                       1648 00124$:
+      000262 90 61 93         [24] 1649 	mov	dptr,#_FSMSTAT1
+      000265 E0               [24] 1650 	movx	a,@dptr
+      000266 20 E1 F9         [24] 1651 	jb	acc.1,00124$
+                                   1652 ;	../../../cpu/cc253x/dev/cc2530-rf.c:303: ret = RADIO_TX_OK;
+      000269 7E 00            [12] 1653 	mov	r6,#0x00
+      00026B 7F 00            [12] 1654 	mov	r7,#0x00
+                                   1655 ;	../../../cpu/cc253x/dev/cc2530-rf.c:305: ENERGEST_OFF(ENERGEST_TYPE_TRANSMIT);
+      00026D                       1656 00130$:
+                                   1657 ;	../../../cpu/cc253x/dev/cc2530-rf.c:308: if(rf_flags & WAS_OFF) {
+      00026D E5*00            [12] 1658 	mov	a,_rf_flags
+      00026F 30 E4 11         [24] 1659 	jnb	acc.4,00135$
+                                   1660 ;	../../../cpu/cc253x/dev/cc2530-rf.c:309: off();
+      000272 C0 07            [24] 1661 	push	ar7
+      000274 C0 06            [24] 1662 	push	ar6
+      000276 78rFB            [12] 1663 	mov	r0,#_off
+      000278 79s04            [12] 1664 	mov	r1,#(_off >> 8)
+      00027A 7As00            [12] 1665 	mov	r2,#(_off >> 16)
+      00027C 12r00r00         [24] 1666 	lcall	__sdcc_banked_call
+      00027F D0 06            [24] 1667 	pop	ar6
+      000281 D0 07            [24] 1668 	pop	ar7
+      000283                       1669 00135$:
+                                   1670 ;	../../../cpu/cc253x/dev/cc2530-rf.c:312: RIMESTATS_ADD(lltx);
+      000283 90r00r40         [24] 1671 	mov	dptr,#(_rimestats + 0x0040)
+      000286 E0               [24] 1672 	movx	a,@dptr
+      000287 FA               [12] 1673 	mov	r2,a
+      000288 A3               [24] 1674 	inc	dptr
+      000289 E0               [24] 1675 	movx	a,@dptr
+      00028A FB               [12] 1676 	mov	r3,a
+      00028B A3               [24] 1677 	inc	dptr
+      00028C E0               [24] 1678 	movx	a,@dptr
+      00028D FC               [12] 1679 	mov	r4,a
+      00028E A3               [24] 1680 	inc	dptr
+      00028F E0               [24] 1681 	movx	a,@dptr
+      000290 FD               [12] 1682 	mov	r5,a
+      000291 0A               [12] 1683 	inc	r2
+      000292 BA 00 09         [24] 1684 	cjne	r2,#0x00,00195$
+      000295 0B               [12] 1685 	inc	r3
+      000296 BB 00 05         [24] 1686 	cjne	r3,#0x00,00195$
+      000299 0C               [12] 1687 	inc	r4
+      00029A BC 00 01         [24] 1688 	cjne	r4,#0x00,00195$
+      00029D 0D               [12] 1689 	inc	r5
+      00029E                       1690 00195$:
+      00029E 90r00r40         [24] 1691 	mov	dptr,#(_rimestats + 0x0040)
+      0002A1 EA               [12] 1692 	mov	a,r2
+      0002A2 F0               [24] 1693 	movx	@dptr,a
+      0002A3 EB               [12] 1694 	mov	a,r3
+      0002A4 A3               [24] 1695 	inc	dptr
+      0002A5 F0               [24] 1696 	movx	@dptr,a
+      0002A6 EC               [12] 1697 	mov	a,r4
+      0002A7 A3               [24] 1698 	inc	dptr
+      0002A8 F0               [24] 1699 	movx	@dptr,a
+      0002A9 ED               [12] 1700 	mov	a,r5
+      0002AA A3               [24] 1701 	inc	dptr
+      0002AB F0               [24] 1702 	movx	@dptr,a
+                                   1703 ;	../../../cpu/cc253x/dev/cc2530-rf.c:317: return ret;
+      0002AC 8E 82            [24] 1704 	mov	dpl,r6
+      0002AE 8F 83            [24] 1705 	mov	dph,r7
+                                   1706 ;	../../../cpu/cc253x/dev/cc2530-rf.c:318: }
+      0002B0 02r00r00         [24] 1707 	ljmp	__sdcc_banked_ret
+                                   1708 ;------------------------------------------------------------
+                                   1709 ;Allocation info for local variables in function 'send'
+                                   1710 ;------------------------------------------------------------
+                                   1711 ;payload_len               Allocated to stack - sp -4
+                                   1712 ;payload                   Allocated to registers r5 r6 r7 
+                                   1713 ;------------------------------------------------------------
+                                   1714 ;	../../../cpu/cc253x/dev/cc2530-rf.c:321: send(void *payload, unsigned short payload_len)
+                                   1715 ;	-----------------------------------------
+                                   1716 ;	 function send
+                                   1717 ;	-----------------------------------------
+      0002B3                       1718 _send:
+      0002B3 AD 82            [24] 1719 	mov	r5,dpl
+      0002B5 AE 83            [24] 1720 	mov	r6,dph
+      0002B7 AF F0            [24] 1721 	mov	r7,b
+                                   1722 ;	../../../cpu/cc253x/dev/cc2530-rf.c:323: prepare(payload, payload_len);
+      0002B9 E5 81            [12] 1723 	mov	a,sp
+      0002BB 24 FC            [12] 1724 	add	a,#0xfc
+      0002BD F8               [12] 1725 	mov	r0,a
+      0002BE E6               [12] 1726 	mov	a,@r0
+      0002BF C0 E0            [24] 1727 	push	acc
+      0002C1 08               [12] 1728 	inc	r0
+      0002C2 E6               [12] 1729 	mov	a,@r0
+      0002C3 C0 E0            [24] 1730 	push	acc
+      0002C5 8D 82            [24] 1731 	mov	dpl,r5
+      0002C7 8E 83            [24] 1732 	mov	dph,r6
+      0002C9 8F F0            [24] 1733 	mov	b,r7
+      0002CB 78rFB            [12] 1734 	mov	r0,#_prepare
+      0002CD 79s00            [12] 1735 	mov	r1,#(_prepare >> 8)
+      0002CF 7As00            [12] 1736 	mov	r2,#(_prepare >> 16)
+      0002D1 12r00r00         [24] 1737 	lcall	__sdcc_banked_call
+      0002D4 15 81            [12] 1738 	dec	sp
+      0002D6 15 81            [12] 1739 	dec	sp
+                                   1740 ;	../../../cpu/cc253x/dev/cc2530-rf.c:324: return transmit(payload_len);
+      0002D8 E5 81            [12] 1741 	mov	a,sp
+      0002DA 24 FC            [12] 1742 	add	a,#0xfc
+      0002DC F8               [12] 1743 	mov	r0,a
+      0002DD 86 82            [24] 1744 	mov	dpl,@r0
+      0002DF 08               [12] 1745 	inc	r0
+      0002E0 86 83            [24] 1746 	mov	dph,@r0
+      0002E2 78r6D            [12] 1747 	mov	r0,#_transmit
+      0002E4 79s01            [12] 1748 	mov	r1,#(_transmit >> 8)
+      0002E6 7As00            [12] 1749 	mov	r2,#(_transmit >> 16)
+      0002E8 12r00r00         [24] 1750 	lcall	__sdcc_banked_call
+      0002EB AE 82            [24] 1751 	mov	r6,dpl
+      0002ED AF 83            [24] 1752 	mov  r7,dph
+                                   1753 ;	../../../cpu/cc253x/dev/cc2530-rf.c:325: }
+      0002EF 02r00r00         [24] 1754 	ljmp	__sdcc_banked_ret
+                                   1755 ;------------------------------------------------------------
+                                   1756 ;Allocation info for local variables in function 'read'
+                                   1757 ;------------------------------------------------------------
+                                   1758 ;bufsize                   Allocated to stack - sp -7
+                                   1759 ;buf                       Allocated to stack - sp -2
+                                   1760 ;i                         Allocated to registers 
+                                   1761 ;len                       Allocated to registers r4 
+                                   1762 ;crc_corr                  Allocated to registers r6 
+                                   1763 ;rssi                      Allocated to registers r7 
+                                   1764 ;sloc0                     Allocated to stack - sp +5
+                                   1765 ;------------------------------------------------------------
+                                   1766 ;	../../../cpu/cc253x/dev/cc2530-rf.c:328: read(void *buf, unsigned short bufsize)
+                                   1767 ;	-----------------------------------------
+                                   1768 ;	 function read
+                                   1769 ;	-----------------------------------------
+      0002F2                       1770 _read:
+      0002F2 C0 82            [24] 1771 	push	dpl
+      0002F4 C0 83            [24] 1772 	push	dph
+      0002F6 C0 F0            [24] 1773 	push	b
+                                   1774 ;	../../../cpu/cc253x/dev/cc2530-rf.c:338: len = RFD;
+                                   1775 ;	../../../cpu/cc253x/dev/cc2530-rf.c:341: if(len > CC2530_RF_MAX_PACKET_LEN) {
+      0002F8 E5 D9            [12] 1776 	mov	a,_RFD
+      0002FA FC               [12] 1777 	mov	r4,a
+      0002FB 24 80            [12] 1778 	add	a,#0xff - 0x7f
+      0002FD 50 35            [24] 1779 	jnc	00105$
+                                   1780 ;	../../../cpu/cc253x/dev/cc2530-rf.c:345: RIMESTATS_ADD(badsynch);
+      0002FF 90r00r30         [24] 1781 	mov	dptr,#(_rimestats + 0x0030)
+      000302 E0               [24] 1782 	movx	a,@dptr
+      000303 FF               [12] 1783 	mov	r7,a
+      000304 A3               [24] 1784 	inc	dptr
+      000305 E0               [24] 1785 	movx	a,@dptr
+      000306 FE               [12] 1786 	mov	r6,a
+      000307 A3               [24] 1787 	inc	dptr
+      000308 E0               [24] 1788 	movx	a,@dptr
+      000309 FD               [12] 1789 	mov	r5,a
+      00030A A3               [24] 1790 	inc	dptr
+      00030B E0               [24] 1791 	movx	a,@dptr
+      00030C FC               [12] 1792 	mov	r4,a
+      00030D 0F               [12] 1793 	inc	r7
+      00030E BF 00 09         [24] 1794 	cjne	r7,#0x00,00177$
+      000311 0E               [12] 1795 	inc	r6
+      000312 BE 00 05         [24] 1796 	cjne	r6,#0x00,00177$
+      000315 0D               [12] 1797 	inc	r5
+      000316 BD 00 01         [24] 1798 	cjne	r5,#0x00,00177$
+      000319 0C               [12] 1799 	inc	r4
+      00031A                       1800 00177$:
+      00031A 90r00r30         [24] 1801 	mov	dptr,#(_rimestats + 0x0030)
+      00031D EF               [12] 1802 	mov	a,r7
+      00031E F0               [24] 1803 	movx	@dptr,a
+      00031F EE               [12] 1804 	mov	a,r6
+      000320 A3               [24] 1805 	inc	dptr
+      000321 F0               [24] 1806 	movx	@dptr,a
+      000322 ED               [12] 1807 	mov	a,r5
+      000323 A3               [24] 1808 	inc	dptr
+      000324 F0               [24] 1809 	movx	@dptr,a
+      000325 EC               [12] 1810 	mov	a,r4
+      000326 A3               [24] 1811 	inc	dptr
+      000327 F0               [24] 1812 	movx	@dptr,a
+                                   1813 ;	../../../cpu/cc253x/dev/cc2530-rf.c:346: CC2530_CSP_ISFLUSHRX();
+      000328 75 E1 ED         [24] 1814 	mov	_RFST,#0xed
+      00032B 75 E1 ED         [24] 1815 	mov	_RFST,#0xed
+                                   1816 ;	../../../cpu/cc253x/dev/cc2530-rf.c:347: return 0;
+      00032E 90 00 00         [24] 1817 	mov	dptr,#0x0000
+      000331 02r04rAE         [24] 1818 	ljmp	00133$
+      000334                       1819 00105$:
+                                   1820 ;	../../../cpu/cc253x/dev/cc2530-rf.c:350: if(len <= CC2530_RF_MIN_PACKET_LEN) {
+      000334 EC               [12] 1821 	mov	a,r4
+      000335 24 FB            [12] 1822 	add	a,#0xff - 0x04
+      000337 40 35            [24] 1823 	jc	00110$
+                                   1824 ;	../../../cpu/cc253x/dev/cc2530-rf.c:353: RIMESTATS_ADD(tooshort);
+      000339 90r00r2C         [24] 1825 	mov	dptr,#(_rimestats + 0x002c)
+      00033C E0               [24] 1826 	movx	a,@dptr
+      00033D FF               [12] 1827 	mov	r7,a
+      00033E A3               [24] 1828 	inc	dptr
+      00033F E0               [24] 1829 	movx	a,@dptr
+      000340 FE               [12] 1830 	mov	r6,a
+      000341 A3               [24] 1831 	inc	dptr
+      000342 E0               [24] 1832 	movx	a,@dptr
+      000343 FD               [12] 1833 	mov	r5,a
+      000344 A3               [24] 1834 	inc	dptr
+      000345 E0               [24] 1835 	movx	a,@dptr
+      000346 FC               [12] 1836 	mov	r4,a
+      000347 0F               [12] 1837 	inc	r7
+      000348 BF 00 09         [24] 1838 	cjne	r7,#0x00,00179$
+      00034B 0E               [12] 1839 	inc	r6
+      00034C BE 00 05         [24] 1840 	cjne	r6,#0x00,00179$
+      00034F 0D               [12] 1841 	inc	r5
+      000350 BD 00 01         [24] 1842 	cjne	r5,#0x00,00179$
+      000353 0C               [12] 1843 	inc	r4
+      000354                       1844 00179$:
+      000354 90r00r2C         [24] 1845 	mov	dptr,#(_rimestats + 0x002c)
+      000357 EF               [12] 1846 	mov	a,r7
+      000358 F0               [24] 1847 	movx	@dptr,a
+      000359 EE               [12] 1848 	mov	a,r6
+      00035A A3               [24] 1849 	inc	dptr
+      00035B F0               [24] 1850 	movx	@dptr,a
+      00035C ED               [12] 1851 	mov	a,r5
+      00035D A3               [24] 1852 	inc	dptr
+      00035E F0               [24] 1853 	movx	@dptr,a
+      00035F EC               [12] 1854 	mov	a,r4
+      000360 A3               [24] 1855 	inc	dptr
+      000361 F0               [24] 1856 	movx	@dptr,a
+                                   1857 ;	../../../cpu/cc253x/dev/cc2530-rf.c:354: CC2530_CSP_ISFLUSHRX();
+      000362 75 E1 ED         [24] 1858 	mov	_RFST,#0xed
+      000365 75 E1 ED         [24] 1859 	mov	_RFST,#0xed
+                                   1860 ;	../../../cpu/cc253x/dev/cc2530-rf.c:355: return 0;
+      000368 90 00 00         [24] 1861 	mov	dptr,#0x0000
+      00036B 02r04rAE         [24] 1862 	ljmp	00133$
+      00036E                       1863 00110$:
+                                   1864 ;	../../../cpu/cc253x/dev/cc2530-rf.c:358: if(len - CHECKSUM_LEN > bufsize) {
+      00036E 8C 02            [24] 1865 	mov	ar2,r4
+      000370 7B 00            [12] 1866 	mov	r3,#0x00
+      000372 EA               [12] 1867 	mov	a,r2
+      000373 24 FE            [12] 1868 	add	a,#0xfe
+      000375 FA               [12] 1869 	mov	r2,a
+      000376 EB               [12] 1870 	mov	a,r3
+      000377 34 FF            [12] 1871 	addc	a,#0xff
+      000379 FB               [12] 1872 	mov	r3,a
+      00037A E5 81            [12] 1873 	mov	a,sp
+      00037C 24 F9            [12] 1874 	add	a,#0xf9
+      00037E F8               [12] 1875 	mov	r0,a
+      00037F C3               [12] 1876 	clr	c
+      000380 E6               [12] 1877 	mov	a,@r0
+      000381 9A               [12] 1878 	subb	a,r2
+      000382 08               [12] 1879 	inc	r0
+      000383 E6               [12] 1880 	mov	a,@r0
+      000384 9B               [12] 1881 	subb	a,r3
+      000385 50 35            [24] 1882 	jnc	00115$
+                                   1883 ;	../../../cpu/cc253x/dev/cc2530-rf.c:361: RIMESTATS_ADD(toolong);
+      000387 90r00r28         [24] 1884 	mov	dptr,#(_rimestats + 0x0028)
+      00038A E0               [24] 1885 	movx	a,@dptr
+      00038B FF               [12] 1886 	mov	r7,a
+      00038C A3               [24] 1887 	inc	dptr
+      00038D E0               [24] 1888 	movx	a,@dptr
+      00038E FE               [12] 1889 	mov	r6,a
+      00038F A3               [24] 1890 	inc	dptr
+      000390 E0               [24] 1891 	movx	a,@dptr
+      000391 FD               [12] 1892 	mov	r5,a
+      000392 A3               [24] 1893 	inc	dptr
+      000393 E0               [24] 1894 	movx	a,@dptr
+      000394 FC               [12] 1895 	mov	r4,a
+      000395 0F               [12] 1896 	inc	r7
+      000396 BF 00 09         [24] 1897 	cjne	r7,#0x00,00181$
+      000399 0E               [12] 1898 	inc	r6
+      00039A BE 00 05         [24] 1899 	cjne	r6,#0x00,00181$
+      00039D 0D               [12] 1900 	inc	r5
+      00039E BD 00 01         [24] 1901 	cjne	r5,#0x00,00181$
+      0003A1 0C               [12] 1902 	inc	r4
+      0003A2                       1903 00181$:
+      0003A2 90r00r28         [24] 1904 	mov	dptr,#(_rimestats + 0x0028)
+      0003A5 EF               [12] 1905 	mov	a,r7
+      0003A6 F0               [24] 1906 	movx	@dptr,a
+      0003A7 EE               [12] 1907 	mov	a,r6
+      0003A8 A3               [24] 1908 	inc	dptr
+      0003A9 F0               [24] 1909 	movx	@dptr,a
+      0003AA ED               [12] 1910 	mov	a,r5
+      0003AB A3               [24] 1911 	inc	dptr
+      0003AC F0               [24] 1912 	movx	@dptr,a
+      0003AD EC               [12] 1913 	mov	a,r4
+      0003AE A3               [24] 1914 	inc	dptr
+      0003AF F0               [24] 1915 	movx	@dptr,a
+                                   1916 ;	../../../cpu/cc253x/dev/cc2530-rf.c:362: CC2530_CSP_ISFLUSHRX();
+      0003B0 75 E1 ED         [24] 1917 	mov	_RFST,#0xed
+      0003B3 75 E1 ED         [24] 1918 	mov	_RFST,#0xed
+                                   1919 ;	../../../cpu/cc253x/dev/cc2530-rf.c:363: return 0;
+      0003B6 90 00 00         [24] 1920 	mov	dptr,#0x0000
+      0003B9 02r04rAE         [24] 1921 	ljmp	00133$
+      0003BC                       1922 00115$:
+                                   1923 ;	../../../cpu/cc253x/dev/cc2530-rf.c:380: len -= CHECKSUM_LEN;
+      0003BC 1C               [12] 1924 	dec	r4
+      0003BD 1C               [12] 1925 	dec	r4
+                                   1926 ;	../../../cpu/cc253x/dev/cc2530-rf.c:381: for(i = 0; i < len; ++i) {
+      0003BE 7B 00            [12] 1927 	mov	r3,#0x00
+      0003C0                       1928 00131$:
+      0003C0 C3               [12] 1929 	clr	c
+      0003C1 EB               [12] 1930 	mov	a,r3
+      0003C2 9C               [12] 1931 	subb	a,r4
+      0003C3 50 25            [24] 1932 	jnc	00116$
+                                   1933 ;	../../../cpu/cc253x/dev/cc2530-rf.c:382: ((unsigned char *)(buf))[i] = RFD;
+      0003C5 C0 04            [24] 1934 	push	ar4
+      0003C7 E5 81            [12] 1935 	mov	a,sp
+      0003C9 24 FD            [12] 1936 	add	a,#0xfd
+      0003CB F8               [12] 1937 	mov	r0,a
+      0003CC 86 02            [24] 1938 	mov	ar2,@r0
+      0003CE 08               [12] 1939 	inc	r0
+      0003CF 86 04            [24] 1940 	mov	ar4,@r0
+      0003D1 08               [12] 1941 	inc	r0
+      0003D2 86 07            [24] 1942 	mov	ar7,@r0
+      0003D4 EB               [12] 1943 	mov	a,r3
+      0003D5 2A               [12] 1944 	add	a,r2
+      0003D6 FA               [12] 1945 	mov	r2,a
+      0003D7 E4               [12] 1946 	clr	a
+      0003D8 3C               [12] 1947 	addc	a,r4
+      0003D9 FC               [12] 1948 	mov	r4,a
+      0003DA 8A 82            [24] 1949 	mov	dpl,r2
+      0003DC 8C 83            [24] 1950 	mov	dph,r4
+      0003DE 8F F0            [24] 1951 	mov	b,r7
+      0003E0 E5 D9            [12] 1952 	mov	a,_RFD
+      0003E2 12r00r00         [24] 1953 	lcall	__gptrput
+                                   1954 ;	../../../cpu/cc253x/dev/cc2530-rf.c:381: for(i = 0; i < len; ++i) {
+      0003E5 0B               [12] 1955 	inc	r3
+      0003E6 D0 04            [24] 1956 	pop	ar4
+      0003E8 80 D6            [24] 1957 	sjmp	00131$
+      0003EA                       1958 00116$:
+                                   1959 ;	../../../cpu/cc253x/dev/cc2530-rf.c:391: rssi = ((int8_t) RFD) - RSSI_OFFSET;
+      0003EA E5 D9            [12] 1960 	mov	a,_RFD
+      0003EC 24 B7            [12] 1961 	add	a,#0xb7
+      0003EE FF               [12] 1962 	mov	r7,a
+                                   1963 ;	../../../cpu/cc253x/dev/cc2530-rf.c:392: crc_corr = RFD;
+                                   1964 ;	../../../cpu/cc253x/dev/cc2530-rf.c:401: if(crc_corr & CRC_BIT_MASK) {
+      0003EF E5 D9            [12] 1965 	mov	a,_RFD
+      0003F1 FE               [12] 1966 	mov	r6,a
+      0003F2 30 E7 69         [24] 1967 	jnb	acc.7,00121$
+                                   1968 ;	../../../cpu/cc253x/dev/cc2530-rf.c:402: packetbuf_set_attr(PACKETBUF_ATTR_RSSI, rssi);
+      0003F5 EF               [12] 1969 	mov	a,r7
+      0003F6 33               [12] 1970 	rlc	a
+      0003F7 95 E0            [12] 1971 	subb	a,acc
+      0003F9 FD               [12] 1972 	mov	r5,a
+      0003FA C0 06            [24] 1973 	push	ar6
+      0003FC C0 04            [24] 1974 	push	ar4
+      0003FE C0 07            [24] 1975 	push	ar7
+      000400 C0 05            [24] 1976 	push	ar5
+      000402 75 82 04         [24] 1977 	mov	dpl,#0x04
+      000405 78r00            [12] 1978 	mov	r0,#_packetbuf_set_attr
+      000407 79s00            [12] 1979 	mov	r1,#(_packetbuf_set_attr >> 8)
+      000409 7As00            [12] 1980 	mov	r2,#(_packetbuf_set_attr >> 16)
+      00040B 12r00r00         [24] 1981 	lcall	__sdcc_banked_call
+      00040E 15 81            [12] 1982 	dec	sp
+      000410 15 81            [12] 1983 	dec	sp
+      000412 D0 04            [24] 1984 	pop	ar4
+      000414 D0 06            [24] 1985 	pop	ar6
+                                   1986 ;	../../../cpu/cc253x/dev/cc2530-rf.c:403: packetbuf_set_attr(PACKETBUF_ATTR_LINK_QUALITY, crc_corr & LQI_BIT_MASK);
+      000416 53 06 7F         [24] 1987 	anl	ar6,#0x7f
+      000419 7F 00            [12] 1988 	mov	r7,#0x00
+      00041B C0 04            [24] 1989 	push	ar4
+      00041D C0 06            [24] 1990 	push	ar6
+      00041F C0 07            [24] 1991 	push	ar7
+      000421 75 82 03         [24] 1992 	mov	dpl,#0x03
+      000424 78r00            [12] 1993 	mov	r0,#_packetbuf_set_attr
+      000426 79s00            [12] 1994 	mov	r1,#(_packetbuf_set_attr >> 8)
+      000428 7As00            [12] 1995 	mov	r2,#(_packetbuf_set_attr >> 16)
+      00042A 12r00r00         [24] 1996 	lcall	__sdcc_banked_call
+      00042D 15 81            [12] 1997 	dec	sp
+      00042F 15 81            [12] 1998 	dec	sp
+      000431 D0 04            [24] 1999 	pop	ar4
+                                   2000 ;	../../../cpu/cc253x/dev/cc2530-rf.c:404: RIMESTATS_ADD(llrx);
+      000433 90r00r44         [24] 2001 	mov	dptr,#(_rimestats + 0x0044)
+      000436 E0               [24] 2002 	movx	a,@dptr
+      000437 FB               [12] 2003 	mov	r3,a
+      000438 A3               [24] 2004 	inc	dptr
+      000439 E0               [24] 2005 	movx	a,@dptr
+      00043A FD               [12] 2006 	mov	r5,a
+      00043B A3               [24] 2007 	inc	dptr
+      00043C E0               [24] 2008 	movx	a,@dptr
+      00043D FE               [12] 2009 	mov	r6,a
+      00043E A3               [24] 2010 	inc	dptr
+      00043F E0               [24] 2011 	movx	a,@dptr
+      000440 FF               [12] 2012 	mov	r7,a
+      000441 0B               [12] 2013 	inc	r3
+      000442 BB 00 09         [24] 2014 	cjne	r3,#0x00,00184$
+      000445 0D               [12] 2015 	inc	r5
+      000446 BD 00 05         [24] 2016 	cjne	r5,#0x00,00184$
+      000449 0E               [12] 2017 	inc	r6
+      00044A BE 00 01         [24] 2018 	cjne	r6,#0x00,00184$
+      00044D 0F               [12] 2019 	inc	r7
+      00044E                       2020 00184$:
+      00044E 90r00r44         [24] 2021 	mov	dptr,#(_rimestats + 0x0044)
+      000451 EB               [12] 2022 	mov	a,r3
+      000452 F0               [24] 2023 	movx	@dptr,a
+      000453 ED               [12] 2024 	mov	a,r5
+      000454 A3               [24] 2025 	inc	dptr
+      000455 F0               [24] 2026 	movx	@dptr,a
+      000456 EE               [12] 2027 	mov	a,r6
+      000457 A3               [24] 2028 	inc	dptr
+      000458 F0               [24] 2029 	movx	@dptr,a
+      000459 EF               [12] 2030 	mov	a,r7
+      00045A A3               [24] 2031 	inc	dptr
+      00045B F0               [24] 2032 	movx	@dptr,a
+      00045C 80 34            [24] 2033 	sjmp	00122$
+      00045E                       2034 00121$:
+                                   2035 ;	../../../cpu/cc253x/dev/cc2530-rf.c:406: RIMESTATS_ADD(badcrc);
+      00045E 90r00r34         [24] 2036 	mov	dptr,#(_rimestats + 0x0034)
+      000461 E0               [24] 2037 	movx	a,@dptr
+      000462 FB               [12] 2038 	mov	r3,a
+      000463 A3               [24] 2039 	inc	dptr
+      000464 E0               [24] 2040 	movx	a,@dptr
+      000465 FD               [12] 2041 	mov	r5,a
+      000466 A3               [24] 2042 	inc	dptr
+      000467 E0               [24] 2043 	movx	a,@dptr
+      000468 FE               [12] 2044 	mov	r6,a
+      000469 A3               [24] 2045 	inc	dptr
+      00046A E0               [24] 2046 	movx	a,@dptr
+      00046B FF               [12] 2047 	mov	r7,a
+      00046C 0B               [12] 2048 	inc	r3
+      00046D BB 00 09         [24] 2049 	cjne	r3,#0x00,00185$
+      000470 0D               [12] 2050 	inc	r5
+      000471 BD 00 05         [24] 2051 	cjne	r5,#0x00,00185$
+      000474 0E               [12] 2052 	inc	r6
+      000475 BE 00 01         [24] 2053 	cjne	r6,#0x00,00185$
+      000478 0F               [12] 2054 	inc	r7
+      000479                       2055 00185$:
+      000479 90r00r34         [24] 2056 	mov	dptr,#(_rimestats + 0x0034)
+      00047C EB               [12] 2057 	mov	a,r3
+      00047D F0               [24] 2058 	movx	@dptr,a
+      00047E ED               [12] 2059 	mov	a,r5
+      00047F A3               [24] 2060 	inc	dptr
+      000480 F0               [24] 2061 	movx	@dptr,a
+      000481 EE               [12] 2062 	mov	a,r6
+      000482 A3               [24] 2063 	inc	dptr
+      000483 F0               [24] 2064 	movx	@dptr,a
+      000484 EF               [12] 2065 	mov	a,r7
+      000485 A3               [24] 2066 	inc	dptr
+      000486 F0               [24] 2067 	movx	@dptr,a
+                                   2068 ;	../../../cpu/cc253x/dev/cc2530-rf.c:407: CC2530_CSP_ISFLUSHRX();
+      000487 75 E1 ED         [24] 2069 	mov	_RFST,#0xed
+      00048A 75 E1 ED         [24] 2070 	mov	_RFST,#0xed
+                                   2071 ;	../../../cpu/cc253x/dev/cc2530-rf.c:409: return 0;
+      00048D 90 00 00         [24] 2072 	mov	dptr,#0x0000
+      000490 80 1C            [24] 2073 	sjmp	00133$
+      000492                       2074 00122$:
+                                   2075 ;	../../../cpu/cc253x/dev/cc2530-rf.c:413: if((FSMSTAT1 & (FSMSTAT1_FIFO | FSMSTAT1_FIFOP)) == FSMSTAT1_FIFOP) {
+      000492 90 61 93         [24] 2076 	mov	dptr,#_FSMSTAT1
+      000495 E0               [24] 2077 	movx	a,@dptr
+      000496 54 C0            [12] 2078 	anl	a,#0xc0
+      000498 FF               [12] 2079 	mov	r7,a
+      000499 BF 40 0C         [24] 2080 	cjne	r7,#0x40,00129$
+                                   2081 ;	../../../cpu/cc253x/dev/cc2530-rf.c:421: if(!RXFIFOCNT) {
+      00049C 90 61 9B         [24] 2082 	mov	dptr,#_RXFIFOCNT
+      00049F E0               [24] 2083 	movx	a,@dptr
+      0004A0 70 06            [24] 2084 	jnz	00129$
+                                   2085 ;	../../../cpu/cc253x/dev/cc2530-rf.c:422: CC2530_CSP_ISFLUSHRX();
+      0004A2 75 E1 ED         [24] 2086 	mov	_RFST,#0xed
+      0004A5 75 E1 ED         [24] 2087 	mov	_RFST,#0xed
+      0004A8                       2088 00129$:
+                                   2089 ;	../../../cpu/cc253x/dev/cc2530-rf.c:428: return (len);
+      0004A8 7F 00            [12] 2090 	mov	r7,#0x00
+      0004AA 8C 82            [24] 2091 	mov	dpl,r4
+      0004AC 8F 83            [24] 2092 	mov	dph,r7
+      0004AE                       2093 00133$:
+                                   2094 ;	../../../cpu/cc253x/dev/cc2530-rf.c:429: }
+      0004AE 15 81            [12] 2095 	dec	sp
+      0004B0 15 81            [12] 2096 	dec	sp
+      0004B2 15 81            [12] 2097 	dec	sp
+      0004B4 02r00r00         [24] 2098 	ljmp	__sdcc_banked_ret
+                                   2099 ;------------------------------------------------------------
+                                   2100 ;Allocation info for local variables in function 'channel_clear'
+                                   2101 ;------------------------------------------------------------
+                                   2102 ;	../../../cpu/cc253x/dev/cc2530-rf.c:432: channel_clear(void)
+                                   2103 ;	-----------------------------------------
+                                   2104 ;	 function channel_clear
+                                   2105 ;	-----------------------------------------
+      0004B7                       2106 _channel_clear:
+                                   2107 ;	../../../cpu/cc253x/dev/cc2530-rf.c:434: if(FSMSTAT1 & FSMSTAT1_CCA) {
+      0004B7 90 61 93         [24] 2108 	mov	dptr,#_FSMSTAT1
+      0004BA E0               [24] 2109 	movx	a,@dptr
+      0004BB 30 E4 05         [24] 2110 	jnb	acc.4,00102$
+                                   2111 ;	../../../cpu/cc253x/dev/cc2530-rf.c:435: return CC2530_RF_CCA_CLEAR;
+      0004BE 90 00 01         [24] 2112 	mov	dptr,#0x0001
+      0004C1 80 03            [24] 2113 	sjmp	00103$
+      0004C3                       2114 00102$:
+                                   2115 ;	../../../cpu/cc253x/dev/cc2530-rf.c:437: return CC2530_RF_CCA_BUSY;
+      0004C3 90 00 00         [24] 2116 	mov	dptr,#0x0000
+      0004C6                       2117 00103$:
+                                   2118 ;	../../../cpu/cc253x/dev/cc2530-rf.c:438: }
+      0004C6 02r00r00         [24] 2119 	ljmp	__sdcc_banked_ret
+                                   2120 ;------------------------------------------------------------
+                                   2121 ;Allocation info for local variables in function 'receiving_packet'
+                                   2122 ;------------------------------------------------------------
+                                   2123 ;	../../../cpu/cc253x/dev/cc2530-rf.c:441: receiving_packet(void)
+                                   2124 ;	-----------------------------------------
+                                   2125 ;	 function receiving_packet
+                                   2126 ;	-----------------------------------------
+      0004C9                       2127 _receiving_packet:
+                                   2128 ;	../../../cpu/cc253x/dev/cc2530-rf.c:451: return (FSMSTAT1 & (FSMSTAT1_TX_ACTIVE | FSMSTAT1_SFD) == FSMSTAT1_SFD);
+      0004C9 90 61 93         [24] 2129 	mov	dptr,#_FSMSTAT1
+      0004CC E0               [24] 2130 	movx	a,@dptr
+      0004CD 90 00 00         [24] 2131 	mov	dptr,#0x0000
+                                   2132 ;	../../../cpu/cc253x/dev/cc2530-rf.c:452: }
+      0004D0 02r00r00         [24] 2133 	ljmp	__sdcc_banked_ret
+                                   2134 ;------------------------------------------------------------
+                                   2135 ;Allocation info for local variables in function 'pending_packet'
+                                   2136 ;------------------------------------------------------------
+                                   2137 ;	../../../cpu/cc253x/dev/cc2530-rf.c:455: pending_packet(void)
+                                   2138 ;	-----------------------------------------
+                                   2139 ;	 function pending_packet
+                                   2140 ;	-----------------------------------------
+      0004D3                       2141 _pending_packet:
+                                   2142 ;	../../../cpu/cc253x/dev/cc2530-rf.c:457: return (FSMSTAT1 & FSMSTAT1_FIFOP);
+      0004D3 90 61 93         [24] 2143 	mov	dptr,#_FSMSTAT1
+      0004D6 E0               [24] 2144 	movx	a,@dptr
+      0004D7 FF               [12] 2145 	mov	r7,a
+      0004D8 53 07 40         [24] 2146 	anl	ar7,#0x40
+      0004DB 7E 00            [12] 2147 	mov	r6,#0x00
+      0004DD 8F 82            [24] 2148 	mov	dpl,r7
+      0004DF 8E 83            [24] 2149 	mov	dph,r6
+                                   2150 ;	../../../cpu/cc253x/dev/cc2530-rf.c:458: }
+      0004E1 02r00r00         [24] 2151 	ljmp	__sdcc_banked_ret
+                                   2152 ;------------------------------------------------------------
+                                   2153 ;Allocation info for local variables in function 'on'
+                                   2154 ;------------------------------------------------------------
+                                   2155 ;	../../../cpu/cc253x/dev/cc2530-rf.c:461: on(void)
+                                   2156 ;	-----------------------------------------
+                                   2157 ;	 function on
+                                   2158 ;	-----------------------------------------
+      0004E4                       2159 _on:
+                                   2160 ;	../../../cpu/cc253x/dev/cc2530-rf.c:463: if(!(rf_flags & RX_ACTIVE)) {
+      0004E4 E5*00            [12] 2161 	mov	a,_rf_flags
+      0004E6 20 E7 0C         [24] 2162 	jb	acc.7,00109$
+                                   2163 ;	../../../cpu/cc253x/dev/cc2530-rf.c:464: CC2530_CSP_ISFLUSHRX();
+      0004E9 75 E1 ED         [24] 2164 	mov	_RFST,#0xed
+      0004EC 75 E1 ED         [24] 2165 	mov	_RFST,#0xed
+                                   2166 ;	../../../cpu/cc253x/dev/cc2530-rf.c:465: CC2530_CSP_ISRXON();
+      0004EF 75 E1 E3         [24] 2167 	mov	_RFST,#0xe3
+                                   2168 ;	../../../cpu/cc253x/dev/cc2530-rf.c:467: rf_flags |= RX_ACTIVE;
+      0004F2 43*00 80         [24] 2169 	orl	_rf_flags,#0x80
+                                   2170 ;	../../../cpu/cc253x/dev/cc2530-rf.c:470: ENERGEST_ON(ENERGEST_TYPE_LISTEN);
+      0004F5                       2171 00109$:
+                                   2172 ;	../../../cpu/cc253x/dev/cc2530-rf.c:471: return 1;
+      0004F5 90 00 01         [24] 2173 	mov	dptr,#0x0001
+                                   2174 ;	../../../cpu/cc253x/dev/cc2530-rf.c:472: }
+      0004F8 02r00r00         [24] 2175 	ljmp	__sdcc_banked_ret
+                                   2176 ;------------------------------------------------------------
+                                   2177 ;Allocation info for local variables in function 'off'
+                                   2178 ;------------------------------------------------------------
+                                   2179 ;	../../../cpu/cc253x/dev/cc2530-rf.c:475: off(void)
+                                   2180 ;	-----------------------------------------
+                                   2181 ;	 function off
+                                   2182 ;	-----------------------------------------
+      0004FB                       2183 _off:
+                                   2184 ;	../../../cpu/cc253x/dev/cc2530-rf.c:477: CC2530_CSP_ISRFOFF();
+      0004FB 75 E1 EF         [24] 2185 	mov	_RFST,#0xef
+                                   2186 ;	../../../cpu/cc253x/dev/cc2530-rf.c:478: CC2530_CSP_ISFLUSHRX();
+      0004FE 75 E1 ED         [24] 2187 	mov	_RFST,#0xed
+      000501 75 E1 ED         [24] 2188 	mov	_RFST,#0xed
+                                   2189 ;	../../../cpu/cc253x/dev/cc2530-rf.c:480: rf_flags &= ~RX_ACTIVE;
+      000504 53*00 7F         [24] 2190 	anl	_rf_flags,#0x7f
+                                   2191 ;	../../../cpu/cc253x/dev/cc2530-rf.c:483: return 1;
+      000507 90 00 01         [24] 2192 	mov	dptr,#0x0001
+                                   2193 ;	../../../cpu/cc253x/dev/cc2530-rf.c:484: }
+      00050A 02r00r00         [24] 2194 	ljmp	__sdcc_banked_ret
+                                   2195 	.area CSEG    (CODE)
+                                   2196 	.area CONST   (CODE)
+      000000                       2197 _cc2530_rf_driver:
+      000000r97s00s00              2198 	.byte _init, (_init >> 8), (_init >> 16)
+      000003rFBs00s00              2199 	.byte _prepare, (_prepare >> 8), (_prepare >> 16)
+      000006r6Ds01s00              2200 	.byte _transmit, (_transmit >> 8), (_transmit >> 16)
+      000009rB3s02s00              2201 	.byte _send, (_send >> 8), (_send >> 16)
+      00000CrF2s02s00              2202 	.byte _read, (_read >> 8), (_read >> 16)
+      00000FrB7s04s00              2203 	.byte _channel_clear, (_channel_clear >> 8), (_channel_clear >> 16)
+      000012rC9s04s00              2204 	.byte _receiving_packet, (_receiving_packet >> 8), (_receiving_packet >> 16)
+      000015rD3s04s00              2205 	.byte _pending_packet, (_pending_packet >> 8), (_pending_packet >> 16)
+      000018rE4s04s00              2206 	.byte _on, (_on >> 8), (_on >> 16)
+      00001BrFBs04s00              2207 	.byte _off, (_off >> 8), (_off >> 16)
+                                   2208 	.area XINIT   (CODE)
+                                   2209 	.area CABS    (ABS,CODE)

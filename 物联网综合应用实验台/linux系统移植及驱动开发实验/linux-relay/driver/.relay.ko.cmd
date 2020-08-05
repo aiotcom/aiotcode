@@ -1,0 +1,1 @@
+cmd_/mnt/hgfs/linux_share/linux-relay/driver/relay.ko := arm-poky-linux-gnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /mnt/hgfs/linux_share/linux-relay/driver/relay.ko /mnt/hgfs/linux_share/linux-relay/driver/relay.o /mnt/hgfs/linux_share/linux-relay/driver/relay.mod.o

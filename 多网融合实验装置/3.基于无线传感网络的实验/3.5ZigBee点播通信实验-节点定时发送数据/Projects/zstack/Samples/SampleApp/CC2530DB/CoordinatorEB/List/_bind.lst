@@ -1,0 +1,181 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         27/Feb/2019  17:41:50 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Components\HARDWARE\_bind.c           #
+#    Command line       =  -f D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-poin #
+#                          t2point-rawdata\Projects\zstack\Samples\SampleApp\ #
+#                          CC2530DB\..\..\..\Tools\CC2530DB\f8wCoord.cfg      #
+#                          (-DCPU32MHZ -DROOT=__near_func                     #
+#                          -DMAC_CFG_APP_PENDING_QUEUE=TRUE                   #
+#                          -DZDO_COORDINATOR -DRTR_NWK -DBLINK_LEDS) -f       #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg        #
+#                          (-DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR      #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFF11                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100) -DREJOIN_POLL_RATE=440   #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Components\HARDWARE\_bind.c -D        #
+#                          ZIGBEEPRO -D ZTOOL_P1 -D MT_SYS_FUNC -D            #
+#                          xMT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG -D NV_RESTORE  #
+#                          -lC D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-poi #
+#                          nt2point-rawdata\Projects\zstack\Samples\SampleApp #
+#                          \CC2530DB\CoordinatorEB\List\ -lA                  #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\CoordinatorEB\List\ --diag_suppress          #
+#                          Pe001,Pa010 -o D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2 #
+#                          .0\exp1-point2point-rawdata\Projects\zstack\Sample #
+#                          s\SampleApp\CC2530DB\CoordinatorEB\Obj\ -e         #
+#                          --debug --core=plain --dptr=16,1                   #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-poin #
+#                          t2point-rawdata\Projects\zstack\Samples\SampleApp\ #
+#                          CC2530DB\ -I D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0 #
+#                          \exp1-point2point-rawdata\Projects\zstack\Samples\ #
+#                          SampleApp\CC2530DB\..\SOURCE\ -I                   #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\..\..\..\ZMAIN\TI2530DB\ -I                  #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\..\..\..\..\..\COMPONENTS\MT\ -I             #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\..\..\..\..\..\COMPONENTS\HAL\INCLUDE\ -I    #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\..\..\..\..\..\COMPONENTS\HAL\TARGET\CC2530E #
+#                          B\ -I D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-p #
+#                          oint2point-rawdata\Projects\zstack\Samples\SampleA #
+#                          pp\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\MCU\CCS #
+#                          OC\ -I D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1- #
+#                          point2point-rawdata\Projects\zstack\Samples\Sample #
+#                          App\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\INCLUD #
+#                          E\ -I D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-p #
+#                          oint2point-rawdata\Projects\zstack\Samples\SampleA #
+#                          pp\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\AF\    #
+#                          -I D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-poin #
+#                          t2point-rawdata\Projects\zstack\Samples\SampleApp\ #
+#                          CC2530DB\..\..\..\..\..\COMPONENTS\STACK\NWK\ -I   #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\..\..\..\..\..\COMPONENTS\STACK\SEC\ -I      #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\..\..\..\..\..\COMPONENTS\STACK\SAPI\ -I     #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\..\..\..\..\..\COMPONENTS\STACK\SYS\ -I      #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\..\..\..\..\..\COMPONENTS\STACK\ZDO\ -I      #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\..\..\..\..\..\COMPONENTS\ZMAC\F8W\ -I       #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\..\..\..\..\..\COMPONENTS\ZMAC\ -I           #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\..\..\..\..\..\COMPONENTS\SERVICES\SADDR\    #
+#                          -I D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-poin #
+#                          t2point-rawdata\Projects\zstack\Samples\SampleApp\ #
+#                          CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\SDATA\ #
+#                           -I D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-poi #
+#                          nt2point-rawdata\Projects\zstack\Samples\SampleApp #
+#                          \CC2530DB\..\..\..\..\..\COMPONENTS\MAC\INCLUDE\   #
+#                          -I D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-poin #
+#                          t2point-rawdata\Projects\zstack\Samples\SampleApp\ #
+#                          CC2530DB\..\..\..\..\..\COMPONENTS\MAC\HIGH_LEVEL\ #
+#                           -I D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-poi #
+#                          nt2point-rawdata\Projects\zstack\Samples\SampleApp #
+#                          \CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\ #
+#                          srf04\ -I D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\ex #
+#                          p1-point2point-rawdata\Projects\zstack\Samples\Sam #
+#                          pleApp\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_ #
+#                          LEVEL\srf04\SINGLE_CHIP\ -I                        #
+#                          D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\..\..\..\..\..\COMPONENTS\HARDWARE\ -Ohz     #
+#    List file          =  D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\CoordinatorEB\List\_bind.lst                 #
+#    Object file        =  D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2p #
+#                          oint-rawdata\Projects\zstack\Samples\SampleApp\CC2 #
+#                          530DB\CoordinatorEB\Obj\_bind.r51                  #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\ZigBee\KJXY-ZigBee\KJXY-ZigBeeV2.0\exp1-point2point-rawdata\Components\HARDWARE\_bind.c
+      1          #include "_bind.h"
+      2          /*
+      3          启动邦定注要，都输出方去申请绑定
+      4          */
+      5          void StartBind(uint8 NumOfId,const cId_t *pId )
+      6          {
+      7            if ( AF_DataRequest( &Boardcast_DstAddr,
+      8                                 &Coordinator_epDesc,
+      9                                 BIND_REQUEST_CMD_ID,
+                                        ^
+Error[Pe020]: identifier "BIND_REQUEST_CMD_ID" is undefined
+     10                                 NumOfId*2,
+     11                                 (uint8*)pId,
+     12                                 &SampleApp_TransID,
+     13                                 AF_DISCV_ROUTE,
+     14                                 AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
+     15            {
+     16              printf("request bind\r\n");//串口打印提示，发送成功
+     17            }  
+     18          }
+     19          /*
+     20          设备反馈绑定请求
+     21          */
+     22          void ResponeBind(uint16 *pId,afAddrType_t *dstAddr)
+     23          {
+     24            if ( AF_DataRequest( dstAddr,
+     25                                 &EndDevice_epDesc,
+     26                                 BIND_RSP_CMD_ID,
+                                        ^
+Error[Pe020]: identifier "BIND_RSP_CMD_ID" is undefined
+     27                                 2,
+     28                                 (uint8*)pId,
+     29                                 &SampleApp_TransID,
+     30                                 AF_DISCV_ROUTE,
+     31                                 AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
+     32            {
+     33              printf("response bind\r\n");//串口打印提示，发送成功
+     34            } 
+     35          }
+
+Errors: 2
+Warnings: none

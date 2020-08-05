@@ -1,0 +1,27 @@
+-muwx
+-i server.banked-hex
+-M
+-Y
+-X 0x1f00
+-C 0x40000
+-b HOME = 0x0000
+-b ISEG = 0x0000
+-b BSEG = 0x0000
+-r
+-bBANK1=0x018000
+-bBANK2=0x028000
+-bBANK3=0x038000
+-bBANK4=0x048000
+-k /usr/local/bin/../share/sdcc/lib/huge-stack-auto
+-k /usr/local/share/sdcc/lib/huge-stack-auto
+-l libsdcc.lib
+-l contiki-cc2530dk.lib
+-l mcs51
+-l libsdcc
+-l libint
+-l liblong
+-l libfloat
+obj_cc2530dk/contiki-main.rel
+obj_cc2530dk/server.app.rel
+
+-e

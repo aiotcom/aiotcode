@@ -1,0 +1,1 @@
+cmd_/mnt/hgfs/linux_share/linux-chao_sheng_bo/driver/chao_sheng_bo.ko := arm-poky-linux-gnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /mnt/hgfs/linux_share/linux-chao_sheng_bo/driver/chao_sheng_bo.ko /mnt/hgfs/linux_share/linux-chao_sheng_bo/driver/chao_sheng_bo.o /mnt/hgfs/linux_share/linux-chao_sheng_bo/driver/chao_sheng_bo.mod.o
