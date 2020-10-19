@@ -6,56 +6,134 @@
   <configuration>
     <name>Debug</name>
     <outputs>
+      <file>$PROJ_DIR$\Debug\Obj\delay.pbi</file>
       <file>$PROJ_DIR$\HARDWARE\KEY\KEY.c</file>
-      <file>$PROJ_DIR$\HARDWARE\EXTI\EXTI.c</file>
       <file>$PROJ_DIR$\HARDWARE\Delay\delay.c</file>
       <file>$PROJ_DIR$\HARDWARE\LED\LED.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\delay.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\delay.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
-      <file>$PROJ_DIR$\HARDWARE\EXTI\EXTI.h</file>
-      <file>$PROJ_DIR$\HARDWARE\KEY\KEY.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\EXTI.r51</file>
-      <file>$TOOLKIT_DIR$\inc\ioCC2530.h</file>
-      <file>$PROJ_DIR$\HARDWARE\Lamp\Lamp.c</file>
       <file>$PROJ_DIR$\main.c</file>
-      <file>$TOOLKIT_DIR$\lib\clib\cl-pli-blxd-1e16x01.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\EXTI.pbd</file>
-      <file>$PROJ_DIR$\Debug\Exe\EXTI.hex</file>
+      <file>$PROJ_DIR$\HARDWARE\EXTI\EXTI.c</file>
+      <file>$PROJ_DIR$\HARDWARE\Lamp\Lamp.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\HARDWARE\KEY\KEY.h</file>
       <file>$PROJ_DIR$\Debug\Obj\Lamp.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\KEY.r51</file>
-      <file>$PROJ_DIR$\HARDWARE\LED\LED.h</file>
       <file>$PROJ_DIR$\Debug\Obj\main.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\EXTI.pbi</file>
-      <file>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_cc2530F256_banked.xcl</file>
-      <file>$PROJ_DIR$\Debug\Obj\Lamp.pbi</file>
-      <file>$PROJ_DIR$\Debug\Exe\EXTI.d51</file>
-      <file>$PROJ_DIR$\Debug\Obj\LED.r51</file>
       <file>$PROJ_DIR$\Debug\Obj\LED.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\KEY.r51</file>
+      <file>$PROJ_DIR$\HARDWARE\EXTI\EXTI.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\delay.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\EXTI.pbd</file>
       <file>$PROJ_DIR$\Debug\Obj\KEY.pbi</file>
       <file>$PROJ_DIR$\HARDWARE\Delay\delay.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\EXTI.r51</file>
+      <file>$PROJ_DIR$\Debug\Exe\EXTI.hex</file>
+      <file>$PROJ_DIR$\Debug\Obj\EXTI.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\LED.r51</file>
       <file>$PROJ_DIR$\HARDWARE\Lamp\Lamp.h</file>
+      <file>$TOOLKIT_DIR$\inc\ioCC2530.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\EXTI.d51</file>
+      <file>$PROJ_DIR$\HARDWARE\LED\LED.h</file>
+      <file>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_cc2530F256_banked.xcl</file>
+      <file>$PROJ_DIR$\Debug\Obj\Lamp.pbi</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl-pli-blxd-1e16x01.r51</file>
     </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 19 24</file>
+        </tool>
+      </outputs>
+    </file>
     <file>
       <name>$PROJ_DIR$\HARDWARE\KEY\KEY.c</name>
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 26</file>
+          <file> 16</file>
         </tool>
         <tool>
           <name>ICC8051</name>
-          <file> 17</file>
+          <file> 12</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 27 10 8 18</file>
+          <file> 17 23 8 25</file>
         </tool>
         <tool>
           <name>ICC8051</name>
-          <file> 27 10 8 18</file>
+          <file> 17 23 8 25</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\HARDWARE\Delay\delay.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 14</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 17 23</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 17 23</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\HARDWARE\LED\LED.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 11</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 21</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 17 23 25</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 17 23 25</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 7</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23 17 13 22 8 25</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 23 17 13 22 8 25</file>
         </tool>
       </inputs>
     </file>
@@ -68,63 +146,17 @@
         </tool>
         <tool>
           <name>ICC8051</name>
-          <file> 9</file>
+          <file> 18</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 27 10 7 8 18</file>
+          <file> 17 23 13 8 25</file>
         </tool>
         <tool>
           <name>ICC8051</name>
-          <file> 27 10 7 8 18</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\HARDWARE\Delay\delay.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 4</file>
-        </tool>
-        <tool>
-          <name>ICC8051</name>
-          <file> 5</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 27 10</file>
-        </tool>
-        <tool>
-          <name>ICC8051</name>
-          <file> 27 10</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\HARDWARE\LED\LED.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 25</file>
-        </tool>
-        <tool>
-          <name>ICC8051</name>
-          <file> 24</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 27 10 18</file>
-        </tool>
-        <tool>
-          <name>ICC8051</name>
-          <file> 27 10 18</file>
+          <file> 17 23 13 8 25</file>
         </tool>
       </inputs>
     </file>
@@ -133,44 +165,21 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 22</file>
+          <file> 27</file>
         </tool>
         <tool>
           <name>ICC8051</name>
-          <file> 16</file>
+          <file> 9</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 27 10 28</file>
+          <file> 17 23 22</file>
         </tool>
         <tool>
           <name>ICC8051</name>
-          <file> 27 10 28</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\main.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 6</file>
-        </tool>
-        <tool>
-          <name>ICC8051</name>
-          <file> 19</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 10 27 7 28 8 18</file>
-        </tool>
-        <tool>
-          <name>ICC8051</name>
-          <file> 10 27 7 28 8 18</file>
+          <file> 17 23 22</file>
         </tool>
       </inputs>
     </file>
@@ -179,7 +188,7 @@
       <inputs>
         <tool>
           <name>BILINK</name>
-          <file> 20 26 25 22 4 6</file>
+          <file> 20 16 11 27 0 7</file>
         </tool>
       </inputs>
     </file>
@@ -188,24 +197,15 @@
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 15</file>
+          <file> 19</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 21 9 17 24 16 5 19 13</file>
+          <file> 26 18 12 21 9 14 10 28</file>
         </tool>
       </inputs>
-    </file>
-    <file>
-      <name>[ROOT_NODE]</name>
-      <outputs>
-        <tool>
-          <name>XLINK</name>
-          <file> 23 15</file>
-        </tool>
-      </outputs>
     </file>
   </configuration>
   <configuration>

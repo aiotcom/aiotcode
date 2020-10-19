@@ -13,11 +13,11 @@
 #define OLED_SCL_PIN      P0_2
 #define OLED_SDA_PIN      P0_3
 
-#define OLED_SCL_HIGH()   P0_2 = 1;P0_2 = 1;
-#define OLED_SCL_LOW()    P0_2 = 0;P0_2 = 0;
+#define OLED_SCL_HIGH()   P0_2 = 1;P0_2 = 1;P0_2 = 1;
+#define OLED_SCL_LOW()    P0_2 = 0;P0_2 = 0;P0_2 = 0;
 
-#define OLED_SDA_HIGH()   P0_3 = 1;P0_3 = 1;
-#define OLED_SDA_LOW()    P0_3 = 0;P0_3 = 0;
+#define OLED_SDA_HIGH()   P0_3 = 1;P0_3 = 1;P0_3 = 1;
+#define OLED_SDA_LOW()    P0_3 = 0;P0_3 = 0;P0_3 = 0;
 
 #define OLED_SCL_STATE()  P0_2
 #define OLED_SDA_STATE()  P0_3

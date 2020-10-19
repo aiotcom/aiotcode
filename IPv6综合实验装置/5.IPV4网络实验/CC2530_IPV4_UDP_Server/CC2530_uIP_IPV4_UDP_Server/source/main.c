@@ -71,7 +71,7 @@ void main(void)
      
 	/*连接的IP ip port设置成零，就可以随意接收其他的UDP连接*/
 	uip_ipaddr(&ipaddr,0,0,0,0);
-    pxUDP_Conn = uip_udp_new(&ipaddr,htons(0)); 	//端口为1400
+    pxUDP_Conn = uip_udp_new(&ipaddr,htons(0)); 	//端口为1500
     uip_udp_bind(pxUDP_Conn,htons(1500));
 		
     UIP_RunTimeCounter = HAL_GetTick()+50;

@@ -40,7 +40,6 @@ void main(void)
     LED_Init();       //LED初始化
     KEY_Init();       //按键初始化
     LampInit();       //底座灯初始化
-
     while(1)
     {
       key_Operatio(); //按键操作

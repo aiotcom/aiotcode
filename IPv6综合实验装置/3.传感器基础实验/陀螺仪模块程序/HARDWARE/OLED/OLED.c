@@ -356,7 +356,7 @@ void OLED_Init_UI(void)
     OLED_P16x16Ch(50,2,2);  //城
     OLED_P16x16Ch(70,2,3);  //科
     OLED_P16x16Ch(90,2,4);  //技
-    OLED_P8x16Str(3,4,"www.stepiot.com");
+    OLED_P8x16Str(3,4,"mp6050 init...");
 
     //陀螺仪初始化
     while(mpu_dmp_init())
@@ -364,6 +364,7 @@ void OLED_Init_UI(void)
         delay_ms(100);
         mpu_dmp_init();		
     }
+	OLED_P8x16Str(3,4,"www.stepiot.com");
 }
 
 //==========================================================

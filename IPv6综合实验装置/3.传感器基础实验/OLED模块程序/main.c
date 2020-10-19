@@ -42,7 +42,6 @@ void main(void)
     LampInit();         //初始化底座灯
     Rs485_Init();       //初始化485
     USRT1_Init();       //初始化串口1
-    OLED_IIC_Init();    //初始化OLED_IIC
     OLED_Init();        //初始化OLED 
 
     while(1)

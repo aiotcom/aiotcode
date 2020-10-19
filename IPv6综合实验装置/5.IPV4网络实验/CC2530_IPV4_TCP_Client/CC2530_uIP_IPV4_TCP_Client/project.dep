@@ -6,878 +6,172 @@
   <configuration>
     <name>Debug</name>
     <outputs>
-      <file>$PROJ_DIR$\source\ENC28J60\web_server.c</file>
-      <file>$PROJ_DIR$\source\ENC28J60\enc28j60.h</file>
-      <file>$PROJ_DIR$\source\ENC28J60\ip_arp_udp_tcp.c</file>
-      <file>$PROJ_DIR$\source\ENC28J60\ip_arp_udp_tcp.h</file>
-      <file>$PROJ_DIR$\source\ENC28J60\net.h</file>
-      <file>$PROJ_DIR$\source\ENC28J60\web_server.h</file>
-      <file>$PROJ_DIR$\source\basicrf\basic_rf.c</file>
-      <file>$PROJ_DIR$\source\basicrf\basic_rf.h</file>
-      <file>$PROJ_DIR$\source\basicrf\basic_rf_security.c</file>
-      <file>$PROJ_DIR$\source\HAL\clock.c</file>
-      <file>$PROJ_DIR$\source\basicrf\basic_rf_security.h</file>
-      <file>$PROJ_DIR$\source\ENC28J60\enc28j60.c</file>
-      <file>$PROJ_DIR$\source\ENC28J60\spi_enc28j60.h</file>
-      <file>$PROJ_DIR$\source\ENC28J60\spi_enc28j60.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\spi_enc28j60.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\timer.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\http-strings.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\UART.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\uip-fw.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\httpd-fs.pbi</file>
-      <file>$TOOLKIT_DIR$\lib\clib\cl-pli-blxd-1e16x01.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\uIP_App.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\UART.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\clock-arch.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\httpd-cgi.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\uip-neighbor.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\clock.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\hal_rf.r51</file>
-      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\app_basicrf.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\hal_int.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\httpd.r51</file>
-      <file>$TOOLKIT_DIR$\inc\clib\stdio.h</file>
-      <file>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_cc2530F256_banked.xcl</file>
-      <file>$PROJ_DIR$\Debug\Obj\clock-arch.r51</file>
-      <file>$TOOLKIT_DIR$\inc\clib\stdarg.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\hal_rf.pbi</file>
-      <file>$PROJ_DIR$\source\uip\uip\uip-neighbor.c</file>
-      <file>$PROJ_DIR$\source\uip\apps\webserver\httpd-fs.c</file>
-      <file>$PROJ_DIR$\source\uip\uip\uiplib.h</file>
-      <file>$PROJ_DIR$\source\inttypes.h</file>
-      <file>$PROJ_DIR$\source\uip\uip\uip-fw.c</file>
-      <file>$PROJ_DIR$\source\uip\uip\clock.h</file>
-      <file>$PROJ_DIR$\source\uip\uip\uip-split.c</file>
-      <file>$PROJ_DIR$\source\uip\uip\lc-switch.h</file>
-      <file>$PROJ_DIR$\source\uip\uip\psock.c</file>
-      <file>$PROJ_DIR$\source\uip\uip\lc.h</file>
-      <file>$PROJ_DIR$\source\uip\uip\uip-split.h</file>
-      <file>$PROJ_DIR$\source\uip\uip\uip.c</file>
-      <file>$PROJ_DIR$\source\uip\uip\uip.h</file>
-      <file>$PROJ_DIR$\source\uip\apps\webserver\httpd.h</file>
-      <file>$PROJ_DIR$\source\uip\lib\memb.c</file>
-      <file>$PROJ_DIR$\source\uip\uip\pt.h</file>
-      <file>$PROJ_DIR$\source\uip\uip\timer.c</file>
-      <file>$PROJ_DIR$\source\uip\apps\webserver\httpd-fs.h</file>
-      <file>$PROJ_DIR$\source\uip\uip\uip-neighbor.h</file>
-      <file>$PROJ_DIR$\source\uip\uip\uip-fw.h</file>
-      <file>$PROJ_DIR$\source\uip\uip\uip_arch.h</file>
-      <file>$PROJ_DIR$\source\uip\uip\uip_arp.h</file>
-      <file>$PROJ_DIR$\source\uip\lib\memb.h</file>
-      <file>$PROJ_DIR$\source\uip\uip\psock.h</file>
-      <file>$PROJ_DIR$\source\uip\uip\timer.h</file>
-      <file>$PROJ_DIR$\source\uip\apps\webserver\httpd.c</file>
-      <file>$PROJ_DIR$\source\uip\uip\uip_arp.c</file>
-      <file>$PROJ_DIR$\source\uip\uip\uiplib.c</file>
-      <file>$PROJ_DIR$\source\uip\uip\uipopt.h</file>
-      <file>$PROJ_DIR$\source\app_basicrf.c</file>
-      <file>$PROJ_DIR$\source\app_basicrf.h</file>
-      <file>$PROJ_DIR$\source\HAL\TIM.h</file>
-      <file>$PROJ_DIR$\source\uip\appcall\uIP_App.c</file>
-      <file>$PROJ_DIR$\source\uip\appcall\uIP_App.h</file>
-      <file>$PROJ_DIR$\source\HAL\hal_mcu.h</file>
-      <file>$PROJ_DIR$\source\uip\appcall\uIP_AppCall.c</file>
-      <file>$PROJ_DIR$\source\uip\apps\webserver\http-strings.c</file>
-      <file>$PROJ_DIR$\source\uip\apps\webserver\httpd-cgi.c</file>
-      <file>$PROJ_DIR$\source\uip\apps\webserver\httpd-cgi.h</file>
-      <file>$PROJ_DIR$\source\HAL\TIM.c</file>
-      <file>$PROJ_DIR$\source\uip\appcall\uIP_AppCall.h</file>
-      <file>$PROJ_DIR$\source\uip\apps\webserver\http-strings.h</file>
-      <file>$PROJ_DIR$\source\uip\appcall\Tapdev.h</file>
-      <file>$PROJ_DIR$\source\HAL\hal_defs.h</file>
-      <file>$PROJ_DIR$\source\HAL\hal_int.c</file>
-      <file>$PROJ_DIR$\source\HAL\hal_mcu.c</file>
-      <file>$PROJ_DIR$\source\HAL\UART.h</file>
-      <file>$PROJ_DIR$\source\HAL\util.c</file>
-      <file>$PROJ_DIR$\source\HAL\util.h</file>
-      <file>$PROJ_DIR$\source\HAL\hal_rf.c</file>
-      <file>$PROJ_DIR$\source\HAL\hal_rf.h</file>
-      <file>$PROJ_DIR$\source\HAL\UART.c</file>
-      <file>$PROJ_DIR$\source\uip\appcall\clock-arch.c</file>
-      <file>$PROJ_DIR$\source\HAL\clock.h</file>
-      <file>$PROJ_DIR$\source\uip\appcall\clock-arch.h</file>
-      <file>$PROJ_DIR$\source\uip\appcall\uip-conf.h</file>
-      <file>$PROJ_DIR$\source\HAL\hal_int.h</file>
-      <file>$PROJ_DIR$\source\uip\appcall\tapdev.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\basic_rf_security.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\TIM.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\hal_mcu.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\psock.r51</file>
-      <file>$PROJ_DIR$\source\main.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\basic_rf.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\uIP_AppCall.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\memb.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\memb.r51</file>
+      <file>$PROJ_DIR$\source\uip\apps\webserver\httpd-fsdata.c</file>
       <file>$PROJ_DIR$\Debug\Exe\project.d51</file>
-      <file>$PROJ_DIR$\Debug\Obj\app_basicrf.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\basic_rf.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\project.pbd</file>
+      <file>$PROJ_DIR$\Debug\Obj\ip_arp_udp_tcp.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\TIM.pbi</file>
       <file>$PROJ_DIR$\source\HAL\hal_types.h</file>
       <file>$PROJ_DIR$\Debug\Obj\web_server.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\project.pbd</file>
-      <file>$PROJ_DIR$\Debug\Obj\uiplib.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\memb.pbi</file>
-      <file>$PROJ_DIR$\source\uip\apps\webserver\httpd-fsdata.c</file>
       <file>$PROJ_DIR$\Debug\Obj\spi_enc28j60.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\memb.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\ip_arp_udp_tcp.pbi</file>
       <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\basic_rf.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\TIM.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\basic_rf_security.pbi</file>
-      <file>$TOOLKIT_DIR$\inc\ioCC2530.h</file>
-      <file>$PROJ_DIR$\source\type.h</file>
       <file>$PROJ_DIR$\Debug\Obj\hal_mcu.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\uip-fw.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\uiplib.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\uip_arp.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\timer.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\uIP_App.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\basic_rf_security.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\util.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\http-strings.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\uip-neighbor.r51</file>
       <file>$PROJ_DIR$\Debug\Obj\uiplib.r51</file>
       <file>$PROJ_DIR$\Debug\Obj\httpd-cgi.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\httpd.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\uIP_AppCall.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\uIP_AppCall.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\enc28j60.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\uip.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\web_server.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\ip_arp_udp_tcp.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\httpd-fs.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip-fw.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\app_basicrf.r51</file>
+      <file>$TOOLKIT_DIR$\inc\ioCC2530.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer.pbi</file>
+      <file>$PROJ_DIR$\source\HAL\clock.h</file>
+      <file>$PROJ_DIR$\source\HAL\hal_defs.h</file>
+      <file>$PROJ_DIR$\source\HAL\hal_int.c</file>
+      <file>$PROJ_DIR$\source\HAL\hal_int.h</file>
+      <file>$PROJ_DIR$\source\ENC28J60\enc28j60.h</file>
+      <file>$PROJ_DIR$\source\ENC28J60\enc28j60.c</file>
+      <file>$PROJ_DIR$\source\ENC28J60\net.h</file>
+      <file>$PROJ_DIR$\source\HAL\clock.c</file>
+      <file>$PROJ_DIR$\source\ENC28J60\ip_arp_udp_tcp.h</file>
+      <file>$PROJ_DIR$\source\HAL\hal_mcu.c</file>
+      <file>$PROJ_DIR$\source\basicrf\basic_rf.h</file>
+      <file>$PROJ_DIR$\source\basicrf\basic_rf_security.c</file>
+      <file>$PROJ_DIR$\source\basicrf\basic_rf_security.h</file>
+      <file>$PROJ_DIR$\source\ENC28J60\spi_enc28j60.h</file>
+      <file>$PROJ_DIR$\source\ENC28J60\web_server.c</file>
+      <file>$PROJ_DIR$\source\basicrf\basic_rf.c</file>
+      <file>$PROJ_DIR$\source\ENC28J60\ip_arp_udp_tcp.c</file>
+      <file>$PROJ_DIR$\source\ENC28J60\web_server.h</file>
+      <file>$PROJ_DIR$\source\ENC28J60\spi_enc28j60.c</file>
+      <file>$PROJ_DIR$\source\uip\appcall\uIP_App.h</file>
+      <file>$PROJ_DIR$\source\uip\appcall\uip-conf.h</file>
+      <file>$PROJ_DIR$\source\uip\appcall\uIP_AppCall.c</file>
+      <file>$PROJ_DIR$\source\uip\apps\webserver\httpd-cgi.c</file>
+      <file>$PROJ_DIR$\source\uip\apps\webserver\httpd.h</file>
+      <file>$PROJ_DIR$\source\uip\lib\memb.c</file>
+      <file>$PROJ_DIR$\source\uip\appcall\uIP_AppCall.h</file>
+      <file>$PROJ_DIR$\source\HAL\UART.h</file>
+      <file>$PROJ_DIR$\source\uip\apps\webserver\http-strings.h</file>
+      <file>$PROJ_DIR$\source\uip\apps\webserver\httpd-cgi.h</file>
+      <file>$PROJ_DIR$\source\uip\apps\webserver\httpd-fs.c</file>
+      <file>$PROJ_DIR$\source\uip\appcall\clock-arch.c</file>
+      <file>$PROJ_DIR$\source\uip\appcall\clock-arch.h</file>
+      <file>$PROJ_DIR$\source\HAL\TIM.c</file>
+      <file>$PROJ_DIR$\source\HAL\UART.c</file>
+      <file>$PROJ_DIR$\source\uip\apps\webserver\http-strings.c</file>
+      <file>$PROJ_DIR$\source\uip\appcall\uIP_App.c</file>
+      <file>$PROJ_DIR$\source\HAL\hal_mcu.h</file>
+      <file>$PROJ_DIR$\source\HAL\hal_rf.c</file>
+      <file>$PROJ_DIR$\source\uip\apps\webserver\httpd-fs.h</file>
+      <file>$PROJ_DIR$\source\HAL\TIM.h</file>
+      <file>$PROJ_DIR$\source\HAL\util.c</file>
+      <file>$PROJ_DIR$\source\HAL\util.h</file>
+      <file>$PROJ_DIR$\source\HAL\hal_rf.h</file>
+      <file>$PROJ_DIR$\source\uip\appcall\tapdev.c</file>
+      <file>$PROJ_DIR$\source\uip\appcall\Tapdev.h</file>
+      <file>$PROJ_DIR$\source\uip\apps\webserver\httpd.c</file>
       <file>$PROJ_DIR$\Debug\Obj\tapdev.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\enc28j60.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\util.r51</file>
       <file>$PROJ_DIR$\Debug\Obj\uip-split.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\uip-split.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.r51</file>
       <file>$PROJ_DIR$\Debug\Obj\tapdev.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\psock.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\uip.r51</file>
       <file>$PROJ_DIR$\Debug\Obj\clock.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\web_server.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\uIP_AppCall.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\httpd-fs.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\enc28j60.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\ip_arp_udp_tcp.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip_arp.pbi</file>
       <file>$PROJ_DIR$\source\uip\apps\webserver\httpd-fsdata.h</file>
       <file>$PROJ_DIR$\Debug\Obj\hal_int.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\psock.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\uip_arp.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\util.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip-split.pbi</file>
+      <file>$PROJ_DIR$\source\uip\uip\lc-switch.h</file>
+      <file>$PROJ_DIR$\source\uip\uip\uip.h</file>
+      <file>$PROJ_DIR$\source\uip\uip\uip_arp.c</file>
+      <file>$PROJ_DIR$\source\uip\uip\timer.c</file>
+      <file>$PROJ_DIR$\source\uip\uip\uip-neighbor.c</file>
+      <file>$PROJ_DIR$\source\uip\uip\uip_arp.h</file>
+      <file>$PROJ_DIR$\source\uip\uip\psock.h</file>
+      <file>$PROJ_DIR$\source\uip\uip\uiplib.c</file>
+      <file>$PROJ_DIR$\source\uip\uip\uiplib.h</file>
+      <file>$PROJ_DIR$\source\uip\uip\uip-split.c</file>
+      <file>$PROJ_DIR$\source\uip\uip\uipopt.h</file>
+      <file>$PROJ_DIR$\source\app_basicrf.c</file>
+      <file>$PROJ_DIR$\source\app_basicrf.h</file>
+      <file>$PROJ_DIR$\source\inttypes.h</file>
+      <file>$PROJ_DIR$\source\type.h</file>
+      <file>$PROJ_DIR$\source\uip\uip\uip-neighbor.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\spi_enc28j60.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer.r51</file>
+      <file>$PROJ_DIR$\source\uip\uip\uip-split.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\http-strings.r51</file>
+      <file>$PROJ_DIR$\source\uip\uip\psock.c</file>
+      <file>$PROJ_DIR$\source\main.c</file>
+      <file>$PROJ_DIR$\source\uip\uip\uip-fw.c</file>
+      <file>$PROJ_DIR$\source\uip\uip\uip_arch.h</file>
+      <file>$PROJ_DIR$\source\uip\uip\timer.h</file>
+      <file>$PROJ_DIR$\source\uip\uip\uip.c</file>
+      <file>$PROJ_DIR$\source\uip\uip\clock.h</file>
+      <file>$PROJ_DIR$\source\uip\uip\pt.h</file>
+      <file>$PROJ_DIR$\source\uip\lib\memb.h</file>
+      <file>$PROJ_DIR$\source\uip\uip\lc.h</file>
+      <file>$PROJ_DIR$\source\uip\uip\uip-fw.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\clock-arch.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\clock.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\hal_mcu.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip-neighbor.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\psock.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\basic_rf.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\UART.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdarg.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\uIP_App.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\httpd-fs.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdio.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\clock-arch.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\hal_rf.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\hal_rf.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\httpd.r51</file>
+      <file>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_cc2530F256_banked.xcl</file>
+      <file>$PROJ_DIR$\Debug\Obj\TIM.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\uip-fw.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\hal_int.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\httpd-cgi.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\app_basicrf.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\basic_rf_security.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\UART.r51</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl-pli-blxd-1e16x01.r51</file>
     </outputs>
     <file>
       <name>[ROOT_NODE]</name>
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 101</file>
+          <file> 4</file>
         </tool>
       </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\ENC28J60\web_server.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 104</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 134</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\ENC28J60\ip_arp_udp_tcp.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 135</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 111</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 3 1 118 49 65 92 40 77 60 52 46 44 4</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 3 1 118 49 65 92 40 77 60 52 46 44 4</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\basicrf\basic_rf.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 113</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 100</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 71 118 49 65 92 40 77 60 52 46 44 117 80 87 103 93 7 112 28</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 71 118 49 65 92 40 77 60 52 46 44 117 80 87 103 93 7 112 28</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\basicrf\basic_rf_security.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 95</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 116</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\HAL\clock.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 145</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 26</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 90 103 118 49 65 92 40 77 60 52 46 44 80 71 117</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 90 103 118 49 65 92 40 77 60 52 46 44 80 71 117</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\ENC28J60\enc28j60.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 138</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 132</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 1 118 49 65 92 40 77 60 52 46 44 12 117 68 32 35 28</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 1 118 49 65 92 40 77 60 52 46 44 12 117 68 32 35 28</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\ENC28J60\spi_enc28j60.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 14</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 109</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 12 117 118 49 65 92 40 77 60 52 46 44 68</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 12 117 118 49 65 92 40 77 60 52 46 44 68</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\uip\uip-neighbor.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 126</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 25</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 55 49 65 92 40 77 60 52 46 44 118 32 35 28 112</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 55 49 65 92 40 77 60 52 46 44 118 32 35 28 112</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\apps\webserver\httpd-fs.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 136</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 19</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 50 60 65 92 40 49 118 77 52 46 44 54 146 108</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 50 60 65 92 40 49 118 77 52 46 44 54 146 108</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\uip\uip-fw.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 18</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 120</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 49 65 92 40 77 60 52 46 44 118 57 56 112 28</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 49 65 92 40 77 60 52 46 44 118 57 56 112 28</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\uip\uip-split.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 140</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 141</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 112 28 47 49 65 92 40 77 60 52 46 44 118 56 57</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 112 28 47 49 65 92 40 77 60 52 46 44 118 56 57</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\uip\psock.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 98</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 148</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 32 35 28 112 65 92 40 49 118 77 60 52 46 44</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 32 35 28 112 65 92 40 49 118 77 60 52 46 44</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\uip\uip.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 144</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 133</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 49 65 92 40 77 60 52 46 44 118 57 112 28 32 35</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 49 65 92 40 77 60 52 46 44 118 57 112 28 32 35</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\lib\memb.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 110</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 107</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 112 28 59</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 112 28 59</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\uip\timer.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 15</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 122</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 42 91 61</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 42 91 61</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\apps\webserver\httpd.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 31</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 129</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 49 65 92 40 77 60 52 46 44 118 50 54 75 78 112 28</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 49 65 92 40 77 60 52 46 44 118 50 54 75 78 112 28</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\uip\uip_arp.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 121</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 149</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 58 49 65 92 40 77 60 52 46 44 118 112 28</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 58 49 65 92 40 77 60 52 46 44 118 112 28</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\uip\uiplib.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 127</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 106</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 49 65 92 40 77 60 52 46 44 118 39</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 49 65 92 40 77 60 52 46 44 118 39</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\app_basicrf.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 102</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 29</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 67 7 103 118 49 65 92 40 77 60 52 46 44 10 32 35 28 80 87</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 67 7 103 118 49 65 92 40 77 60 52 46 44 10 32 35 28 80 87</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\appcall\uIP_App.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 21</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 123</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 70 77 65 92 40 49 118 60 52 46 44 79 91 61 42 58</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 70 77 65 92 40 49 118 60 52 46 44 79 91 61 42 58</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\appcall\uIP_AppCall.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 131</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 130</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 77 65 92 40 49 118 60 52 46 44 1 50 54 57 70 112 28 32 35</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 77 65 92 40 49 118 60 52 46 44 1 50 54 57 70 112 28 32 35</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\apps\webserver\http-strings.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 16</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 125</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\apps\webserver\httpd-cgi.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 24</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 128</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 49 65 92 40 77 60 52 46 44 118 50 54 75 32 35 28 112</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 49 65 92 40 77 60 52 46 44 118 50 54 75 32 35 28 112</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\HAL\TIM.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 96</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 114</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 117</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 117</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\HAL\hal_int.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 147</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 30</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 103 118 49 65 92 40 77 60 52 46 44 80 93 71 117</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 103 118 49 65 92 40 77 60 52 46 44 80 93 71 117</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\HAL\hal_mcu.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 97</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 119</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 71 118 49 65 92 40 77 60 52 46 44 117 90 103 80</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 71 118 49 65 92 40 77 60 52 46 44 117 90 103 80</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\HAL\util.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 139</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 124</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 85 103 118 49 65 92 40 77 60 52 46 44 80 87</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 85 103 118 49 65 92 40 77 60 52 46 44 80 87</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\HAL\hal_rf.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 27</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 36</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 71 118 49 65 92 40 77 60 52 46 44 117 93 103 87 85 80</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 71 118 49 65 92 40 77 60 52 46 44 117 93 103 87 85 80</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\HAL\UART.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 17</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 22</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 83 117</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 83 117</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\appcall\clock-arch.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 34</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 23</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 91</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 91</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\uip\appcall\tapdev.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 143</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 137</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 79 118 49 65 92 40 77 60 52 46 44 1</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 79 118 49 65 92 40 77 60 52 46 44 1</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\source\main.c</name>
-      <outputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 142</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 115</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC8051</name>
-          <file> 117 1 118 49 65 92 40 77 60 52 46 44 12 68 70 83 32 35 28 112 91 67 7 103 10</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 117 1 118 49 65 92 40 77 60 52 46 44 12 68 70 83 32 35 28 112 91 67 7 103 10</file>
-        </tool>
-      </inputs>
     </file>
     <file>
       <name>$PROJ_DIR$\Debug\Exe\project.d51</name>
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 33 96 17 102 113 95 34 145 138 147 97 27 16 24 136 31 135 142 110 98 14 143 15 21 131 18 126 140 144 121 127 139 104 20</file>
+          <file> 141 142 148 26 5 147 137 81 76 90 127 139 113 145 84 140 87 91 2 129 110 78 111 133 83 143 21 77 80 16 22 92 10 149</file>
         </tool>
       </inputs>
     </file>
@@ -886,7 +180,713 @@
       <inputs>
         <tool>
           <name>BILINK</name>
-          <file> 114 22 29 100 116 23 26 132 30 119 36 125 128 19 129 111 115 107 148 109 137 122 123 130 120 25 141 133 149 106 124 134</file>
+          <file> 8 131 146 130 18 125 126 86 144 13 138 20 23 134 24 7 15 1 79 11 75 28 17 0 25 128 93 85 88 14 19 82</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\HAL\hal_int.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 144</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 90</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 9 108 95 104 49 107 54 100 121 123 94 30 32 65 27</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 9 108 95 104 49 107 54 100 121 123 94 30 32 65 27</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\ENC28J60\enc28j60.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 86</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 76</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 33 108 95 104 49 107 54 100 121 123 94 42 27 68 136 132 135</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 33 108 95 104 49 107 54 100 121 123 94 42 27 68 136 132 135</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\HAL\clock.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 126</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 81</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 29 9 108 95 104 49 107 54 100 121 123 94 30 65 27</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 29 9 108 95 104 49 107 54 100 121 123 94 30 65 27</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\HAL\hal_mcu.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 127</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 65 108 95 104 49 107 54 100 121 123 94 27 29 9 30</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 65 108 95 104 49 107 54 100 121 123 94 27 29 9 30</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\basicrf\basic_rf_security.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 18</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 147</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\ENC28J60\web_server.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 82</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\basicrf\basic_rf.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 130</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 5</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 65 108 95 104 49 107 54 100 121 123 94 27 30 71 9 32 39 12 135</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 65 108 95 104 49 107 54 100 121 123 94 27 30 71 9 32 39 12 135</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\ENC28J60\ip_arp_udp_tcp.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 7</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 87</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37 33 108 95 104 49 107 54 100 121 123 94 35</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 37 33 108 95 104 49 107 54 100 121 123 94 35</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\ENC28J60\spi_enc28j60.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 11</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 110</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 27 108 95 104 49 107 54 100 121 123 94 68</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 42 27 108 95 104 49 107 54 100 121 123 94 68</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\appcall\uIP_AppCall.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 83</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 54 104 49 107 95 108 100 121 123 94 33 52 67 117 48 12 135 136 132</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 54 104 49 107 95 108 100 121 123 94 33 52 67 117 48 12 135 136 132</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\apps\webserver\httpd-cgi.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 145</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 95 104 49 107 54 100 121 123 94 108 52 67 57 136 132 135 12</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 95 104 49 107 54 100 121 123 94 108 52 67 57 136 132 135 12</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\lib\memb.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 1</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 2</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12 135 122</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 12 135 122</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\apps\webserver\httpd-fs.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 134</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 84</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 52 100 104 49 107 95 108 54 121 123 94 67 89 3</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 52 100 104 49 107 95 108 54 121 123 94 67 89 3</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\appcall\clock-arch.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 125</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 137</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 60</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 60</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\HAL\TIM.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 8</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 142</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 27</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 27</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\HAL\UART.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 131</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 148</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 55 27</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 55 27</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\apps\webserver\http-strings.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 20</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 113</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\appcall\uIP_App.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 17</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 133</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 48 54 104 49 107 95 108 100 121 123 94 73 60 118 120 99</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 48 54 104 49 107 95 108 100 121 123 94 73 60 118 120 99</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\HAL\hal_rf.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 138</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 139</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 65 108 95 104 49 107 54 100 121 123 94 27 32 9 71 70 30</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 65 108 95 104 49 107 54 100 121 123 94 27 32 9 71 70 30</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\HAL\util.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 19</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 92</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 70 9 108 95 104 49 107 54 100 121 123 94 30 71</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 70 9 108 95 104 49 107 54 100 121 123 94 30 71</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\appcall\tapdev.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 75</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 78</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 73 108 95 104 49 107 54 100 121 123 94 33</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 73 108 95 104 49 107 54 100 121 123 94 33</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\apps\webserver\httpd.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 24</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 140</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 95 104 49 107 54 100 121 123 94 108 52 67 57 56 12 135</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 95 104 49 107 54 100 121 123 94 108 52 67 57 56 12 135</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\uip\uip_arp.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 88</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 16</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 99 95 104 49 107 54 100 121 123 94 108 12 135</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 99 95 104 49 107 54 100 121 123 94 108 12 135</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\uip\timer.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 28</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 111</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 120 60 118</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 120 60 118</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\uip\uip-neighbor.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 128</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 21</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 109 95 104 49 107 54 100 121 123 94 108 136 132 135 12</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 109 95 104 49 107 54 100 121 123 94 108 136 132 135 12</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\uip\uiplib.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 14</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 22</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 95 104 49 107 54 100 121 123 94 108 102</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 95 104 49 107 54 100 121 123 94 108 102</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\uip\uip-split.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 93</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 77</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12 135 112 95 104 49 107 54 100 121 123 94 108 124 117</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 12 135 112 95 104 49 107 54 100 121 123 94 108 124 117</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\app_basicrf.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 146</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 26</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 106 39 9 108 95 104 49 107 54 100 121 123 94 41 136 132 135 30 71</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 106 39 9 108 95 104 49 107 54 100 121 123 94 41 136 132 135 30 71</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\uip\psock.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 79</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 129</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 136 132 135 12 104 49 107 95 108 54 100 121 123 94</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 136 132 135 12 104 49 107 95 108 54 100 121 123 94</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 15</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 91</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 27 33 108 95 104 49 107 54 100 121 123 94 42 68 48 55 136 132 135 12 60 106 39 9 41</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 27 33 108 95 104 49 107 54 100 121 123 94 42 68 48 55 136 132 135 12 60 106 39 9 41</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\uip\uip-fw.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 25</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 143</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 95 104 49 107 54 100 121 123 94 108 117 124 12 135</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 95 104 49 107 54 100 121 123 94 108 117 124 12 135</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\uip\uip\uip.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 85</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 80</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 95 104 49 107 54 100 121 123 94 108 117 12 135 136 132</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 95 104 49 107 54 100 121 123 94 108 117 12 135 136 132</file>
         </tool>
       </inputs>
     </file>

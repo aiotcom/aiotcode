@@ -24,8 +24,8 @@ void LED_Init(void)
     GPIO_Initure.Pull=GPIO_PULLUP;          	//上拉
     GPIO_Initure.Speed=GPIO_SPEED_HIGH;    	 	//高速
     HAL_GPIO_Init(LED_PORT,&GPIO_Initure);
-	
     LED_OFF();
+
 }
 
 //==========================================================

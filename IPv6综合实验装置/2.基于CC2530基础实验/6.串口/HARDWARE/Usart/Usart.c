@@ -42,26 +42,12 @@ void Init_Uart0()
 #pragma vector = URX0_VECTOR
 __interrupt void UR0_RecvInt()
 {
-  URX0IF = 0;                           //清除RX接收中断标志
-
-  if((USART0_RX_STA&0x8000)==0)	        //接收未完成
-  {
-    if(USART0_RX_STA&0x4000)		//接收到了0x0d
-    {
-        if(U0DBUF!=0x0a)USART0_RX_STA=0;//接收错误,重新开始
-        else USART0_RX_STA|=0x8000;	//接收完成了 
-    }
-    else 				//还没收到0X0D
-    {	
-      if(U0DBUF==0x0d)USART0_RX_STA|=0x4000;
-      else
-      {
-        USART0_RX_BUF[USART0_RX_STA&0X3FFF]=U0DBUF ;
-        USART0_RX_STA++;
-        if(USART0_RX_STA>(200-2))USART0_RX_STA=0;//接收数据错误,重新开始接收	  
-      }		 
-    }
-  } 
+  	URX0IF = 0;                           //清除RX接收中断标志
+	USART0_RX_BUF[USART0_RX_STA&0X3FFF]=U0DBUF ;
+	USART0_RX_STA++;
+	if(USART0_RX_STA>(200-2)){
+	  USART0_RX_STA=0;//接收数据错误,重新开始接收	
+	}
 }
 
 //==========================================================

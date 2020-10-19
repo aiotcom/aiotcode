@@ -39,6 +39,7 @@ int main(void)
     USART3_Init(115200);
     printf("this usart3 print\r\n");
     HAL_Delay(3000);    
+    //MP3_DispalyTargetByname("song4");
 	while(1)
 	{
         if(Cmd_MP3[0])
@@ -52,7 +53,7 @@ int main(void)
                     }
                     if(Cmd_MP3[1] == 2)
                     {
-                        MP3_DispalyTargetByname("song4");
+                       MP3_DispalyTargetByname("song4");
                     }                    
                     printf("item=%d\r\n",Cmd_MP3[1]);
                     break;

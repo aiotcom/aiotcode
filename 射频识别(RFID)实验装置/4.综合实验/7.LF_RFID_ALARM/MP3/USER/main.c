@@ -46,11 +46,11 @@ int main(void)
             switch(Cmd_MP3[0])
             {
                 case MP3_Target:
-                    if(Cmd_MP3[1] == 1)
+                    if(Cmd_MP3[1] == 1)//请通行
                     {
                         MP3_DispalyTargetByname("song5");
                     }
-                    if(Cmd_MP3[1] == 2)
+                    if(Cmd_MP3[1] == 2)//播放禁止通行
                     {
                         MP3_DispalyTargetByname("song4");
                     }                    

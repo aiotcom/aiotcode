@@ -67,13 +67,10 @@ int main(void)
                 }
                 else if(readMemoryBlock(1,0x05,&NFC_SendBuffer[4]))//¶ÁÈ¡Êý¾Ý
                 {
-                   memcpy(NFC_SendBuffer,(const void*)&NFC_CardID2,4);
-                }
-                
-
+                    memcpy(NFC_SendBuffer,(const void*)&NFC_CardID2,4);
+                }               
             }
         }
-				
     }    
 }
 //==========================================================

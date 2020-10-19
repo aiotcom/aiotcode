@@ -40,18 +40,21 @@ void main(void)
 {
     Hal_Init_32M();   //初始化32M时钟
     LampInit();       //底座灯初始化
-    Init_Uart0();     //初始化串口0
+    Init_Uart0();     //初始化串口0-115200
     
     //先发送一个字符串，测试串口0数据传输是否正确
     UR0SendString("八城物联\r\n");
 
     while(1)              
     {
-        if((USART0_RX_STA&0x8000))
+        if(USART0_RX_STA)
         {
-            UR0SendString(USART0_RX_BUF); //发送接收到的数据
-            USART0_RX_STA = 0;            //清空接收标志位
-            memset(USART0_RX_BUF,0,200);
+		  delay_ms(100);
+		  if(USART0_RX_STA){
+			UR0SendString(USART0_RX_BUF); //发送接收到的数据
+			USART0_RX_STA = 0;            //清空接收标志位
+			memset(USART0_RX_BUF,0,200);
+		  }
         }
     }
 }
