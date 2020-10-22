@@ -1,0 +1,1239 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.8.4 #10774 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module sicslowmac
+                                      6 	.optsdcc -mmcs51 --model-huge
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _sicslowmac_driver
+                                     12 	.globl _send_list
+                                     13 	.globl _random_rand
+                                     14 	.globl _queuebuf_to_packetbuf
+                                     15 	.globl _packetbuf_addr
+                                     16 	.globl _packetbuf_set_addr
+                                     17 	.globl _packetbuf_attr
+                                     18 	.globl _packetbuf_hdrreduce
+                                     19 	.globl _packetbuf_hdralloc
+                                     20 	.globl _packetbuf_totlen
+                                     21 	.globl _packetbuf_datalen
+                                     22 	.globl _packetbuf_hdrptr
+                                     23 	.globl _packetbuf_dataptr
+                                     24 	.globl _frame802154_parse
+                                     25 	.globl _frame802154_create
+                                     26 	.globl _frame802154_hdrlen
+                                     27 	.globl _rimeaddr_cmp
+                                     28 	.globl _rimeaddr_copy
+                                     29 	.globl _memset
+                                     30 ;--------------------------------------------------------
+                                     31 ; special function registers
+                                     32 ;--------------------------------------------------------
+                                     33 	.area RSEG    (ABS,DATA)
+      000000                         34 	.org 0x0000
+                                     35 ;--------------------------------------------------------
+                                     36 ; special function bits
+                                     37 ;--------------------------------------------------------
+                                     38 	.area RSEG    (ABS,DATA)
+      000000                         39 	.org 0x0000
+                                     40 ;--------------------------------------------------------
+                                     41 ; overlayable register banks
+                                     42 ;--------------------------------------------------------
+                                     43 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                         44 	.ds 8
+                                     45 ;--------------------------------------------------------
+                                     46 ; internal ram data
+                                     47 ;--------------------------------------------------------
+                                     48 	.area DSEG    (DATA)
+                                     49 ;--------------------------------------------------------
+                                     50 ; overlayable items in internal ram 
+                                     51 ;--------------------------------------------------------
+                                     52 ;--------------------------------------------------------
+                                     53 ; indirectly addressable internal ram data
+                                     54 ;--------------------------------------------------------
+                                     55 	.area ISEG    (DATA)
+                                     56 ;--------------------------------------------------------
+                                     57 ; absolute internal ram data
+                                     58 ;--------------------------------------------------------
+                                     59 	.area IABS    (ABS,DATA)
+                                     60 	.area IABS    (ABS,DATA)
+                                     61 ;--------------------------------------------------------
+                                     62 ; bit data
+                                     63 ;--------------------------------------------------------
+                                     64 	.area BSEG    (BIT)
+                                     65 ;--------------------------------------------------------
+                                     66 ; paged external ram data
+                                     67 ;--------------------------------------------------------
+                                     68 	.area PSEG    (PAG,XDATA)
+                                     69 ;--------------------------------------------------------
+                                     70 ; external ram data
+                                     71 ;--------------------------------------------------------
+                                     72 	.area XSEG    (XDATA)
+      000000                         73 _mac_dsn:
+      000000                         74 	.ds 1
+                                     75 ;--------------------------------------------------------
+                                     76 ; absolute external ram data
+                                     77 ;--------------------------------------------------------
+                                     78 	.area XABS    (ABS,XDATA)
+                                     79 ;--------------------------------------------------------
+                                     80 ; external initialized ram data
+                                     81 ;--------------------------------------------------------
+                                     82 	.area XISEG   (XDATA)
+      000000                         83 _mac_dst_pan_id:
+      000000                         84 	.ds 2
+      000002                         85 _mac_src_pan_id:
+      000002                         86 	.ds 2
+                                     87 	.area HOME    (CODE)
+                                     88 	.area GSINIT0 (CODE)
+                                     89 	.area GSINIT1 (CODE)
+                                     90 	.area GSINIT2 (CODE)
+                                     91 	.area GSINIT3 (CODE)
+                                     92 	.area GSINIT4 (CODE)
+                                     93 	.area GSINIT5 (CODE)
+                                     94 	.area GSINIT  (CODE)
+                                     95 	.area GSFINAL (CODE)
+                                     96 	.area CSEG    (CODE)
+                                     97 ;--------------------------------------------------------
+                                     98 ; global & static initialisations
+                                     99 ;--------------------------------------------------------
+                                    100 	.area HOME    (CODE)
+                                    101 	.area GSINIT  (CODE)
+                                    102 	.area GSFINAL (CODE)
+                                    103 	.area GSINIT  (CODE)
+                                    104 ;--------------------------------------------------------
+                                    105 ; Home
+                                    106 ;--------------------------------------------------------
+                                    107 	.area HOME    (CODE)
+                                    108 	.area HOME    (CODE)
+                                    109 ;--------------------------------------------------------
+                                    110 ; code
+                                    111 ;--------------------------------------------------------
+                                    112 	.area BANK1   (CODE)
+                                    113 ;------------------------------------------------------------
+                                    114 ;Allocation info for local variables in function 'is_broadcast_addr'
+                                    115 ;------------------------------------------------------------
+                                    116 ;addr                      Allocated to stack - sp -5
+                                    117 ;mode                      Allocated to registers r7 
+                                    118 ;i                         Allocated to registers 
+                                    119 ;------------------------------------------------------------
+                                    120 ;	../../../core/net/mac/sicslowmac.c:85: is_broadcast_addr(uint8_t mode, uint8_t *addr)
+                                    121 ;	-----------------------------------------
+                                    122 ;	 function is_broadcast_addr
+                                    123 ;	-----------------------------------------
+      000000                        124 _is_broadcast_addr:
+                           000007   125 	ar7 = 0x07
+                           000006   126 	ar6 = 0x06
+                           000005   127 	ar5 = 0x05
+                           000004   128 	ar4 = 0x04
+                           000003   129 	ar3 = 0x03
+                           000002   130 	ar2 = 0x02
+                           000001   131 	ar1 = 0x01
+                           000000   132 	ar0 = 0x00
+      000000 AF 82            [24]  133 	mov	r7,dpl
+                                    134 ;	../../../core/net/mac/sicslowmac.c:87: int i = mode == FRAME802154_SHORTADDRMODE ? 2 : 8;
+      000002 BF 02 06         [24]  135 	cjne	r7,#0x02,00108$
+      000005 7E 02            [12]  136 	mov	r6,#0x02
+      000007 7F 00            [12]  137 	mov	r7,#0x00
+      000009 80 04            [24]  138 	sjmp	00109$
+      00000B                        139 00108$:
+      00000B 7E 08            [12]  140 	mov	r6,#0x08
+      00000D 7F 00            [12]  141 	mov	r7,#0x00
+      00000F                        142 00109$:
+                                    143 ;	../../../core/net/mac/sicslowmac.c:88: while(i-- > 0) {
+      00000F                        144 00103$:
+      00000F C3               [12]  145 	clr	c
+      000010 E4               [12]  146 	clr	a
+      000011 9E               [12]  147 	subb	a,r6
+      000012 74 80            [12]  148 	mov	a,#(0x00 ^ 0x80)
+      000014 8F F0            [24]  149 	mov	b,r7
+      000016 63 F0 80         [24]  150 	xrl	b,#0x80
+      000019 95 F0            [12]  151 	subb	a,b
+      00001B 50 28            [24]  152 	jnc	00105$
+      00001D 1E               [12]  153 	dec	r6
+      00001E BE FF 01         [24]  154 	cjne	r6,#0xff,00129$
+      000021 1F               [12]  155 	dec	r7
+      000022                        156 00129$:
+                                    157 ;	../../../core/net/mac/sicslowmac.c:89: if(addr[i] != 0xff) {
+      000022 E5 81            [12]  158 	mov	a,sp
+      000024 24 FB            [12]  159 	add	a,#0xfb
+      000026 F8               [12]  160 	mov	r0,a
+      000027 EE               [12]  161 	mov	a,r6
+      000028 26               [12]  162 	add	a,@r0
+      000029 FB               [12]  163 	mov	r3,a
+      00002A EF               [12]  164 	mov	a,r7
+      00002B 08               [12]  165 	inc	r0
+      00002C 36               [12]  166 	addc	a,@r0
+      00002D FC               [12]  167 	mov	r4,a
+      00002E 08               [12]  168 	inc	r0
+      00002F 86 05            [24]  169 	mov	ar5,@r0
+      000031 8B 82            [24]  170 	mov	dpl,r3
+      000033 8C 83            [24]  171 	mov	dph,r4
+      000035 8D F0            [24]  172 	mov	b,r5
+      000037 12r00r00         [24]  173 	lcall	__gptrget
+      00003A FB               [12]  174 	mov	r3,a
+      00003B BB FF 02         [24]  175 	cjne	r3,#0xff,00130$
+      00003E 80 CF            [24]  176 	sjmp	00103$
+      000040                        177 00130$:
+                                    178 ;	../../../core/net/mac/sicslowmac.c:90: return 0;
+      000040 90 00 00         [24]  179 	mov	dptr,#0x0000
+      000043 80 03            [24]  180 	sjmp	00106$
+      000045                        181 00105$:
+                                    182 ;	../../../core/net/mac/sicslowmac.c:93: return 1;
+      000045 90 00 01         [24]  183 	mov	dptr,#0x0001
+      000048                        184 00106$:
+                                    185 ;	../../../core/net/mac/sicslowmac.c:94: }
+      000048 02r00r00         [24]  186 	ljmp	__sdcc_banked_ret
+                                    187 ;------------------------------------------------------------
+                                    188 ;Allocation info for local variables in function 'send_packet'
+                                    189 ;------------------------------------------------------------
+                                    190 ;ptr                       Allocated to stack - sp -61
+                                    191 ;sent                      Allocated to stack - sp -55
+                                    192 ;params                    Allocated to stack - sp -49
+                                    193 ;len                       Allocated to stack - sp +0
+                                    194 ;ret                       Allocated to registers r7 r6 
+                                    195 ;sloc0                     Allocated to stack - sp -52
+                                    196 ;------------------------------------------------------------
+                                    197 ;	../../../core/net/mac/sicslowmac.c:97: send_packet(mac_callback_t sent, void *ptr)
+                                    198 ;	-----------------------------------------
+                                    199 ;	 function send_packet
+                                    200 ;	-----------------------------------------
+      00004B                        201 _send_packet:
+      00004B C0 82            [24]  202 	push	dpl
+      00004D C0 83            [24]  203 	push	dph
+      00004F C0 F0            [24]  204 	push	b
+      000051 E5 81            [12]  205 	mov	a,sp
+      000053 24 35            [12]  206 	add	a,#0x35
+                                    207 ;	../../../core/net/mac/sicslowmac.c:103: memset(&params, 0, sizeof(params));
+      000055 F5 81            [12]  208 	mov	sp,a
+      000057 24 CF            [12]  209 	add	a,#0xcf
+      000059 F9               [12]  210 	mov	r1,a
+      00005A FA               [12]  211 	mov	r2,a
+      00005B 7B 00            [12]  212 	mov	r3,#0x00
+      00005D 7C 40            [12]  213 	mov	r4,#0x40
+      00005F C0 01            [24]  214 	push	ar1
+      000061 74 31            [12]  215 	mov	a,#0x31
+      000063 C0 E0            [24]  216 	push	acc
+      000065 E4               [12]  217 	clr	a
+      000066 C0 E0            [24]  218 	push	acc
+      000068 C0 E0            [24]  219 	push	acc
+      00006A 8A 82            [24]  220 	mov	dpl,r2
+      00006C 8B 83            [24]  221 	mov	dph,r3
+      00006E 8C F0            [24]  222 	mov	b,r4
+      000070 78r00            [12]  223 	mov	r0,#_memset
+      000072 79s00            [12]  224 	mov	r1,#(_memset >> 8)
+      000074 7As00            [12]  225 	mov	r2,#(_memset >> 16)
+      000076 12r00r00         [24]  226 	lcall	__sdcc_banked_call
+      000079 15 81            [12]  227 	dec	sp
+      00007B 15 81            [12]  228 	dec	sp
+      00007D 15 81            [12]  229 	dec	sp
+      00007F D0 01            [24]  230 	pop	ar1
+                                    231 ;	../../../core/net/mac/sicslowmac.c:106: params.fcf.frame_type = FRAME802154_DATAFRAME;
+      000081 77 01            [12]  232 	mov	@r1,#0x01
+                                    233 ;	../../../core/net/mac/sicslowmac.c:107: params.fcf.security_enabled = 0;
+      000083 E9               [12]  234 	mov	a,r1
+      000084 04               [12]  235 	inc	a
+      000085 F8               [12]  236 	mov	r0,a
+      000086 76 00            [12]  237 	mov	@r0,#0x00
+                                    238 ;	../../../core/net/mac/sicslowmac.c:108: params.fcf.frame_pending = 0;
+      000088 74 02            [12]  239 	mov	a,#0x02
+      00008A 29               [12]  240 	add	a,r1
+      00008B F8               [12]  241 	mov	r0,a
+      00008C 76 00            [12]  242 	mov	@r0,#0x00
+                                    243 ;	../../../core/net/mac/sicslowmac.c:109: params.fcf.ack_required = packetbuf_attr(PACKETBUF_ATTR_RELIABLE);
+      00008E 74 03            [12]  244 	mov	a,#0x03
+      000090 29               [12]  245 	add	a,r1
+      000091 F8               [12]  246 	mov	r0,a
+      000092 75 82 0C         [24]  247 	mov	dpl,#0x0c
+      000095 C0 01            [24]  248 	push	ar1
+      000097 C0 00            [24]  249 	push	ar0
+      000099 78r00            [12]  250 	mov	r0,#_packetbuf_attr
+      00009B 79s00            [12]  251 	mov	r1,#(_packetbuf_attr >> 8)
+      00009D 7As00            [12]  252 	mov	r2,#(_packetbuf_attr >> 16)
+      00009F 12r00r00         [24]  253 	lcall	__sdcc_banked_call
+      0000A2 AB 82            [24]  254 	mov	r3,dpl
+      0000A4 D0 00            [24]  255 	pop	ar0
+      0000A6 D0 01            [24]  256 	pop	ar1
+      0000A8 A6 03            [24]  257 	mov	@r0,ar3
+                                    258 ;	../../../core/net/mac/sicslowmac.c:110: params.fcf.panid_compression = 0;
+      0000AA 74 04            [12]  259 	mov	a,#0x04
+      0000AC 29               [12]  260 	add	a,r1
+      0000AD F8               [12]  261 	mov	r0,a
+      0000AE 76 00            [12]  262 	mov	@r0,#0x00
+                                    263 ;	../../../core/net/mac/sicslowmac.c:113: params.fcf.frame_version = FRAME802154_IEEE802154_2003;
+      0000B0 74 06            [12]  264 	mov	a,#0x06
+      0000B2 29               [12]  265 	add	a,r1
+      0000B3 F8               [12]  266 	mov	r0,a
+      0000B4 76 00            [12]  267 	mov	@r0,#0x00
+                                    268 ;	../../../core/net/mac/sicslowmac.c:116: params.seq = mac_dsn++;
+      0000B6 74 08            [12]  269 	mov	a,#0x08
+      0000B8 29               [12]  270 	add	a,r1
+      0000B9 F8               [12]  271 	mov	r0,a
+      0000BA 90r00r00         [24]  272 	mov	dptr,#_mac_dsn
+      0000BD E0               [24]  273 	movx	a,@dptr
+      0000BE FC               [12]  274 	mov	r4,a
+      0000BF 04               [12]  275 	inc	a
+      0000C0 F0               [24]  276 	movx	@dptr,a
+      0000C1 A6 04            [24]  277 	mov	@r0,ar4
+                                    278 ;	../../../core/net/mac/sicslowmac.c:123: params.fcf.src_addr_mode = FRAME802154_LONGADDRMODE;
+      0000C3 74 07            [12]  279 	mov	a,#0x07
+      0000C5 29               [12]  280 	add	a,r1
+      0000C6 F8               [12]  281 	mov	r0,a
+      0000C7 76 03            [12]  282 	mov	@r0,#0x03
+                                    283 ;	../../../core/net/mac/sicslowmac.c:124: params.dest_pid = mac_dst_pan_id;
+      0000C9 74 09            [12]  284 	mov	a,#0x09
+      0000CB 29               [12]  285 	add	a,r1
+      0000CC F9               [12]  286 	mov	r1,a
+      0000CD 90r00r00         [24]  287 	mov	dptr,#_mac_dst_pan_id
+      0000D0 E0               [24]  288 	movx	a,@dptr
+      0000D1 FB               [12]  289 	mov	r3,a
+      0000D2 A3               [24]  290 	inc	dptr
+      0000D3 E0               [24]  291 	movx	a,@dptr
+      0000D4 FC               [12]  292 	mov	r4,a
+      0000D5 A7 03            [24]  293 	mov	@r1,ar3
+      0000D7 09               [12]  294 	inc	r1
+      0000D8 A7 04            [24]  295 	mov	@r1,ar4
+                                    296 ;	../../../core/net/mac/sicslowmac.c:130: if(rimeaddr_cmp(packetbuf_addr(PACKETBUF_ADDR_RECEIVER), &rimeaddr_null)) {
+      0000DA 75 82 19         [24]  297 	mov	dpl,#0x19
+      0000DD 78r00            [12]  298 	mov	r0,#_packetbuf_addr
+      0000DF 79s00            [12]  299 	mov	r1,#(_packetbuf_addr >> 8)
+      0000E1 7As00            [12]  300 	mov	r2,#(_packetbuf_addr >> 16)
+      0000E3 12r00r00         [24]  301 	lcall	__sdcc_banked_call
+      0000E6 AA 82            [24]  302 	mov	r2,dpl
+      0000E8 AB 83            [24]  303 	mov	r3,dph
+      0000EA AC F0            [24]  304 	mov	r4,b
+      0000EC 74r00            [12]  305 	mov	a,#_rimeaddr_null
+      0000EE C0 E0            [24]  306 	push	acc
+      0000F0 74s00            [12]  307 	mov	a,#(_rimeaddr_null >> 8)
+      0000F2 C0 E0            [24]  308 	push	acc
+      0000F4 74 80            [12]  309 	mov	a,#0x80
+      0000F6 C0 E0            [24]  310 	push	acc
+      0000F8 8A 82            [24]  311 	mov	dpl,r2
+      0000FA 8B 83            [24]  312 	mov	dph,r3
+      0000FC 8C F0            [24]  313 	mov	b,r4
+      0000FE 78r00            [12]  314 	mov	r0,#_rimeaddr_cmp
+      000100 79s00            [12]  315 	mov	r1,#(_rimeaddr_cmp >> 8)
+      000102 7As00            [12]  316 	mov	r2,#(_rimeaddr_cmp >> 16)
+      000104 12r00r00         [24]  317 	lcall	__sdcc_banked_call
+      000107 AB 82            [24]  318 	mov	r3,dpl
+      000109 AC 83            [24]  319 	mov	r4,dph
+      00010B 15 81            [12]  320 	dec	sp
+      00010D 15 81            [12]  321 	dec	sp
+      00010F 15 81            [12]  322 	dec	sp
+      000111 EB               [12]  323 	mov	a,r3
+      000112 4C               [12]  324 	orl	a,r4
+      000113 60 1B            [24]  325 	jz	00102$
+                                    326 ;	../../../core/net/mac/sicslowmac.c:132: params.fcf.dest_addr_mode = FRAME802154_SHORTADDRMODE;
+      000115 E5 81            [12]  327 	mov	a,sp
+      000117 24 CF            [12]  328 	add	a,#0xcf
+      000119 24 05            [12]  329 	add	a,#0x05
+      00011B F8               [12]  330 	mov	r0,a
+      00011C 76 02            [12]  331 	mov	@r0,#0x02
+                                    332 ;	../../../core/net/mac/sicslowmac.c:133: params.dest_addr[0] = 0xFF;
+      00011E E5 81            [12]  333 	mov	a,sp
+      000120 24 CF            [12]  334 	add	a,#0xcf
+      000122 FC               [12]  335 	mov	r4,a
+      000123 24 0B            [12]  336 	add	a,#0x0b
+      000125 F8               [12]  337 	mov	r0,a
+      000126 76 FF            [12]  338 	mov	@r0,#0xff
+                                    339 ;	../../../core/net/mac/sicslowmac.c:134: params.dest_addr[1] = 0xFF;
+      000128 74 0C            [12]  340 	mov	a,#0x0c
+      00012A 2C               [12]  341 	add	a,r4
+      00012B F8               [12]  342 	mov	r0,a
+      00012C 76 FF            [12]  343 	mov	@r0,#0xff
+      00012E 80 55            [24]  344 	sjmp	00103$
+      000130                        345 00102$:
+                                    346 ;	../../../core/net/mac/sicslowmac.c:138: packetbuf_addr(PACKETBUF_ADDR_RECEIVER));
+      000130 75 82 19         [24]  347 	mov	dpl,#0x19
+      000133 78r00            [12]  348 	mov	r0,#_packetbuf_addr
+      000135 79s00            [12]  349 	mov	r1,#(_packetbuf_addr >> 8)
+      000137 7As00            [12]  350 	mov	r2,#(_packetbuf_addr >> 16)
+      000139 12r00r00         [24]  351 	lcall	__sdcc_banked_call
+      00013C C8               [12]  352 	xch	a,r0
+      00013D E5 81            [12]  353 	mov	a,sp
+      00013F 24 CC            [12]  354 	add	a,#0xcc
+      000141 C8               [12]  355 	xch	a,r0
+      000142 A6 82            [24]  356 	mov	@r0,dpl
+      000144 08               [12]  357 	inc	r0
+      000145 A6 83            [24]  358 	mov	@r0,dph
+      000147 08               [12]  359 	inc	r0
+      000148 A6 F0            [24]  360 	mov	@r0,b
+                                    361 ;	../../../core/net/mac/sicslowmac.c:137: rimeaddr_copy((rimeaddr_t *)&params.dest_addr,
+      00014A E5 81            [12]  362 	mov	a,sp
+      00014C 24 CF            [12]  363 	add	a,#0xcf
+      00014E FF               [12]  364 	mov	r7,a
+      00014F 24 0B            [12]  365 	add	a,#0x0b
+      000151 FC               [12]  366 	mov	r4,a
+      000152 7D 00            [12]  367 	mov	r5,#0x00
+      000154 7E 40            [12]  368 	mov	r6,#0x40
+      000156 C0 07            [24]  369 	push	ar7
+      000158 E5 81            [12]  370 	mov	a,sp
+      00015A 24 CB            [12]  371 	add	a,#0xcb
+      00015C F8               [12]  372 	mov	r0,a
+      00015D E6               [12]  373 	mov	a,@r0
+      00015E C0 E0            [24]  374 	push	acc
+      000160 08               [12]  375 	inc	r0
+      000161 E6               [12]  376 	mov	a,@r0
+      000162 C0 E0            [24]  377 	push	acc
+      000164 08               [12]  378 	inc	r0
+      000165 E6               [12]  379 	mov	a,@r0
+      000166 C0 E0            [24]  380 	push	acc
+      000168 8C 82            [24]  381 	mov	dpl,r4
+      00016A 8D 83            [24]  382 	mov	dph,r5
+      00016C 8E F0            [24]  383 	mov	b,r6
+      00016E 78r00            [12]  384 	mov	r0,#_rimeaddr_copy
+      000170 79s00            [12]  385 	mov	r1,#(_rimeaddr_copy >> 8)
+      000172 7As00            [12]  386 	mov	r2,#(_rimeaddr_copy >> 16)
+      000174 12r00r00         [24]  387 	lcall	__sdcc_banked_call
+      000177 15 81            [12]  388 	dec	sp
+      000179 15 81            [12]  389 	dec	sp
+      00017B 15 81            [12]  390 	dec	sp
+      00017D D0 07            [24]  391 	pop	ar7
+                                    392 ;	../../../core/net/mac/sicslowmac.c:139: params.fcf.dest_addr_mode = FRAME802154_LONGADDRMODE;
+      00017F 74 05            [12]  393 	mov	a,#0x05
+      000181 2F               [12]  394 	add	a,r7
+      000182 F8               [12]  395 	mov	r0,a
+      000183 76 03            [12]  396 	mov	@r0,#0x03
+                                    397 ;	../../../core/net/mac/sicslowmac.c:171: }
+                                    398 ;	../../../core/net/mac/sicslowmac.c:139: params.fcf.dest_addr_mode = FRAME802154_LONGADDRMODE;
+      000185                        399 00103$:
+                                    400 ;	../../../core/net/mac/sicslowmac.c:143: params.src_pid = mac_src_pan_id;
+      000185 E5 81            [12]  401 	mov	a,sp
+      000187 24 CF            [12]  402 	add	a,#0xcf
+      000189 FC               [12]  403 	mov	r4,a
+      00018A 24 13            [12]  404 	add	a,#0x13
+      00018C F9               [12]  405 	mov	r1,a
+      00018D 90r00r02         [24]  406 	mov	dptr,#_mac_src_pan_id
+      000190 E0               [24]  407 	movx	a,@dptr
+      000191 FA               [12]  408 	mov	r2,a
+      000192 A3               [24]  409 	inc	dptr
+      000193 E0               [24]  410 	movx	a,@dptr
+      000194 FB               [12]  411 	mov	r3,a
+      000195 A7 02            [24]  412 	mov	@r1,ar2
+      000197 09               [12]  413 	inc	r1
+      000198 A7 03            [24]  414 	mov	@r1,ar3
+                                    415 ;	../../../core/net/mac/sicslowmac.c:149: rimeaddr_copy((rimeaddr_t *)&params.src_addr, &rimeaddr_node_addr);
+      00019A 74 15            [12]  416 	mov	a,#0x15
+      00019C 2C               [12]  417 	add	a,r4
+      00019D FA               [12]  418 	mov	r2,a
+      00019E 7B 00            [12]  419 	mov	r3,#0x00
+      0001A0 7F 40            [12]  420 	mov	r7,#0x40
+      0001A2 C0 04            [24]  421 	push	ar4
+      0001A4 74r00            [12]  422 	mov	a,#_rimeaddr_node_addr
+      0001A6 C0 E0            [24]  423 	push	acc
+      0001A8 74s00            [12]  424 	mov	a,#(_rimeaddr_node_addr >> 8)
+      0001AA C0 E0            [24]  425 	push	acc
+      0001AC E4               [12]  426 	clr	a
+      0001AD C0 E0            [24]  427 	push	acc
+      0001AF 8A 82            [24]  428 	mov	dpl,r2
+      0001B1 8B 83            [24]  429 	mov	dph,r3
+      0001B3 8F F0            [24]  430 	mov	b,r7
+      0001B5 78r00            [12]  431 	mov	r0,#_rimeaddr_copy
+      0001B7 79s00            [12]  432 	mov	r1,#(_rimeaddr_copy >> 8)
+      0001B9 7As00            [12]  433 	mov	r2,#(_rimeaddr_copy >> 16)
+      0001BB 12r00r00         [24]  434 	lcall	__sdcc_banked_call
+      0001BE 15 81            [12]  435 	dec	sp
+      0001C0 15 81            [12]  436 	dec	sp
+      0001C2 15 81            [12]  437 	dec	sp
+      0001C4 D0 04            [24]  438 	pop	ar4
+                                    439 ;	../../../core/net/mac/sicslowmac.c:151: params.payload = packetbuf_dataptr();
+      0001C6 74 2D            [12]  440 	mov	a,#0x2d
+      0001C8 2C               [12]  441 	add	a,r4
+      0001C9 F9               [12]  442 	mov	r1,a
+      0001CA C0 04            [24]  443 	push	ar4
+      0001CC C0 01            [24]  444 	push	ar1
+      0001CE 78r00            [12]  445 	mov	r0,#_packetbuf_dataptr
+      0001D0 79s00            [12]  446 	mov	r1,#(_packetbuf_dataptr >> 8)
+      0001D2 7As00            [12]  447 	mov	r2,#(_packetbuf_dataptr >> 16)
+      0001D4 12r00r00         [24]  448 	lcall	__sdcc_banked_call
+      0001D7 AD 82            [24]  449 	mov	r5,dpl
+      0001D9 AE 83            [24]  450 	mov	r6,dph
+      0001DB AF F0            [24]  451 	mov	r7,b
+      0001DD D0 01            [24]  452 	pop	ar1
+      0001DF D0 04            [24]  453 	pop	ar4
+      0001E1 A7 05            [24]  454 	mov	@r1,ar5
+      0001E3 09               [12]  455 	inc	r1
+      0001E4 A7 06            [24]  456 	mov	@r1,ar6
+      0001E6 09               [12]  457 	inc	r1
+      0001E7 A7 07            [24]  458 	mov	@r1,ar7
+                                    459 ;	../../../core/net/mac/sicslowmac.c:152: params.payload_len = packetbuf_datalen();
+      0001E9 74 30            [12]  460 	mov	a,#0x30
+      0001EB 2C               [12]  461 	add	a,r4
+      0001EC F9               [12]  462 	mov	r1,a
+      0001ED C0 04            [24]  463 	push	ar4
+      0001EF C0 01            [24]  464 	push	ar1
+      0001F1 78r00            [12]  465 	mov	r0,#_packetbuf_datalen
+      0001F3 79s00            [12]  466 	mov	r1,#(_packetbuf_datalen >> 8)
+      0001F5 7As00            [12]  467 	mov	r2,#(_packetbuf_datalen >> 16)
+      0001F7 12r00r00         [24]  468 	lcall	__sdcc_banked_call
+      0001FA AE 82            [24]  469 	mov	r6,dpl
+      0001FC D0 01            [24]  470 	pop	ar1
+      0001FE D0 04            [24]  471 	pop	ar4
+      000200 A7 06            [24]  472 	mov	@r1,ar6
+                                    473 ;	../../../core/net/mac/sicslowmac.c:153: len = frame802154_hdrlen(&params);
+      000202 7F 00            [12]  474 	mov	r7,#0x00
+      000204 7E 40            [12]  475 	mov	r6,#0x40
+      000206 8C 82            [24]  476 	mov	dpl,r4
+      000208 8F 83            [24]  477 	mov	dph,r7
+      00020A 8E F0            [24]  478 	mov	b,r6
+      00020C 78r00            [12]  479 	mov	r0,#_frame802154_hdrlen
+      00020E 79s00            [12]  480 	mov	r1,#(_frame802154_hdrlen >> 8)
+      000210 7As00            [12]  481 	mov	r2,#(_frame802154_hdrlen >> 16)
+      000212 12r00r00         [24]  482 	lcall	__sdcc_banked_call
+      000215 AF 82            [24]  483 	mov	r7,dpl
+      000217 A8 81            [24]  484 	mov	r0,sp
+      000219 A6 07            [24]  485 	mov	@r0,ar7
+                                    486 ;	../../../core/net/mac/sicslowmac.c:154: if(packetbuf_hdralloc(len)) {
+      00021B A8 81            [24]  487 	mov	r0,sp
+      00021D 86 06            [24]  488 	mov	ar6,@r0
+      00021F 7F 00            [12]  489 	mov	r7,#0x00
+      000221 8E 82            [24]  490 	mov	dpl,r6
+      000223 8F 83            [24]  491 	mov	dph,r7
+      000225 78r00            [12]  492 	mov	r0,#_packetbuf_hdralloc
+      000227 79s00            [12]  493 	mov	r1,#(_packetbuf_hdralloc >> 8)
+      000229 7As00            [12]  494 	mov	r2,#(_packetbuf_hdralloc >> 16)
+      00022B 12r00r00         [24]  495 	lcall	__sdcc_banked_call
+      00022E E5 82            [12]  496 	mov	a,dpl
+      000230 85 83 F0         [24]  497 	mov	b,dph
+      000233 45 F0            [12]  498 	orl	a,b
+      000235 70 03            [24]  499 	jnz	00134$
+      000237 02r03r6E         [24]  500 	ljmp	00111$
+      00023A                        501 00134$:
+                                    502 ;	../../../core/net/mac/sicslowmac.c:156: frame802154_create(&params, packetbuf_hdrptr(), len);
+      00023A 78r00            [12]  503 	mov	r0,#_packetbuf_hdrptr
+      00023C 79s00            [12]  504 	mov	r1,#(_packetbuf_hdrptr >> 8)
+      00023E 7As00            [12]  505 	mov	r2,#(_packetbuf_hdrptr >> 16)
+      000240 12r00r00         [24]  506 	lcall	__sdcc_banked_call
+      000243 AA 82            [24]  507 	mov	r2,dpl
+      000245 AB 83            [24]  508 	mov	r3,dph
+      000247 AC F0            [24]  509 	mov	r4,b
+      000249 E5 81            [12]  510 	mov	a,sp
+      00024B 24 CF            [12]  511 	add	a,#0xcf
+      00024D FF               [12]  512 	mov	r7,a
+      00024E 7E 00            [12]  513 	mov	r6,#0x00
+      000250 7D 40            [12]  514 	mov	r5,#0x40
+      000252 A8 81            [24]  515 	mov	r0,sp
+      000254 E6               [12]  516 	mov	a,@r0
+      000255 C0 E0            [24]  517 	push	acc
+      000257 C0 02            [24]  518 	push	ar2
+      000259 C0 03            [24]  519 	push	ar3
+      00025B C0 04            [24]  520 	push	ar4
+      00025D 8F 82            [24]  521 	mov	dpl,r7
+      00025F 8E 83            [24]  522 	mov	dph,r6
+      000261 8D F0            [24]  523 	mov	b,r5
+      000263 78r00            [12]  524 	mov	r0,#_frame802154_create
+      000265 79s00            [12]  525 	mov	r1,#(_frame802154_create >> 8)
+      000267 7As00            [12]  526 	mov	r2,#(_frame802154_create >> 16)
+      000269 12r00r00         [24]  527 	lcall	__sdcc_banked_call
+      00026C E5 81            [12]  528 	mov	a,sp
+      00026E 24 FC            [12]  529 	add	a,#0xfc
+      000270 F5 81            [12]  530 	mov	sp,a
+                                    531 ;	../../../core/net/mac/sicslowmac.c:162: ret = NETSTACK_RADIO.send(packetbuf_hdrptr(), packetbuf_totlen());
+      000272 90r00r09         [24]  532 	mov	dptr,#(_cc2530_rf_driver + 0x0009)
+      000275 E4               [12]  533 	clr	a
+      000276 93               [24]  534 	movc	a,@a+dptr
+      000277 FD               [12]  535 	mov	r5,a
+      000278 A3               [24]  536 	inc	dptr
+      000279 E4               [12]  537 	clr	a
+      00027A 93               [24]  538 	movc	a,@a+dptr
+      00027B FE               [12]  539 	mov	r6,a
+      00027C A3               [24]  540 	inc	dptr
+      00027D E4               [12]  541 	clr	a
+      00027E 93               [24]  542 	movc	a,@a+dptr
+      00027F FF               [12]  543 	mov	r7,a
+      000280 C0 07            [24]  544 	push	ar7
+      000282 C0 06            [24]  545 	push	ar6
+      000284 C0 05            [24]  546 	push	ar5
+      000286 78r00            [12]  547 	mov	r0,#_packetbuf_totlen
+      000288 79s00            [12]  548 	mov	r1,#(_packetbuf_totlen >> 8)
+      00028A 7As00            [12]  549 	mov	r2,#(_packetbuf_totlen >> 16)
+      00028C 12r00r00         [24]  550 	lcall	__sdcc_banked_call
+      00028F C8               [12]  551 	xch	a,r0
+      000290 E5 81            [12]  552 	mov	a,sp
+      000292 24 C9            [12]  553 	add	a,#0xc9
+      000294 C8               [12]  554 	xch	a,r0
+      000295 A6 82            [24]  555 	mov	@r0,dpl
+      000297 08               [12]  556 	inc	r0
+      000298 A6 83            [24]  557 	mov	@r0,dph
+      00029A 78r00            [12]  558 	mov	r0,#_packetbuf_hdrptr
+      00029C 79s00            [12]  559 	mov	r1,#(_packetbuf_hdrptr >> 8)
+      00029E 7As00            [12]  560 	mov	r2,#(_packetbuf_hdrptr >> 16)
+      0002A0 12r00r00         [24]  561 	lcall	__sdcc_banked_call
+      0002A3 AA 82            [24]  562 	mov	r2,dpl
+      0002A5 AB 83            [24]  563 	mov	r3,dph
+      0002A7 AC F0            [24]  564 	mov	r4,b
+      0002A9 D0 05            [24]  565 	pop	ar5
+      0002AB D0 06            [24]  566 	pop	ar6
+      0002AD D0 07            [24]  567 	pop	ar7
+      0002AF C0 07            [24]  568 	push	ar7
+      0002B1 E5 81            [12]  569 	mov	a,sp
+      0002B3 24 CB            [12]  570 	add	a,#0xcb
+      0002B5 F8               [12]  571 	mov	r0,a
+      0002B6 E6               [12]  572 	mov	a,@r0
+      0002B7 C0 E0            [24]  573 	push	acc
+      0002B9 08               [12]  574 	inc	r0
+      0002BA E6               [12]  575 	mov	a,@r0
+      0002BB C0 E0            [24]  576 	push	acc
+      0002BD C0 05            [24]  577 	push	ar5
+      0002BF C0 06            [24]  578 	push	ar6
+      0002C1 C0 07            [24]  579 	push	ar7
+      0002C3 8A 82            [24]  580 	mov	dpl,r2
+      0002C5 8B 83            [24]  581 	mov	dph,r3
+      0002C7 8C F0            [24]  582 	mov	b,r4
+      0002C9 D0 02            [24]  583 	pop	ar2
+      0002CB D0 01            [24]  584 	pop	ar1
+      0002CD D0 00            [24]  585 	pop	ar0
+      0002CF 12r00r00         [24]  586 	lcall	__sdcc_banked_call
+      0002D2 AD 82            [24]  587 	mov	r5,dpl
+      0002D4 AE 83            [24]  588 	mov	r6,dph
+      0002D6 15 81            [12]  589 	dec	sp
+      0002D8 15 81            [12]  590 	dec	sp
+      0002DA D0 07            [24]  591 	pop	ar7
+      0002DC 8D 07            [24]  592 	mov	ar7,r5
+                                    593 ;	../../../core/net/mac/sicslowmac.c:163: if(sent) {
+      0002DE E5 81            [12]  594 	mov	a,sp
+      0002E0 24 C9            [12]  595 	add	a,#0xc9
+      0002E2 F8               [12]  596 	mov	r0,a
+      0002E3 E6               [12]  597 	mov	a,@r0
+      0002E4 08               [12]  598 	inc	r0
+      0002E5 46               [12]  599 	orl	a,@r0
+      0002E6 70 03            [24]  600 	jnz	00135$
+      0002E8 02r03r6E         [24]  601 	ljmp	00111$
+      0002EB                        602 00135$:
+                                    603 ;	../../../core/net/mac/sicslowmac.c:164: switch(ret) {
+      0002EB BF 00 05         [24]  604 	cjne	r7,#0x00,00136$
+      0002EE BE 00 02         [24]  605 	cjne	r6,#0x00,00136$
+      0002F1 80 08            [24]  606 	sjmp	00104$
+      0002F3                        607 00136$:
+                                    608 ;	../../../core/net/mac/sicslowmac.c:165: case RADIO_TX_OK:
+      0002F3 BF 01 78         [24]  609 	cjne	r7,#0x01,00111$
+      0002F6 BE 00 75         [24]  610 	cjne	r6,#0x00,00111$
+      0002F9 80 39            [24]  611 	sjmp	00105$
+      0002FB                        612 00104$:
+                                    613 ;	../../../core/net/mac/sicslowmac.c:166: sent(ptr, MAC_TX_OK, 1);
+      0002FB 74 01            [12]  614 	mov	a,#0x01
+      0002FD C0 E0            [24]  615 	push	acc
+      0002FF E4               [12]  616 	clr	a
+      000300 C0 E0            [24]  617 	push	acc
+      000302 C0 E0            [24]  618 	push	acc
+      000304 C0 E0            [24]  619 	push	acc
+      000306 E5 81            [12]  620 	mov	a,sp
+      000308 24 C5            [12]  621 	add	a,#0xc5
+      00030A F8               [12]  622 	mov	r0,a
+      00030B E6               [12]  623 	mov	a,@r0
+      00030C C0 E0            [24]  624 	push	acc
+      00030E 08               [12]  625 	inc	r0
+      00030F E6               [12]  626 	mov	a,@r0
+      000310 C0 E0            [24]  627 	push	acc
+      000312 08               [12]  628 	inc	r0
+      000313 E6               [12]  629 	mov	a,@r0
+      000314 C0 E0            [24]  630 	push	acc
+      000316 E5 81            [12]  631 	mov	a,sp
+      000318 24 BC            [12]  632 	add	a,#0xbc
+      00031A F8               [12]  633 	mov	r0,a
+      00031B 86 82            [24]  634 	mov	dpl,@r0
+      00031D 08               [12]  635 	inc	r0
+      00031E 86 83            [24]  636 	mov	dph,@r0
+      000320 08               [12]  637 	inc	r0
+      000321 86 F0            [24]  638 	mov	b,@r0
+      000323 D0 02            [24]  639 	pop	ar2
+      000325 D0 01            [24]  640 	pop	ar1
+      000327 D0 00            [24]  641 	pop	ar0
+      000329 12r00r00         [24]  642 	lcall	__sdcc_banked_call
+      00032C E5 81            [12]  643 	mov	a,sp
+      00032E 24 FC            [12]  644 	add	a,#0xfc
+      000330 F5 81            [12]  645 	mov	sp,a
+                                    646 ;	../../../core/net/mac/sicslowmac.c:167: break;
+                                    647 ;	../../../core/net/mac/sicslowmac.c:168: case RADIO_TX_ERR:
+      000332 80 3A            [24]  648 	sjmp	00111$
+      000334                        649 00105$:
+                                    650 ;	../../../core/net/mac/sicslowmac.c:169: sent(ptr, MAC_TX_ERR, 1);
+      000334 74 01            [12]  651 	mov	a,#0x01
+      000336 C0 E0            [24]  652 	push	acc
+      000338 E4               [12]  653 	clr	a
+      000339 C0 E0            [24]  654 	push	acc
+      00033B 74 04            [12]  655 	mov	a,#0x04
+      00033D C0 E0            [24]  656 	push	acc
+      00033F E4               [12]  657 	clr	a
+      000340 C0 E0            [24]  658 	push	acc
+      000342 E5 81            [12]  659 	mov	a,sp
+      000344 24 C5            [12]  660 	add	a,#0xc5
+      000346 F8               [12]  661 	mov	r0,a
+      000347 E6               [12]  662 	mov	a,@r0
+      000348 C0 E0            [24]  663 	push	acc
+      00034A 08               [12]  664 	inc	r0
+      00034B E6               [12]  665 	mov	a,@r0
+      00034C C0 E0            [24]  666 	push	acc
+      00034E 08               [12]  667 	inc	r0
+      00034F E6               [12]  668 	mov	a,@r0
+      000350 C0 E0            [24]  669 	push	acc
+      000352 E5 81            [12]  670 	mov	a,sp
+      000354 24 BC            [12]  671 	add	a,#0xbc
+      000356 F8               [12]  672 	mov	r0,a
+      000357 86 82            [24]  673 	mov	dpl,@r0
+      000359 08               [12]  674 	inc	r0
+      00035A 86 83            [24]  675 	mov	dph,@r0
+      00035C 08               [12]  676 	inc	r0
+      00035D 86 F0            [24]  677 	mov	b,@r0
+      00035F D0 02            [24]  678 	pop	ar2
+      000361 D0 01            [24]  679 	pop	ar1
+      000363 D0 00            [24]  680 	pop	ar0
+      000365 12r00r00         [24]  681 	lcall	__sdcc_banked_call
+      000368 E5 81            [12]  682 	mov	a,sp
+      00036A 24 FC            [12]  683 	add	a,#0xfc
+      00036C F5 81            [12]  684 	mov	sp,a
+                                    685 ;	../../../core/net/mac/sicslowmac.c:171: }
+      00036E                        686 00111$:
+                                    687 ;	../../../core/net/mac/sicslowmac.c:176: }
+      00036E E5 81            [12]  688 	mov	a,sp
+      000370 24 C8            [12]  689 	add	a,#0xc8
+      000372 F5 81            [12]  690 	mov	sp,a
+      000374 02r00r00         [24]  691 	ljmp	__sdcc_banked_ret
+                                    692 ;------------------------------------------------------------
+                                    693 ;Allocation info for local variables in function 'send_list'
+                                    694 ;------------------------------------------------------------
+                                    695 ;ptr                       Allocated to stack - sp -5
+                                    696 ;buf_list                  Allocated to stack - sp -8
+                                    697 ;sent                      Allocated to registers r5 r6 r7 
+                                    698 ;------------------------------------------------------------
+                                    699 ;	../../../core/net/mac/sicslowmac.c:179: send_list(mac_callback_t sent, void *ptr, struct rdc_buf_list *buf_list)
+                                    700 ;	-----------------------------------------
+                                    701 ;	 function send_list
+                                    702 ;	-----------------------------------------
+      000377                        703 _send_list:
+      000377 AD 82            [24]  704 	mov	r5,dpl
+      000379 AE 83            [24]  705 	mov	r6,dph
+      00037B AF F0            [24]  706 	mov	r7,b
+                                    707 ;	../../../core/net/mac/sicslowmac.c:181: if(buf_list != NULL) {
+      00037D E5 81            [12]  708 	mov	a,sp
+      00037F 24 F8            [12]  709 	add	a,#0xf8
+      000381 F8               [12]  710 	mov	r0,a
+      000382 E6               [12]  711 	mov	a,@r0
+      000383 08               [12]  712 	inc	r0
+      000384 46               [12]  713 	orl	a,@r0
+      000385 60 68            [24]  714 	jz	00103$
+                                    715 ;	../../../core/net/mac/sicslowmac.c:182: queuebuf_to_packetbuf(buf_list->buf);
+      000387 E5 81            [12]  716 	mov	a,sp
+      000389 24 F8            [12]  717 	add	a,#0xf8
+      00038B F8               [12]  718 	mov	r0,a
+      00038C 86 02            [24]  719 	mov	ar2,@r0
+      00038E 08               [12]  720 	inc	r0
+      00038F 86 03            [24]  721 	mov	ar3,@r0
+      000391 08               [12]  722 	inc	r0
+      000392 86 04            [24]  723 	mov	ar4,@r0
+      000394 74 03            [12]  724 	mov	a,#0x03
+      000396 2A               [12]  725 	add	a,r2
+      000397 FA               [12]  726 	mov	r2,a
+      000398 E4               [12]  727 	clr	a
+      000399 3B               [12]  728 	addc	a,r3
+      00039A FB               [12]  729 	mov	r3,a
+      00039B 8A 82            [24]  730 	mov	dpl,r2
+      00039D 8B 83            [24]  731 	mov	dph,r3
+      00039F 8C F0            [24]  732 	mov	b,r4
+      0003A1 12r00r00         [24]  733 	lcall	__gptrget
+      0003A4 FA               [12]  734 	mov	r2,a
+      0003A5 A3               [24]  735 	inc	dptr
+      0003A6 12r00r00         [24]  736 	lcall	__gptrget
+      0003A9 FB               [12]  737 	mov	r3,a
+      0003AA A3               [24]  738 	inc	dptr
+      0003AB 12r00r00         [24]  739 	lcall	__gptrget
+      0003AE FC               [12]  740 	mov	r4,a
+      0003AF 8A 82            [24]  741 	mov	dpl,r2
+      0003B1 8B 83            [24]  742 	mov	dph,r3
+      0003B3 8C F0            [24]  743 	mov	b,r4
+      0003B5 C0 07            [24]  744 	push	ar7
+      0003B7 C0 06            [24]  745 	push	ar6
+      0003B9 C0 05            [24]  746 	push	ar5
+      0003BB 78r00            [12]  747 	mov	r0,#_queuebuf_to_packetbuf
+      0003BD 79s00            [12]  748 	mov	r1,#(_queuebuf_to_packetbuf >> 8)
+      0003BF 7As00            [12]  749 	mov	r2,#(_queuebuf_to_packetbuf >> 16)
+      0003C1 12r00r00         [24]  750 	lcall	__sdcc_banked_call
+      0003C4 D0 05            [24]  751 	pop	ar5
+      0003C6 D0 06            [24]  752 	pop	ar6
+      0003C8 D0 07            [24]  753 	pop	ar7
+                                    754 ;	../../../core/net/mac/sicslowmac.c:183: send_packet(sent, ptr);
+      0003CA E5 81            [12]  755 	mov	a,sp
+      0003CC 24 FB            [12]  756 	add	a,#0xfb
+      0003CE F8               [12]  757 	mov	r0,a
+      0003CF E6               [12]  758 	mov	a,@r0
+      0003D0 C0 E0            [24]  759 	push	acc
+      0003D2 08               [12]  760 	inc	r0
+      0003D3 E6               [12]  761 	mov	a,@r0
+      0003D4 C0 E0            [24]  762 	push	acc
+      0003D6 08               [12]  763 	inc	r0
+      0003D7 E6               [12]  764 	mov	a,@r0
+      0003D8 C0 E0            [24]  765 	push	acc
+      0003DA 8D 82            [24]  766 	mov	dpl,r5
+      0003DC 8E 83            [24]  767 	mov	dph,r6
+      0003DE 8F F0            [24]  768 	mov	b,r7
+      0003E0 78r4B            [12]  769 	mov	r0,#_send_packet
+      0003E2 79s00            [12]  770 	mov	r1,#(_send_packet >> 8)
+      0003E4 7As00            [12]  771 	mov	r2,#(_send_packet >> 16)
+      0003E6 12r00r00         [24]  772 	lcall	__sdcc_banked_call
+      0003E9 15 81            [12]  773 	dec	sp
+      0003EB 15 81            [12]  774 	dec	sp
+      0003ED 15 81            [12]  775 	dec	sp
+      0003EF                        776 00103$:
+                                    777 ;	../../../core/net/mac/sicslowmac.c:185: }
+      0003EF 02r00r00         [24]  778 	ljmp	__sdcc_banked_ret
+                                    779 ;------------------------------------------------------------
+                                    780 ;Allocation info for local variables in function 'input_packet'
+                                    781 ;------------------------------------------------------------
+                                    782 ;frame                     Allocated to stack - sp -50
+                                    783 ;len                       Allocated to stack - sp -1
+                                    784 ;sloc0                     Allocated to stack - sp -51
+                                    785 ;------------------------------------------------------------
+                                    786 ;	../../../core/net/mac/sicslowmac.c:188: input_packet(void)
+                                    787 ;	-----------------------------------------
+                                    788 ;	 function input_packet
+                                    789 ;	-----------------------------------------
+      0003F2                        790 _input_packet:
+      0003F2 E5 81            [12]  791 	mov	a,sp
+      0003F4 24 34            [12]  792 	add	a,#0x34
+      0003F6 F5 81            [12]  793 	mov	sp,a
+                                    794 ;	../../../core/net/mac/sicslowmac.c:193: len = packetbuf_datalen();
+      0003F8 78r00            [12]  795 	mov	r0,#_packetbuf_datalen
+      0003FA 79s00            [12]  796 	mov	r1,#(_packetbuf_datalen >> 8)
+      0003FC 7As00            [12]  797 	mov	r2,#(_packetbuf_datalen >> 16)
+      0003FE 12r00r00         [24]  798 	lcall	__sdcc_banked_call
+      000401 AE 82            [24]  799 	mov	r6,dpl
+      000403 AF 83            [24]  800 	mov	r7,dph
+      000405 A8 81            [24]  801 	mov	r0,sp
+      000407 18               [12]  802 	dec	r0
+      000408 A6 06            [24]  803 	mov	@r0,ar6
+      00040A 08               [12]  804 	inc	r0
+      00040B A6 07            [24]  805 	mov	@r0,ar7
+                                    806 ;	../../../core/net/mac/sicslowmac.c:195: if(frame802154_parse(packetbuf_dataptr(), len, &frame) &&
+      00040D E5 81            [12]  807 	mov	a,sp
+      00040F 24 CE            [12]  808 	add	a,#0xce
+      000411 FD               [12]  809 	mov	r5,a
+      000412 7C 00            [12]  810 	mov	r4,#0x00
+      000414 7B 40            [12]  811 	mov	r3,#0x40
+      000416 A8 81            [24]  812 	mov	r0,sp
+      000418 18               [12]  813 	dec	r0
+      000419 E5 81            [12]  814 	mov	a,sp
+      00041B 24 CD            [12]  815 	add	a,#0xcd
+      00041D F9               [12]  816 	mov	r1,a
+      00041E E6               [12]  817 	mov	a,@r0
+      00041F F7               [12]  818 	mov	@r1,a
+      000420 C0 05            [24]  819 	push	ar5
+      000422 C0 04            [24]  820 	push	ar4
+      000424 C0 03            [24]  821 	push	ar3
+      000426 78r00            [12]  822 	mov	r0,#_packetbuf_dataptr
+      000428 79s00            [12]  823 	mov	r1,#(_packetbuf_dataptr >> 8)
+      00042A 7As00            [12]  824 	mov	r2,#(_packetbuf_dataptr >> 16)
+      00042C 12r00r00         [24]  825 	lcall	__sdcc_banked_call
+      00042F AA 82            [24]  826 	mov	r2,dpl
+      000431 AE 83            [24]  827 	mov	r6,dph
+      000433 AF F0            [24]  828 	mov	r7,b
+      000435 E5 81            [12]  829 	mov	a,sp
+      000437 24 CA            [12]  830 	add	a,#0xca
+      000439 F8               [12]  831 	mov	r0,a
+      00043A E6               [12]  832 	mov	a,@r0
+      00043B C0 E0            [24]  833 	push	acc
+      00043D 8A 82            [24]  834 	mov	dpl,r2
+      00043F 8E 83            [24]  835 	mov	dph,r6
+      000441 8F F0            [24]  836 	mov	b,r7
+      000443 78r00            [12]  837 	mov	r0,#_frame802154_parse
+      000445 79s00            [12]  838 	mov	r1,#(_frame802154_parse >> 8)
+      000447 7As00            [12]  839 	mov	r2,#(_frame802154_parse >> 16)
+      000449 12r00r00         [24]  840 	lcall	__sdcc_banked_call
+      00044C AF 82            [24]  841 	mov	r7,dpl
+      00044E E5 81            [12]  842 	mov	a,sp
+      000450 24 FC            [12]  843 	add	a,#0xfc
+      000452 F5 81            [12]  844 	mov	sp,a
+      000454 EF               [12]  845 	mov	a,r7
+      000455 70 03            [24]  846 	jnz	00143$
+      000457 02r05rA5         [24]  847 	ljmp	00113$
+      00045A                        848 00143$:
+                                    849 ;	../../../core/net/mac/sicslowmac.c:196: packetbuf_hdrreduce(len - frame.payload_len)) {
+      00045A E5 81            [12]  850 	mov	a,sp
+      00045C 24 CE            [12]  851 	add	a,#0xce
+      00045E 24 30            [12]  852 	add	a,#0x30
+      000460 F9               [12]  853 	mov	r1,a
+      000461 87 07            [24]  854 	mov	ar7,@r1
+      000463 7E 00            [12]  855 	mov	r6,#0x00
+      000465 A8 81            [24]  856 	mov	r0,sp
+      000467 18               [12]  857 	dec	r0
+      000468 E6               [12]  858 	mov	a,@r0
+      000469 C3               [12]  859 	clr	c
+      00046A 9F               [12]  860 	subb	a,r7
+      00046B FF               [12]  861 	mov	r7,a
+      00046C 08               [12]  862 	inc	r0
+      00046D E6               [12]  863 	mov	a,@r0
+      00046E 9E               [12]  864 	subb	a,r6
+      00046F FE               [12]  865 	mov	r6,a
+      000470 8F 82            [24]  866 	mov	dpl,r7
+      000472 8E 83            [24]  867 	mov	dph,r6
+      000474 78r00            [12]  868 	mov	r0,#_packetbuf_hdrreduce
+      000476 79s00            [12]  869 	mov	r1,#(_packetbuf_hdrreduce >> 8)
+      000478 7As00            [12]  870 	mov	r2,#(_packetbuf_hdrreduce >> 16)
+      00047A 12r00r00         [24]  871 	lcall	__sdcc_banked_call
+      00047D E5 82            [12]  872 	mov	a,dpl
+      00047F 85 83 F0         [24]  873 	mov	b,dph
+      000482 45 F0            [12]  874 	orl	a,b
+      000484 70 03            [24]  875 	jnz	00144$
+      000486 02r05rA5         [24]  876 	ljmp	00113$
+      000489                        877 00144$:
+                                    878 ;	../../../core/net/mac/sicslowmac.c:197: if(frame.fcf.dest_addr_mode) {
+      000489 E5 81            [12]  879 	mov	a,sp
+      00048B 24 CE            [12]  880 	add	a,#0xce
+      00048D 24 05            [12]  881 	add	a,#0x05
+      00048F F9               [12]  882 	mov	r1,a
+      000490 E7               [12]  883 	mov	a,@r1
+      000491 70 03            [24]  884 	jnz	00145$
+      000493 02r05r59         [24]  885 	ljmp	00109$
+      000496                        886 00145$:
+                                    887 ;	../../../core/net/mac/sicslowmac.c:198: if(frame.dest_pid != mac_src_pan_id &&
+      000496 E5 81            [12]  888 	mov	a,sp
+      000498 24 CE            [12]  889 	add	a,#0xce
+      00049A 24 09            [12]  890 	add	a,#0x09
+      00049C F9               [12]  891 	mov	r1,a
+      00049D 87 06            [24]  892 	mov	ar6,@r1
+      00049F 09               [12]  893 	inc	r1
+      0004A0 87 07            [24]  894 	mov	ar7,@r1
+      0004A2 90r00r02         [24]  895 	mov	dptr,#_mac_src_pan_id
+      0004A5 E0               [24]  896 	movx	a,@dptr
+      0004A6 FC               [12]  897 	mov	r4,a
+      0004A7 A3               [24]  898 	inc	dptr
+      0004A8 E0               [24]  899 	movx	a,@dptr
+      0004A9 FD               [12]  900 	mov	r5,a
+      0004AA EE               [12]  901 	mov	a,r6
+      0004AB B5 04 06         [24]  902 	cjne	a,ar4,00146$
+      0004AE EF               [12]  903 	mov	a,r7
+      0004AF B5 05 02         [24]  904 	cjne	a,ar5,00146$
+      0004B2 80 17            [24]  905 	sjmp	00102$
+      0004B4                        906 00146$:
+                                    907 ;	../../../core/net/mac/sicslowmac.c:199: frame.dest_pid != FRAME802154_BROADCASTPANDID) {
+      0004B4 E5 81            [12]  908 	mov	a,sp
+      0004B6 24 CE            [12]  909 	add	a,#0xce
+      0004B8 24 09            [12]  910 	add	a,#0x09
+      0004BA F9               [12]  911 	mov	r1,a
+      0004BB 87 06            [24]  912 	mov	ar6,@r1
+      0004BD 09               [12]  913 	inc	r1
+      0004BE 87 07            [24]  914 	mov	ar7,@r1
+      0004C0 BE FF 05         [24]  915 	cjne	r6,#0xff,00147$
+      0004C3 BF FF 02         [24]  916 	cjne	r7,#0xff,00147$
+      0004C6 80 03            [24]  917 	sjmp	00102$
+      0004C8                        918 00147$:
+                                    919 ;	../../../core/net/mac/sicslowmac.c:202: return;
+      0004C8 02r05rA5         [24]  920 	ljmp	00113$
+      0004CB                        921 00102$:
+                                    922 ;	../../../core/net/mac/sicslowmac.c:204: if(!is_broadcast_addr(frame.fcf.dest_addr_mode, frame.dest_addr)) {
+      0004CB E5 81            [12]  923 	mov	a,sp
+      0004CD 24 CE            [12]  924 	add	a,#0xce
+      0004CF FF               [12]  925 	mov	r7,a
+      0004D0 24 0B            [12]  926 	add	a,#0x0b
+      0004D2 FE               [12]  927 	mov	r6,a
+      0004D3 7D 00            [12]  928 	mov	r5,#0x00
+      0004D5 7C 40            [12]  929 	mov	r4,#0x40
+      0004D7 74 05            [12]  930 	mov	a,#0x05
+      0004D9 2F               [12]  931 	add	a,r7
+      0004DA F9               [12]  932 	mov	r1,a
+      0004DB 87 07            [24]  933 	mov	ar7,@r1
+      0004DD C0 06            [24]  934 	push	ar6
+      0004DF C0 05            [24]  935 	push	ar5
+      0004E1 C0 04            [24]  936 	push	ar4
+      0004E3 8F 82            [24]  937 	mov	dpl,r7
+      0004E5 78r00            [12]  938 	mov	r0,#_is_broadcast_addr
+      0004E7 79s00            [12]  939 	mov	r1,#(_is_broadcast_addr >> 8)
+      0004E9 7As00            [12]  940 	mov	r2,#(_is_broadcast_addr >> 16)
+      0004EB 12r00r00         [24]  941 	lcall	__sdcc_banked_call
+      0004EE AE 82            [24]  942 	mov	r6,dpl
+      0004F0 AF 83            [24]  943 	mov	r7,dph
+      0004F2 15 81            [12]  944 	dec	sp
+      0004F4 15 81            [12]  945 	dec	sp
+      0004F6 15 81            [12]  946 	dec	sp
+      0004F8 EE               [12]  947 	mov	a,r6
+      0004F9 4F               [12]  948 	orl	a,r7
+      0004FA 70 5D            [24]  949 	jnz	00109$
+                                    950 ;	../../../core/net/mac/sicslowmac.c:205: packetbuf_set_addr(PACKETBUF_ADDR_RECEIVER, (rimeaddr_t *)&frame.dest_addr);
+      0004FC E5 81            [12]  951 	mov	a,sp
+      0004FE 24 CE            [12]  952 	add	a,#0xce
+      000500 24 0B            [12]  953 	add	a,#0x0b
+      000502 FF               [12]  954 	mov	r7,a
+      000503 7E 00            [12]  955 	mov	r6,#0x00
+      000505 7D 40            [12]  956 	mov	r5,#0x40
+      000507 C0 07            [24]  957 	push	ar7
+      000509 C0 06            [24]  958 	push	ar6
+      00050B C0 05            [24]  959 	push	ar5
+      00050D 75 82 19         [24]  960 	mov	dpl,#0x19
+      000510 78r00            [12]  961 	mov	r0,#_packetbuf_set_addr
+      000512 79s00            [12]  962 	mov	r1,#(_packetbuf_set_addr >> 8)
+      000514 7As00            [12]  963 	mov	r2,#(_packetbuf_set_addr >> 16)
+      000516 12r00r00         [24]  964 	lcall	__sdcc_banked_call
+      000519 15 81            [12]  965 	dec	sp
+      00051B 15 81            [12]  966 	dec	sp
+      00051D 15 81            [12]  967 	dec	sp
+                                    968 ;	../../../core/net/mac/sicslowmac.c:207: &rimeaddr_node_addr)) {
+                                    969 ;	../../../core/net/mac/sicslowmac.c:206: if(!rimeaddr_cmp(packetbuf_addr(PACKETBUF_ADDR_RECEIVER),
+      00051F 75 82 19         [24]  970 	mov	dpl,#0x19
+      000522 78r00            [12]  971 	mov	r0,#_packetbuf_addr
+      000524 79s00            [12]  972 	mov	r1,#(_packetbuf_addr >> 8)
+      000526 7As00            [12]  973 	mov	r2,#(_packetbuf_addr >> 16)
+      000528 12r00r00         [24]  974 	lcall	__sdcc_banked_call
+      00052B AD 82            [24]  975 	mov	r5,dpl
+      00052D AE 83            [24]  976 	mov	r6,dph
+      00052F AF F0            [24]  977 	mov	r7,b
+      000531 74r00            [12]  978 	mov	a,#_rimeaddr_node_addr
+      000533 C0 E0            [24]  979 	push	acc
+      000535 74s00            [12]  980 	mov	a,#(_rimeaddr_node_addr >> 8)
+      000537 C0 E0            [24]  981 	push	acc
+      000539 E4               [12]  982 	clr	a
+      00053A C0 E0            [24]  983 	push	acc
+      00053C 8D 82            [24]  984 	mov	dpl,r5
+      00053E 8E 83            [24]  985 	mov	dph,r6
+      000540 8F F0            [24]  986 	mov	b,r7
+      000542 78r00            [12]  987 	mov	r0,#_rimeaddr_cmp
+      000544 79s00            [12]  988 	mov	r1,#(_rimeaddr_cmp >> 8)
+      000546 7As00            [12]  989 	mov	r2,#(_rimeaddr_cmp >> 16)
+      000548 12r00r00         [24]  990 	lcall	__sdcc_banked_call
+      00054B AE 82            [24]  991 	mov	r6,dpl
+      00054D AF 83            [24]  992 	mov	r7,dph
+      00054F 15 81            [12]  993 	dec	sp
+      000551 15 81            [12]  994 	dec	sp
+      000553 15 81            [12]  995 	dec	sp
+      000555 EE               [12]  996 	mov	a,r6
+      000556 4F               [12]  997 	orl	a,r7
+                                    998 ;	../../../core/net/mac/sicslowmac.c:210: return;
+      000557 60 4C            [24]  999 	jz	00113$
+      000559                       1000 00109$:
+                                   1001 ;	../../../core/net/mac/sicslowmac.c:214: packetbuf_set_addr(PACKETBUF_ADDR_SENDER, (rimeaddr_t *)&frame.src_addr);
+      000559 E5 81            [12] 1002 	mov	a,sp
+      00055B 24 CE            [12] 1003 	add	a,#0xce
+      00055D 24 15            [12] 1004 	add	a,#0x15
+      00055F FF               [12] 1005 	mov	r7,a
+      000560 7E 00            [12] 1006 	mov	r6,#0x00
+      000562 7D 40            [12] 1007 	mov	r5,#0x40
+      000564 C0 07            [24] 1008 	push	ar7
+      000566 C0 06            [24] 1009 	push	ar6
+      000568 C0 05            [24] 1010 	push	ar5
+      00056A 75 82 18         [24] 1011 	mov	dpl,#0x18
+      00056D 78r00            [12] 1012 	mov	r0,#_packetbuf_set_addr
+      00056F 79s00            [12] 1013 	mov	r1,#(_packetbuf_set_addr >> 8)
+      000571 7As00            [12] 1014 	mov	r2,#(_packetbuf_set_addr >> 16)
+      000573 12r00r00         [24] 1015 	lcall	__sdcc_banked_call
+      000576 15 81            [12] 1016 	dec	sp
+      000578 15 81            [12] 1017 	dec	sp
+      00057A 15 81            [12] 1018 	dec	sp
+                                   1019 ;	../../../core/net/mac/sicslowmac.c:220: NETSTACK_MAC.input();
+      00057C 90r00r09         [24] 1020 	mov	dptr,#(_csma_driver + 0x0009)
+      00057F E4               [12] 1021 	clr	a
+      000580 93               [24] 1022 	movc	a,@a+dptr
+      000581 FD               [12] 1023 	mov	r5,a
+      000582 A3               [24] 1024 	inc	dptr
+      000583 E4               [12] 1025 	clr	a
+      000584 93               [24] 1026 	movc	a,@a+dptr
+      000585 FE               [12] 1027 	mov	r6,a
+      000586 A3               [24] 1028 	inc	dptr
+      000587 E4               [12] 1029 	clr	a
+      000588 93               [24] 1030 	movc	a,@a+dptr
+      000589 FF               [12] 1031 	mov	r7,a
+      00058A C0 07            [24] 1032 	push	ar7
+      00058C C0 06            [24] 1033 	push	ar6
+      00058E C0 05            [24] 1034 	push	ar5
+      000590 C0 05            [24] 1035 	push	ar5
+      000592 C0 06            [24] 1036 	push	ar6
+      000594 C0 07            [24] 1037 	push	ar7
+      000596 D0 02            [24] 1038 	pop	ar2
+      000598 D0 01            [24] 1039 	pop	ar1
+      00059A D0 00            [24] 1040 	pop	ar0
+      00059C 12r00r00         [24] 1041 	lcall	__sdcc_banked_call
+      00059F D0 05            [24] 1042 	pop	ar5
+      0005A1 D0 06            [24] 1043 	pop	ar6
+      0005A3 D0 07            [24] 1044 	pop	ar7
+      0005A5                       1045 00113$:
+                                   1046 ;	../../../core/net/mac/sicslowmac.c:224: }
+      0005A5 E5 81            [12] 1047 	mov	a,sp
+      0005A7 24 CC            [12] 1048 	add	a,#0xcc
+      0005A9 F5 81            [12] 1049 	mov	sp,a
+      0005AB 02r00r00         [24] 1050 	ljmp	__sdcc_banked_ret
+                                   1051 ;------------------------------------------------------------
+                                   1052 ;Allocation info for local variables in function 'on'
+                                   1053 ;------------------------------------------------------------
+                                   1054 ;	../../../core/net/mac/sicslowmac.c:227: on(void)
+                                   1055 ;	-----------------------------------------
+                                   1056 ;	 function on
+                                   1057 ;	-----------------------------------------
+      0005AE                       1058 _on:
+                                   1059 ;	../../../core/net/mac/sicslowmac.c:229: return NETSTACK_RADIO.on();
+      0005AE 90r00r18         [24] 1060 	mov	dptr,#(_cc2530_rf_driver + 0x0018)
+      0005B1 E4               [12] 1061 	clr	a
+      0005B2 93               [24] 1062 	movc	a,@a+dptr
+      0005B3 FD               [12] 1063 	mov	r5,a
+      0005B4 A3               [24] 1064 	inc	dptr
+      0005B5 E4               [12] 1065 	clr	a
+      0005B6 93               [24] 1066 	movc	a,@a+dptr
+      0005B7 FE               [12] 1067 	mov	r6,a
+      0005B8 A3               [24] 1068 	inc	dptr
+      0005B9 E4               [12] 1069 	clr	a
+      0005BA 93               [24] 1070 	movc	a,@a+dptr
+      0005BB FF               [12] 1071 	mov	r7,a
+      0005BC C0 07            [24] 1072 	push	ar7
+      0005BE C0 05            [24] 1073 	push	ar5
+      0005C0 C0 06            [24] 1074 	push	ar6
+      0005C2 C0 07            [24] 1075 	push	ar7
+      0005C4 D0 02            [24] 1076 	pop	ar2
+      0005C6 D0 01            [24] 1077 	pop	ar1
+      0005C8 D0 00            [24] 1078 	pop	ar0
+      0005CA 12r00r00         [24] 1079 	lcall	__sdcc_banked_call
+      0005CD AD 82            [24] 1080 	mov	r5,dpl
+      0005CF AE 83            [24] 1081 	mov	r6,dph
+      0005D1 D0 07            [24] 1082 	pop	ar7
+      0005D3 8D 82            [24] 1083 	mov	dpl,r5
+      0005D5 8E 83            [24] 1084 	mov	dph,r6
+                                   1085 ;	../../../core/net/mac/sicslowmac.c:230: }
+      0005D7 02r00r00         [24] 1086 	ljmp	__sdcc_banked_ret
+                                   1087 ;------------------------------------------------------------
+                                   1088 ;Allocation info for local variables in function 'off'
+                                   1089 ;------------------------------------------------------------
+                                   1090 ;keep_radio_on             Allocated to registers r6 r7 
+                                   1091 ;------------------------------------------------------------
+                                   1092 ;	../../../core/net/mac/sicslowmac.c:233: off(int keep_radio_on)
+                                   1093 ;	-----------------------------------------
+                                   1094 ;	 function off
+                                   1095 ;	-----------------------------------------
+      0005DA                       1096 _off:
+      0005DA AE 82            [24] 1097 	mov	r6,dpl
+      0005DC AF 83            [24] 1098 	mov	r7,dph
+                                   1099 ;	../../../core/net/mac/sicslowmac.c:235: if(keep_radio_on) {
+      0005DE EE               [12] 1100 	mov	a,r6
+      0005DF 4F               [12] 1101 	orl	a,r7
+      0005E0 60 2B            [24] 1102 	jz	00102$
+                                   1103 ;	../../../core/net/mac/sicslowmac.c:236: return NETSTACK_RADIO.on();
+      0005E2 90r00r18         [24] 1104 	mov	dptr,#(_cc2530_rf_driver + 0x0018)
+      0005E5 E4               [12] 1105 	clr	a
+      0005E6 93               [24] 1106 	movc	a,@a+dptr
+      0005E7 FD               [12] 1107 	mov	r5,a
+      0005E8 A3               [24] 1108 	inc	dptr
+      0005E9 E4               [12] 1109 	clr	a
+      0005EA 93               [24] 1110 	movc	a,@a+dptr
+      0005EB FE               [12] 1111 	mov	r6,a
+      0005EC A3               [24] 1112 	inc	dptr
+      0005ED E4               [12] 1113 	clr	a
+      0005EE 93               [24] 1114 	movc	a,@a+dptr
+      0005EF FF               [12] 1115 	mov	r7,a
+      0005F0 C0 07            [24] 1116 	push	ar7
+      0005F2 C0 05            [24] 1117 	push	ar5
+      0005F4 C0 06            [24] 1118 	push	ar6
+      0005F6 C0 07            [24] 1119 	push	ar7
+      0005F8 D0 02            [24] 1120 	pop	ar2
+      0005FA D0 01            [24] 1121 	pop	ar1
+      0005FC D0 00            [24] 1122 	pop	ar0
+      0005FE 12r00r00         [24] 1123 	lcall	__sdcc_banked_call
+      000601 AD 82            [24] 1124 	mov	r5,dpl
+      000603 AE 83            [24] 1125 	mov	r6,dph
+      000605 D0 07            [24] 1126 	pop	ar7
+      000607 8D 82            [24] 1127 	mov	dpl,r5
+      000609 8E 83            [24] 1128 	mov	dph,r6
+      00060B 80 29            [24] 1129 	sjmp	00104$
+      00060D                       1130 00102$:
+                                   1131 ;	../../../core/net/mac/sicslowmac.c:238: return NETSTACK_RADIO.off();
+      00060D 90r00r1B         [24] 1132 	mov	dptr,#(_cc2530_rf_driver + 0x001b)
+      000610 E4               [12] 1133 	clr	a
+      000611 93               [24] 1134 	movc	a,@a+dptr
+      000612 FD               [12] 1135 	mov	r5,a
+      000613 A3               [24] 1136 	inc	dptr
+      000614 E4               [12] 1137 	clr	a
+      000615 93               [24] 1138 	movc	a,@a+dptr
+      000616 FE               [12] 1139 	mov	r6,a
+      000617 A3               [24] 1140 	inc	dptr
+      000618 E4               [12] 1141 	clr	a
+      000619 93               [24] 1142 	movc	a,@a+dptr
+      00061A FF               [12] 1143 	mov	r7,a
+      00061B C0 07            [24] 1144 	push	ar7
+      00061D C0 05            [24] 1145 	push	ar5
+      00061F C0 06            [24] 1146 	push	ar6
+      000621 C0 07            [24] 1147 	push	ar7
+      000623 D0 02            [24] 1148 	pop	ar2
+      000625 D0 01            [24] 1149 	pop	ar1
+      000627 D0 00            [24] 1150 	pop	ar0
+      000629 12r00r00         [24] 1151 	lcall	__sdcc_banked_call
+      00062C AD 82            [24] 1152 	mov	r5,dpl
+      00062E AE 83            [24] 1153 	mov	r6,dph
+      000630 D0 07            [24] 1154 	pop	ar7
+      000632 8D 82            [24] 1155 	mov	dpl,r5
+      000634 8E 83            [24] 1156 	mov	dph,r6
+      000636                       1157 00104$:
+                                   1158 ;	../../../core/net/mac/sicslowmac.c:240: }
+      000636 02r00r00         [24] 1159 	ljmp	__sdcc_banked_ret
+                                   1160 ;------------------------------------------------------------
+                                   1161 ;Allocation info for local variables in function 'init'
+                                   1162 ;------------------------------------------------------------
+                                   1163 ;	../../../core/net/mac/sicslowmac.c:243: init(void)
+                                   1164 ;	-----------------------------------------
+                                   1165 ;	 function init
+                                   1166 ;	-----------------------------------------
+      000639                       1167 _init:
+                                   1168 ;	../../../core/net/mac/sicslowmac.c:245: mac_dsn = random_rand() % 256;
+      000639 78r00            [12] 1169 	mov	r0,#_random_rand
+      00063B 79s00            [12] 1170 	mov	r1,#(_random_rand >> 8)
+      00063D 7As00            [12] 1171 	mov	r2,#(_random_rand >> 16)
+      00063F 12r00r00         [24] 1172 	lcall	__sdcc_banked_call
+      000642 E5 82            [12] 1173 	mov	a,dpl
+      000644 85 83 F0         [24] 1174 	mov	b,dph
+      000647 FE               [12] 1175 	mov	r6,a
+      000648 90r00r00         [24] 1176 	mov	dptr,#_mac_dsn
+      00064B EE               [12] 1177 	mov	a,r6
+      00064C F0               [24] 1178 	movx	@dptr,a
+                                   1179 ;	../../../core/net/mac/sicslowmac.c:247: NETSTACK_RADIO.on();
+      00064D 90r00r18         [24] 1180 	mov	dptr,#(_cc2530_rf_driver + 0x0018)
+      000650 E4               [12] 1181 	clr	a
+      000651 93               [24] 1182 	movc	a,@a+dptr
+      000652 FD               [12] 1183 	mov	r5,a
+      000653 A3               [24] 1184 	inc	dptr
+      000654 E4               [12] 1185 	clr	a
+      000655 93               [24] 1186 	movc	a,@a+dptr
+      000656 FE               [12] 1187 	mov	r6,a
+      000657 A3               [24] 1188 	inc	dptr
+      000658 E4               [12] 1189 	clr	a
+      000659 93               [24] 1190 	movc	a,@a+dptr
+      00065A FF               [12] 1191 	mov	r7,a
+      00065B C0 07            [24] 1192 	push	ar7
+      00065D C0 06            [24] 1193 	push	ar6
+      00065F C0 05            [24] 1194 	push	ar5
+      000661 C0 05            [24] 1195 	push	ar5
+      000663 C0 06            [24] 1196 	push	ar6
+      000665 C0 07            [24] 1197 	push	ar7
+      000667 D0 02            [24] 1198 	pop	ar2
+      000669 D0 01            [24] 1199 	pop	ar1
+      00066B D0 00            [24] 1200 	pop	ar0
+      00066D 12r00r00         [24] 1201 	lcall	__sdcc_banked_call
+      000670 D0 05            [24] 1202 	pop	ar5
+      000672 D0 06            [24] 1203 	pop	ar6
+      000674 D0 07            [24] 1204 	pop	ar7
+                                   1205 ;	../../../core/net/mac/sicslowmac.c:248: }
+      000676 02r00r00         [24] 1206 	ljmp	__sdcc_banked_ret
+                                   1207 ;------------------------------------------------------------
+                                   1208 ;Allocation info for local variables in function 'channel_check_interval'
+                                   1209 ;------------------------------------------------------------
+                                   1210 ;	../../../core/net/mac/sicslowmac.c:251: channel_check_interval(void)
+                                   1211 ;	-----------------------------------------
+                                   1212 ;	 function channel_check_interval
+                                   1213 ;	-----------------------------------------
+      000679                       1214 _channel_check_interval:
+                                   1215 ;	../../../core/net/mac/sicslowmac.c:253: return 0;
+      000679 90 00 00         [24] 1216 	mov	dptr,#0x0000
+                                   1217 ;	../../../core/net/mac/sicslowmac.c:254: }
+      00067C 02r00r00         [24] 1218 	ljmp	__sdcc_banked_ret
+                                   1219 	.area CSEG    (CODE)
+                                   1220 	.area CONST   (CODE)
+      000000                       1221 _sicslowmac_driver:
+      000000r18s00 80              1222 	.byte __str_0, (__str_0 >> 8),#0x80
+      000003r39s06s00              1223 	.byte _init, (_init >> 8), (_init >> 16)
+      000006r4Bs00s00              1224 	.byte _send_packet, (_send_packet >> 8), (_send_packet >> 16)
+      000009r77s03s00              1225 	.byte _send_list, (_send_list >> 8), (_send_list >> 16)
+      00000CrF2s03s00              1226 	.byte _input_packet, (_input_packet >> 8), (_input_packet >> 16)
+      00000FrAEs05s00              1227 	.byte _on, (_on >> 8), (_on >> 16)
+      000012rDAs05s00              1228 	.byte _off, (_off >> 8), (_off >> 16)
+      000015r79s06s00              1229 	.byte _channel_check_interval, (_channel_check_interval >> 8), (_channel_check_interval >> 16)
+      000018                       1230 __str_0:
+      000018 73 69 63 73 6C 6F 77  1231 	.ascii "sicslowmac"
+             6D 61 63
+      000022 00                    1232 	.db 0x00
+                                   1233 	.area XINIT   (CODE)
+      000000                       1234 __xinit__mac_dst_pan_id:
+      000000 49 54                 1235 	.byte #0x49,#0x54	; 21577
+      000002                       1236 __xinit__mac_src_pan_id:
+      000002 49 54                 1237 	.byte #0x49,#0x54	; 21577
+                                   1238 	.area CABS    (ABS,CODE)
